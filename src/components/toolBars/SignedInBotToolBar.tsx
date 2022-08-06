@@ -3,10 +3,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import { Tooltip } from '@material-ui/core';
-import sortMenuItems from '../../model/menuItem/sortMenuItems';
-import {
-    noSelectedRestaurant,
-} from '../../api/apiConstants';
 
 const SignedInBotToolBar = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -18,10 +14,6 @@ const SignedInBotToolBar = () => {
         setAssociateDialogData,
         setAssociateDialogOpen,
         associate,
-        restaurantId,
-        myStates,
-        setMyState,
-        restaurantMenuItems,
         setRestaurantMenuItems,
         setRestaurantMenuDays,
         setRestaurantAssociates,
@@ -66,40 +58,9 @@ const SignedInBotToolBar = () => {
         setAssociateDialogOpen(true);
     };
 
-    const sortBy = async (sortType: any) => {
-        let myRestaurantMenuItems = JSON.parse(JSON.stringify(restaurantMenuItems))
-        myRestaurantMenuItems = await sortMenuItems(myRestaurantMenuItems, sortType);
-        setMyState(sortType)
-        setRestaurantMenuItems(myRestaurantMenuItems);
-    }
-
     return (
         <Fragment>
             <Toolbar color="primary" component='div'>
-                {(restaurantId !== noSelectedRestaurant && myStates['menuSettings']) &&
-                    <Tooltip title="Show description">
-                        <IconButton aria-label=""
-                            color={myStates['showDescription'] ? "secondary" : "primary"}
-                            onClick={() => dataAndMethodsContext.setMyState('showDescription')}>
-                            <i className="fas fa-align-left"></i>
-                        </IconButton>
-                    </Tooltip>}
-                {(restaurantId !== noSelectedRestaurant && myStates['menuSettings']) &&
-                    <Tooltip title="Sort alphabetically">
-                        <IconButton aria-label=""
-                            color={myStates['sortTitle'] ? "secondary" : "primary"}
-                            onClick={() => sortBy('sortTitle')}>
-                            <i className="fas fa-sort-alpha-down"></i>
-                        </IconButton>
-                    </Tooltip>}
-                {(restaurantId !== noSelectedRestaurant && myStates['menuSettings']) &&
-                    <Tooltip title="Sort by price">
-                        <IconButton aria-label=""
-                            color={myStates['sortPrice'] ? "secondary" : "primary"}
-                            onClick={() => sortBy('sortPrice')}>
-                            <i className="icon-sort-dollar"></i>
-                        </IconButton>
-                    </Tooltip>}
                 <Tooltip title="Edit associate details">
                     <IconButton aria-label=""
                         color="primary"

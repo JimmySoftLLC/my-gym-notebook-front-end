@@ -4,9 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { v4 as uuidv4 } from 'uuid';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
-import sortMenuDays from '../../model/menuDay/sortMenuDays';
-import associatesAccessLevel from '../../model/associate/associatesAccessLevel';
-import deleteMenuDayFromRestaurant from '../../model/menuDay/deleteMenuDayFromRestaurant';
 import dateString from '../../model/dateString';
 
 const useStyles = makeStyles(theme => ({
@@ -26,12 +23,6 @@ const MenuDayCard: any = ({ menuDay }: any) => {
         restaurantMenuDays,
         setMenuDayDialogData,
         setMenuDayDialogOpen,
-        idToken,
-        customId,
-        setRestaurantMenuDays,
-        associatesRestaurants,
-        restaurantId,
-        associate,
     } = dataAndMethodsContext;
 
     const deleteConfirmDialogContext: any = useContext(DeleteConfirmDialogContext);
@@ -93,34 +84,27 @@ const MenuDayCard: any = ({ menuDay }: any) => {
     };
 
     const deleteMenuDayById = async (menuDayId: any) => {
-        let myMenuDays = await deleteMenuDayFromRestaurant(menuDayId, restaurantId, associatesRestaurants, true, idToken, customId)
-        myMenuDays = await sortMenuDays(myMenuDays, 'sortDate');
-        setRestaurantMenuDays(myMenuDays)
+
     }
 
     // format dates for display
     let myDate = dateString(menuDay.dateFrom, menuDay.dateTo, 'displayFromTo')
 
-    // set permissions for component display
-    let canEdit = false;
-    associatesAccessLevel(associatesRestaurants, restaurantId, associate.id) === "edit" ? canEdit = true : canEdit = false
-    let canAdmin = false;
-    associatesAccessLevel(associatesRestaurants, restaurantId, associate.id) === "admin" ? canAdmin = true : canAdmin = false
 
     return (
         <div className='card'>
             <h4><i className="fas fa-calendar-day"></i>{' - '}{menuDay.title}{' - '}{myDate}
             </h4>
             <div className={classes.root} >
-                {(canAdmin || canEdit) && <Button variant="outlined" color="primary" onClick={() => menuDayEditClick(menuDay.id)}>
+                <Button variant="outlined" color="primary" onClick={() => menuDayEditClick(menuDay.id)}>
                     <i className="fas fa-edit"></i>
-                </Button>}
-                {canAdmin && <Button variant="outlined" color="primary" onClick={() => menuDayCopyClick(menuDay.id)}>
+                </Button>
+                <Button variant="outlined" color="primary" onClick={() => menuDayCopyClick(menuDay.id)}>
                     <i className="fas fa-copy"></i>
-                </Button>}
-                {canAdmin && <Button variant="outlined" color="primary" onClick={() => deleteMenuClick(menuDay.id)}>
+                </Button>
+                <Button variant="outlined" color="primary" onClick={() => deleteMenuClick(menuDay.id)}>
                     <i className="fas fa-trash"></i>
-                </Button>}
+                </Button>
             </div>
         </div>
     );

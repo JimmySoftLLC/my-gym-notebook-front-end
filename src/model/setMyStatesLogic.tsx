@@ -98,19 +98,15 @@ const setMyStatesLogic = (myStates: any, key: any) => {
         }
     }
 
-    // if myKey = any of the loggin items, set login items to false and set key
-    if (key === 'restaurantSettings' || key === 'menuSettings' || key === 'menuDaySettings' || key === 'associateSettings' || key === 'entertainmentSettings' || key === 'photoSettings') {
-        myStates['restaurantSettings'] = false;
-        myStates['menuSettings'] = false;
-        myStates['menuDaySettings'] = false;
-        myStates['associateSettings'] = false;
-        myStates['entertainmentSettings'] = false;
-        myStates['photoSettings'] = false;
+    // if myKey = any of the login items, set login items to false and set key
+    if (key === 'exerciseSettings' || key === 'gymDaySettings') {
+        myStates['exerciseSettings'] = false;
+        myStates['gymDaySettings'] = false;
         myStates[key] = true;
         return myStates;
     }
 
-    // if myKey = any of the loggin items, set login items to false and set key
+    // if myKey = any of the login items, set login items to false and set key
     if (key === 'restaurants' || key === 'menuItems' || key === 'associates' || key === 'info' || key === 'restaurantDetail' || key === 'entertainmentItems' || key === 'photoGallery') {
         myStates['restaurants'] = false;
         myStates['menuItems'] = false;

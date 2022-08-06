@@ -11,8 +11,6 @@ import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsCo
 import Toolbar from '@material-ui/core/Toolbar';
 import { Tooltip } from '@material-ui/core';
 import putMenuItem from '../../model/menuItem/putMenuItem';
-import getRestaurantById from '../../model/restaurant/getRestaurantById';
-import putRestaurant from '../../model/restaurant/putRestaurant';
 import sortMenuItems from '../../model/menuItem/sortMenuItems';
 import getMenuItems from '../../model/menuItem/getMenuItems';
 
@@ -47,7 +45,6 @@ const MenuItemDialog: any = () => {
         idToken,
         customId,
         setRestaurantMenuItems,
-        associatesRestaurants,
         restaurantId,
         myStates,
         setMenuItemDialogData,
@@ -79,10 +76,9 @@ const MenuItemDialog: any = () => {
         myNewMenuItem.restaurant = restaurant;
         myNewMenuItem.restaurantId = restaurantId;
         myNewMenuItem.price = price;
-        //console.log(menuItemsTableName, idToken, myNewMenuItem, customId);
+        //console.log(exerciseItemsTableName, idToken, myNewMenuItem, customId);
         await putMenuItem(myNewMenuItem, idToken, customId);
-        let myRestaurant = getRestaurantById(associatesRestaurants, restaurantId);
-        let myMenuItems = await getMenuItems(myRestaurant.menuItemIdsJSON);
+        let myMenuItems = await getMenuItems({});
         myMenuItems = await sortMenuItems(myMenuItems, myStates);
         setRestaurantMenuItems(myMenuItems)
     };
@@ -96,12 +92,9 @@ const MenuItemDialog: any = () => {
         myNewMenuItem.restaurant = restaurant;
         myNewMenuItem.restaurantId = restaurantId;
         myNewMenuItem.price = price;
-        //console.log(menuItemsTableName, idToken, myNewMenuItem, customId);
+        //console.log(exerciseItemsTableName, idToken, myNewMenuItem, customId);
         await putMenuItem(myNewMenuItem, idToken, customId);
-        let myRestaurant = getRestaurantById(associatesRestaurants, restaurantId);
-        myRestaurant.menuItemIdsJSON.push(myNewMenuItem.id);
-        await putRestaurant(myRestaurant, idToken, customId);
-        let myMenuItems = await getMenuItems(myRestaurant.menuItemIdsJSON);
+        let myMenuItems = await getMenuItems({});
         myMenuItems = await sortMenuItems(myMenuItems, myStates);
         setRestaurantMenuItems(myMenuItems)
     };

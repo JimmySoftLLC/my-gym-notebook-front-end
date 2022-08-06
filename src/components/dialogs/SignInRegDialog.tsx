@@ -10,15 +10,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import { v4 as uuidv4 } from 'uuid';
 import getAssociate from '../../model/associate/getAssociate';
-import getAssociatesRestaurants from '../../model/associate/getAssociatesRestaurants';
 import createAssociate from '../../model/associate/createAssociate';
-import sortRestaurants from '../../model/restaurant/sortRestaurants';
-
 import isEmail from 'validator/lib/isEmail';
-
-import {
-    noSelectedRestaurant,
-} from '../../api/apiConstants';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -48,9 +41,6 @@ const SignInRegDialog: any = () => {
         setCustomId,
         setLogInType,
         setAssociate,
-        setAssociatesRestaurants,
-        setRestaurantId,
-        setMyState,
     } = dataAndMethodsContext;
 
     const closeDialog = () => {
@@ -123,29 +113,16 @@ const SignInRegDialog: any = () => {
                 if (!associate) {
                     let myNewAssociate = await createAssociate(session.idToken.payload['email'], session.idToken.jwtToken, session.idToken.payload['custom:id'])
                     if (myNewAssociate) {
-                        let associatesRestaurants = await getAssociatesRestaurants(myNewAssociate)
-                        associatesRestaurants = await sortRestaurants(associatesRestaurants)
-                        //console.log(associatesRestaurants);
-                        setAssociatesRestaurants(associatesRestaurants);
                         setAssociate(myNewAssociate);
                         setLogInType('signedIn')
                         setSignInRegDialogType('false');
                         setDialogBackToDefaults();
-                        setRestaurantId(noSelectedRestaurant);
-                        setMyState('restaurantSettings');
                     }
                 } else {
-                    //console.log(associate);
                     setAssociate(associate);
-                    let associatesRestaurants = await getAssociatesRestaurants(associate)
-                    associatesRestaurants = await sortRestaurants(associatesRestaurants)
-                    //console.log(associatesRestaurants);
-                    setAssociatesRestaurants(associatesRestaurants);
-                    setLogInType('signedIn')
+                    setLogInType('signedIn');
                     setSignInRegDialogType('false');
                     setDialogBackToDefaults();
-                    setRestaurantId(noSelectedRestaurant);
-                    setMyState('restaurantSettings');
                 }
             }
         } catch (err) {

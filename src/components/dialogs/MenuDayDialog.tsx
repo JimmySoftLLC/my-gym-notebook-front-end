@@ -8,16 +8,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import putMenuDay from '../../model/menuDay/putMenuDay';
-import getRestaurantById from '../../model/restaurant/getRestaurantById';
 import getMenuDays from '../../model/menuDay/getMenuDaysFromIds';
-import putRestaurant from '../../model/restaurant/putRestaurant';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import sortMenuDays from '../../model/menuDay/sortMenuDays';
 import 'date-fns';
 import MenuItemsMenuDay from '../menuItemMenuDay/MenuItemsMenuDay';
-// import EntertainmentItemsMenuDay from '../entertainmentItemMenuDay/EntertainmentItemsMenuDay';
-import AssociatesMenuDay from '../associateMenuDay/AssociatesMenuDay';
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
@@ -61,7 +57,6 @@ const MenuDayDialog: any = () => {
         idToken,
         customId,
         setRestaurantMenuDays,
-        associatesRestaurants,
         restaurantId,
         setMenuDayDialogData,
     } = dataAndMethodsContext;
@@ -94,10 +89,9 @@ const MenuDayDialog: any = () => {
         myNewMenuDay.entertainmentItemIdsJSON = entertainmentItemIdsJSON
         myNewMenuDay.associatesJSON = associatesJSON;
         myNewMenuDay.restaurantId = restaurantId;
-        //console.log(MenuDaysTableName, idToken, myNewMenuDay, customId);
+        //console.log(gymDaysTableName, idToken, myNewMenuDay, customId);
         await putMenuDay(myNewMenuDay, idToken, customId);
-        let myRestaurant = getRestaurantById(associatesRestaurants, restaurantId)
-        let myMenuDays = await getMenuDays(myRestaurant.menuDayIdsJSON)
+        let myMenuDays = await getMenuDays({});
         myMenuDays = await sortMenuDays(myMenuDays, 'sortDate');
         setRestaurantMenuDays(myMenuDays)
     };
@@ -115,42 +109,20 @@ const MenuDayDialog: any = () => {
         myNewMenuDay.restaurantId = restaurantId;
         // console.log(myNewMenuDay, idToken, customId);
         await putMenuDay(myNewMenuDay, idToken, customId);
-        let myRestaurant = getRestaurantById(associatesRestaurants, restaurantId)
-        // console.log(myRestaurant)
-        myRestaurant.menuDayIdsJSON.push(myNewMenuDay.id)
-        await putRestaurant(myRestaurant, idToken, customId)
-        let myMenuDays = await getMenuDays(myRestaurant.menuDayIdsJSON)
+        let myMenuDays = await getMenuDays({});
         myMenuDays = await sortMenuDays(myMenuDays, 'sortDate');
         setRestaurantMenuDays(myMenuDays)
     };
 
     const selectAllMenuItems = () => {
-        let myRestaurant = getRestaurantById(associatesRestaurants, restaurantId)
         let myNewMenuDayDialogData = JSON.parse(JSON.stringify(menuDayDialogData))
-        myNewMenuDayDialogData.menuItemIdsJSON = JSON.parse(JSON.stringify(myRestaurant.menuItemIdsJSON))
+        myNewMenuDayDialogData.menuItemIdsJSON = JSON.parse(JSON.stringify({}))
         setMenuDayDialogData(myNewMenuDayDialogData)
     }
 
     const unSelectAllMenuItems = () => {
         let myNewMenuDayDialogData = JSON.parse(JSON.stringify(menuDayDialogData))
         myNewMenuDayDialogData.menuItemIdsJSON = []
-        setMenuDayDialogData(myNewMenuDayDialogData)
-    }
-
-    const selectAllAssociates = () => {
-        let myRestaurant = getRestaurantById(associatesRestaurants, restaurantId)
-        let myNewMenuDayDialogData = JSON.parse(JSON.stringify(menuDayDialogData))
-        let myNewAssociateJSON = [];
-        for (let i = 0; i < myRestaurant.associatesJSON.length; i++) {
-            myNewAssociateJSON.push(myRestaurant.associatesJSON[i].id)
-        }
-        myNewMenuDayDialogData.associatesJSON = JSON.parse(JSON.stringify(myNewAssociateJSON))
-        setMenuDayDialogData(myNewMenuDayDialogData)
-    }
-
-    const unSelectAllAssociates = () => {
-        let myNewMenuDayDialogData = JSON.parse(JSON.stringify(menuDayDialogData))
-        myNewMenuDayDialogData.associatesJSON = []
         setMenuDayDialogData(myNewMenuDayDialogData)
     }
 
@@ -254,24 +226,6 @@ const MenuDayDialog: any = () => {
                             <DialogActions>
                                 <Button onClick={() => selectAllMenuItems()} color="default">Select All</Button>
                                 <Button onClick={() => unSelectAllMenuItems()} color="default">Unselect All</Button>
-                            </DialogActions>
-                            <Accordion>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header2"
-                                >
-                                    <Typography>Associates</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Grid item xs={12}>
-                                        <AssociatesMenuDay />
-                                    </Grid>
-                                </AccordionDetails>
-                            </Accordion>
-                            <DialogActions>
-                                <Button onClick={() => selectAllAssociates()} color="default">Select All</Button>
-                                <Button onClick={() => unSelectAllAssociates()} color="default">Unselect All</Button>
                             </DialogActions>
                         </DialogContent>
                         <DialogActions>

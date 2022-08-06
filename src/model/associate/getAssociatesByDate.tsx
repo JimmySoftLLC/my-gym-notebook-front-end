@@ -1,5 +1,4 @@
 import getAssociates from './getAssociates';
-import getAssociateFromRestaurant from './getAssociateFromRestaurant';
 import validDate from '../validDate';
 import isEmail from 'validator/lib/isEmail';
 
@@ -41,11 +40,9 @@ const getTodaysAssociates = async (restaurants: string | any[], myMenuDays: stri
     // get associates from restaurant object
     for (let i = 0; i < associateInIdsNoEmail.length; i++) {
         for (let j = 0; j < restaurants.length; j++) {
-            let associateNoEmail = getAssociateFromRestaurant(restaurants[j], associateInIdsNoEmail[i])
+            let associateNoEmail = {}
             if (associateNoEmail) {
-                if (!associateNoEmail.hideAssociate) {
-                    myAssociatesNoEmail.push(associateNoEmail)
-                }
+                myAssociatesNoEmail.push(associateNoEmail)
                 break;
             }
         }
@@ -88,11 +85,8 @@ const getTodaysAssociates = async (restaurants: string | any[], myMenuDays: stri
 
     for (let i = 0; i < associateOutIdsNoEmail.length; i++) {
         for (let j = 0; j < restaurants.length; j++) {
-            let associateNoEmail = getAssociateFromRestaurant(restaurants[j], associateOutIdsNoEmail[i])
-            if (associateNoEmail) {
-                myAssociatesNoEmail.push(associateNoEmail)
-                break;
-            }
+            myAssociatesNoEmail.push({});
+            break;
         }
     }
 

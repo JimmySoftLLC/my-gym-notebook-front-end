@@ -4,9 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { v4 as uuidv4 } from 'uuid';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
-import associatesAccessLevel from '../../model/associate/associatesAccessLevel';
 import sortMenuItems from '../../model/menuItem/sortMenuItems';
-import deleteMenuItemFromRestaurant from '../../model/menuItem/deleteMenuItemFromRestaurant';
 import updateMenuDaysWithMenuItemChanges from '../../model/menuDay/updateMenuDaysWithMenuItemChanges';
 
 const useStyles = makeStyles(theme => ({
@@ -29,10 +27,7 @@ const MenuItemCardInventory = ({ menuItem }: any) => {
         idToken,
         customId,
         setRestaurantMenuItems,
-        associatesRestaurants,
-        restaurantId,
         myStates,
-        associate,
         setRestaurantMenuDays,
         restaurantMenuDays,
     } = dataAndMethodsContext;
@@ -92,7 +87,7 @@ const MenuItemCardInventory = ({ menuItem }: any) => {
     };
 
     const deleteMenuItemById = async (menuId: any) => {
-        let myNewMenuItems = await deleteMenuItemFromRestaurant(menuId, restaurantId, associatesRestaurants, true, idToken, customId)
+        let myNewMenuItems = {}
         myNewMenuItems = await sortMenuItems(myNewMenuItems, myStates);
         let myNewMenuDays = await updateMenuDaysWithMenuItemChanges(restaurantMenuDays, myNewMenuItems, idToken, customId)
         setRestaurantMenuItems(myNewMenuItems)
@@ -133,28 +128,21 @@ const MenuItemCardInventory = ({ menuItem }: any) => {
         }
     }
 
-    // let canRead = false;
-    // associatesAccessLevel(associatesRestaurants, restaurantId, associate.id) === "read" ? canRead = true : canRead = false
-    let canEdit = false;
-    associatesAccessLevel(associatesRestaurants, restaurantId, associate.id) === "edit" ? canEdit = true : canEdit = false
-    let canAdmin = false;
-    associatesAccessLevel(associatesRestaurants, restaurantId, associate.id) === "admin" ? canAdmin = true : canAdmin = false
-
     return (
         <div className='card'>
             <h4><i className="fas fa-book-open"></i>{' - '}{items}{menuItem.title}{' - '}{menuItem.price}
             </h4>
             {myStates['showDescription'] && <p>{menuItem.description}</p>}
             <div className={classes.root} >
-                {(canEdit || canAdmin) && <Button variant="outlined" color="primary" onClick={() => handleClickMenuItemEdit(menuItem.id)}>
+                <Button variant="outlined" color="primary" onClick={() => handleClickMenuItemEdit(menuItem.id)}>
                     <i className="fas fa-edit"></i>
-                </Button>}
-                {canAdmin && <Button variant="outlined" color="primary" onClick={() => handleClickMenuItemCopy(menuItem.id)}>
+                </Button>
+                <Button variant="outlined" color="primary" onClick={() => handleClickMenuItemCopy(menuItem.id)}>
                     <i className="fas fa-copy"></i>
-                </Button>}
-                {canAdmin && <Button variant="outlined" color="primary" onClick={() => loadDeleteMenuItemDialog(menuItem.id)}>
+                </Button>
+                <Button variant="outlined" color="primary" onClick={() => loadDeleteMenuItemDialog(menuItem.id)}>
                     <i className="fas fa-trash"></i>
-                </Button>}
+                </Button>
             </div>
         </div>
     );

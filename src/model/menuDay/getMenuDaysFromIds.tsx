@@ -1,14 +1,14 @@
 import batchGetItemDynamoDB from '../../api/batchGetItemDynamoDB';
 
 import {
-    menuDaysTableName,
+    gymDaysTableName,
     projectionExpressionMenuDay,
     blankPlaceHolder,
 } from '../../api/apiConstants';
 
 const getBatch = async (myIds: any) => {
     let myMenuDays = []
-    const data = await batchGetItemDynamoDB(menuDaysTableName, myIds, projectionExpressionMenuDay)
+    const data = await batchGetItemDynamoDB(gymDaysTableName, myIds, projectionExpressionMenuDay)
     if (data.err) {
         return [];
     }

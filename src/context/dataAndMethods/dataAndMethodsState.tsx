@@ -2,26 +2,7 @@ import React, { useReducer } from 'react';
 import DataAndMethodsContext from './dataAndMethodsContext';
 import DataAndMethodsReducer from './dataAndMethodsReducer';
 import setMyStatesLogic from '../../model/setMyStatesLogic';
-import scanDynamoDB from '../../api/scanDynamoDB';
-import getMenuItemsByDate from '../../model/menuItem/getMenuItemsByDate';
-import getEntertainmentItemsByDate from '../../model/entertainmentItem/getEntertainmentItemsByDate';
-import sortMenuItems from '../../model/menuItem/sortMenuItems';
-import sortEntertainmentItems from '../../model/entertainmentItem/sortEntertainmentItems';
-import getAssociatesByDate from '../../model/associate/getAssociatesByDate';
-import getMenuDaysFromRestaurants from '../../model/menuDay/getMenuDaysFromRestaurants';
-import getMenuItemsForRestaurant from '../../model/menuItem/getMenuItemsForRestaurant';
-import getEntertainmentItemsForRestaurant from '../../model/entertainmentItem/getEntertainmentItemsForRestaurant';
-import getAssociatesForRestaurant from '../../model/associate/getAssociatesForRestaurant';
-import sortAssociates from '../../model/associate/sortAssociates';
-import getRestaurantById from '../../model/restaurant/getRestaurantById';
-import getPhotos from '../../model/photo/getPhotos';
-import knuthShuffle from '../../model/knuthShuffle';
 // import getLocation from '../../model/getLocation';
-
-import {
-    noSelectedRestaurant,
-    restaurantsTableName,
-} from '../../api/apiConstants';
 
 import {
     SET_MY_STATES,
@@ -121,9 +102,8 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 restaurantDetail: false,
 
                 // backend pages
-                restaurantSettings: false,
-                menuSettings: false,
-                menuDaySettings: false,
+                exerciseSettings: false,
+                gymDaySettings: false,
                 entertainmentSettings: false,
                 associateSettings: false,
                 showDescription: false,
@@ -181,7 +161,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         associatesRestaurants: [],
         associate: {},
         menuItemDialogOpen: false,
-        restaurantId: noSelectedRestaurant,
         restaurantAssociates: [],
         restaurantDetail: {},
         onScreenDebugMessage: '',
@@ -284,33 +263,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     // get data by date ------------------------------------------------------------------
     const getDataByDate = async (selectedDate: any) => {
         setLoading(true);
-        const myRestaurants = await scanDynamoDB(restaurantsTableName);
-        setRestaurants(myRestaurants.payload)
-        let myMenuDays = await getMenuDaysFromRestaurants(myRestaurants.payload);
-        let myEntertainmentItems = await getEntertainmentItemsByDate(myRestaurants.payload, selectedDate);
-        myEntertainmentItems = await sortEntertainmentItems(myEntertainmentItems, 'sortTime');
-        let myMenuItems = await getMenuItemsByDate(myMenuDays, selectedDate);
-        myMenuItems = await sortMenuItems(myMenuItems, 'sortPrice');
-        let myAssociates = await getAssociatesByDate(myRestaurants.payload, myMenuDays, selectedDate);
-        myAssociates = sortAssociates(myAssociates, null);
-        if (state.myStates.restaurantDetail) {
-            let myRestaurant = getRestaurantById(myRestaurants.payload, state.restaurantDetail.id)
-            myRestaurant.menuItems = getMenuItemsForRestaurant(myRestaurant, myMenuItems)
-            myRestaurant.entertainmentItems = getEntertainmentItemsForRestaurant(myRestaurant, myEntertainmentItems)
-            myRestaurant.associates = getAssociatesForRestaurant(myRestaurant, myAssociates)
-            myRestaurant.menuDays = myMenuDays;
-            setRestaurantDetail(myRestaurant);
-        }
         setLoading(false);
-        setMenuDays(myMenuDays);
-        setMenuItems(myMenuItems);
-        setAssociates(myAssociates);
-        setEntertainmentItems(myEntertainmentItems);
-        let myPhotos = await getPhotos(myRestaurants.payload);
-        myPhotos = knuthShuffle(myPhotos);
-        setPhotos(myPhotos);
-        // let test = await getLocation()
-        // console.log(test);
     };
 
     // set date -------------------------------------------------------------------------------
@@ -470,7 +423,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 myStates: state.myStates,
                 myMenuItemStates: state.myMenuItemStates,
                 menuItems: state.menuItems,
-                menuItemsTableName: state.menuItemsTableName,
+                exerciseItemsTableName: state.exerciseItemsTableName,
                 restaurantsTableName: state.restaurantsTableName,
                 restaurants: state.restaurants,
                 menuItemDialogData: state.menuItemDialogData,

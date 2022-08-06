@@ -1,10 +1,7 @@
 import { API } from 'aws-amplify';
 import {
-    menuItemsTableName,
-    restaurantsTableName,
-    associatesTableName,
-    menuDaysTableName,
-    entertainmentItemsTableName,
+    exerciseItemsTableName,
+    gymDaysTableName,
     apiName,
     apiPath,
     blankPlaceHolder,
@@ -15,7 +12,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
     // console.log(myTableName, myIdToken, myItem, myCustomId);
     let myNewItem = {}
     switch (myTableName) {
-        case menuItemsTableName:
+        case exerciseItemsTableName:
             myNewItem = {
                 id: myItem.id,
                 title: myItem.title = myItem.title !== '' ? myItem.title : blankPlaceHolder,
@@ -25,43 +22,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 price: myItem.price,
             }
             break;
-        case restaurantsTableName:
-            myNewItem = {
-                id: myItem.id,
-                restaurantName: myItem.restaurantName = myItem.restaurantName !== '' ? myItem.restaurantName : blankPlaceHolder,
-                description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
-                street: myItem.street = myItem.street !== '' ? myItem.street : blankPlaceHolder,
-                city: myItem.city = myItem.city !== '' ? myItem.city : blankPlaceHolder,
-                stateUS: myItem.stateUS = myItem.stateUS !== '' ? myItem.stateUS : blankPlaceHolder,
-                zipCode: myItem.zipCode = myItem.zipCode !== '' ? myItem.zipCode : blankPlaceHolder,
-                phoneNumber: myItem.phoneNumber = myItem.phoneNumber !== '' ? myItem.phoneNumber : blankPlaceHolder,
-                urlLink: myItem.urlLink = myItem.urlLink !== '' ? myItem.urlLink : blankPlaceHolder,
-                orderUrlLink: myItem.orderUrlLink = myItem.orderUrlLink !== '' ? myItem.orderUrlLink : blankPlaceHolder,
-                facebookUrlLink: myItem.facebookUrlLink = myItem.facebookUrlLink !== '' ? myItem.facebookUrlLink : blankPlaceHolder,
-                twitterUrlLink: myItem.twitterUrlLink = myItem.twitterUrlLink !== '' ? myItem.twitterUrlLink : blankPlaceHolder,
-                instagramUrlLink: myItem.instagramUrlLink = myItem.instagramUrlLink !== '' ? myItem.instagramUrlLink : blankPlaceHolder,
-                menuItemIdsJSON: JSON.stringify(myItem.menuItemIdsJSON),
-                entertainmentItemIdsJSON: JSON.stringify(myItem.entertainmentItemIdsJSON),
-                associatesJSON: JSON.stringify(myItem.associatesJSON),
-                menuDayIdsJSON: JSON.stringify(myItem.menuDayIdsJSON),
-                photosJSON: JSON.stringify(myItem.photosJSON),
-                approved: myItem.approved,
-            }
-            break;
-        case associatesTableName:
-            myNewItem = {
-                id: myItem.id,
-                firstName: myItem.firstName = myItem.firstName !== '' ? myItem.firstName : blankPlaceHolder,
-                lastName: myItem.lastName = myItem.lastName !== '' ? myItem.lastName : blankPlaceHolder,
-                email: myItem.email = myItem.email !== '' ? myItem.email : blankPlaceHolder,
-                bio: myItem.bio = myItem.bio !== '' ? myItem.bio : blankPlaceHolder,
-                jobTitle: myItem.jobTitle = myItem.jobTitle !== '' ? myItem.jobTitle : blankPlaceHolder,
-                restaurantIdsJSON: JSON.stringify(myItem.restaurantIdsJSON),
-                imageUrl: myItem.imageUrl !== '' ? myItem.imageUrl : blankPlaceHolder,
-                hideAssociate: myItem.hideAssociate,
-            }
-            break;
-        case menuDaysTableName:
+        case gymDaysTableName:
             myNewItem = {
                 id: myItem.id,
                 title: myItem.title = myItem.title !== '' ? myItem.title : blankPlaceHolder,
@@ -71,18 +32,6 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 menuItemIdsJSON: JSON.stringify(myItem.menuItemIdsJSON),
                 entertainmentItemIdsJSON: JSON.stringify(myItem.entertainmentItemIdsJSON),
                 associatesJSON: JSON.stringify(myItem.associatesJSON),
-                restaurantId: myItem.restaurantId = myItem.restaurantId !== '' ? myItem.restaurantId : blankPlaceHolder,
-            }
-            break;
-        case entertainmentItemsTableName:
-            myNewItem = {
-                id: myItem.id,
-                title: myItem.title = myItem.title !== '' ? myItem.title : blankPlaceHolder,
-                timeFrom: dateString(myItem.timeFrom, new Date(), 'saveToDatabaseDateTime'),
-                timeTo: dateString(myItem.timeTo, new Date(), 'saveToDatabaseDateTime'),
-                description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
-                imageUrl: myItem.imageUrl !== '' ? myItem.imageUrl : blankPlaceHolder,
-                categoryJSON: JSON.stringify(myItem.categoryJSON),
                 restaurantId: myItem.restaurantId = myItem.restaurantId !== '' ? myItem.restaurantId : blankPlaceHolder,
             }
             break;

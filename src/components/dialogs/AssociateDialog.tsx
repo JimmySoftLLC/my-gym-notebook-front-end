@@ -10,30 +10,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import putAssociate from '../../model/associate/putAssociate';
 import getAssociate from '../../model/associate/getAssociate';
-import putRestaurant from '../../model/restaurant/putRestaurant';
 import isEmail from 'validator/lib/isEmail';
-import testPutAssociateInRestaurant from '../../model/restaurant/testPutAssociateInRestaurant';
-import putAssociateInRestaurant from '../../model/restaurant/putAssociateInRestaurant';
-import putRestaurantInAssociate from '../../model/associate/putRestaurantInAssociate';
-import getRestaurantAssociates from '../../model/restaurant/getRestaurantAssociates';
-import removeRestaurantFromIds from '../../model/associate/removeRestaurantFromIds';
-import removeAssociateFromRestaurant from '../../model/restaurant/removeAssociateFromRestaurant';
-import sortAssociates from '../../model/associate/sortAssociates';
-import getAssociateFromRestaurant from '../../model/associate/getAssociateFromRestaurant';
-import getRestaurantById from '../../model/restaurant/getRestaurantById';
-import getAssociatesRestaurants from '../../model/associate/getAssociatesRestaurants';
-import updateMenuDaysWithAssociateChanges from '../../model/menuDay/updateMenuDaysWithAssociateChanges';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import sortRestaurants from '../../model/restaurant/sortRestaurants';
 import saveImageToDatabase from '../../model/images/saveImageToDatabase';
 import ImageEditor from '../imageEditor/ImageEditor';
 import Checkbox from '@material-ui/core/Checkbox';
-
-import {
-    noSelectedRestaurant,
-} from '../../api/apiConstants';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -48,23 +31,14 @@ const AssociateDialog: any = () => {
     const classes = useStyles();
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
-        associatesRestaurants,
-        restaurantId,
         idToken,
         customId,
         setAssociateDialogOpen,
         setAssociateDialogDataItem,
         setAssociateDialogData,
         associateDialogOpen,
-        setRestaurantAssociates,
         setAssociate,
         associate,
-        setAssociatesRestaurants,
-        setRestaurantId,
-        setRestaurantMenuItems,
-        setRestaurantMenuDays,
-        restaurantMenuDays,
-        setLoading,
     } = dataAndMethodsContext;
 
     const {
@@ -108,14 +82,6 @@ const AssociateDialog: any = () => {
         await saveImageToDatabase(deleteFileName, imageUrl, blob, editMode, idToken, customId)
         await putAssociate(myAssociate, idToken, customId)
         setAssociate(myAssociate);
-        let myRestaurant = getRestaurantById(associatesRestaurants, restaurantId)
-        if (myRestaurant) {
-            let myAssociates = await getRestaurantAssociates(myRestaurant)
-            myRestaurant.associatesJSON = myAssociates;
-            await putRestaurant(myRestaurant, idToken, customId)
-            myAssociates = await sortAssociates(myAssociates, associate);
-            setRestaurantAssociates(myAssociates)
-        }
     };
 
     // create myAssociate and poplulate it with the dialog's entries.
@@ -140,15 +106,9 @@ const AssociateDialog: any = () => {
         myAssociate.imageUrl = imageUrl;
         myAssociate.hideAssociate = hideAssociate;
         await saveImageToDatabase(deleteFileName, imageUrl, blob, editMode, idToken, customId)
-        let myRestaurant = getRestaurantById(associatesRestaurants, restaurantId);
-        if (!testPutAssociateInRestaurant(myRestaurant, myAssociate)) {
-            setMessage('There needs to be at least one associate with admin rights per restaurant.');
-            return null;
-        }
         if (myAssociate.accessLevel === 'none') {
             const tempAssociate = await getAssociate(myAssociate.id, idToken, customId)
             if (tempAssociate) {
-                myAssociate = await removeRestaurantFromIds(tempAssociate, restaurantId)
                 await putAssociate(myAssociate, idToken, customId)
                 myAssociate.firstName = firstName;
                 myAssociate.lastName = lastName;
@@ -165,14 +125,6 @@ const AssociateDialog: any = () => {
                 setMessage('A valid email is required.');
                 return null;
             }
-            if (dialogType === "Edit") {
-                myRestaurant = await removeAssociateFromRestaurant(myRestaurant, id);
-            }
-            const associateExists = getAssociateFromRestaurant(myRestaurant, email)
-            if (associateExists) {
-                setMessage('That associate already exists in restaurant.');
-                return null;
-            }
             myAssociate = await getAssociate(email, idToken, customId)
             if (!myAssociate) {
                 setMessage('No associate account with that email address exists.');
@@ -180,38 +132,14 @@ const AssociateDialog: any = () => {
             } else {
                 myAssociate.accessLevel = accessLevel;
                 myAssociate.email = email;
-                myAssociate = await putRestaurantInAssociate(myAssociate, restaurantId);
+                myAssociate = {};
                 await putAssociate(myAssociate, idToken, customId);
             }
         }
         myAssociate.hideAssociate = hideAssociate;
-        myRestaurant = putAssociateInRestaurant(myRestaurant, myAssociate);
-        await putRestaurant(myRestaurant, idToken, customId);
         // now get logged in associate and update associates restaurants
         const newAssociate = await getAssociate(associate.id, idToken, customId)
-        let newAssociatesRestaurants = await getAssociatesRestaurants(newAssociate)
-        newAssociatesRestaurants = await sortRestaurants(newAssociatesRestaurants)
         setAssociate(newAssociate)
-        setAssociatesRestaurants(newAssociatesRestaurants)
-        let myAssociates = await getRestaurantAssociates(myRestaurant);
-        myAssociates = await sortAssociates(myAssociates, newAssociate);
-        setRestaurantAssociates(myAssociates);
-        let myNewMenuDays = await updateMenuDaysWithAssociateChanges(restaurantMenuDays, myAssociates, idToken, customId)
-        setRestaurantMenuDays(myNewMenuDays)
-        for (let i = 0; i < myAssociates.length; i++) {
-            if (myAssociates[i].id === associate.id) {
-                if (myAssociates[i].accessLevel === 'none') {
-                    setRestaurantMenuItems([]);
-                    setRestaurantMenuDays([]);
-                    setRestaurantAssociates([]);
-                    setRestaurantId(noSelectedRestaurant)
-                    const myAssociatesRestaurants = await getAssociatesRestaurants(myAssociate);
-                    newAssociatesRestaurants = await sortRestaurants(newAssociatesRestaurants);
-                    setAssociatesRestaurants(myAssociatesRestaurants);
-                    return true;
-                }
-            }
-        }
         return true;
     };
 
@@ -234,7 +162,6 @@ const AssociateDialog: any = () => {
                 break;
             default:
         }
-        await forceUpdate();
         setAssociateDialogOpen(false);
     };
 
@@ -270,18 +197,6 @@ const AssociateDialog: any = () => {
         myAssociateDialogData.bio = myAssociateDialogData.bio.toLowerCase()
         setAssociateDialogData(myAssociateDialogData)
     };
-
-    const forceUpdate = async () => {
-        if (restaurantId !== noSelectedRestaurant) {
-            setRestaurantAssociates([]);
-            setLoading(true);
-            let myRestaurant = getRestaurantById(associatesRestaurants, restaurantId);
-            let myRestaurantAssociates = await getRestaurantAssociates(myRestaurant);
-            myRestaurantAssociates = await sortAssociates(myRestaurantAssociates, associate);
-            setRestaurantAssociates(myRestaurantAssociates);
-            setLoading(false);
-        }
-    }
 
     const handleAccessLevelChange = (e: any) => {
         setAssociateDialogDataItem('accessLevel', e.target.value);

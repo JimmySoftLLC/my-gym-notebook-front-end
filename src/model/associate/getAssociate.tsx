@@ -1,12 +1,12 @@
 import getItemDynamoDB from '../../api/getItemDynamoDB';
 import {
-    associatesTableName,
+    membersTableName,
     blankPlaceHolder,
 } from '../../api/apiConstants';
 
 const getAssociate = async (myEmailId: any, myToken: any, myCustomId: any) => {
     //console.log(myEmailId, myToken, myCustomId);
-    const data = await getItemDynamoDB(associatesTableName, myEmailId, myToken, myCustomId)
+    const data = await getItemDynamoDB(membersTableName, myEmailId, myToken, myCustomId)
     if (data.err) {
         return null;
     }
@@ -18,8 +18,9 @@ const getAssociate = async (myEmailId: any, myToken: any, myCustomId: any) => {
     myAssociate.lastName = myAssociate.lastName === blankPlaceHolder ? '' : myAssociate.lastName
     myAssociate.email = myAssociate.email === blankPlaceHolder ? '' : myAssociate.email
     myAssociate.bio = myAssociate.bio === blankPlaceHolder ? '' : myAssociate.bio
-    myAssociate.jobTitle = myAssociate.jobTitle === blankPlaceHolder ? '' : myAssociate.jobTitle
-    myAssociate.restaurantIdsJSON = JSON.parse(myAssociate.restaurantIdsJSON)
+    myAssociate.exerciseIdsJSON = JSON.parse(myAssociate.exerciseIdsJSON)
+    myAssociate.teamMateIdsJSON = JSON.parse(myAssociate.teamMateIdsJSON)
+    myAssociate.gymDayIdsJSON = JSON.parse(myAssociate.gymDayIdsJSON)
     myAssociate.imageUrl = myAssociate.imageUrl === blankPlaceHolder ? '' : myAssociate.imageUrl
     return myAssociate;
 }
