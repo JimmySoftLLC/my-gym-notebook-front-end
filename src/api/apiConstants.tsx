@@ -1,5 +1,5 @@
 export const exerciseItemsTableName = 'exerciseItems';
-export const membersTableName = 'gymMembers';
+export const gymMembersTableName = 'gymMembers';
 export const gymDaysTableName = 'gymDays';
 export const lambdaFunctionURL = 'https://kd7snpev85.execute-api.us-east-1.amazonaws.com/default/i_want_to_dine_api';
 export const apiName = 'i_want_to_dine_restaurant_api';

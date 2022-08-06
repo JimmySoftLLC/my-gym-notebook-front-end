@@ -1,12 +1,12 @@
 import deleteItemDynamoDB from '../../api/deleteItemDynamoDB';
 import {
-    membersTableName,
+    gymMembersTableName,
 } from '../../api/apiConstants';
 
 const deleteAssociate = async (myAssociateId: any, myToken: any, myCustomId: any) => {
     // console.log(myAssociateId, myToken, myCustomId);
     // return null;
-    const data = await deleteItemDynamoDB(membersTableName, myAssociateId, myToken, myCustomId)
+    const data = await deleteItemDynamoDB(gymMembersTableName, myAssociateId, myToken, myCustomId)
     if (data.err) {
         return null;
     }

@@ -2,6 +2,7 @@ import { API } from 'aws-amplify';
 import {
     exerciseItemsTableName,
     gymDaysTableName,
+    gymMembersTableName,
     apiName,
     apiPath,
     blankPlaceHolder,
@@ -33,6 +34,19 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 entertainmentItemIdsJSON: JSON.stringify(myItem.entertainmentItemIdsJSON),
                 associatesJSON: JSON.stringify(myItem.associatesJSON),
                 restaurantId: myItem.restaurantId = myItem.restaurantId !== '' ? myItem.restaurantId : blankPlaceHolder,
+            }
+            break;
+        case gymMembersTableName:
+            myNewItem = {
+                id: myItem.id,
+                firstName: myItem.firstName !== '' ? myItem.firstName : blankPlaceHolder,
+                lastName: myItem.lastName !== '' ? myItem.lastName : blankPlaceHolder,
+                email: myItem.email !== '' ? myItem.email : blankPlaceHolder,
+                bio: myItem.bio !== '' ? myItem.bio : blankPlaceHolder,
+                exerciseIdsJSON: JSON.stringify(myItem.exerciseIdsJSON),
+                teamMateIdsJSON: JSON.stringify(myItem.teamMateIdsJSON),
+                gymDayIdsJSON: JSON.stringify(myItem.gymDayIdsJSON),
+                imageUrl: myItem.imageUrl !== '' ? myItem.imageUrl : blankPlaceHolder,
             }
             break;
         default:

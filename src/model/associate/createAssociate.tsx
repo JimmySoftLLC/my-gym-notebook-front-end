@@ -1,7 +1,7 @@
 
 import putItemDynamoDB from '../../api/putItemDynamoDB';
 import {
-    membersTableName,
+    gymMembersTableName,
 } from '../../api/apiConstants';
 
 const createAssociate = async (myEmailId: any, myToken: any, myCustomId: any) => {
@@ -10,13 +10,14 @@ const createAssociate = async (myEmailId: any, myToken: any, myCustomId: any) =>
         firstName: '',
         lastName: '',
         bio: '',
-        jobTitle: '',
         email: myEmailId,
-        restaurantIdsJSON: [],
         imageUrl: '',
+        exerciseIdsJSON: [],
+        gymDayIdsJSON: [],
+        teamMateIdsJSON: [],
     }
     //console.log(myAssociate)
-    const data = await putItemDynamoDB(membersTableName, myAssociate, myToken, myCustomId)
+    const data = await putItemDynamoDB(gymMembersTableName, myAssociate, myToken, myCustomId)
     if (data.err) {
         return null;
     }

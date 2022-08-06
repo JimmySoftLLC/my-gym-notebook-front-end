@@ -110,7 +110,8 @@ const SignInRegDialog: any = () => {
                 setAuthToken(session.accessToken.jwtToken);
                 setIdToken(session.idToken.jwtToken);
                 const associate = await getAssociate(session.idToken.payload['email'], session.idToken.jwtToken, session.idToken.payload['custom:id'])
-                if (!associate) {
+                console.log(associate);
+                if (associate === null) {
                     let myNewAssociate = await createAssociate(session.idToken.payload['email'], session.idToken.jwtToken, session.idToken.payload['custom:id'])
                     if (myNewAssociate) {
                         setAssociate(myNewAssociate);

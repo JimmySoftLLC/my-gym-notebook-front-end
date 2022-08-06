@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
     lambdaFunctionURL,
     exerciseItemsTableName,
-    membersTableName,
+    gymMembersTableName,
 } from './apiConstants';
 
 let scanDynamoDB = async (myTableName: any): Promise<any> => {
@@ -37,7 +37,7 @@ let scanDynamoDB = async (myTableName: any): Promise<any> => {
                 return myReturnObject;
             // console.log(myReturnObject)
 
-            case membersTableName:
+            case gymMembersTableName:
                 return null;
             default:
         }
