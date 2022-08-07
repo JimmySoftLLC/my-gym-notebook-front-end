@@ -14,8 +14,8 @@ const SignedInBotToolBar = () => {
         setAssociateDialogData,
         setAssociateDialogOpen,
         associate,
-        setRestaurantMenuItems,
-        setRestaurantMenuDays,
+        setExerciseItems,
+        setRestaurantGymDays,
         setRestaurantAssociates,
         setImageEditorData,
     } = dataAndMethodsContext;
@@ -25,8 +25,8 @@ const SignedInBotToolBar = () => {
         setIdToken('');
         setCustomId('');
         setLogInType('default');
-        setRestaurantMenuItems([]);
-        setRestaurantMenuDays([]);
+        setExerciseItems([]);
+        setRestaurantGymDays([]);
         setRestaurantAssociates([]);
     }
 

@@ -2,12 +2,12 @@ import React, { Fragment, useContext, useEffect } from 'react';
 import TopNavBar from '../components/TopNavBar';
 import DataAndMethodsContext from '../context/dataAndMethods/dataAndMethodsContext';
 import About from '../pages/about';
-import MenuItemsInventory from '../components/menuItemInventory/MenuItemsInventory';
-import MenuDays from '../components/menuDay/MenuDays';
+import ExerciseItemsInventory from '../components/exerciseItemInventory/ExerciseItemsInventory';
+import GymDays from '../components/gymDay/GymDays';
 import BotNavBar from '../components/BotNavBar';
-import MenuItemDialog from '../components/dialogs/MenuItemDialog';
+import ExerciseItemDialog from '../components/dialogs/ExerciseItemDialog';
 import AssociateDialog from '../components/dialogs/AssociateDialog';
-import MenuDayDialog from '../components/dialogs/MenuDayDialog';
+import GymDayDialog from '../components/dialogs/GymDayDialog';
 import AlertDialog from '../components/dialogs/AlertDialog';
 import HelpDialog from '../components/dialogs/HelpDialog';
 import DeleteConfirmDialog from '../components/dialogs/DeleteConfirmDialog';
@@ -40,7 +40,7 @@ const Home = () => {
             <SignInRegDialog />
             <TopNavBar />
             {logInType === 'default' && <div className='container '>
-                {myStates.menuItems && <p className='p home-page-top-margin'></p>}
+                {myStates.ExerciseItems && <p className='p home-page-top-margin'></p>}
                 {myStates.entertainmentItems && <p className='p home-page-top-margin-normal'></p>}
                 {myStates.restaurants && <p className='p home-page-top-margin-normal'></p>}
                 {myStates.restaurantDetail && <p className='p home-page-top-margin-normal'></p>}
@@ -48,17 +48,17 @@ const Home = () => {
                 {myStates.info && <p className='p home-page-top-margin-normal'></p>}
                 {myStates.photoGallery && <p className='p home-page-top-margin-normal'></p>}
                 {myStates.info && <About />}
-                {myStates.menuItems && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>{myDate}{" - Menu Items"}</h3>}
+                {myStates.ExerciseItems && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>{myDate}{" - Menu Items"}</h3>}
                 {myStates.entertainmentItems && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>{myDate}{" - Entertainment"}</h3>}
                 <HelpDialog />
                 <p className='p home-page-bottom-margin'></p>
             </div>}
             {logInType === 'signedIn' && <div className='container associate-page-top-margin'>
-                {myStates.exerciseSettings && <MenuItemsInventory />}
-                {myStates.gymDaySettings && <MenuDays />}
-                <MenuItemDialog />
+                {myStates.exerciseSettings && <ExerciseItemsInventory />}
+                {myStates.gymDaySettings && <GymDays />}
+                <ExerciseItemDialog />
                 <AssociateDialog />
-                <MenuDayDialog />
+                <GymDayDialog />
                 <p className='p associate-page-bottom-margin'></p>
             </div>}
             <BotNavBar />

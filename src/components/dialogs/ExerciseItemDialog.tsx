@@ -10,9 +10,9 @@ import IconButton from '@material-ui/core/IconButton';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Tooltip } from '@material-ui/core';
-import putMenuItem from '../../model/menuItem/putMenuItem';
-import sortMenuItems from '../../model/menuItem/sortMenuItems';
-import getMenuItems from '../../model/menuItem/getMenuItems';
+import putExerciseItem from '../../model/exerciseItem/putExerciseItem';
+import sortExerciseItems from '../../model/exerciseItem/sortExerciseItems';
+import getExerciseItems from '../../model/exerciseItem/getExerciseItems';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const MenuItemDialog: any = () => {
+const ExerciseItemDialog: any = () => {
     const classes = useStyles();
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
 
@@ -35,87 +35,87 @@ const MenuItemDialog: any = () => {
         restaurant,
         price,
         dialogType,
-    } = dataAndMethodsContext.menuItemDialogData;
+    } = dataAndMethodsContext.ExerciseItemDialogData;
 
     const {
-        menuItemDialogOpen,
-        setMenuItemDialogDataCategory,
-        setMenuItemDialogOpen,
-        setMenuItemDialogDataItem,
+        ExerciseItemDialogOpen,
+        setExercisetemDialogDataCategory,
+        setExerciseItemDialogOpen,
+        setExercisetemDialogDataItem,
         idToken,
         customId,
-        setRestaurantMenuItems,
+        setExerciseItems,
         restaurantId,
         myStates,
-        setMenuItemDialogData,
+        setExercisetemDialogData,
     } = dataAndMethodsContext;
 
     const handleClose = () => {
-        setMenuItemDialogOpen(false);
+        setExerciseItemDialogOpen(false);
     };
 
     const handleSave = () => {
         switch (dialogType) {
             case "Edit":
-                saveMenuItem()
+                saveExerciseItem()
                 break;
             case "Add":
-                saveMenuItemAdd()
+                saveExerciseItemAdd()
                 break;
             default:
         }
-        setMenuItemDialogOpen(false);
+        setExerciseItemDialogOpen(false);
     };
 
-    const saveMenuItem = async () => {
-        let myNewMenuItem: any = {}
-        myNewMenuItem.id = id;
-        myNewMenuItem.title = title;
-        myNewMenuItem.description = description;
-        myNewMenuItem.categoryJSON = categoryJSON;
-        myNewMenuItem.restaurant = restaurant;
-        myNewMenuItem.restaurantId = restaurantId;
-        myNewMenuItem.price = price;
-        //console.log(exerciseItemsTableName, idToken, myNewMenuItem, customId);
-        await putMenuItem(myNewMenuItem, idToken, customId);
-        let myMenuItems = await getMenuItems({});
-        myMenuItems = await sortMenuItems(myMenuItems, myStates);
-        setRestaurantMenuItems(myMenuItems)
+    const saveExerciseItem = async () => {
+        let myNewExerciseItem: any = {}
+        myNewExerciseItem.id = id;
+        myNewExerciseItem.title = title;
+        myNewExerciseItem.description = description;
+        myNewExerciseItem.categoryJSON = categoryJSON;
+        myNewExerciseItem.restaurant = restaurant;
+        myNewExerciseItem.restaurantId = restaurantId;
+        myNewExerciseItem.price = price;
+        //console.log(exerciseItemsTableName, idToken, myNewExerciseItem, customId);
+        await putExerciseItem(myNewExerciseItem, idToken, customId);
+        let myExerciseItems = await getExerciseItems({});
+        myExerciseItems = await sortExerciseItems(myExerciseItems, myStates);
+        setExerciseItems(myExerciseItems)
     };
 
-    const saveMenuItemAdd = async () => {
-        let myNewMenuItem: any = {}
-        myNewMenuItem.id = id;
-        myNewMenuItem.title = title;
-        myNewMenuItem.description = description;
-        myNewMenuItem.categoryJSON = categoryJSON;
-        myNewMenuItem.restaurant = restaurant;
-        myNewMenuItem.restaurantId = restaurantId;
-        myNewMenuItem.price = price;
-        //console.log(exerciseItemsTableName, idToken, myNewMenuItem, customId);
-        await putMenuItem(myNewMenuItem, idToken, customId);
-        let myMenuItems = await getMenuItems({});
-        myMenuItems = await sortMenuItems(myMenuItems, myStates);
-        setRestaurantMenuItems(myMenuItems)
+    const saveExerciseItemAdd = async () => {
+        let myNewExerciseItem: any = {}
+        myNewExerciseItem.id = id;
+        myNewExerciseItem.title = title;
+        myNewExerciseItem.description = description;
+        myNewExerciseItem.categoryJSON = categoryJSON;
+        myNewExerciseItem.restaurant = restaurant;
+        myNewExerciseItem.restaurantId = restaurantId;
+        myNewExerciseItem.price = price;
+        //console.log(exerciseItemsTableName, idToken, myNewExerciseItem, customId);
+        await putExerciseItem(myNewExerciseItem, idToken, customId);
+        let myExerciseItems = await getExerciseItems({});
+        myExerciseItems = await sortExerciseItems(myExerciseItems, myStates);
+        setExerciseItems(myExerciseItems)
     };
 
     const changeTitle = (e: any) => {
-        setMenuItemDialogDataItem('title', e.target.value)
+        setExercisetemDialogDataItem('title', e.target.value)
     };
 
     const changeDescription = (e: any) => {
-        setMenuItemDialogDataItem('description', e.target.value)
+        setExercisetemDialogDataItem('description', e.target.value)
     };
 
     const changePrice = (e: any) => {
-        setMenuItemDialogDataItem('price', e.target.value)
+        setExercisetemDialogDataItem('price', e.target.value)
     };
 
     const handleLowerCase = (e: any) => {
-        let myMenuItemDialogData = JSON.parse(JSON.stringify(dataAndMethodsContext.menuItemDialogData))
-        myMenuItemDialogData.title = myMenuItemDialogData.title.toLowerCase()
-        myMenuItemDialogData.description = myMenuItemDialogData.description.toLowerCase()
-        setMenuItemDialogData(myMenuItemDialogData)
+        let myExerciseItemDialogData = JSON.parse(JSON.stringify(dataAndMethodsContext.ExerciseItemDialogData))
+        myExerciseItemDialogData.title = myExerciseItemDialogData.title.toLowerCase()
+        myExerciseItemDialogData.description = myExerciseItemDialogData.description.toLowerCase()
+        setExercisetemDialogData(myExerciseItemDialogData)
     };
 
     const checkIfPresent = (value: any) => {
@@ -127,7 +127,7 @@ const MenuItemDialog: any = () => {
 
     return (
         <div>
-            <Dialog className={classes.root} open={menuItemDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog className={classes.root} open={ExerciseItemDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">
                     {dialogType + " menu item"}</DialogTitle>
                 <DialogContent>
@@ -157,98 +157,98 @@ const MenuItemDialog: any = () => {
                         <div >
                             <Tooltip title="Daily specials">
                                 <IconButton aria-label="" color={checkIfPresent('specials') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('specials')}
+                                    onClick={() => setExercisetemDialogDataCategory('specials')}
                                 >
                                     <i className="fas fa-tag"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Soup">
                                 <IconButton aria-label="" color={checkIfPresent('soup') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('soup')}
+                                    onClick={() => setExercisetemDialogDataCategory('soup')}
                                 >
                                     <i className="icon-soup"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Salad">
                                 <IconButton aria-label="" color={checkIfPresent('salad') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('salad')}
+                                    onClick={() => setExercisetemDialogDataCategory('salad')}
                                 >
                                     <i className="icon-salad"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Appetizers">
                                 <IconButton aria-label="" color={checkIfPresent('appetizers') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('appetizers')}
+                                    onClick={() => setExercisetemDialogDataCategory('appetizers')}
                                 >
                                     <i className="icon-appetizer"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Sandwiches">
                                 <IconButton aria-label="" color={checkIfPresent('sandwich') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('sandwich')}
+                                    onClick={() => setExercisetemDialogDataCategory('sandwich')}
                                 >
                                     <i className='fas fa-hamburger'></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Pizza">
                                 <IconButton aria-label="" color={checkIfPresent('pizza') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('pizza')}
+                                    onClick={() => setExercisetemDialogDataCategory('pizza')}
                                 >
                                     <i className="fas fa-pizza-slice"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Pasta">
                                 <IconButton aria-label="" color={checkIfPresent('pasta') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('pasta')}
+                                    onClick={() => setExercisetemDialogDataCategory('pasta')}
                                 >
                                     <i className='icon-spaghetti'></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Entrees">
                                 <IconButton aria-label="" color={checkIfPresent('entree') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('entree')}
+                                    onClick={() => setExercisetemDialogDataCategory('entree')}
                                 >
                                     <i className="fas fa-concierge-bell"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Dessert">
                                 <IconButton aria-label="" color={checkIfPresent('dessert') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('dessert')}
+                                    onClick={() => setExercisetemDialogDataCategory('dessert')}
                                 >
                                     <i className="fas fa-birthday-cake"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Drinks">
                                 <IconButton aria-label="" color={checkIfPresent('drinks') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('drinks')}
+                                    onClick={() => setExercisetemDialogDataCategory('drinks')}
                                 >
                                     <i className="fas fa-cocktail"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Wine">
                                 <IconButton aria-label="" color={checkIfPresent('wine') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('wine')}
+                                    onClick={() => setExercisetemDialogDataCategory('wine')}
                                 >
                                     <i className="fas fa-wine-glass"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Beer">
                                 <IconButton aria-label="" color={checkIfPresent('beer') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('beer')}
+                                    onClick={() => setExercisetemDialogDataCategory('beer')}
                                 >
                                     <i className="fas fa-beer"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Coffee">
                                 <IconButton aria-label="" color={checkIfPresent('coffee') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('coffee')}
+                                    onClick={() => setExercisetemDialogDataCategory('coffee')}
                                 >
                                     <i className="fas fa-coffee"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Kids menu">
                                 <IconButton aria-label="" color={checkIfPresent('kids') ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('kids')}
+                                    onClick={() => setExercisetemDialogDataCategory('kids')}
                                 >
                                     <i className="fas fa-child"></i>
                                 </IconButton>
@@ -260,56 +260,56 @@ const MenuItemDialog: any = () => {
                         <div >
                             <Tooltip title="Beef and other">
                                 <IconButton aria-label="" color={checkIfPresent("meat") ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('meat')}
+                                    onClick={() => setExercisetemDialogDataCategory('meat')}
                                 >
                                     <i className='icon-tbone'></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Pork">
                                 <IconButton aria-label="" color={checkIfPresent("pork") ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('pork')}
+                                    onClick={() => setExercisetemDialogDataCategory('pork')}
                                 >
                                     <i className='icon-ham'></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Poultry">
                                 <IconButton aria-label="" color={checkIfPresent("poultry") ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('poultry')}
+                                    onClick={() => setExercisetemDialogDataCategory('poultry')}
                                 >
                                     <i className="fas fa-feather"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Fish">
                                 <IconButton aria-label="" color={checkIfPresent("fish") ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('fish')}
+                                    onClick={() => setExercisetemDialogDataCategory('fish')}
                                 >
                                     <i className='fas fa-fish'></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Shellfish">
                                 <IconButton aria-label="" color={checkIfPresent("shellfish") ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('shellfish')}
+                                    onClick={() => setExercisetemDialogDataCategory('shellfish')}
                                 >
                                     <i className='icon-shell'></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Vegetarian">
                                 <IconButton aria-label="" color={checkIfPresent("vegetarian") ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('vegetarian')}
+                                    onClick={() => setExercisetemDialogDataCategory('vegetarian')}
                                 >
                                     <i className='fas fa-seedling'></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Cheese">
                                 <IconButton aria-label="" color={checkIfPresent("cheese") ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('cheese')}
+                                    onClick={() => setExercisetemDialogDataCategory('cheese')}
                                 >
                                     <i className='fas fa-cheese'></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Carryout">
                                 <IconButton aria-label="" color={checkIfPresent("carryout") ? "inherit" : "default"}
-                                    onClick={() => setMenuItemDialogDataCategory('carryout')}
+                                    onClick={() => setExercisetemDialogDataCategory('carryout')}
                                 >
                                     <i className="fas fa-shopping-bag"></i>
                                 </IconButton>
@@ -342,6 +342,6 @@ const MenuItemDialog: any = () => {
     );
 }
 
-export default MenuItemDialog;
+export default ExerciseItemDialog;
 
 

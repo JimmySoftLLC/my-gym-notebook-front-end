@@ -40,7 +40,7 @@ const DeleteConfirmDialog: any = () => {
                 setConfirmMessage('Typed in name does not match')
             }
         }
-        if (deleteConfirmDialog.dialogType === "deleteMenuItem") {
+        if (deleteConfirmDialog.dialogType === "deleteExerciseItem") {
             deleteFunction(deleteConfirmDialog.index)
             setDeleteName('')
             setConfirmMessage('')
@@ -50,7 +50,7 @@ const DeleteConfirmDialog: any = () => {
             setDeleteName('')
             setConfirmMessage('')
         }
-        if (deleteConfirmDialog.dialogType === "deleteMenuDay") {
+        if (deleteConfirmDialog.dialogType === "deleteGymDay") {
             deleteFunction(deleteConfirmDialog.index)
             setDeleteName('')
             setConfirmMessage('')
@@ -86,7 +86,7 @@ const DeleteConfirmDialog: any = () => {
                         <i className='fas fa-exclamation-triangle'></i>
                         {'  Delete restaurant warning'}
                     </DialogTitle>}
-                    {deleteConfirmDialog.dialogType === "deleteMenuItem" && <DialogTitle id='alert-dialog-title'>
+                    {deleteConfirmDialog.dialogType === "deleteExerciseItem" && <DialogTitle id='alert-dialog-title'>
                         <i className='fas fa-exclamation-triangle'></i>
                         {'  Delete menu item warning'}
                     </DialogTitle>}
@@ -94,7 +94,7 @@ const DeleteConfirmDialog: any = () => {
                         <i className='fas fa-exclamation-triangle'></i>
                         {'  Delete entertainment item warning'}
                     </DialogTitle>}
-                    {deleteConfirmDialog.dialogType === "deleteMenuDay" && <DialogTitle id='alert-dialog-title'>
+                    {deleteConfirmDialog.dialogType === "deleteGymDay" && <DialogTitle id='alert-dialog-title'>
                         <i className='fas fa-exclamation-triangle'></i>
                         {'  Delete menu day warning'}
                     </DialogTitle>}
@@ -112,7 +112,7 @@ const DeleteConfirmDialog: any = () => {
                             <strong>{deleteConfirmDialog.name}</strong>
                             {`.  This process is irreversable are you sure?  To confirm delete type the name below.`}
                         </DialogContentText>}
-                        {deleteConfirmDialog.dialogType === "deleteMenuItem" && <DialogContentText id='alert-dialog-description'>
+                        {deleteConfirmDialog.dialogType === "deleteExerciseItem" && <DialogContentText id='alert-dialog-description'>
                             {`You about to delete `}
                             <strong>{deleteConfirmDialog.name}</strong>
                             {`.  This process is irreversable are you sure?`}
@@ -122,7 +122,7 @@ const DeleteConfirmDialog: any = () => {
                             <strong>{deleteConfirmDialog.name}</strong>
                             {`.  This process is irreversable are you sure?`}
                         </DialogContentText>}
-                        {deleteConfirmDialog.dialogType === "deleteMenuDay" && <DialogContentText id='alert-dialog-description'>
+                        {deleteConfirmDialog.dialogType === "deleteGymDay" && <DialogContentText id='alert-dialog-description'>
                             {`You about to delete `}
                             <strong>{deleteConfirmDialog.name}</strong>
                             {`.  This process is irreversable are you sure?`}

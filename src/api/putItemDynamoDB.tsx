@@ -30,7 +30,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 dateFrom: dateString(myItem.dateFrom, new Date(), 'saveToDatabaseFromDate'),
                 dateTo: dateString(myItem.dateTo, new Date(), 'saveToDatabaseToDate'),
                 description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
-                menuItemIdsJSON: JSON.stringify(myItem.menuItemIdsJSON),
+                ExerciseItemIdsJSON: JSON.stringify(myItem.ExerciseItemIdsJSON),
                 entertainmentItemIdsJSON: JSON.stringify(myItem.entertainmentItemIdsJSON),
                 associatesJSON: JSON.stringify(myItem.associatesJSON),
                 restaurantId: myItem.restaurantId = myItem.restaurantId !== '' ? myItem.restaurantId : blankPlaceHolder,

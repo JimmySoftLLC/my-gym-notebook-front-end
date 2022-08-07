@@ -3,7 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import { Tooltip } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import ExerciseItem from '@material-ui/core/MenuItem';
 
 const DateMenu = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -40,7 +40,7 @@ const DateMenu = () => {
 
     return (
         <Fragment>
-            {(myStates.menuItems || myStates.restaurantDetail || myStates.entertainmentItems) && <Tooltip title="Set date">
+            {(myStates.ExerciseItems || myStates.restaurantDetail || myStates.entertainmentItems) && <Tooltip title="Set date">
                 <IconButton aria-controls="simple-menu" aria-haspopup="true"
                     color="inherit"
                     onClick={dateMenuClick}>
@@ -54,14 +54,14 @@ const DateMenu = () => {
                 open={Boolean(anchorDateMenu)}
                 onClose={closeDateMenu}
             >
-                <MenuItem onClick={closeDateMenu}>
+                <ExerciseItem onClick={closeDateMenu}>
                     <IconButton aria-label=""
                         color={"primary"}
                     >
                         <i className="fas fa-times"></i>
                     </IconButton>
-                </MenuItem>
-                <MenuItem>
+                </ExerciseItem>
+                <ExerciseItem>
                     <Tooltip title={dateStringForMenu[0]}>
                         <IconButton aria-label=""
                             color={myStates['date_0'] ? "secondary" : "default"}
@@ -70,8 +70,8 @@ const DateMenu = () => {
                             <i className="mx-1">{dateStringForMenu[0]}</i>
                         </IconButton>
                     </Tooltip>
-                </MenuItem>
-                <MenuItem>
+                </ExerciseItem>
+                <ExerciseItem>
                     <Tooltip title={dateStringForMenu[1]}>
                         <IconButton aria-label=""
                             color={myStates['date_1'] ? "secondary" : "default"}
@@ -80,8 +80,8 @@ const DateMenu = () => {
                             <i className="mx-1">{dateStringForMenu[1]}</i>
                         </IconButton>
                     </Tooltip>
-                </MenuItem>
-                <MenuItem>
+                </ExerciseItem>
+                <ExerciseItem>
                     <Tooltip title={dateStringForMenu[2]}>
                         <IconButton aria-label=""
                             color={myStates['date_2'] ? "secondary" : "default"}
@@ -90,8 +90,8 @@ const DateMenu = () => {
                             <i className="mx-1">{dateStringForMenu[2]}</i>
                         </IconButton>
                     </Tooltip>
-                </MenuItem>
-                <MenuItem>
+                </ExerciseItem>
+                <ExerciseItem>
                     <Tooltip title={dateStringForMenu[3]}>
                         <IconButton aria-label=""
                             color={myStates['date_3'] ? "secondary" : "default"}
@@ -100,8 +100,8 @@ const DateMenu = () => {
                             <i className="mx-1">{dateStringForMenu[3]}</i>
                         </IconButton>
                     </Tooltip>
-                </MenuItem>
-                <MenuItem>
+                </ExerciseItem>
+                <ExerciseItem>
                     <Tooltip title={dateStringForMenu[4]}>
                         <IconButton aria-label=""
                             color={myStates['date_4'] ? "secondary" : "default"}
@@ -110,8 +110,8 @@ const DateMenu = () => {
                             <i className="mx-1">{dateStringForMenu[4]}</i>
                         </IconButton>
                     </Tooltip>
-                </MenuItem>
-                <MenuItem>
+                </ExerciseItem>
+                <ExerciseItem>
                     <Tooltip title={dateStringForMenu[5]}>
                         <IconButton aria-label=""
                             color={myStates['date_5'] ? "secondary" : "default"}
@@ -120,8 +120,8 @@ const DateMenu = () => {
                             <i className="mx-1">{dateStringForMenu[5]}</i>
                         </IconButton>
                     </Tooltip>
-                </MenuItem>
-                <MenuItem>
+                </ExerciseItem>
+                <ExerciseItem>
                     <Tooltip title={dateStringForMenu[6]}>
                         <IconButton aria-label=""
                             color={myStates['date_6'] ? "secondary" : "default"}
@@ -130,7 +130,7 @@ const DateMenu = () => {
                             <i className="mx-1">{dateStringForMenu[6]}</i>
                         </IconButton>
                     </Tooltip>
-                </MenuItem>
+                </ExerciseItem>
             </Menu>
         </Fragment>
     );

@@ -8,15 +8,15 @@ import { v4 as uuidv4 } from 'uuid';
 const SignedInTopToolBar = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
-        setMenuItemDialogData,
-        setMenuItemDialogOpen,
+        setExercisetemDialogData,
+        setExerciseItemDialogOpen,
         restaurantId,
         myStates,
-        setMenuDayDialogData,
-        setMenuDayDialogOpen,
+        setGymDayDialogData,
+        setGymDayDialogOpen,
     } = dataAndMethodsContext;
 
-    const newMenuItemClick = () => {
+    const newExerciseItemClick = () => {
         let myNewId = uuidv4()
         let myEditItem = {
             id: myNewId,
@@ -27,11 +27,11 @@ const SignedInTopToolBar = () => {
             restaurantId: restaurantId,
             dialogType: "Add",
         }
-        setMenuItemDialogData(myEditItem);
-        setMenuItemDialogOpen(true);
+        setExercisetemDialogData(myEditItem);
+        setExerciseItemDialogOpen(true);
     };
 
-    const newMenuDayClick = () => {
+    const newGymDayClick = () => {
         let myNewId = uuidv4()
         let myEditItem = {
             id: myNewId,
@@ -39,14 +39,14 @@ const SignedInTopToolBar = () => {
             dateFrom: new Date(),
             dateTo: new Date(),
             description: '',
-            menuItemIdsJSON: [],
+            ExerciseItemIdsJSON: [],
             entertainmentItemIdsJSON: [],
             associatesJSON: [],
             restaurantId: restaurantId,
             dialogType: "Add",
         }
-        setMenuDayDialogData(myEditItem);
-        setMenuDayDialogOpen(true);
+        setGymDayDialogData(myEditItem);
+        setGymDayDialogOpen(true);
     };
 
     return (
@@ -70,14 +70,14 @@ const SignedInTopToolBar = () => {
                     {(myStates['exerciseSettings']) && <Tooltip title="Add menu item">
                         <IconButton aria-label=""
                             color="inherit"
-                            onClick={() => newMenuItemClick()}>
+                            onClick={() => newExerciseItemClick()}>
                             <i className="icon-book-plus"></i>
                         </IconButton>
                     </Tooltip>}
                     {(myStates['gymDaySettings']) && <Tooltip title="Add menu day">
                         <IconButton aria-label=""
                             color="inherit"
-                            onClick={() => newMenuDayClick()}>
+                            onClick={() => newGymDayClick()}>
                             <i className="icon-calendar-solid-plus"></i>
                         </IconButton>
                     </Tooltip>}

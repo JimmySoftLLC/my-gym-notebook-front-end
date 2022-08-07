@@ -7,13 +7,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
-import putMenuDay from '../../model/menuDay/putMenuDay';
-import getMenuDays from '../../model/menuDay/getMenuDaysFromIds';
+import putGymDay from '../../model/gymDay/putGymDay';
+import getGymDays from '../../model/gymDay/getGymDaysFromIds';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-import sortMenuDays from '../../model/menuDay/sortMenuDays';
+import sortGymDays from '../../model/gymDay/sortGymDays';
 import 'date-fns';
-import MenuItemsMenuDay from '../menuItemMenuDay/MenuItemsMenuDay';
+import ExerciseItemsGymDay from '../exerciseItemGymDay/ExerciseItemsGymDay';
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const MenuDayDialog: any = () => {
+const GymDayDialog: any = () => {
     const classes = useStyles();
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
@@ -42,126 +42,126 @@ const MenuDayDialog: any = () => {
         dateFrom,
         dateTo,
         description,
-        menuItemIdsJSON,
+        ExerciseItemIdsJSON,
         entertainmentItemIdsJSON,
         associatesJSON,
         dialogType,
-    } = dataAndMethodsContext.menuDayDialogData;
+    } = dataAndMethodsContext.GymDayDialogData;
 
-    const { menuDayDialogData } = dataAndMethodsContext;
+    const { GymDayDialogData } = dataAndMethodsContext;
 
     const {
-        menuDayDialogOpen,
-        setMenuDayDialogOpen,
-        setMenuDayDialogDataItem,
+        GymDayDialogOpen,
+        setGymDayDialogOpen,
+        setGymDayDialogDataItem,
         idToken,
         customId,
-        setRestaurantMenuDays,
+        setRestaurantGymDays,
         restaurantId,
-        setMenuDayDialogData,
+        setGymDayDialogData,
     } = dataAndMethodsContext;
 
     const handleClose = () => {
-        setMenuDayDialogOpen(false);
+        setGymDayDialogOpen(false);
     };
 
     const handleSave = () => {
         switch (dialogType) {
             case "Edit":
-                saveMenuDay()
+                saveGymDay()
                 break;
             case "Add":
-                saveMenuDayAdd()
+                saveGymDayAdd()
                 break;
             default:
         }
-        setMenuDayDialogOpen(false);
+        setGymDayDialogOpen(false);
     };
 
-    const saveMenuDay = async () => {
-        let myNewMenuDay: any = {}
-        myNewMenuDay.id = id;
-        myNewMenuDay.title = title
-        myNewMenuDay.dateFrom = dateFrom;
-        myNewMenuDay.dateTo = dateTo;
-        myNewMenuDay.description = description
-        myNewMenuDay.menuItemIdsJSON = menuItemIdsJSON
-        myNewMenuDay.entertainmentItemIdsJSON = entertainmentItemIdsJSON
-        myNewMenuDay.associatesJSON = associatesJSON;
-        myNewMenuDay.restaurantId = restaurantId;
-        //console.log(gymDaysTableName, idToken, myNewMenuDay, customId);
-        await putMenuDay(myNewMenuDay, idToken, customId);
-        let myMenuDays = await getMenuDays({});
-        myMenuDays = await sortMenuDays(myMenuDays, 'sortDate');
-        setRestaurantMenuDays(myMenuDays)
+    const saveGymDay = async () => {
+        let myNewGymDay: any = {}
+        myNewGymDay.id = id;
+        myNewGymDay.title = title
+        myNewGymDay.dateFrom = dateFrom;
+        myNewGymDay.dateTo = dateTo;
+        myNewGymDay.description = description
+        myNewGymDay.ExerciseItemIdsJSON = ExerciseItemIdsJSON
+        myNewGymDay.entertainmentItemIdsJSON = entertainmentItemIdsJSON
+        myNewGymDay.associatesJSON = associatesJSON;
+        myNewGymDay.restaurantId = restaurantId;
+        //console.log(gymDaysTableName, idToken, myNewGymDay, customId);
+        await putGymDay(myNewGymDay, idToken, customId);
+        let myGymDays = await getGymDays({});
+        myGymDays = await sortGymDays(myGymDays, 'sortDate');
+        setRestaurantGymDays(myGymDays)
     };
 
-    const saveMenuDayAdd = async () => {
-        let myNewMenuDay: any = {}
-        myNewMenuDay.id = id;
-        myNewMenuDay.title = title
-        myNewMenuDay.dateFrom = dateFrom;
-        myNewMenuDay.dateTo = dateTo;
-        myNewMenuDay.description = description
-        myNewMenuDay.menuItemIdsJSON = menuItemIdsJSON;
-        myNewMenuDay.entertainmentItemIdsJSON = entertainmentItemIdsJSON;
-        myNewMenuDay.associatesJSON = associatesJSON;
-        myNewMenuDay.restaurantId = restaurantId;
-        // console.log(myNewMenuDay, idToken, customId);
-        await putMenuDay(myNewMenuDay, idToken, customId);
-        let myMenuDays = await getMenuDays({});
-        myMenuDays = await sortMenuDays(myMenuDays, 'sortDate');
-        setRestaurantMenuDays(myMenuDays)
+    const saveGymDayAdd = async () => {
+        let myNewGymDay: any = {}
+        myNewGymDay.id = id;
+        myNewGymDay.title = title
+        myNewGymDay.dateFrom = dateFrom;
+        myNewGymDay.dateTo = dateTo;
+        myNewGymDay.description = description
+        myNewGymDay.ExerciseItemIdsJSON = ExerciseItemIdsJSON;
+        myNewGymDay.entertainmentItemIdsJSON = entertainmentItemIdsJSON;
+        myNewGymDay.associatesJSON = associatesJSON;
+        myNewGymDay.restaurantId = restaurantId;
+        // console.log(myNewGymDay, idToken, customId);
+        await putGymDay(myNewGymDay, idToken, customId);
+        let myGymDays = await getGymDays({});
+        myGymDays = await sortGymDays(myGymDays, 'sortDate');
+        setRestaurantGymDays(myGymDays)
     };
 
-    const selectAllMenuItems = () => {
-        let myNewMenuDayDialogData = JSON.parse(JSON.stringify(menuDayDialogData))
-        myNewMenuDayDialogData.menuItemIdsJSON = JSON.parse(JSON.stringify({}))
-        setMenuDayDialogData(myNewMenuDayDialogData)
+    const selectAllExerciseItems = () => {
+        let myNewGymDayDialogData = JSON.parse(JSON.stringify(GymDayDialogData))
+        myNewGymDayDialogData.ExerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
+        setGymDayDialogData(myNewGymDayDialogData)
     }
 
-    const unSelectAllMenuItems = () => {
-        let myNewMenuDayDialogData = JSON.parse(JSON.stringify(menuDayDialogData))
-        myNewMenuDayDialogData.menuItemIdsJSON = []
-        setMenuDayDialogData(myNewMenuDayDialogData)
+    const unSelectAllExerciseItems = () => {
+        let myNewGymDayDialogData = JSON.parse(JSON.stringify(GymDayDialogData))
+        myNewGymDayDialogData.ExerciseItemIdsJSON = []
+        setGymDayDialogData(myNewGymDayDialogData)
     }
 
     const changeTitle = (e: any) => {
-        setMenuDayDialogDataItem('title', e.target.value)
+        setGymDayDialogDataItem('title', e.target.value)
     };
 
     const changeDateFrom = (myDate: any) => {
         // const myDateTo = new Date(dateTo)
-        let myMenuDayDialogData = JSON.parse(JSON.stringify(menuDayDialogData))
+        let myGymDayDialogData = JSON.parse(JSON.stringify(GymDayDialogData))
         // if (myDate.getTime() > myDateTo.getTime()) {
-        //     myMenuDayDialogData['dateFrom'] = myDate;
-        //     myMenuDayDialogData['dateTo'] = myDate;
+        //     myGymDayDialogData['dateFrom'] = myDate;
+        //     myGymDayDialogData['dateTo'] = myDate;
         // } else {
-        myMenuDayDialogData['dateFrom'] = myDate;
+        myGymDayDialogData['dateFrom'] = myDate;
         // }
-        setMenuDayDialogData(myMenuDayDialogData);
+        setGymDayDialogData(myGymDayDialogData);
     };
 
     const changeDateTo = (myDate: any) => {
         // const myDateFrom = new Date(dateFrom)
-        let myMenuDayDialogData = JSON.parse(JSON.stringify(menuDayDialogData))
+        let myGymDayDialogData = JSON.parse(JSON.stringify(GymDayDialogData))
         // if (myDate.getDate() < myDateFrom.getTime()) {
-        //     myMenuDayDialogData['dateTo'] = myDateFrom;
+        //     myGymDayDialogData['dateTo'] = myDateFrom;
         // } else {
-        myMenuDayDialogData['dateTo'] = myDate;
+        myGymDayDialogData['dateTo'] = myDate;
         // }
-        setMenuDayDialogData(myMenuDayDialogData);
+        setGymDayDialogData(myGymDayDialogData);
     };
 
     const changeDescription = (e: any) => {
-        setMenuDayDialogDataItem('description', e.target.value)
+        setGymDayDialogDataItem('description', e.target.value)
     };
 
     return (
         <div>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
-                    <Dialog className={classes.root} open={menuDayDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+                    <Dialog className={classes.root} open={GymDayDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">
                             {dialogType + " menu day"}</DialogTitle>
                         <DialogContent>
@@ -219,13 +219,13 @@ const MenuDayDialog: any = () => {
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid item xs={12}>
-                                        <MenuItemsMenuDay />
+                                        <ExerciseItemsGymDay />
                                     </Grid>
                                 </AccordionDetails>
                             </Accordion>
                             <DialogActions>
-                                <Button onClick={() => selectAllMenuItems()} color="default">Select All</Button>
-                                <Button onClick={() => unSelectAllMenuItems()} color="default">Unselect All</Button>
+                                <Button onClick={() => selectAllExerciseItems()} color="default">Select All</Button>
+                                <Button onClick={() => unSelectAllExerciseItems()} color="default">Unselect All</Button>
                             </DialogActions>
                         </DialogContent>
                         <DialogActions>
@@ -239,5 +239,5 @@ const MenuDayDialog: any = () => {
     );
 }
 
-export default MenuDayDialog;
+export default GymDayDialog;
 

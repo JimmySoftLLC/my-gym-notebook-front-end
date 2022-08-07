@@ -62,19 +62,19 @@ const HelpDialog: any = () => {
                 break;
             case 2:
                 resetPages(myNewStateChoices)
-                myNewStateChoices['menuItems'] = true;
+                myNewStateChoices['ExerciseItems'] = true;
                 break;
             case 3:
                 resetPages(myNewStateChoices)
-                myNewStateChoices['menuItems'] = true;
+                myNewStateChoices['ExerciseItems'] = true;
                 break;
             case 4:
                 resetPages(myNewStateChoices)
-                myNewStateChoices['menuItems'] = true;
+                myNewStateChoices['ExerciseItems'] = true;
                 break;
             case 5:
                 resetPages(myNewStateChoices)
-                myNewStateChoices['menuItems'] = true;
+                myNewStateChoices['ExerciseItems'] = true;
                 break;
             case 6:
                 resetPages(myNewStateChoices)
@@ -110,7 +110,7 @@ const HelpDialog: any = () => {
 
     const resetPages = (myNewStateChoices: any) => {
         myNewStateChoices['restaurants'] = false;
-        myNewStateChoices['menuItems'] = false;
+        myNewStateChoices['ExerciseItems'] = false;
         myNewStateChoices['associates'] = false;
         myNewStateChoices['info'] = false;
         myNewStateChoices['restaurantDetail'] = false;

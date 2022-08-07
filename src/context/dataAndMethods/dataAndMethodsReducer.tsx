@@ -51,7 +51,7 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_MENU_ITEMS:
             return {
                 ...state,
-                menuItems: action.payload,
+                ExerciseItems: action.payload,
             };
         case SET_RESTAURANTS:
             return {
@@ -61,12 +61,12 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_MENU_ITEM_DIALOG_DATA:
             return {
                 ...state,
-                menuItemDialogData: action.payload,
+                ExerciseItemDialogData: action.payload,
             };
         case SET_MENU_ITEM_DIALOG_OPEN:
             return {
                 ...state,
-                menuItemDialogOpen: action.payload,
+                ExerciseItemDialogOpen: action.payload,
             };
         case SET_EDIT_RESTAURANTS:
             return {
@@ -131,7 +131,7 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_RESTAURANT_MENU_ITEMS:
             return {
                 ...state,
-                restaurantMenuItems: action.payload,
+                exerciseItems: action.payload,
             };
         case SET_RESTAURANT_ID:
             return {
@@ -141,17 +141,17 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_RESTAURANT_MENU_DAY_ITEMS:
             return {
                 ...state,
-                restaurantMenuDays: action.payload,
+                restaurantGymDays: action.payload,
             };
         case SET_MENU_DAY_DIALOG_OPEN:
             return {
                 ...state,
-                menuDayDialogOpen: action.payload,
+                GymDayDialogOpen: action.payload,
             };
         case SET_MENU_DAY_DIALOG_DATA:
             return {
                 ...state,
-                menuDayDialogData: action.payload,
+                GymDayDialogData: action.payload,
             };
         case SET_RESTAURANT_ASSOCIATES:
             return {
@@ -176,7 +176,7 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_MENU_DAYS:
             return {
                 ...state,
-                menuDays: action.payload,
+                GymDays: action.payload,
             };
         case SET_LOADING_DIALOG:
             return {

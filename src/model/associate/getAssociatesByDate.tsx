@@ -2,7 +2,7 @@ import getAssociates from './getAssociates';
 import validDate from '../validDate';
 import isEmail from 'validator/lib/isEmail';
 
-const getTodaysAssociates = async (restaurants: string | any[], myMenuDays: string | any[], selectedDate: any) => {
+const getTodaysAssociates = async (restaurants: string | any[], myGymDays: string | any[], selectedDate: any) => {
     // create an array of all ids
     let associateInIds: any[] = [];
     let associateInIdsNoEmail: any[] = [];
@@ -12,16 +12,16 @@ const getTodaysAssociates = async (restaurants: string | any[], myMenuDays: stri
 
     // get associate from the valid menu days, create a list of one from database and ones from restaurant object
     // these associates are in house so mark them as in.
-    for (let j = 0; j < myMenuDays.length; j++) {
-        if (validDate(myMenuDays[j].dateFrom, myMenuDays[j].dateTo, selectedDate)) {
-            for (let k = 0; k < myMenuDays[j].associatesJSON.length; k++) {
-                if (isEmail(myMenuDays[j].associatesJSON[k])) {
-                    if (associateInIds.indexOf(myMenuDays[j].associatesJSON[k]) === -1) {
-                        associateInIds.push(myMenuDays[j].associatesJSON[k])
+    for (let j = 0; j < myGymDays.length; j++) {
+        if (validDate(myGymDays[j].dateFrom, myGymDays[j].dateTo, selectedDate)) {
+            for (let k = 0; k < myGymDays[j].associatesJSON.length; k++) {
+                if (isEmail(myGymDays[j].associatesJSON[k])) {
+                    if (associateInIds.indexOf(myGymDays[j].associatesJSON[k]) === -1) {
+                        associateInIds.push(myGymDays[j].associatesJSON[k])
                     }
                 } else {
-                    if (associateInIdsNoEmail.indexOf(myMenuDays[j].associatesJSON[k]) === -1) {
-                        associateInIdsNoEmail.push(myMenuDays[j].associatesJSON[k])
+                    if (associateInIdsNoEmail.indexOf(myGymDays[j].associatesJSON[k]) === -1) {
+                        associateInIdsNoEmail.push(myGymDays[j].associatesJSON[k])
                     }
                 }
             }
@@ -51,7 +51,7 @@ const getTodaysAssociates = async (restaurants: string | any[], myMenuDays: stri
     // combine associates
     myAssociates = myAssociates.concat(myAssociatesNoEmail)
 
-    // mark these associates as in, since they are from the menudays object
+    // mark these associates as in, since they are from the GymDays object
     for (let i = 0; i < myAssociates.length; i++) {
         myAssociates[i].isIn = true
     }
