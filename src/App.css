@@ -200,7 +200,7 @@
   }
 
   /* Cards */
-  .card-associate {
+  .card-gymmember {
     padding: 1rem;
     border: #ccc 1px dotted;
     margin: 0rem;
@@ -526,11 +526,11 @@
     margin-bottom: 4rem;
   }
 
-  .associate-page-top-margin {
+  .gymmember-page-top-margin {
     margin-top: 5rem;
   }
   
-  .associate-page-bottom-margin {
+  .gymmember-page-bottom-margin {
     margin-bottom: 5rem;
   }
   
@@ -592,11 +592,11 @@
       margin-bottom: 4rem;
     }
 
-    .associate-page-top-margin {
+    .gymmember-page-top-margin {
       margin-top: 5rem;
     }
   
-    .associate-page-bottom-margin {
+    .gymmember-page-bottom-margin {
       margin-bottom: 5rem;
     }
   
@@ -632,11 +632,11 @@
       margin-bottom: 3rem;
     }
 
-    .associate-page-top-margin {
+    .gymmember-page-top-margin {
       margin-top: 6rem;
     }
   
-    .associate-page-bottom-margin {
+    .gymmember-page-bottom-margin {
       margin-bottom: 5rem;
     }
   
@@ -685,11 +685,11 @@
       margin-bottom: 3rem;
     }
 
-    .associate-page-top-margin {
+    .gymmember-page-top-margin {
       margin-top: 6rem;
     }
   
-    .associate-page-bottom-margin {
+    .gymmember-page-bottom-margin {
       margin-bottom: 5rem;
     }
   
@@ -710,11 +710,11 @@
         margin-bottom: 3rem;
       }
   
-      .associate-page-top-margin {
+      .gymmember-page-top-margin {
         margin-top: 6rem;
       }
     
-      .associate-page-bottom-margin {
+      .gymmember-page-bottom-margin {
         margin-bottom: 5rem;
       }
     

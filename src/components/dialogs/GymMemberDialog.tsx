@@ -8,7 +8,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
-import putAssociate from '../../model/associate/putAssociate';
+import putGymMember from '../../model/gymMember/putGymMember';
 import saveImageToDatabase from '../../model/images/saveImageToDatabase';
 import ImageEditor from '../imageEditor/ImageEditor';
 
@@ -21,17 +21,17 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const AssociateDialog: any = () => {
+const GymMemberDialog: any = () => {
     const classes = useStyles();
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         idToken,
         customId,
-        setAssociateDialogOpen,
-        setAssociateDialogDataItem,
-        associateDialogOpen,
-        setAssociate,
-        associate,
+        setGymMemberDialogOpen,
+        setGymMemberDialogDataItem,
+        gymMemberDialogOpen,
+        setGymMember,
+        gymMember,
     } = dataAndMethodsContext;
 
     const {
@@ -45,7 +45,7 @@ const AssociateDialog: any = () => {
         gymDayIdsJSON,
         dialogType,
         message,
-    } = dataAndMethodsContext.associateDialogData;
+    } = dataAndMethodsContext.gymMemberDialogData;
 
     const {
         deleteFileName,
@@ -54,50 +54,50 @@ const AssociateDialog: any = () => {
         editMode,
     } = dataAndMethodsContext.imageEditorData;
 
-    // edit logged in associate save to database
-    // get associates for restaurant from database
-    // update restaurant with these new associates and save to database
-    // update state for associate, restaurantAssociates
-    const saveAssociateEditMe = async () => {
-        let myAssociate: any = {};
-        myAssociate.id = id;
-        myAssociate.firstName = firstName
-        myAssociate.lastName = lastName
-        myAssociate.bio = bio
-        myAssociate.email = email
-        myAssociate.exerciseIdsJSON = exerciseIdsJSON
-        myAssociate.teamMateIdsJSON = teamMateIdsJSON
-        myAssociate.gymDayIdsJSON = gymDayIdsJSON
-        myAssociate.imageUrl = imageUrl;
+    // edit logged in gymMember save to database
+    // get gymMembers for restaurant from database
+    // update restaurant with these new gymMembers and save to database
+    // update state for gymMember, restaurantGymMembers
+    const saveGymMemberEditMe = async () => {
+        let myGymMember: any = {};
+        myGymMember.id = id;
+        myGymMember.firstName = firstName
+        myGymMember.lastName = lastName
+        myGymMember.bio = bio
+        myGymMember.email = email
+        myGymMember.exerciseIdsJSON = exerciseIdsJSON
+        myGymMember.teamMateIdsJSON = teamMateIdsJSON
+        myGymMember.gymDayIdsJSON = gymDayIdsJSON
+        myGymMember.imageUrl = imageUrl;
         await saveImageToDatabase(deleteFileName, imageUrl, blob, editMode, idToken, customId)
-        await putAssociate(myAssociate, idToken, customId)
-        setAssociate(myAssociate);
+        await putGymMember(myGymMember, idToken, customId)
+        setGymMember(myGymMember);
     };
 
     const handleClose = () => {
-        setAssociateDialogOpen(false);
+        setGymMemberDialogOpen(false);
     };
 
     const handleSave = async () => {
         switch (dialogType) {
             case "EditMe":
-                saveAssociateEditMe()
+                saveGymMemberEditMe()
                 break;
             default:
         }
-        setAssociateDialogOpen(false);
+        setGymMemberDialogOpen(false);
     };
 
     const changeFirstName = (e: any) => {
-        setAssociateDialogDataItem('firstName', e.target.value);
+        setGymMemberDialogDataItem('firstName', e.target.value);
     };
 
     const changeLastName = (e: any) => {
-        setAssociateDialogDataItem('lastName', e.target.value);
+        setGymMemberDialogDataItem('lastName', e.target.value);
     };
 
     const changeBio = (e: any) => {
-        setAssociateDialogDataItem('bio', e.target.value);
+        setGymMemberDialogDataItem('bio', e.target.value);
     };
 
     let dialogTitle = '';
@@ -105,13 +105,13 @@ const AssociateDialog: any = () => {
     if (dialogType === "EditMe") { dialogTitle = 'Edit my details' };
 
     let loggedInUserMessage = '';
-    if (associate.id === id) {
+    if (gymMember.id === id) {
         loggedInUserMessage = 'Logged in user ' + email
     }
 
     return (
         <div>
-            <Dialog className={classes.root} open={associateDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog className={classes.root} open={gymMemberDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">
                     {dialogTitle}</DialogTitle>
                 <DialogContent>
@@ -163,4 +163,4 @@ const AssociateDialog: any = () => {
     );
 }
 
-export default AssociateDialog;
+export default GymMemberDialog;

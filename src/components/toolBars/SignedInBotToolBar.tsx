@@ -11,12 +11,12 @@ const SignedInBotToolBar = () => {
         setIdToken,
         setCustomId,
         setLogInType,
-        setAssociateDialogData,
-        setAssociateDialogOpen,
-        associate,
+        setGymMemberDialogData,
+        setGymMemberDialogOpen,
+        gymMember,
         setExerciseItems,
         setRestaurantGymDays,
-        setRestaurantAssociates,
+        setRestaurantGymMembers,
         setImageEditorData,
     } = dataAndMethodsContext;
 
@@ -27,27 +27,27 @@ const SignedInBotToolBar = () => {
         setLogInType('default');
         setExerciseItems([]);
         setRestaurantGymDays([]);
-        setRestaurantAssociates([]);
+        setRestaurantGymMembers([]);
     }
 
-    const handleEditAssociate = () => {
-        let myAssociateData = {
-            id: associate.id,
-            firstName: associate.firstName,
-            lastName: associate.lastName,
-            jobTitle: associate.jobTitle,
-            bio: associate.bio,
-            email: associate.email,
-            exerciseIdsJSON: associate.exerciseIdsJSON,
-            teamMateIdsJSON: associate.teamMateIdsJSON,
-            gymDayIdsJSON: associate.gymDayIdsJSON,
-            imageUrl: associate.imageUrl,
-            hideAssociate: associate.hideAssociate,
+    const handleEditGymMember = () => {
+        let myGymMemberData = {
+            id: gymMember.id,
+            firstName: gymMember.firstName,
+            lastName: gymMember.lastName,
+            jobTitle: gymMember.jobTitle,
+            bio: gymMember.bio,
+            email: gymMember.email,
+            exerciseIdsJSON: gymMember.exerciseIdsJSON,
+            teamMateIdsJSON: gymMember.teamMateIdsJSON,
+            gymDayIdsJSON: gymMember.gymDayIdsJSON,
+            imageUrl: gymMember.imageUrl,
+            hideGymMember: gymMember.hideGymMember,
             dialogType: "EditMe",
         };
-        setAssociateDialogData(myAssociateData);
+        setGymMemberDialogData(myGymMemberData);
         let myImageEditorItem = {
-            imageUrl: associate.imageUrl,
+            imageUrl: gymMember.imageUrl,
             editMode: 'none',
             deleteFileName: '',
             width: 1,
@@ -57,16 +57,16 @@ const SignedInBotToolBar = () => {
             showDelete: true,
         }
         setImageEditorData(myImageEditorItem);
-        setAssociateDialogOpen(true);
+        setGymMemberDialogOpen(true);
     };
 
     return (
         <Fragment>
             <Toolbar color="primary" component='div'>
-                <Tooltip title="Edit associate details">
+                <Tooltip title="Edit gymMember details">
                     <IconButton aria-label=""
                         color="primary"
-                        onClick={() => handleEditAssociate()}>
+                        onClick={() => handleEditGymMember()}>
                         <i className="fas fa-user-edit"></i>
                     </IconButton>
                 </Tooltip>

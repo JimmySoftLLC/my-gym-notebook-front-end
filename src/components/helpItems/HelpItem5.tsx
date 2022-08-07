@@ -4,7 +4,7 @@ const HelpItem5 = () => {
     return (
         <Fragment>
             <p className='p'>
-                When you select the restaurant page.  A list of restaurants will be listed.  Clicking on the name will give you a restaurant detail with the menu, associates, entertainment etc.  The icons represent
+                When you select the restaurant page.  A list of restaurants will be listed.  Clicking on the name will give you a restaurant detail with the menu, gymMembers, entertainment etc.  The icons represent
             </p>
             <ul style={{ paddingLeft: '1.5rem' }}>
                 <li>

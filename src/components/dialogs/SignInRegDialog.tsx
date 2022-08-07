@@ -9,8 +9,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import { v4 as uuidv4 } from 'uuid';
-import getAssociate from '../../model/associate/getAssociate';
-import createAssociate from '../../model/associate/createAssociate';
+import getGymMember from '../../model/gymMember/getGymMember';
+import createGymMember from '../../model/gymMember/createGymMember';
 import isEmail from 'validator/lib/isEmail';
 
 const useStyles = makeStyles(theme => ({
@@ -40,7 +40,7 @@ const SignInRegDialog: any = () => {
         setIdToken,
         setCustomId,
         setLogInType,
-        setAssociate,
+        setGymMember,
     } = dataAndMethodsContext;
 
     const closeDialog = () => {
@@ -109,18 +109,18 @@ const SignInRegDialog: any = () => {
                 setCustomId(session.idToken.payload['custom:id']);
                 setAuthToken(session.accessToken.jwtToken);
                 setIdToken(session.idToken.jwtToken);
-                const associate = await getAssociate(session.idToken.payload['email'], session.idToken.jwtToken, session.idToken.payload['custom:id'])
-                console.log(associate);
-                if (associate === null) {
-                    let myNewAssociate = await createAssociate(session.idToken.payload['email'], session.idToken.jwtToken, session.idToken.payload['custom:id'])
-                    if (myNewAssociate) {
-                        setAssociate(myNewAssociate);
+                const gymMember = await getGymMember(session.idToken.payload['email'], session.idToken.jwtToken, session.idToken.payload['custom:id'])
+                console.log(gymMember);
+                if (gymMember === null) {
+                    let myNewGymMember = await createGymMember(session.idToken.payload['email'], session.idToken.jwtToken, session.idToken.payload['custom:id'])
+                    if (myNewGymMember) {
+                        setGymMember(myNewGymMember);
                         setLogInType('signedIn')
                         setSignInRegDialogType('false');
                         setDialogBackToDefaults();
                     }
                 } else {
-                    setAssociate(associate);
+                    setGymMember(gymMember);
                     setLogInType('signedIn');
                     setSignInRegDialogType('false');
                     setDialogBackToDefaults();

@@ -32,7 +32,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
                 ExerciseItemIdsJSON: JSON.stringify(myItem.ExerciseItemIdsJSON),
                 entertainmentItemIdsJSON: JSON.stringify(myItem.entertainmentItemIdsJSON),
-                associatesJSON: JSON.stringify(myItem.associatesJSON),
+                gymMembersJSON: JSON.stringify(myItem.gymMembersJSON),
                 restaurantId: myItem.restaurantId = myItem.restaurantId !== '' ? myItem.restaurantId : blankPlaceHolder,
             }
             break;

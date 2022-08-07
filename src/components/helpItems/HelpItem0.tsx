@@ -8,26 +8,26 @@ const HelpItem0 = () => {
         <Fragment>
             <p className='p'>
                 {websiteName} has 6 main pages. Select one of the following.  The icons represent:
-                </p>
+            </p>
             <ul style={{ paddingLeft: '1.5rem' }}>
                 <li>
                     <i className="fas fa-book-open"></i> show menu items
-                    </li>
+                </li>
                 <li>
                     <i className="fas fa-store"></i> show restaurants
-                    </li>
+                </li>
                 <li>
-                    <i className="fas fa-users"></i> show restaurant associates
-                    </li>
+                    <i className="fas fa-users"></i> show restaurant gymMembers
+                </li>
                 <li>
                     <i className="fas fa-music"></i> show entertainment
-                    </li>
+                </li>
                 <li>
                     <i className="fas fa-images"></i> show photo gallery
-                    </li>
+                </li>
                 <li>
                     <i className="fas fa-question"></i> help and information
-                    </li>
+                </li>
             </ul>
         </Fragment>
     );

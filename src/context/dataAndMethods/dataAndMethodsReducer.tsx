@@ -111,22 +111,22 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_ASSOCIATE_RESTAURANTS:
             return {
                 ...state,
-                associatesRestaurants: action.payload,
+                gymMembersRestaurants: action.payload,
             };
         case SET_ASSOCIATE:
             return {
                 ...state,
-                associate: action.payload,
+                gymMember: action.payload,
             };
         case SET_ASSOCIATE_DIALOG_DATA:
             return {
                 ...state,
-                associateDialogData: action.payload,
+                gymMemberDialogData: action.payload,
             };
         case SET_ASSOCIATE_DIALOG_OPEN:
             return {
                 ...state,
-                associateDialogOpen: action.payload,
+                gymMemberDialogOpen: action.payload,
             };
         case SET_RESTAURANT_MENU_ITEMS:
             return {
@@ -156,7 +156,7 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_RESTAURANT_ASSOCIATES:
             return {
                 ...state,
-                restaurantAssociates: action.payload,
+                restaurantGymMembers: action.payload,
             };
         case SET_LOADING:
             return {
@@ -171,7 +171,7 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_ASSOCIATES:
             return {
                 ...state,
-                associates: action.payload,
+                gymMembers: action.payload,
             };
         case SET_MENU_DAYS:
             return {

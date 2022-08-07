@@ -4,8 +4,8 @@ import {
     gymMembersTableName,
 } from '../../api/apiConstants';
 
-const createAssociate = async (myEmailId: any, myToken: any, myCustomId: any) => {
-    let myAssociate = {
+const createGymMember = async (myEmailId: any, myToken: any, myCustomId: any) => {
+    let myGymMember = {
         id: myEmailId,
         firstName: '',
         lastName: '',
@@ -16,13 +16,13 @@ const createAssociate = async (myEmailId: any, myToken: any, myCustomId: any) =>
         gymDayIdsJSON: [],
         teamMateIdsJSON: [],
     }
-    //console.log(myAssociate)
-    const data = await putItemDynamoDB(gymMembersTableName, myAssociate, myToken, myCustomId)
+    //console.log(myGymMember)
+    const data = await putItemDynamoDB(gymMembersTableName, myGymMember, myToken, myCustomId)
     if (data.err) {
         return null;
     }
-    return myAssociate;
+    return myGymMember;
 }
 
-export default createAssociate;
+export default createGymMember;
 

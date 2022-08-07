@@ -19,7 +19,7 @@ const getBatch = async (myIds: any) => {
         myGymDays[i].description = myGymDays[i].description === blankPlaceHolder ? '' : myGymDays[i].description
         myGymDays[i].ExerciseItemIdsJSON = JSON.parse(myGymDays[i].ExerciseItemIdsJSON)
         myGymDays[i].entertainmentItemIdsJSON = JSON.parse(myGymDays[i].entertainmentItemIdsJSON)
-        myGymDays[i].associatesJSON = JSON.parse(myGymDays[i].associatesJSON)
+        myGymDays[i].gymMembersJSON = JSON.parse(myGymDays[i].gymMembersJSON)
         myGymDays[i].dateFrom = new Date(myGymDays[i].dateFrom)
         myGymDays[i].dateTo = new Date(myGymDays[i].dateTo)
     }

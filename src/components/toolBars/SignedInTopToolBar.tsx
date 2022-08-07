@@ -41,7 +41,7 @@ const SignedInTopToolBar = () => {
             description: '',
             ExerciseItemIdsJSON: [],
             entertainmentItemIdsJSON: [],
-            associatesJSON: [],
+            gymMembersJSON: [],
             restaurantId: restaurantId,
             dialogType: "Add",
         }

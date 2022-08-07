@@ -55,7 +55,7 @@ const DeleteConfirmDialog: any = () => {
             setDeleteName('')
             setConfirmMessage('')
         }
-        if (deleteConfirmDialog.dialogType === "deleteAssociate") {
+        if (deleteConfirmDialog.dialogType === "deleteGymMember") {
             deleteFunction(deleteConfirmDialog.index)
             setDeleteName('')
             setConfirmMessage('')
@@ -98,9 +98,9 @@ const DeleteConfirmDialog: any = () => {
                         <i className='fas fa-exclamation-triangle'></i>
                         {'  Delete menu day warning'}
                     </DialogTitle>}
-                    {deleteConfirmDialog.dialogType === "deleteAssociate" && <DialogTitle id='alert-dialog-title'>
+                    {deleteConfirmDialog.dialogType === "deleteGymMember" && <DialogTitle id='alert-dialog-title'>
                         <i className='fas fa-exclamation-triangle'></i>
-                        {'  Delete associate warning'}
+                        {'  Delete gymMember warning'}
                     </DialogTitle>}
                     {deleteConfirmDialog.dialogType === "deletePhoto" && <DialogTitle id='alert-dialog-title'>
                         <i className='fas fa-exclamation-triangle'></i>
@@ -127,7 +127,7 @@ const DeleteConfirmDialog: any = () => {
                             <strong>{deleteConfirmDialog.name}</strong>
                             {`.  This process is irreversable are you sure?`}
                         </DialogContentText>}
-                        {deleteConfirmDialog.dialogType === "deleteAssociate" && <DialogContentText id='alert-dialog-description'>
+                        {deleteConfirmDialog.dialogType === "deleteGymMember" && <DialogContentText id='alert-dialog-description'>
                             {`You about to delete `}
                             <strong>{deleteConfirmDialog.name}</strong>
                             {`.  This process is irreversable are you sure?`}

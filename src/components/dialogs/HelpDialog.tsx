@@ -83,7 +83,7 @@ const HelpDialog: any = () => {
                 break;
             case 7:
                 resetPages(myNewStateChoices)
-                myNewStateChoices['associates'] = true;
+                myNewStateChoices['gymMembers'] = true;
                 myNewStateChoices.helpDialogActive = false;
                 break;
             case 8:
@@ -111,7 +111,7 @@ const HelpDialog: any = () => {
     const resetPages = (myNewStateChoices: any) => {
         myNewStateChoices['restaurants'] = false;
         myNewStateChoices['ExerciseItems'] = false;
-        myNewStateChoices['associates'] = false;
+        myNewStateChoices['gymMembers'] = false;
         myNewStateChoices['info'] = false;
         myNewStateChoices['restaurantDetail'] = false;
         myNewStateChoices['entertainmentItems'] = false;
@@ -203,7 +203,7 @@ const HelpDialog: any = () => {
 
                 {helpDialogStage === 7 && <Fragment>
                     <DialogTitle id="form-dialog-title">
-                        Restaurant associates</DialogTitle>
+                        Restaurant gymMembers</DialogTitle>
                     <DialogContent>
                         <HelpItem6 />
                     </DialogContent>

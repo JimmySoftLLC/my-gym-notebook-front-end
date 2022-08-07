@@ -44,7 +44,7 @@ const GymDayDialog: any = () => {
         description,
         ExerciseItemIdsJSON,
         entertainmentItemIdsJSON,
-        associatesJSON,
+        gymMembersJSON,
         dialogType,
     } = dataAndMethodsContext.GymDayDialogData;
 
@@ -87,7 +87,7 @@ const GymDayDialog: any = () => {
         myNewGymDay.description = description
         myNewGymDay.ExerciseItemIdsJSON = ExerciseItemIdsJSON
         myNewGymDay.entertainmentItemIdsJSON = entertainmentItemIdsJSON
-        myNewGymDay.associatesJSON = associatesJSON;
+        myNewGymDay.gymMembersJSON = gymMembersJSON;
         myNewGymDay.restaurantId = restaurantId;
         //console.log(gymDaysTableName, idToken, myNewGymDay, customId);
         await putGymDay(myNewGymDay, idToken, customId);
@@ -105,7 +105,7 @@ const GymDayDialog: any = () => {
         myNewGymDay.description = description
         myNewGymDay.ExerciseItemIdsJSON = ExerciseItemIdsJSON;
         myNewGymDay.entertainmentItemIdsJSON = entertainmentItemIdsJSON;
-        myNewGymDay.associatesJSON = associatesJSON;
+        myNewGymDay.gymMembersJSON = gymMembersJSON;
         myNewGymDay.restaurantId = restaurantId;
         // console.log(myNewGymDay, idToken, customId);
         await putGymDay(myNewGymDay, idToken, customId);

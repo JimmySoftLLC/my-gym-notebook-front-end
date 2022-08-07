@@ -39,7 +39,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
                     description: restaurantGymDays[i].description,
                     ExerciseItemIdsJSON: restaurantGymDays[i].ExerciseItemIdsJSON,
                     entertainmentItemIdsJSON: restaurantGymDays[i].entertainmentItemIdsJSON,
-                    associatesJSON: restaurantGymDays[i].associatesJSON,
+                    gymMembersJSON: restaurantGymDays[i].gymMembersJSON,
                     dialogType: 'Edit',
                 }
                 setGymDayDialogData(myEditItem);
@@ -60,7 +60,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
                     description: restaurantGymDays[i].description,
                     ExerciseItemIdsJSON: restaurantGymDays[i].ExerciseItemIdsJSON,
                     entertainmentItemIdsJSON: restaurantGymDays[i].entertainmentItemIdsJSON,
-                    associatesJSON: restaurantGymDays[i].associatesJSON,
+                    gymMembersJSON: restaurantGymDays[i].gymMembersJSON,
                     dialogType: "Add",
                 }
                 setGymDayDialogData(myEditItem);

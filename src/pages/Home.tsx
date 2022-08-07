@@ -6,7 +6,7 @@ import ExerciseItemsInventory from '../components/exerciseItemInventory/Exercise
 import GymDays from '../components/gymDay/GymDays';
 import BotNavBar from '../components/BotNavBar';
 import ExerciseItemDialog from '../components/dialogs/ExerciseItemDialog';
-import AssociateDialog from '../components/dialogs/AssociateDialog';
+import GymMemberDialog from '../components/dialogs/GymMemberDialog';
 import GymDayDialog from '../components/dialogs/GymDayDialog';
 import AlertDialog from '../components/dialogs/AlertDialog';
 import HelpDialog from '../components/dialogs/HelpDialog';
@@ -44,7 +44,7 @@ const Home = () => {
                 {myStates.entertainmentItems && <p className='p home-page-top-margin-normal'></p>}
                 {myStates.restaurants && <p className='p home-page-top-margin-normal'></p>}
                 {myStates.restaurantDetail && <p className='p home-page-top-margin-normal'></p>}
-                {myStates.associates && <p className='p home-page-top-margin-normal'></p>}
+                {myStates.gymMembers && <p className='p home-page-top-margin-normal'></p>}
                 {myStates.info && <p className='p home-page-top-margin-normal'></p>}
                 {myStates.photoGallery && <p className='p home-page-top-margin-normal'></p>}
                 {myStates.info && <About />}
@@ -53,13 +53,13 @@ const Home = () => {
                 <HelpDialog />
                 <p className='p home-page-bottom-margin'></p>
             </div>}
-            {logInType === 'signedIn' && <div className='container associate-page-top-margin'>
+            {logInType === 'signedIn' && <div className='container gym-member-page-top-margin'>
                 {myStates.exerciseSettings && <ExerciseItemsInventory />}
                 {myStates.gymDaySettings && <GymDays />}
                 <ExerciseItemDialog />
-                <AssociateDialog />
+                <GymMemberDialog />
                 <GymDayDialog />
-                <p className='p associate-page-bottom-margin'></p>
+                <p className='p gym-member-page-bottom-margin'></p>
             </div>}
             <BotNavBar />
         </Fragment>
