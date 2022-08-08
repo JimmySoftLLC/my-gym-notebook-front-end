@@ -16,8 +16,6 @@ const getBatch = async (myIds: any) => {
     for (let i = 0; i < myExerciseItems.length; i++) {
         myExerciseItems[i].title = myExerciseItems[i].title === blankPlaceHolder ? '' : myExerciseItems[i].title
         myExerciseItems[i].description = myExerciseItems[i].description === blankPlaceHolder ? '' : myExerciseItems[i].description
-        myExerciseItems[i].restaurant = myExerciseItems[i].restaurant === blankPlaceHolder ? '' : myExerciseItems[i].restaurant
-        myExerciseItems[i].categoryJSON = JSON.parse(myExerciseItems[i].categoryJSON)
     }
     return myExerciseItems;
 }
