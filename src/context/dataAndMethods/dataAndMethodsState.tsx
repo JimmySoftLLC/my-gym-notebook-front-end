@@ -52,11 +52,11 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         myStates = myStates !== null ? JSON.parse(myStates)
             : {
                 // menu categories
-                specials: true,
-                soup: false,
-                salad: false,
-                appetizers: true,
-                sandwich: false,
+                strength: true,
+                aerobic: false,
+                balance: false,
+                agility: true,
+                flexibilityMobility: false,
                 pizza: false,
                 pasta: false,
                 entree: true,
@@ -295,11 +295,11 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     const setExercisetemDialogDataCategory = async (key: string) => {
         let myNewCategories = JSON.parse(JSON.stringify(state.ExerciseItemDialogData.categoryJSON))
         let myIndex = -1
-        let keysToClear = ['specials',
-            'soup',
-            'salad',
-            'appetizers',
-            'sandwich',
+        let keysToClear = ['strength',
+            'aerobic',
+            'balance',
+            'agility',
+            'flexibilityMobility',
             'pizza',
             'pasta',
             'entree',

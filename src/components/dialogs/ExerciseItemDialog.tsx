@@ -32,8 +32,6 @@ const ExerciseItemDialog: any = () => {
         title,
         description,
         categoryJSON,
-        restaurant,
-        price,
         dialogType,
     } = dataAndMethodsContext.ExerciseItemDialogData;
 
@@ -45,9 +43,7 @@ const ExerciseItemDialog: any = () => {
         idToken,
         customId,
         setExerciseItems,
-        restaurantId,
         myStates,
-        setExercisetemDialogData,
     } = dataAndMethodsContext;
 
     const handleClose = () => {
@@ -73,9 +69,6 @@ const ExerciseItemDialog: any = () => {
         myNewExerciseItem.title = title;
         myNewExerciseItem.description = description;
         myNewExerciseItem.categoryJSON = categoryJSON;
-        myNewExerciseItem.restaurant = restaurant;
-        myNewExerciseItem.restaurantId = restaurantId;
-        myNewExerciseItem.price = price;
         //console.log(exerciseItemsTableName, idToken, myNewExerciseItem, customId);
         await putExerciseItem(myNewExerciseItem, idToken, customId);
         let myExerciseItems = await getExerciseItems({});
@@ -89,9 +82,6 @@ const ExerciseItemDialog: any = () => {
         myNewExerciseItem.title = title;
         myNewExerciseItem.description = description;
         myNewExerciseItem.categoryJSON = categoryJSON;
-        myNewExerciseItem.restaurant = restaurant;
-        myNewExerciseItem.restaurantId = restaurantId;
-        myNewExerciseItem.price = price;
         //console.log(exerciseItemsTableName, idToken, myNewExerciseItem, customId);
         await putExerciseItem(myNewExerciseItem, idToken, customId);
         let myExerciseItems = await getExerciseItems({});
@@ -107,17 +97,6 @@ const ExerciseItemDialog: any = () => {
         setExercisetemDialogDataItem('description', e.target.value)
     };
 
-    const changePrice = (e: any) => {
-        setExercisetemDialogDataItem('price', e.target.value)
-    };
-
-    const handleLowerCase = (e: any) => {
-        let myExerciseItemDialogData = JSON.parse(JSON.stringify(dataAndMethodsContext.ExerciseItemDialogData))
-        myExerciseItemDialogData.title = myExerciseItemDialogData.title.toLowerCase()
-        myExerciseItemDialogData.description = myExerciseItemDialogData.description.toLowerCase()
-        setExercisetemDialogData(myExerciseItemDialogData)
-    };
-
     const checkIfPresent = (value: any) => {
         if (categoryJSON) {
             if (categoryJSON.indexOf(value) !== -1) { return true }
@@ -129,7 +108,7 @@ const ExerciseItemDialog: any = () => {
         <div>
             <Dialog className={classes.root} open={ExerciseItemDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">
-                    {dialogType + " menu item"}</DialogTitle>
+                    {dialogType + " exercise item"}</DialogTitle>
                 <DialogContent>
                     <TextField
                         id="title"
@@ -155,181 +134,45 @@ const ExerciseItemDialog: any = () => {
                     <p>Menu Category</p>
                     <Toolbar>
                         <div >
-                            <Tooltip title="Daily specials">
-                                <IconButton aria-label="" color={checkIfPresent('specials') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('specials')}
+                            <Tooltip title="Strength Training">
+                                <IconButton aria-label="" color={checkIfPresent('strength') ? "inherit" : "default"}
+                                    onClick={() => setExercisetemDialogDataCategory('strength')}
                                 >
-                                    <i className="fas fa-tag"></i>
+                                    <i className="fas fa-dumbbell"></i>
                                 </IconButton>
                             </Tooltip>
-                            <Tooltip title="Soup">
-                                <IconButton aria-label="" color={checkIfPresent('soup') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('soup')}
+                            <Tooltip title="Aerobic Training">
+                                <IconButton aria-label="" color={checkIfPresent('aerobic') ? "inherit" : "default"}
+                                    onClick={() => setExercisetemDialogDataCategory('aerobic')}
                                 >
-                                    <i className="icon-soup"></i>
+                                    <i className="fas fa-running"></i>
                                 </IconButton>
                             </Tooltip>
-                            <Tooltip title="Salad">
-                                <IconButton aria-label="" color={checkIfPresent('salad') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('salad')}
+                            <Tooltip title="Balance Training">
+                                <IconButton aria-label="" color={checkIfPresent('balance') ? "inherit" : "default"}
+                                    onClick={() => setExercisetemDialogDataCategory('balance')}
                                 >
-                                    <i className="icon-salad"></i>
+                                    <i className="fas fa-balance-scale"></i>
                                 </IconButton>
                             </Tooltip>
-                            <Tooltip title="Appetizers">
-                                <IconButton aria-label="" color={checkIfPresent('appetizers') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('appetizers')}
+                            <Tooltip title="Agility Training">
+                                <IconButton aria-label="" color={checkIfPresent('agility') ? "inherit" : "default"}
+                                    onClick={() => setExercisetemDialogDataCategory('agility')}
                                 >
-                                    <i className="icon-appetizer"></i>
+                                    <i className="icon-dancing"></i>
                                 </IconButton>
                             </Tooltip>
-                            <Tooltip title="Sandwiches">
-                                <IconButton aria-label="" color={checkIfPresent('sandwich') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('sandwich')}
-                                >
-                                    <i className='fas fa-hamburger'></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Pizza">
-                                <IconButton aria-label="" color={checkIfPresent('pizza') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('pizza')}
-                                >
-                                    <i className="fas fa-pizza-slice"></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Pasta">
-                                <IconButton aria-label="" color={checkIfPresent('pasta') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('pasta')}
-                                >
-                                    <i className='icon-spaghetti'></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Entrees">
-                                <IconButton aria-label="" color={checkIfPresent('entree') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('entree')}
-                                >
-                                    <i className="fas fa-concierge-bell"></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Dessert">
-                                <IconButton aria-label="" color={checkIfPresent('dessert') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('dessert')}
-                                >
-                                    <i className="fas fa-birthday-cake"></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Drinks">
-                                <IconButton aria-label="" color={checkIfPresent('drinks') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('drinks')}
-                                >
-                                    <i className="fas fa-cocktail"></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Wine">
-                                <IconButton aria-label="" color={checkIfPresent('wine') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('wine')}
-                                >
-                                    <i className="fas fa-wine-glass"></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Beer">
-                                <IconButton aria-label="" color={checkIfPresent('beer') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('beer')}
-                                >
-                                    <i className="fas fa-beer"></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Coffee">
-                                <IconButton aria-label="" color={checkIfPresent('coffee') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('coffee')}
-                                >
-                                    <i className="fas fa-coffee"></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Kids menu">
-                                <IconButton aria-label="" color={checkIfPresent('kids') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('kids')}
+                            <Tooltip title="Flexibility and Mobility Training">
+                                <IconButton aria-label="" color={checkIfPresent('flexibilityMobility') ? "inherit" : "default"}
+                                    onClick={() => setExercisetemDialogDataCategory('flexibilityMobility')}
                                 >
                                     <i className="fas fa-child"></i>
                                 </IconButton>
                             </Tooltip>
                         </div>
                     </Toolbar>
-                    <p>Ingredients</p>
-                    <Toolbar>
-                        <div >
-                            <Tooltip title="Beef and other">
-                                <IconButton aria-label="" color={checkIfPresent("meat") ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('meat')}
-                                >
-                                    <i className='icon-tbone'></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Pork">
-                                <IconButton aria-label="" color={checkIfPresent("pork") ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('pork')}
-                                >
-                                    <i className='icon-ham'></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Poultry">
-                                <IconButton aria-label="" color={checkIfPresent("poultry") ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('poultry')}
-                                >
-                                    <i className="fas fa-feather"></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Fish">
-                                <IconButton aria-label="" color={checkIfPresent("fish") ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('fish')}
-                                >
-                                    <i className='fas fa-fish'></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Shellfish">
-                                <IconButton aria-label="" color={checkIfPresent("shellfish") ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('shellfish')}
-                                >
-                                    <i className='icon-shell'></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Vegetarian">
-                                <IconButton aria-label="" color={checkIfPresent("vegetarian") ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('vegetarian')}
-                                >
-                                    <i className='fas fa-seedling'></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Cheese">
-                                <IconButton aria-label="" color={checkIfPresent("cheese") ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('cheese')}
-                                >
-                                    <i className='fas fa-cheese'></i>
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip title="Carryout">
-                                <IconButton aria-label="" color={checkIfPresent("carryout") ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('carryout')}
-                                >
-                                    <i className="fas fa-shopping-bag"></i>
-                                </IconButton>
-                            </Tooltip>
-                        </div>
-                    </Toolbar>
-                    <TextField
-                        id="price"
-                        label="Price"
-                        type="number"
-                        fullWidth
-                        variant="filled"
-                        value={price}
-                        onChange={changePrice}
-                    />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleLowerCase} color="default">
-                        Lowercase
-                    </Button>
                     <Button onClick={handleClose} color="default">
                         Cancel
                     </Button>

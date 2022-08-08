@@ -4,34 +4,34 @@ const HelpItem1 = () => {
     return (
         <Fragment>
             <p className='p'>
-                Select your menu categories, salad, entrees... by pressing the <i className="fas fa-list"></i> button.
+                Select your menu categories, balance, entrees... by pressing the <i className="fas fa-list"></i> button.
                 The icons represent:
-                </p>
+            </p>
             <ul style={{ paddingLeft: '1.5rem' }}>
                 <li>
-                    <i className="fas fa-tag"></i> Daily specials
-                    </li>
+                    <i className="fas fa-tag"></i> Daily strength
+                </li>
                 <li>
-                    <i className="icon-soup"></i> Soup
-                    </li>
+                    <i className="icon-aerobic"></i> Soup
+                </li>
                 <li>
-                    <i className="icon-salad"></i> Salad
-                    </li>
+                    <i className="icon-balance"></i> Salad
+                </li>
                 <li>
                     <i className="icon-appetizer"></i> Appetizers
-                    </li>
+                </li>
                 <li>
                     <i className="fas fa-hamburger"></i> Sandwiches
-                    </li>
+                </li>
                 <li>
                     <i className="fas fa-pizza-slice"></i> Pizza
-                    </li>
+                </li>
                 <li>
                     <i className='icon-spaghetti'></i> Pasta
-                    </li>
+                </li>
                 <li>
                     <i className='fas fa-concierge-bell'></i> Entrees
-                    </li>
+                </li>
                 <li>
                     <i className="fas fa-birthday-cake"></i> Dessert
                 </li>

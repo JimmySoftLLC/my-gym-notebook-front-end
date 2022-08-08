@@ -56,7 +56,7 @@ const ExerciseItemCardGymDay = ({ ExerciseItem }: any) => {
             case 'pasta':
                 items.push(<i className='icon-spaghetti' key={ExerciseItem.id + "_pasta"} style={{ paddingRight: '.25rem' }}></i>)
                 break;
-            case 'sandwich':
+            case 'flexibilityMobility':
                 items.push(<i className='fas fa-hamburger' key={ExerciseItem.id + "_hamburger"} style={{ paddingRight: '.25rem' }}></i>)
                 break;
             case 'dessert':
@@ -74,8 +74,8 @@ const ExerciseItemCardGymDay = ({ ExerciseItem }: any) => {
             case 'coffee':
                 items.push(<i className='fas fa-coffee' key={ExerciseItem.id + "_dessert"} style={{ paddingRight: '.25rem' }}></i>)
                 break;
-            case 'specials':
-                items.push(<i className='fas fa-tag' key={ExerciseItem.id + "_specials"} style={{ paddingRight: '.25rem' }}></i>)
+            case 'strength':
+                items.push(<i className='fas fa-tag' key={ExerciseItem.id + "_strength"} style={{ paddingRight: '.25rem' }}></i>)
                 break;
             case 'carryout':
                 items.push(<i className='fas fa-shopping-bag' key={ExerciseItem.id + "_carryout"} style={{ paddingRight: '.25rem' }}></i>)

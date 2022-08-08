@@ -20,100 +20,37 @@ const ExerciseItemsInventory = () => {
     } else {
         return (
             <div>
-                {myCategories.specials.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="fas fa-tag"></i>{' - '}Specials</h3>}
-                {(myCategories.specials.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
+                {myCategories.strength.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
+                    <i className="fas fa-tag"></i>{' - '}Strength</h3>}
+                {(myCategories.strength.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
                     myStates={myStates}
                     restaurants={restaurants}
                     key={ExerciseItem.id}
                 />))}
-                {myCategories.soup.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="icon-soup"></i>{' - '}Soup</h3>}
-                {(myCategories.soup.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
+                {myCategories.aerobic.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
+                    <i className="icon-aerobic"></i>{' - '}Aerobics</h3>}
+                {(myCategories.aerobic.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
                     myStates={myStates}
                     restaurants={restaurants}
                     key={ExerciseItem.id}
                 />))}
-                {myCategories.salad.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="icon-salad"></i>{' - '}Salad</h3>}
-                {(myCategories.salad.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
+                {myCategories.balance.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
+                    <i className="icon-balance"></i>{' - '}Balance</h3>}
+                {(myCategories.balance.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
                     myStates={myStates}
                     restaurants={restaurants}
                     key={ExerciseItem.id}
                 />))}
-                {myCategories.appetizers.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="icon-appetizer"></i>{' - '}Appetizers</h3>}
-                {(myCategories.appetizers.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
+                {myCategories.agility.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
+                    <i className="icon-appetizer"></i>{' - '}Agility</h3>}
+                {(myCategories.agility.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
                     myStates={myStates}
                     restaurants={restaurants}
                     key={ExerciseItem.id}
                 />))}
-                {myCategories.sandwich.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="fas fa-hamburger"></i>{' - '}Sandwich</h3>}
-                {(myCategories.sandwich.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
-                    myStates={myStates}
-                    restaurants={restaurants}
-                    key={ExerciseItem.id}
-                />))}
-                {myCategories.pizza.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="fas fa-pizza-slice"></i>{' - '}Pizza</h3>}
-                {(myCategories.pizza.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
-                    myStates={myStates}
-                    restaurants={restaurants}
-                    key={ExerciseItem.id}
-                />))}
-                {myCategories.pasta.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="icon-spaghetti"></i>{' - '}Pasta</h3>}
-                {(myCategories.pasta.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
-                    myStates={myStates}
-                    restaurants={restaurants}
-                    key={ExerciseItem.id}
-                />))}
-                {myCategories.entree.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="fas fa-concierge-bell"></i>{' - '}Entree</h3>}
-                {(myCategories.entree.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
-                    myStates={myStates}
-                    restaurants={restaurants}
-                    key={ExerciseItem.id}
-                />))}
-                {myCategories.dessert.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="fas fa-birthday-cake"></i>{' - '}Dessert</h3>}
-                {(myCategories.dessert.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
-                    myStates={myStates}
-                    restaurants={restaurants}
-                    key={ExerciseItem.id}
-                />))}
-                {myCategories.drinks.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="fas fa-cocktail"></i>{' - '}Drinks</h3>}
-                {(myCategories.drinks.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
-                    myStates={myStates}
-                    restaurants={restaurants}
-                    key={ExerciseItem.id}
-                />))}
-                {myCategories.wine.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="fas fa-wine-glass"></i>{' - '}Wine</h3>}
-                {(myCategories.wine.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
-                    myStates={myStates}
-                    restaurants={restaurants}
-                    key={ExerciseItem.id}
-                />))}
-                {myCategories.beer.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="fas fa-beer"></i>{' - '}Beer</h3>}
-                {(myCategories.beer.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
-                    myStates={myStates}
-                    restaurants={restaurants}
-                    key={ExerciseItem.id}
-                />))}
-                {myCategories.coffee.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="fas fa-coffee"></i>{' - '}Coffee</h3>}
-                {(myCategories.coffee.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
-                    myStates={myStates}
-                    restaurants={restaurants}
-                    key={ExerciseItem.id}
-                />))}
-                {myCategories.kids.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
-                    <i className="fas fa-child"></i>{' - '}Kids menu</h3>}
-                {(myCategories.kids.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
+                {myCategories.flexibilityMobility.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
+                    <i className="fas fa-hamburger"></i>{' - '}Flexiblity and Mobility</h3>}
+                {(myCategories.flexibilityMobility.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
                     myStates={myStates}
                     restaurants={restaurants}
                     key={ExerciseItem.id}

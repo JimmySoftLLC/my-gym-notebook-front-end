@@ -19,11 +19,11 @@ const ExerciseItemsWithCategories = (exerciseItems: any[], myStates: any) => {
     }
 
     let myCategories: any = {
-        specials: [],
-        soup: [],
-        salad: [],
-        appetizers: [],
-        sandwich: [],
+        strength: [],
+        aerobic: [],
+        balance: [],
+        agility: [],
+        flexibilityMobility: [],
         pizza: [],
         pasta: [],
         entree: [],
@@ -38,59 +38,59 @@ const ExerciseItemsWithCategories = (exerciseItems: any[], myStates: any) => {
     let foundItem = false
     for (let i = 0; i < exerciseItems.length; i++) {
         foundItem = false;
-        if (exerciseItems[i].categoryJSON.indexOf('specials') !== -1) {
+        if (exerciseItems[i].categoryJSON.indexOf('strength') !== -1) {
             if (myStates) {
                 if (itemInList(myFoodCategories, exerciseItems[i].categoryJSON)) {
-                    myCategories.specials.push(exerciseItems[i])
+                    myCategories.strength.push(exerciseItems[i])
                     foundItem = true;
                 }
             } else {
-                myCategories.specials.push(exerciseItems[i])
+                myCategories.strength.push(exerciseItems[i])
                 foundItem = true;
             }
         }
-        if (exerciseItems[i].categoryJSON.indexOf('soup') !== -1) {
+        if (exerciseItems[i].categoryJSON.indexOf('aerobic') !== -1) {
             if (myStates) {
                 if (itemInList(myFoodCategories, exerciseItems[i].categoryJSON)) {
-                    myCategories.soup.push(exerciseItems[i])
+                    myCategories.aerobic.push(exerciseItems[i])
                     foundItem = true;
                 }
             } else {
-                myCategories.soup.push(exerciseItems[i])
+                myCategories.aerobic.push(exerciseItems[i])
                 foundItem = true;
             }
         }
-        if (exerciseItems[i].categoryJSON.indexOf('salad') !== -1) {
+        if (exerciseItems[i].categoryJSON.indexOf('balance') !== -1) {
             if (myStates) {
                 if (itemInList(myFoodCategories, exerciseItems[i].categoryJSON)) {
-                    myCategories.salad.push(exerciseItems[i])
+                    myCategories.balance.push(exerciseItems[i])
                     foundItem = true;
                 }
             } else {
-                myCategories.salad.push(exerciseItems[i])
+                myCategories.balance.push(exerciseItems[i])
                 foundItem = true;
             }
         }
-        if (exerciseItems[i].categoryJSON.indexOf('appetizers') !== -1) {
+        if (exerciseItems[i].categoryJSON.indexOf('agility') !== -1) {
             if (myStates) {
                 if (itemInList(myFoodCategories, exerciseItems[i].categoryJSON)) {
-                    myCategories.appetizers.push(exerciseItems[i])
+                    myCategories.agility.push(exerciseItems[i])
                     foundItem = true;
                 }
             } else {
-                myCategories.appetizers.push(exerciseItems[i])
+                myCategories.agility.push(exerciseItems[i])
                 foundItem = true;
             }
 
         }
-        if (exerciseItems[i].categoryJSON.indexOf('sandwich') !== -1) {
+        if (exerciseItems[i].categoryJSON.indexOf('flexibilityMobility') !== -1) {
             if (myStates) {
                 if (itemInList(myFoodCategories, exerciseItems[i].categoryJSON)) {
-                    myCategories.sandwich.push(exerciseItems[i])
+                    myCategories.flexibilityMobility.push(exerciseItems[i])
                     foundItem = true;
                 }
             } else {
-                myCategories.sandwich.push(exerciseItems[i])
+                myCategories.flexibilityMobility.push(exerciseItems[i])
                 foundItem = true;
             }
         }

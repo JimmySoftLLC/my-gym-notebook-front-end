@@ -38,11 +38,11 @@ const setMyStatesLogic = (myStates: any, key: any) => {
                 }
                 break;
             case 2:
-                if (key === "specials" ||
-                    key === "soup" ||
-                    key === "salad" ||
-                    key === "appetizers" ||
-                    key === "sandwich" ||
+                if (key === "strength" ||
+                    key === "aerobic" ||
+                    key === "balance" ||
+                    key === "agility" ||
+                    key === "flexibilityMobility" ||
                     key === "pizza" ||
                     key === "pasta" ||
                     key === "entree" ||

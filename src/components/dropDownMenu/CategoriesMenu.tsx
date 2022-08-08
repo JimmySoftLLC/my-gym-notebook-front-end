@@ -47,9 +47,9 @@ const CategoriesMenu = () => {
                     </IconButton>
                 </ExerciseItem>
                 <ExerciseItem>
-                    {myStates.ExerciseItems && <Tooltip title="Daily specials">
-                        <IconButton aria-label="" color={myStates['specials'] ? "secondary" : "default"}
-                            onClick={() => handleCategoryClick('specials')}
+                    {myStates.ExerciseItems && <Tooltip title="Daily strength">
+                        <IconButton aria-label="" color={myStates['strength'] ? "secondary" : "default"}
+                            onClick={() => handleCategoryClick('strength')}
                         >
                             <i className="fas fa-tag"></i>
                         </IconButton>
@@ -57,26 +57,26 @@ const CategoriesMenu = () => {
                 </ExerciseItem>
                 <ExerciseItem>
                     {myStates.ExerciseItems && <Tooltip title="Soup">
-                        <IconButton aria-label="" color={myStates['soup'] ? "secondary" : "default"}
-                            onClick={() => handleCategoryClick('soup')}
+                        <IconButton aria-label="" color={myStates['aerobic'] ? "secondary" : "default"}
+                            onClick={() => handleCategoryClick('aerobic')}
                         >
-                            <i className="icon-soup"></i>
+                            <i className="icon-aerobic"></i>
                         </IconButton>
                     </Tooltip>}
                 </ExerciseItem>
                 <ExerciseItem>
                     {myStates.ExerciseItems && <Tooltip title="Salad">
-                        <IconButton aria-label="" color={myStates['salad'] ? "secondary" : "default"}
-                            onClick={() => handleCategoryClick('salad')}
+                        <IconButton aria-label="" color={myStates['balance'] ? "secondary" : "default"}
+                            onClick={() => handleCategoryClick('balance')}
                         >
-                            <i className="icon-salad"></i>
+                            <i className="icon-balance"></i>
                         </IconButton>
                     </Tooltip>}
                 </ExerciseItem>
                 <ExerciseItem>
                     {myStates.ExerciseItems && <Tooltip title="Appetizers">
-                        <IconButton aria-label="" color={myStates['appetizers'] ? "secondary" : "default"}
-                            onClick={() => handleCategoryClick('appetizers')}
+                        <IconButton aria-label="" color={myStates['agility'] ? "secondary" : "default"}
+                            onClick={() => handleCategoryClick('agility')}
                         >
                             <i className="icon-appetizer"></i>
                         </IconButton>
@@ -84,8 +84,8 @@ const CategoriesMenu = () => {
                 </ExerciseItem>
                 <ExerciseItem>
                     {myStates.ExerciseItems && <Tooltip title="Sandwiches">
-                        <IconButton aria-label="" color={myStates['sandwich'] ? "secondary" : "default"}
-                            onClick={() => handleCategoryClick('sandwich')}
+                        <IconButton aria-label="" color={myStates['flexibilityMobility'] ? "secondary" : "default"}
+                            onClick={() => handleCategoryClick('flexibilityMobility')}
                         >
                             <i className='fas fa-hamburger'></i>
                         </IconButton>
