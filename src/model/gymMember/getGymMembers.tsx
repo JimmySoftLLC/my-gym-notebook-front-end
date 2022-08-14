@@ -18,8 +18,10 @@ const getBatch = async (myIds: any[]) => {
         myGymMembers[i].lastName = myGymMembers[i].lastName === blankPlaceHolder ? '' : myGymMembers[i].lastName
         myGymMembers[i].email = myGymMembers[i].email === blankPlaceHolder ? '' : myGymMembers[i].email
         myGymMembers[i].bio = myGymMembers[i].bio === blankPlaceHolder ? '' : myGymMembers[i].bio
-        myGymMembers[i].jobTitle = myGymMembers[i].jobTitle === blankPlaceHolder ? '' : myGymMembers[i].jobTitle
-        myGymMembers[i].restaurantIdsJSON = JSON.parse(myGymMembers[i].restaurantIdsJSON)
+        myGymMembers[i].exerciseIdsJSON = myGymMembers[i].exerciseIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMembers[i].exerciseIdsJSON)
+        myGymMembers[i].teamMateIdsJSON = myGymMembers[i].teamMateIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMembers[i].teamMateIdsJSON)
+        myGymMembers[i].gymDayIdsJSON = myGymMembers[i].gymDayIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMembers[i].gymDayIdsJSON)
+        myGymMembers[i].dataJSON = myGymMembers[i].dataJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMembers[i].dataJSON)
         myGymMembers[i].imageUrl = myGymMembers[i].imageUrl === blankPlaceHolder ? '' : myGymMembers[i].imageUrl
     }
     return myGymMembers;

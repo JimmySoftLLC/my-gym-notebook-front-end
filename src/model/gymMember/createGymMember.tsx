@@ -15,6 +15,7 @@ const createGymMember = async (myEmailId: any, myToken: any, myCustomId: any) =>
         exerciseIdsJSON: [],
         gymDayIdsJSON: [],
         teamMateIdsJSON: [],
+        dataJSON: [],
     }
     //console.log(myGymMember)
     const data = await putItemDynamoDB(gymMembersTableName, myGymMember, myToken, myCustomId)

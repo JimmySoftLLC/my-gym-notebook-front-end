@@ -18,9 +18,10 @@ const getGymMember = async (myEmailId: any, myToken: any, myCustomId: any) => {
     myGymMember.lastName = myGymMember.lastName === blankPlaceHolder ? '' : myGymMember.lastName
     myGymMember.email = myGymMember.email === blankPlaceHolder ? '' : myGymMember.email
     myGymMember.bio = myGymMember.bio === blankPlaceHolder ? '' : myGymMember.bio
-    myGymMember.exerciseIdsJSON = JSON.parse(myGymMember.exerciseIdsJSON)
-    myGymMember.teamMateIdsJSON = JSON.parse(myGymMember.teamMateIdsJSON)
-    myGymMember.gymDayIdsJSON = JSON.parse(myGymMember.gymDayIdsJSON)
+    myGymMember.exerciseIdsJSON = myGymMember.exerciseIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMember.exerciseIdsJSON)
+    myGymMember.teamMateIdsJSON = myGymMember.teamMateIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMember.teamMateIdsJSON)
+    myGymMember.gymDayIdsJSON = myGymMember.gymDayIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMember.gymDayIdsJSON)
+    myGymMember.dataJSON = myGymMember.dataJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMember.dataJSON)
     myGymMember.imageUrl = myGymMember.imageUrl === blankPlaceHolder ? '' : myGymMember.imageUrl
     return myGymMember;
 }
