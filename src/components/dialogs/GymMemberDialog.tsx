@@ -11,6 +11,9 @@ import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsCo
 import putGymMember from '../../model/gymMember/putGymMember';
 import saveImageToDatabase from '../../model/images/saveImageToDatabase';
 import ImageEditor from '../imageEditor/ImageEditor';
+import { Accordion, AccordionDetails, AccordionSummary, Grid, Typography, FormLabel } from '@material-ui/core';
+import MemberDataInventory from '../memberData/MemberDataInventory';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -43,6 +46,7 @@ const GymMemberDialog: any = () => {
         exerciseIdsJSON,
         teamMateIdsJSON,
         gymDayIdsJSON,
+        dataJSON,
         dialogType,
         message,
     } = dataAndMethodsContext.gymMemberDialogData;
@@ -69,6 +73,7 @@ const GymMemberDialog: any = () => {
         myGymMember.teamMateIdsJSON = teamMateIdsJSON
         myGymMember.gymDayIdsJSON = gymDayIdsJSON
         myGymMember.imageUrl = imageUrl;
+        myGymMember.dataJSON = dataJSON;
         await saveImageToDatabase(deleteFileName, imageUrl, blob, editMode, idToken, customId)
         await putGymMember(myGymMember, idToken, customId)
         setGymMember(myGymMember);
@@ -146,6 +151,23 @@ const GymMemberDialog: any = () => {
                         value={bio}
                         onChange={changeBio}
                     />
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography>Metrics</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Grid item xs={12}>
+                                <MemberDataInventory />
+                            </Grid>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Button onClick={() => handleSave()} color="primary">
+                        Add
+                    </Button>
                     <p>Profile Image</p>
                     <ImageEditor />
                     <p>{message}</p>

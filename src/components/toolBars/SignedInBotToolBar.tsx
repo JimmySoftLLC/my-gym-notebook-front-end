@@ -41,6 +41,7 @@ const SignedInBotToolBar = () => {
             exerciseIdsJSON: gymMember.exerciseIdsJSON,
             teamMateIdsJSON: gymMember.teamMateIdsJSON,
             gymDayIdsJSON: gymMember.gymDayIdsJSON,
+            dataJSON: gymMember.dataJSON,
             imageUrl: gymMember.imageUrl,
             hideGymMember: gymMember.hideGymMember,
             dialogType: "EditMe",

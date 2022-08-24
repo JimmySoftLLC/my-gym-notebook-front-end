@@ -46,6 +46,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 exerciseIdsJSON: JSON.stringify(myItem.exerciseIdsJSON),
                 teamMateIdsJSON: JSON.stringify(myItem.teamMateIdsJSON),
                 gymDayIdsJSON: JSON.stringify(myItem.gymDayIdsJSON),
+                dataJSON: JSON.stringify(myItem.dataJSON),
                 imageUrl: myItem.imageUrl !== '' ? myItem.imageUrl : blankPlaceHolder,
             }
             break;
