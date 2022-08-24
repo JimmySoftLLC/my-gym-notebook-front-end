@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 import getGymMember from '../../model/gymMember/getGymMember';
 import createGymMember from '../../model/gymMember/createGymMember';
 import isEmail from 'validator/lib/isEmail';
+import { username, secret } from '../../envConstants'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,8 +25,8 @@ const useStyles = makeStyles(theme => ({
 
 const SignInRegDialog: any = () => {
     const classes = useStyles();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState(username);
+    const [password, setPassword] = useState(secret);
     const [password2, setPassword2] = useState('');
     const [verificationCode, setResetCode] = useState('');
     const [message, setMessage] = useState('');
