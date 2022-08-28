@@ -107,15 +107,15 @@ const setMyStatesLogic = (myStates: any, key: any) => {
     }
 
     // if myKey = any of the login items, set login items to false and set key
-    if (key === 'restaurants' || key === 'exerciseItems' || key === 'gymMembers' || key === 'info' || key === 'restaurantDetail' || key === 'entertainmentItems' || key === 'photoGallery') {
+    if (key === 'restaurants' || key === 'exerciseItems' || key === 'gymMembers' || key === 'info' || key === 'gymDaysDetail' || key === 'entertainmentItems' || key === 'photoGallery') {
         myStates['restaurants'] = false;
         myStates['exerciseItems'] = false;
         myStates['gymMembers'] = false;
         myStates['info'] = false;
-        myStates['restaurantDetail'] = false;
+        myStates['gymDaysDetail'] = false;
         myStates['entertainmentItems'] = false;
         myStates['photoGallery'] = false;
-        if (key !== 'restaurantDetail') {
+        if (key !== 'gymDaysDetail') {
             myStates['lastState'] = key;
         }
         myStates[key] = true;

@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect } from 'react';
 import TopNavBar from '../components/TopNavBar';
 import DataAndMethodsContext from '../context/dataAndMethods/dataAndMethodsContext';
 import ExerciseItemsInventory from '../components/exerciseItemInventory/ExerciseItemsInventory';
-import GymDays from '../components/gymDay/GymDays';
+import GymDaysInventory from '../components/gymDay/GymDaysInventory';
 import BotNavBar from '../components/BotNavBar';
 import ExerciseItemDialog from '../components/dialogs/ExerciseItemDialog';
 import GymMemberDialog from '../components/dialogs/GymMemberDialog';
@@ -45,7 +45,7 @@ const Home = () => {
             </div>}
             {logInType === 'signedIn' && <div className='container gym-member-page-top-margin'>
                 {myStates.exerciseSettings && <ExerciseItemsInventory />}
-                {myStates.gymDaySettings && <GymDays />}
+                {myStates.gymDaySettings && <GymDaysInventory />}
                 <ExerciseItemDialog />
                 <GymMemberDialog />
                 <GymDayDialog />

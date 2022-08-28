@@ -88,13 +88,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 helpDialogActive: false,
                 helpDialogOpen: true,
             };
-        // if set to restaurant reset to exerciseItems since restaurant 
-        // detail expects data which does not exist yet.
-        if (myStates.restaurantDetail) {
-            myStates.restaurantDetail = false
-            myStates.exerciseItems = true
-            myStates.lastState = 'exerciseItems'
-        }
         // dates
         myStates.date_0 = true;
         myStates.date_1 = false;

@@ -113,8 +113,7 @@ const HelpDialog: any = () => {
         myNewStateChoices['exerciseItems'] = false;
         myNewStateChoices['gymMembers'] = false;
         myNewStateChoices['info'] = false;
-        myNewStateChoices['restaurantDetail'] = false;
-        myNewStateChoices['entertainmentItems'] = false;
+        myNewStateChoices['gymDaysDetail'] = false;
         myNewStateChoices['photoGallery'] = false;
     }
 

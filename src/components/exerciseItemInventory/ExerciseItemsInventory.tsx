@@ -9,7 +9,6 @@ const ExerciseItemsInventory = () => {
     const {
         exerciseItems,
         myStates,
-        restaurants,
         loading,
     } = dataAndMethodsContext;
 
@@ -24,41 +23,35 @@ const ExerciseItemsInventory = () => {
                     <i className="fas fa-dumbbell"></i>{' - '}Strength</h3>}
                 {(myCategories.strength.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
                     myStates={myStates}
-                    restaurants={restaurants}
                     key={ExerciseItem.id}
                 />))}
                 {myCategories.aerobic.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
                     <i className="fas fa-running"></i>{' - '}Aerobics</h3>}
                 {(myCategories.aerobic.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
                     myStates={myStates}
-                    restaurants={restaurants}
                     key={ExerciseItem.id}
                 />))}
                 {myCategories.balance.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
                     <i className="fas fa-balance-scale"></i>{' - '}Balance</h3>}
                 {(myCategories.balance.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
                     myStates={myStates}
-                    restaurants={restaurants}
                     key={ExerciseItem.id}
                 />))}
                 {myCategories.agility.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
                     <i className="icon-dancing"></i>{' - '}Agility</h3>}
                 {(myCategories.agility.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
                     myStates={myStates}
-                    restaurants={restaurants}
                     key={ExerciseItem.id}
                 />))}
                 {myCategories.flexibilityMobility.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>
                     <i className="fas fa-child"></i>{' - '}Flexiblity and Mobility</h3>}
                 {(myCategories.flexibilityMobility.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
                     myStates={myStates}
-                    restaurants={restaurants}
                     key={ExerciseItem.id}
                 />))}
                 {myCategories.notCatgorized.length > 0 && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>Not categorized</h3>}
                 {(myCategories.notCatgorized.map((ExerciseItem: { id: any; }) => <ExerciseItemCardInventory ExerciseItem={ExerciseItem}
                     myStates={myStates}
-                    restaurants={restaurants}
                     key={ExerciseItem.id}
                 />))}
             </div>

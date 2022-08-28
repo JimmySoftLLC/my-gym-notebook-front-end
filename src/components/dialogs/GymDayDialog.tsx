@@ -89,7 +89,6 @@ const GymDayDialog: any = () => {
         myNewGymDay.entertainmentItemIdsJSON = entertainmentItemIdsJSON
         myNewGymDay.gymMembersJSON = gymMembersJSON;
         myNewGymDay.restaurantId = restaurantId;
-        //console.log(gymDaysTableName, idToken, myNewGymDay, customId);
         await putGymDay(myNewGymDay, idToken, customId);
         let myGymDays = await getGymDays({});
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
@@ -107,7 +106,6 @@ const GymDayDialog: any = () => {
         myNewGymDay.entertainmentItemIdsJSON = entertainmentItemIdsJSON;
         myNewGymDay.gymMembersJSON = gymMembersJSON;
         myNewGymDay.restaurantId = restaurantId;
-        // console.log(myNewGymDay, idToken, customId);
         await putGymDay(myNewGymDay, idToken, customId);
         let myGymDays = await getGymDays({});
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
@@ -131,25 +129,25 @@ const GymDayDialog: any = () => {
     };
 
     const changeDateFrom = (myDate: any) => {
-        // const myDateTo = new Date(dateTo)
+        const myDateTo = new Date(dateTo)
         let myGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        // if (myDate.getTime() > myDateTo.getTime()) {
-        //     myGymDayDialogData['dateFrom'] = myDate;
-        //     myGymDayDialogData['dateTo'] = myDate;
-        // } else {
-        myGymDayDialogData['dateFrom'] = myDate;
-        // }
+        if (myDate.getTime() > myDateTo.getTime()) {
+            myGymDayDialogData['dateFrom'] = myDate;
+            myGymDayDialogData['dateTo'] = myDate;
+        } else {
+            myGymDayDialogData['dateFrom'] = myDate;
+        }
         setGymDayDialogData(myGymDayDialogData);
     };
 
     const changeDateTo = (myDate: any) => {
-        // const myDateFrom = new Date(dateFrom)
+        const myDateFrom = new Date(dateFrom)
         let myGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        // if (myDate.getDate() < myDateFrom.getTime()) {
-        //     myGymDayDialogData['dateTo'] = myDateFrom;
-        // } else {
-        myGymDayDialogData['dateTo'] = myDate;
-        // }
+        if (myDate.getDate() < myDateFrom.getTime()) {
+            myGymDayDialogData['dateTo'] = myDateFrom;
+        } else {
+            myGymDayDialogData['dateTo'] = myDate;
+        }
         setGymDayDialogData(myGymDayDialogData);
     };
 

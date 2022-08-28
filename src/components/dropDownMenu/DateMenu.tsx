@@ -40,7 +40,7 @@ const DateMenu = () => {
 
     return (
         <Fragment>
-            {(myStates.exerciseItems || myStates.restaurantDetail || myStates.entertainmentItems) && <Tooltip title="Set date">
+            {(myStates.exerciseItems || myStates.gymDaysDetail || myStates.entertainmentItems) && <Tooltip title="Set date">
                 <IconButton aria-controls="simple-menu" aria-haspopup="true"
                     color="inherit"
                     onClick={dateMenuClick}>

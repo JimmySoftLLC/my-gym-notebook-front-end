@@ -6,7 +6,7 @@ import CircularIndeterminate from '../circularIndeterminate/CircularIndeterminat
 const GymDaysInventory = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
-        restaurantGymDays,
+        gymDays,
         myStates,
         loading,
     } = dataAndMethodsContext;
@@ -14,7 +14,7 @@ const GymDaysInventory = () => {
     if (loading) {
         return <CircularIndeterminate />;
     } else {
-        return restaurantGymDays.map((GymDay: { id: React.Key | null | undefined; }) => <GymDayCard GymDay={GymDay}
+        return gymDays.map((GymDay: { id: React.Key | null | undefined; }) => <GymDayCard GymDay={GymDay}
             myStates={myStates}
             key={GymDay.id} />);
     }

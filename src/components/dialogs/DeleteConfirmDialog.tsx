@@ -4,7 +4,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,10 +24,6 @@ const DeleteConfirmDialog: any = () => {
 
     const [deleteName, setDeleteName] = useState('');
     const [confirmMessage, setConfirmMessage] = useState('');
-
-    const changeDeleteName = (e: any) => {
-        setDeleteName(e.target.value)
-    };
 
     const chooseDelete = () => {
         if (deleteConfirmDialog.dialogType === "deleteGymMember") {

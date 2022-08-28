@@ -20,7 +20,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
 
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
-        restaurantGymDays,
+        gymMembersGymDays,
         setGymDayDialogData,
         setGymDayDialogOpen,
     } = dataAndMethodsContext;
@@ -29,17 +29,17 @@ const GymDayCard: any = ({ GymDay }: any) => {
     const { setDeleteConfirmDialog } = deleteConfirmDialogContext;
 
     const GymDayEditClick = (GymDayId: any) => {
-        for (let i = 0; i < restaurantGymDays.length; i++) {
-            if (GymDayId === restaurantGymDays[i].id) {
+        for (let i = 0; i < gymMembersGymDays.length; i++) {
+            if (GymDayId === gymMembersGymDays[i].id) {
                 let myEditItem = {
-                    id: restaurantGymDays[i].id,
-                    title: restaurantGymDays[i].title,
-                    dateFrom: restaurantGymDays[i].dateFrom,
-                    dateTo: restaurantGymDays[i].dateTo,
-                    description: restaurantGymDays[i].description,
-                    ExerciseItemIdsJSON: restaurantGymDays[i].ExerciseItemIdsJSON,
-                    entertainmentItemIdsJSON: restaurantGymDays[i].entertainmentItemIdsJSON,
-                    gymMembersJSON: restaurantGymDays[i].gymMembersJSON,
+                    id: gymMembersGymDays[i].id,
+                    title: gymMembersGymDays[i].title,
+                    dateFrom: gymMembersGymDays[i].dateFrom,
+                    dateTo: gymMembersGymDays[i].dateTo,
+                    description: gymMembersGymDays[i].description,
+                    ExerciseItemIdsJSON: gymMembersGymDays[i].ExerciseItemIdsJSON,
+                    entertainmentItemIdsJSON: gymMembersGymDays[i].entertainmentItemIdsJSON,
+                    gymMembersJSON: gymMembersGymDays[i].gymMembersJSON,
                     dialogType: 'Edit',
                 }
                 setGymDayDialogData(myEditItem);
@@ -50,17 +50,17 @@ const GymDayCard: any = ({ GymDay }: any) => {
     };
 
     const GymDayCopyClick = (GymDayId: any) => {
-        for (let i = 0; i < restaurantGymDays.length; i++) {
-            if (GymDayId === restaurantGymDays[i].id) {
+        for (let i = 0; i < gymMembersGymDays.length; i++) {
+            if (GymDayId === gymMembersGymDays[i].id) {
                 let myEditItem = {
                     id: uuidv4(),
-                    title: restaurantGymDays[i].title,
-                    dateFrom: restaurantGymDays[i].dateFrom,
-                    dateTo: restaurantGymDays[i].dateTo,
-                    description: restaurantGymDays[i].description,
-                    ExerciseItemIdsJSON: restaurantGymDays[i].ExerciseItemIdsJSON,
-                    entertainmentItemIdsJSON: restaurantGymDays[i].entertainmentItemIdsJSON,
-                    gymMembersJSON: restaurantGymDays[i].gymMembersJSON,
+                    title: gymMembersGymDays[i].title,
+                    dateFrom: gymMembersGymDays[i].dateFrom,
+                    dateTo: gymMembersGymDays[i].dateTo,
+                    description: gymMembersGymDays[i].description,
+                    ExerciseItemIdsJSON: gymMembersGymDays[i].ExerciseItemIdsJSON,
+                    entertainmentItemIdsJSON: gymMembersGymDays[i].entertainmentItemIdsJSON,
+                    gymMembersJSON: gymMembersGymDays[i].gymMembersJSON,
                     dialogType: "Add",
                 }
                 setGymDayDialogData(myEditItem);
@@ -71,10 +71,10 @@ const GymDayCard: any = ({ GymDay }: any) => {
     };
 
     const deleteMenuClick = (GymDayId: any) => {
-        for (let i = 0; i < restaurantGymDays.length; i++) {
-            if (GymDayId === restaurantGymDays[i].id) {
+        for (let i = 0; i < gymMembersGymDays.length; i++) {
+            if (GymDayId === gymMembersGymDays[i].id) {
                 setDeleteConfirmDialog(true,
-                    restaurantGymDays[i].title,
+                    gymMembersGymDays[i].title,
                     'deleteGymDay',
                     GymDayId,
                     deleteGymDayById);

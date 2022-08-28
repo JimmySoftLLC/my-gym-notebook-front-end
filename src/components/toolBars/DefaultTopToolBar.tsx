@@ -26,14 +26,14 @@ const DefaultTopToolBar = () => {
         <Fragment>
             <Toolbar>
                 <div >
-                    {!myStates.restaurantDetail && <Tooltip title="Refresh">
+                    {!myStates.gymDaysDetail && <Tooltip title="Refresh">
                         <IconButton aria-label="" color="inherit" style={{ fontSize: '21px' }}
                             href="/"
                         >
                             {websiteName}
                         </IconButton>
                     </Tooltip>}
-                    {myStates.restaurantDetail && <Tooltip title="Go Back">
+                    {myStates.gymDaysDetail && <Tooltip title="Go Back">
                         <IconButton aria-label="" color="inherit"
                             onClick={() => goBack()}
                         >
