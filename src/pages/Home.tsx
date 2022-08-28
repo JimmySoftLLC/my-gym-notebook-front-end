@@ -40,16 +40,7 @@ const Home = () => {
             <SignInRegDialog />
             <TopNavBar />
             {logInType === 'default' && <div className='container '>
-                {myStates.ExerciseItems && <p className='p home-page-top-margin'></p>}
-                {myStates.entertainmentItems && <p className='p home-page-top-margin-normal'></p>}
-                {myStates.restaurants && <p className='p home-page-top-margin-normal'></p>}
-                {myStates.restaurantDetail && <p className='p home-page-top-margin-normal'></p>}
-                {myStates.gymMembers && <p className='p home-page-top-margin-normal'></p>}
                 {myStates.info && <p className='p home-page-top-margin-normal'></p>}
-                {myStates.photoGallery && <p className='p home-page-top-margin-normal'></p>}
-                {myStates.info && <About />}
-                {myStates.ExerciseItems && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>{myDate}{" - Menu Items"}</h3>}
-                {myStates.entertainmentItems && <h3 style={{ marginTop: "1rem", textAlign: "center" }}>{myDate}{" - Entertainment"}</h3>}
                 <HelpDialog />
                 <p className='p home-page-bottom-margin'></p>
             </div>}

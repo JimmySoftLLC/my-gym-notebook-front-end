@@ -5,7 +5,9 @@ import { v4 as uuidv4 } from 'uuid';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
 import sortExerciseItems from '../../model/exerciseItem/sortExerciseItems'
-import updateGymDaysWithExerciseItemChanges from '../../model/gymDay/updateGymDaysWithExerciseItemChanges';
+import deleteExerciseItem from '../../model/exerciseItem/deleteExerciseItem';
+import putGymMember from '../../model/gymMember/putGymMember';
+import getExerciseItems from '../../model/exerciseItem/getExerciseItems';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,8 +30,8 @@ const ExerciseItemCardInventory = ({ ExerciseItem }: any) => {
         customId,
         setExerciseItems,
         myStates,
-        setRestaurantGymDays,
-        restaurantGymDays,
+        setGymMember,
+        gymMember,
     } = dataAndMethodsContext;
 
     const deleteConfirmDialogContext: any = useContext(DeleteConfirmDialogContext);
@@ -83,11 +85,14 @@ const ExerciseItemCardInventory = ({ ExerciseItem }: any) => {
     };
 
     const deleteExerciseItemById = async (exerciseId: any) => {
-        let myNewExerciseItems = {}
-        myNewExerciseItems = await sortExerciseItems(myNewExerciseItems, myStates);
-        let myNewGymDays = await updateGymDaysWithExerciseItemChanges(restaurantGymDays, myNewExerciseItems, idToken, customId)
-        setExerciseItems(myNewExerciseItems)
-        setRestaurantGymDays(myNewGymDays)
+        let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
+        myNewGymMember.exerciseIdsJSON = myNewGymMember.exerciseIdsJSON.filter((e: any) => e !== exerciseId)
+        await deleteExerciseItem(exerciseId, idToken, customId);
+        await putGymMember(myNewGymMember, idToken, customId)
+        setGymMember(myNewGymMember);
+        let myExerciseItems = await getExerciseItems(myNewGymMember.exerciseIdsJSON);
+        myExerciseItems = await sortExerciseItems(myExerciseItems, myStates);
+        setExerciseItems(myExerciseItems)
     }
 
     return (

@@ -51,7 +51,7 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_MENU_ITEMS:
             return {
                 ...state,
-                ExerciseItems: action.payload,
+                exerciseItems: action.payload,
             };
         case SET_RESTAURANTS:
             return {

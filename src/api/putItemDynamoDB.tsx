@@ -19,8 +19,6 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 title: myItem.title = myItem.title !== '' ? myItem.title : blankPlaceHolder,
                 description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
                 categoryJSON: JSON.stringify(myItem.categoryJSON),
-                restaurantId: myItem.restaurantId = myItem.restaurantId !== '' ? myItem.restaurantId : blankPlaceHolder,
-                price: myItem.price,
             }
             break;
         case gymDaysTableName:

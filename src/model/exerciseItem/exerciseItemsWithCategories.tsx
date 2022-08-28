@@ -8,14 +8,11 @@ const itemInList = (myFoodCategories: any, myExerciseItemCategories: any) => {
 const ExerciseItemsWithCategories = (exerciseItems: any[], myStates: any) => {
     let myFoodCategories: any = {}
     if (myStates) {
-        if (myStates.meat) { myFoodCategories['meat'] = true }
-        if (myStates.pork) { myFoodCategories['pork'] = true }
-        if (myStates.poultry) { myFoodCategories['poultry'] = true }
-        if (myStates.fish) { myFoodCategories['fish'] = true }
-        if (myStates.shellfish) { myFoodCategories['shellfish'] = true }
-        if (myStates.vegetarian) { myFoodCategories['vegetarian'] = true }
-        if (myStates.cheese) { myFoodCategories['cheese'] = true }
-        if (myStates.carryout) { myFoodCategories['carryout'] = true }
+        if (myStates.strength) { myFoodCategories['strength'] = true }
+        if (myStates.aerobic) { myFoodCategories['aerobic'] = true }
+        if (myStates.balance) { myFoodCategories['balance'] = true }
+        if (myStates.agility) { myFoodCategories['agility'] = true }
+        if (myStates.flexibilityMobility) { myFoodCategories['flexibilityMobility'] = true }
     }
 
     let myCategories: any = {
@@ -24,15 +21,6 @@ const ExerciseItemsWithCategories = (exerciseItems: any[], myStates: any) => {
         balance: [],
         agility: [],
         flexibilityMobility: [],
-        pizza: [],
-        pasta: [],
-        entree: [],
-        dessert: [],
-        drinks: [],
-        wine: [],
-        beer: [],
-        coffee: [],
-        kids: [],
         notCatgorized: [],
     }
     let foundItem = false
@@ -91,70 +79,6 @@ const ExerciseItemsWithCategories = (exerciseItems: any[], myStates: any) => {
                 }
             } else {
                 myCategories.flexibilityMobility.push(exerciseItems[i])
-                foundItem = true;
-            }
-        }
-        if (exerciseItems[i].categoryJSON.indexOf('pizza') !== -1) {
-            if (myStates) {
-                if (itemInList(myFoodCategories, exerciseItems[i].categoryJSON)) {
-                    myCategories.pizza.push(exerciseItems[i])
-                    foundItem = true;
-                }
-            } else {
-                myCategories.pizza.push(exerciseItems[i])
-                foundItem = true;
-            }
-        }
-        if (exerciseItems[i].categoryJSON.indexOf('pasta') !== -1) {
-            if (myStates) {
-                if (itemInList(myFoodCategories, exerciseItems[i].categoryJSON)) {
-                    myCategories.pasta.push(exerciseItems[i])
-                    foundItem = true;
-                }
-            } else {
-                myCategories.pasta.push(exerciseItems[i])
-                foundItem = true;
-            }
-        }
-        if (exerciseItems[i].categoryJSON.indexOf('entree') !== -1) {
-            if (myStates) {
-                if (itemInList(myFoodCategories, exerciseItems[i].categoryJSON)) {
-                    myCategories.entree.push(exerciseItems[i])
-                    foundItem = true;
-                }
-            } else {
-                myCategories.entree.push(exerciseItems[i])
-                foundItem = true;
-            }
-        }
-        if (exerciseItems[i].categoryJSON.indexOf('dessert') !== -1) {
-            myCategories.dessert.push(exerciseItems[i])
-            foundItem = true;
-        }
-        if (exerciseItems[i].categoryJSON.indexOf('drinks') !== -1) {
-            myCategories.drinks.push(exerciseItems[i])
-            foundItem = true;
-        }
-        if (exerciseItems[i].categoryJSON.indexOf('wine') !== -1) {
-            myCategories.wine.push(exerciseItems[i])
-            foundItem = true;
-        }
-        if (exerciseItems[i].categoryJSON.indexOf('beer') !== -1) {
-            myCategories.beer.push(exerciseItems[i])
-            foundItem = true;
-        }
-        if (exerciseItems[i].categoryJSON.indexOf('coffee') !== -1) {
-            myCategories.coffee.push(exerciseItems[i])
-            foundItem = true;
-        }
-        if (exerciseItems[i].categoryJSON.indexOf('kids') !== -1) {
-            if (myStates) {
-                if (itemInList(myFoodCategories, exerciseItems[i].categoryJSON)) {
-                    myCategories.kids.push(exerciseItems[i])
-                    foundItem = true;
-                }
-            } else {
-                myCategories.kids.push(exerciseItems[i])
                 foundItem = true;
             }
         }

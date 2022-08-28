@@ -13,6 +13,7 @@ import { Tooltip } from '@material-ui/core';
 import putExerciseItem from '../../model/exerciseItem/putExerciseItem';
 import sortExerciseItems from '../../model/exerciseItem/sortExerciseItems';
 import getExerciseItems from '../../model/exerciseItem/getExerciseItems';
+import putGymMember from '../../model/gymMember/putGymMember';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -43,6 +44,8 @@ const ExerciseItemDialog: any = () => {
         idToken,
         customId,
         setExerciseItems,
+        gymMember,
+        setGymMember,
         myStates,
     } = dataAndMethodsContext;
 
@@ -71,7 +74,7 @@ const ExerciseItemDialog: any = () => {
         myNewExerciseItem.categoryJSON = categoryJSON;
         //console.log(exerciseItemsTableName, idToken, myNewExerciseItem, customId);
         await putExerciseItem(myNewExerciseItem, idToken, customId);
-        let myExerciseItems = await getExerciseItems({});
+        let myExerciseItems = await getExerciseItems(gymMember.exerciseIdsJSON);
         myExerciseItems = await sortExerciseItems(myExerciseItems, myStates);
         setExerciseItems(myExerciseItems)
     };
@@ -84,7 +87,11 @@ const ExerciseItemDialog: any = () => {
         myNewExerciseItem.categoryJSON = categoryJSON;
         //console.log(exerciseItemsTableName, idToken, myNewExerciseItem, customId);
         await putExerciseItem(myNewExerciseItem, idToken, customId);
-        let myExerciseItems = await getExerciseItems({});
+        let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
+        myNewGymMember.exerciseIdsJSON.push(id);
+        await putGymMember(myNewGymMember, idToken, customId)
+        setGymMember(myNewGymMember);
+        let myExerciseItems = await getExerciseItems(myNewGymMember.exerciseIdsJSON);
         myExerciseItems = await sortExerciseItems(myExerciseItems, myStates);
         setExerciseItems(myExerciseItems)
     };

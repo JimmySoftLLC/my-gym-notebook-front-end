@@ -321,7 +321,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         }
         setExercisetemDialogDataItem('categoryJSON', myNewCategories)
     }
-    const setExerciseItems = async (ExerciseItems: any[]) => { dispatch({ type: SET_MENU_ITEMS, payload: ExerciseItems }) }
+    const setExerciseItems = async (exerciseItems: any[]) => { dispatch({ type: SET_MENU_ITEMS, payload: exerciseItems }) }
     const setExercisetemDialogData = async (ExerciseItemDialogData: any) => { dispatch({ type: SET_MENU_ITEM_DIALOG_DATA, payload: ExerciseItemDialogData }) }
     const setExerciseItemDialogOpen = async (ExerciseItemDialogOpen: any) => { dispatch({ type: SET_MENU_ITEM_DIALOG_OPEN, payload: ExerciseItemDialogOpen }) }
 

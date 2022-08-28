@@ -83,6 +83,14 @@ const GymMemberDialog: any = () => {
         setGymMemberDialogOpen(false);
     };
 
+    const selectAllDataItems = () => {
+
+    }
+
+    const unSelectAllDataItems = () => {
+
+    }
+
     const handleSave = async () => {
         switch (dialogType) {
             case "EditMe":
@@ -165,9 +173,11 @@ const GymMemberDialog: any = () => {
                             </Grid>
                         </AccordionDetails>
                     </Accordion>
-                    <Button onClick={() => handleSave()} color="primary">
-                        Add
-                    </Button>
+                    <DialogActions>
+                        <Button onClick={() => selectAllDataItems()} color="default">Add Metric</Button>
+                        <Button onClick={() => selectAllDataItems()} color="default">Select All</Button>
+                        <Button onClick={() => unSelectAllDataItems()} color="default">Unselect All</Button>
+                    </DialogActions>
                     <p>Profile Image</p>
                     <ImageEditor />
                     <p>{message}</p>

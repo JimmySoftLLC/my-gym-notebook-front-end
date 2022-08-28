@@ -12,10 +12,11 @@ const getBatch = async (myIds: any) => {
     if (data.err) {
         return [];
     }
-    myExerciseItems = data.payload.Responses.ExerciseItems;
+    myExerciseItems = data.payload.Responses.exerciseItems;
     for (let i = 0; i < myExerciseItems.length; i++) {
         myExerciseItems[i].title = myExerciseItems[i].title === blankPlaceHolder ? '' : myExerciseItems[i].title
         myExerciseItems[i].description = myExerciseItems[i].description === blankPlaceHolder ? '' : myExerciseItems[i].description
+        myExerciseItems[i].categoryJSON = myExerciseItems[i].categoryJSON === undefined ? JSON.parse('[]') : JSON.parse(myExerciseItems[i].categoryJSON)
     }
     return myExerciseItems;
 }
