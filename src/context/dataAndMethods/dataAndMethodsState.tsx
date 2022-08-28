@@ -7,11 +7,8 @@ import setMyStatesLogic from '../../model/setMyStatesLogic';
 import {
     SET_MY_STATES,
     SET_MENU_ITEMS,
-    SET_RESTAURANTS,
     SET_MENU_ITEM_DIALOG_DATA,
     SET_MENU_ITEM_DIALOG_OPEN,
-    SET_EDIT_RESTAURANTS,
-    SET_EDIT_RESTAURANTS_OPEN,
     SET_SIGN_IN_REG_DIALOG_TYPE,
     SET_SIGN_IN_REG_DIALOG_TITLE,
     SET_AUTH_TOKEN,
@@ -22,23 +19,17 @@ import {
     SET_ASSOCIATE,
     SET_ASSOCIATE_DIALOG_DATA,
     SET_ASSOCIATE_DIALOG_OPEN,
-    SET_RESTAURANT_ID,
-    SET_RESTAURANT_MENU_DAY_ITEMS,
     SET_MENU_DAY_DIALOG_OPEN,
     SET_MENU_DAY_DIALOG_DATA,
-    SET_RESTAURANT_ASSOCIATES,
     SET_LOADING,
-    SET_RESTAURANT,
     SET_ASSOCIATES,
     SET_MENU_DAYS,
     SET_LOADING_DIALOG,
     SET_ENTERTAINMENT_ITEMS,
     SET_ENTERTAINMENT_ITEM_DIALOG_DATA,
     SET_ENTERTAINMENT_ITEM_DIALOG_OPEN,
-    SET_RESTAURANT_ENTERTAINMENT_ITEMS,
     SET_ON_SCREEN_DEBUG_MESSAGE,
     SET_PHOTOS,
-    SET_RESTAURANT_PHOTOS,
     SET_PHOTO_DIALOG_DATA,
     SET_PHOTO_DIALOG_OPEN,
     SET_IMAGE_EDITOR_DATA,
@@ -57,15 +48,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 balance: false,
                 agility: true,
                 flexibilityMobility: false,
-                pizza: false,
-                pasta: false,
-                entree: true,
-                dessert: false,
-                drinks: false,
-                beer: false,
-                coffee: false,
-                wine: false,
-                kids: false,
 
                 // price categories
                 dollar_1: true,
@@ -92,7 +74,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 carryout: false,
 
                 // customer pages
-                ExerciseItems: false,
+                exerciseItems: false,
                 restaurants: false,
                 gymMembers: false,
                 entertainmentItems: false,
@@ -114,19 +96,19 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 sortTime: true,
                 sortName: false,
 
-                lastState: 'ExerciseItems',
+                lastState: 'exerciseItems',
 
                 // help dialog
                 helpDialogStage: 0,
                 helpDialogActive: false,
                 helpDialogOpen: true,
             };
-        // if set to restaurant reset to ExerciseItems since restaurant 
+        // if set to restaurant reset to exerciseItems since restaurant 
         // detail expects data which does not exist yet.
         if (myStates.restaurantDetail) {
             myStates.restaurantDetail = false
-            myStates.ExerciseItems = true
-            myStates.lastState = 'ExerciseItems'
+            myStates.exerciseItems = true
+            myStates.lastState = 'exerciseItems'
         }
         // dates
         myStates.date_0 = true;
@@ -148,11 +130,10 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         loadingDialog: false,
         myStates: myStatesLocalStorage,
         signInRegDialogType: 'false',
-        ExerciseItems: [],
+        exerciseItems: [],
         entertainmentItems: [],
         gymMembers: [],
         GymDays: [],
-        exerciseItems: [],
         restaurantEntertainmentItems: [],
         restaurantPhotos: [],
         restaurantGymDays: [],
@@ -325,22 +306,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     const setExercisetemDialogData = async (ExerciseItemDialogData: any) => { dispatch({ type: SET_MENU_ITEM_DIALOG_DATA, payload: ExerciseItemDialogData }) }
     const setExerciseItemDialogOpen = async (ExerciseItemDialogOpen: any) => { dispatch({ type: SET_MENU_ITEM_DIALOG_OPEN, payload: ExerciseItemDialogOpen }) }
 
-    // restaurant and dialog ------------------------------------------
-    const setRestaurantDialogDataItem = async (key: string | number, value: any) => {
-        let restaurantDialogData = JSON.parse(JSON.stringify(state.restaurantDialogData))
-        restaurantDialogData[key] = value;
-        setRestaurantDialogData(restaurantDialogData);
-    }
-    const setRestaurantDetail = async (restaurantDetail: any) => { dispatch({ type: SET_RESTAURANT, payload: restaurantDetail }) }
-    const setRestaurants = async (restaurants: any) => { dispatch({ type: SET_RESTAURANTS, payload: restaurants }) }
-    const setRestaurantDialogData = async (restaurantDialogData: any) => { dispatch({ type: SET_EDIT_RESTAURANTS, payload: restaurantDialogData }) }
-    const setRestaurantDialogOpen = async (restaurantDialogOpen: any) => { dispatch({ type: SET_EDIT_RESTAURANTS_OPEN, payload: restaurantDialogOpen }) }
-    const setRestaurantEntertainmentItems = async (restaurantEntertainmentItems: any) => { dispatch({ type: SET_RESTAURANT_ENTERTAINMENT_ITEMS, payload: restaurantEntertainmentItems }) }
-    const setRestaurantGymDays = async (restaurantGymDays: any) => { dispatch({ type: SET_RESTAURANT_MENU_DAY_ITEMS, payload: restaurantGymDays }) }
-    const setRestaurantPhotos = async (restaurantPhotos: any) => { dispatch({ type: SET_RESTAURANT_PHOTOS, payload: restaurantPhotos }) }
-    const setRestaurantId = async (restaurantId: any) => { dispatch({ type: SET_RESTAURANT_ID, payload: restaurantId }) }
-    const setRestaurantGymMembers = async (restaurantGymMembers: any) => { dispatch({ type: SET_RESTAURANT_ASSOCIATES, payload: restaurantGymMembers }) }
-
     // menu days and dialog -----------------------------------------------
     const setGymDays = async (GymDays: any[]) => { dispatch({ type: SET_MENU_DAYS, payload: GymDays }) }
     const setGymDayDialogDataItem = async (key: string | number, value: any) => {
@@ -397,7 +362,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             value={{
                 myStates: state.myStates,
                 myExerciseItemStates: state.myExerciseItemStates,
-                ExerciseItems: state.ExerciseItems,
+                exerciseItems: state.exerciseItems,
                 exerciseItemsTableName: state.exerciseItemsTableName,
                 restaurantsTableName: state.restaurantsTableName,
                 restaurants: state.restaurants,
@@ -417,7 +382,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 gymMember: state.gymMember,
                 gymMemberDialogData: state.gymMemberDialogData,
                 gymMemberDialogOpen: state.gymMemberDialogOpen,
-                exerciseItems: state.exerciseItems,
                 restaurantEntertainmentItems: state.restaurantEntertainmentItems,
                 restaurantId: state.restaurantId,
                 restaurantGymDays: state.restaurantGymDays,
@@ -443,11 +407,9 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 selectedDate: state.selectedDate,
                 setMyState,
                 setMyStates,
-                setRestaurants,
                 setExercisetemDialogDataItem,
                 setExercisetemDialogDataCategory,
                 setExerciseItemDialogOpen,
-                setRestaurantDialogOpen,
                 setSignInRegDialogType,
                 setSignInRegDialogTitle,
                 setAuthToken,
@@ -457,20 +419,14 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 setGymMember,
                 setExerciseItems,
                 setGymMembersRestaurants,
-                setRestaurantDialogData,
-                setRestaurantDialogDataItem,
                 setGymMemberDialogData,
                 setGymMemberDialogOpen,
                 setGymMemberDialogDataItem,
                 setExercisetemDialogData,
-                setRestaurantId,
-                setRestaurantGymDays,
                 setGymDayDialogData,
                 setGymDayDialogOpen,
                 setGymDayDialogDataItem,
-                setRestaurantGymMembers,
                 setLoading,
-                setRestaurantDetail,
                 setGymMembers,
                 setGymDays,
                 setLoadingDialog,
@@ -479,10 +435,8 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 setEntertainmentItemDialogDataItem,
                 setEntertainmentItemDialogOpen,
                 setEntertainmentItemDialogDataCategory,
-                setRestaurantEntertainmentItems,
                 setOnScreenDebugMessage,
                 setPhotos,
-                setRestaurantPhotos,
                 setPhotoDialogDataItem,
                 setPhotoDialogData,
                 setPhotoDialogOpen,

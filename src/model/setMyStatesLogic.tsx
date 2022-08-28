@@ -12,7 +12,7 @@ const setMyStatesLogic = (myStates: any, key: any) => {
     if (myStates.helpDialogActive) {
         switch (myStates.helpDialogStage) {
             case 1:
-                if (key === "ExerciseItems") {
+                if (key === "exerciseItems") {
                     myStates.helpDialogOpen = true;
                     myStates.helpDialogStage = 2;
                 }
