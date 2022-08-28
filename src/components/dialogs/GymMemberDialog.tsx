@@ -63,20 +63,20 @@ const GymMemberDialog: any = () => {
     // update restaurant with these new gymMembers and save to database
     // update state for gymMember, restaurantGymMembers
     const saveGymMemberEditMe = async () => {
-        let myGymMember: any = {};
-        myGymMember.id = id;
-        myGymMember.firstName = firstName
-        myGymMember.lastName = lastName
-        myGymMember.bio = bio
-        myGymMember.email = email
-        myGymMember.exerciseIdsJSON = exerciseIdsJSON
-        myGymMember.teamMateIdsJSON = teamMateIdsJSON
-        myGymMember.gymDayIdsJSON = gymDayIdsJSON
-        myGymMember.imageUrl = imageUrl;
-        myGymMember.dataJSON = dataJSON;
+        let newGymMember: any = {};
+        newGymMember.id = id;
+        newGymMember.firstName = firstName
+        newGymMember.lastName = lastName
+        newGymMember.bio = bio
+        newGymMember.email = email
+        newGymMember.exerciseIdsJSON = exerciseIdsJSON
+        newGymMember.teamMateIdsJSON = teamMateIdsJSON
+        newGymMember.gymDayIdsJSON = gymDayIdsJSON
+        newGymMember.imageUrl = imageUrl;
+        newGymMember.dataJSON = dataJSON;
         await saveImageToDatabase(deleteFileName, imageUrl, blob, editMode, idToken, customId)
-        await putGymMember(myGymMember, idToken, customId)
-        setGymMember(myGymMember);
+        await putGymMember(newGymMember, idToken, customId)
+        setGymMember(newGymMember);
     };
 
     const handleClose = () => {

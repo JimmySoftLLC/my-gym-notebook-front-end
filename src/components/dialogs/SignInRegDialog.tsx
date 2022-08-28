@@ -115,9 +115,9 @@ const SignInRegDialog: any = () => {
                 const gymMember = await getGymMember(session.idToken.payload['email'], session.idToken.jwtToken, session.idToken.payload['custom:id'])
                 console.log(gymMember);
                 if (gymMember === null) {
-                    let myNewGymMember = await createGymMember(session.idToken.payload['email'], session.idToken.jwtToken, session.idToken.payload['custom:id'])
-                    if (myNewGymMember) {
-                        setGymMember(myNewGymMember);
+                    let newGymMember = await createGymMember(session.idToken.payload['email'], session.idToken.jwtToken, session.idToken.payload['custom:id'])
+                    if (newGymMember) {
+                        setGymMember(newGymMember);
                         setLogInType('signedIn')
                         setSignInRegDialogType('false');
                         setDialogBackToDefaults();

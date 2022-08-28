@@ -38,9 +38,9 @@ const ExerciseItemDialog: any = () => {
 
     const {
         exerciseItemDialogOpen,
-        setExercisetemDialogDataCategory,
+        setExerciseItemDialogDataCategory,
         setExerciseItemDialogOpen,
-        setExercisetemDialogDataItem,
+        setExerciseItemDialogDataItem,
         idToken,
         customId,
         setExerciseItems,
@@ -67,26 +67,26 @@ const ExerciseItemDialog: any = () => {
     };
 
     const saveExerciseItem = async () => {
-        let myNewExerciseItem: any = {}
-        myNewExerciseItem.id = id;
-        myNewExerciseItem.title = title;
-        myNewExerciseItem.description = description;
-        myNewExerciseItem.categoryJSON = categoryJSON;
+        let newExerciseItem: any = {}
+        newExerciseItem.id = id;
+        newExerciseItem.title = title;
+        newExerciseItem.description = description;
+        newExerciseItem.categoryJSON = categoryJSON;
         //console.log(exerciseItemsTableName, idToken, myNewExerciseItem, customId);
-        await putExerciseItem(myNewExerciseItem, idToken, customId);
+        await putExerciseItem(newExerciseItem, idToken, customId);
         let myExerciseItems = await getExerciseItems(gymMember.exerciseIdsJSON);
         myExerciseItems = await sortExerciseItems(myExerciseItems, myStates);
         setExerciseItems(myExerciseItems)
     };
 
     const saveExerciseItemAdd = async () => {
-        let myNewExerciseItem: any = {}
-        myNewExerciseItem.id = id;
-        myNewExerciseItem.title = title;
-        myNewExerciseItem.description = description;
-        myNewExerciseItem.categoryJSON = categoryJSON;
+        let newExerciseItem: any = {}
+        newExerciseItem.id = id;
+        newExerciseItem.title = title;
+        newExerciseItem.description = description;
+        newExerciseItem.categoryJSON = categoryJSON;
         //console.log(exerciseItemsTableName, idToken, myNewExerciseItem, customId);
-        await putExerciseItem(myNewExerciseItem, idToken, customId);
+        await putExerciseItem(newExerciseItem, idToken, customId);
         let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
         myNewGymMember.exerciseIdsJSON.push(id);
         await putGymMember(myNewGymMember, idToken, customId)
@@ -97,11 +97,11 @@ const ExerciseItemDialog: any = () => {
     };
 
     const changeTitle = (e: any) => {
-        setExercisetemDialogDataItem('title', e.target.value)
+        setExerciseItemDialogDataItem('title', e.target.value)
     };
 
     const changeDescription = (e: any) => {
-        setExercisetemDialogDataItem('description', e.target.value)
+        setExerciseItemDialogDataItem('description', e.target.value)
     };
 
     const checkIfPresent = (value: any) => {
@@ -143,35 +143,35 @@ const ExerciseItemDialog: any = () => {
                         <div >
                             <Tooltip title="Strength Training">
                                 <IconButton aria-label="" color={checkIfPresent('strength') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('strength')}
+                                    onClick={() => setExerciseItemDialogDataCategory('strength')}
                                 >
                                     <i className="fas fa-dumbbell"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Aerobic Training">
                                 <IconButton aria-label="" color={checkIfPresent('aerobic') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('aerobic')}
+                                    onClick={() => setExerciseItemDialogDataCategory('aerobic')}
                                 >
                                     <i className="fas fa-running"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Balance Training">
                                 <IconButton aria-label="" color={checkIfPresent('balance') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('balance')}
+                                    onClick={() => setExerciseItemDialogDataCategory('balance')}
                                 >
                                     <i className="fas fa-balance-scale"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Agility Training">
                                 <IconButton aria-label="" color={checkIfPresent('agility') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('agility')}
+                                    onClick={() => setExerciseItemDialogDataCategory('agility')}
                                 >
                                     <i className="icon-dancing"></i>
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Flexibility and Mobility Training">
                                 <IconButton aria-label="" color={checkIfPresent('flexibilityMobility') ? "inherit" : "default"}
-                                    onClick={() => setExercisetemDialogDataCategory('flexibilityMobility')}
+                                    onClick={() => setExerciseItemDialogDataCategory('flexibilityMobility')}
                                 >
                                     <i className="fas fa-child"></i>
                                 </IconButton>

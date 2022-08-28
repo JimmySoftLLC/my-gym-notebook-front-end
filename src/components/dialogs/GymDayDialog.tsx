@@ -56,8 +56,7 @@ const GymDayDialog: any = () => {
         setGymDayDialogDataItem,
         idToken,
         customId,
-        setRestaurantGymDays,
-        restaurantId,
+        setGymDays,
         setGymDayDialogData,
     } = dataAndMethodsContext;
 
@@ -79,76 +78,70 @@ const GymDayDialog: any = () => {
     };
 
     const saveGymDay = async () => {
-        let myNewGymDay: any = {}
-        myNewGymDay.id = id;
-        myNewGymDay.title = title
-        myNewGymDay.dateFrom = dateFrom;
-        myNewGymDay.dateTo = dateTo;
-        myNewGymDay.description = description
-        myNewGymDay.ExerciseItemIdsJSON = ExerciseItemIdsJSON
-        myNewGymDay.entertainmentItemIdsJSON = entertainmentItemIdsJSON
-        myNewGymDay.gymMembersJSON = gymMembersJSON;
-        myNewGymDay.restaurantId = restaurantId;
-        await putGymDay(myNewGymDay, idToken, customId);
+        let newGymDay: any = {}
+        newGymDay.id = id;
+        newGymDay.title = title
+        newGymDay.dateFrom = dateFrom;
+        newGymDay.dateTo = dateTo;
+        newGymDay.description = description
+        newGymDay.ExerciseItemIdsJSON = ExerciseItemIdsJSON
+        await putGymDay(newGymDay, idToken, customId);
         let myGymDays = await getGymDays({});
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
-        setRestaurantGymDays(myGymDays)
+        setGymDays(myGymDays)
     };
 
     const saveGymDayAdd = async () => {
-        let myNewGymDay: any = {}
-        myNewGymDay.id = id;
-        myNewGymDay.title = title
-        myNewGymDay.dateFrom = dateFrom;
-        myNewGymDay.dateTo = dateTo;
-        myNewGymDay.description = description
-        myNewGymDay.ExerciseItemIdsJSON = ExerciseItemIdsJSON;
-        myNewGymDay.entertainmentItemIdsJSON = entertainmentItemIdsJSON;
-        myNewGymDay.gymMembersJSON = gymMembersJSON;
-        myNewGymDay.restaurantId = restaurantId;
-        await putGymDay(myNewGymDay, idToken, customId);
+        let newGymDay: any = {}
+        newGymDay.id = id;
+        newGymDay.title = title
+        newGymDay.dateFrom = dateFrom;
+        newGymDay.dateTo = dateTo;
+        newGymDay.description = description
+        newGymDay.ExerciseItemIdsJSON = ExerciseItemIdsJSON;
+        await putGymDay(newGymDay, idToken, customId);
         let myGymDays = await getGymDays({});
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
-        setRestaurantGymDays(myGymDays)
+        setGymDays(myGymDays)
     };
 
     const selectAllExerciseItems = () => {
-        let myNewGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        myNewGymDayDialogData.ExerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
-        setGymDayDialogData(myNewGymDayDialogData)
+        let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        newGymDayDialogData.ExerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
+        setGymDayDialogData(newGymDayDialogData)
     }
 
     const unSelectAllExerciseItems = () => {
-        let myNewGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        myNewGymDayDialogData.ExerciseItemIdsJSON = []
-        setGymDayDialogData(myNewGymDayDialogData)
+        let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        newGymDayDialogData.ExerciseItemIdsJSON = []
+        setGymDayDialogData(newGymDayDialogData)
     }
 
     const changeTitle = (e: any) => {
         setGymDayDialogDataItem('title', e.target.value)
     };
 
-    const changeDateFrom = (myDate: any) => {
-        const myDateTo = new Date(dateTo)
-        let myGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        if (myDate.getTime() > myDateTo.getTime()) {
-            myGymDayDialogData['dateFrom'] = myDate;
-            myGymDayDialogData['dateTo'] = myDate;
+    const changeDateFrom = (dateValue: any) => {
+        const newDateTo = new Date(dateTo)
+        let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        if (dateValue.getTime() > newDateTo.getTime()) {
+            newGymDayDialogData['dateFrom'] = dateValue;
+            newGymDayDialogData['dateTo'] = dateValue;
         } else {
-            myGymDayDialogData['dateFrom'] = myDate;
+            newGymDayDialogData['dateFrom'] = dateValue;
         }
-        setGymDayDialogData(myGymDayDialogData);
+        setGymDayDialogData(newGymDayDialogData);
     };
 
-    const changeDateTo = (myDate: any) => {
-        const myDateFrom = new Date(dateFrom)
-        let myGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        if (myDate.getDate() < myDateFrom.getTime()) {
-            myGymDayDialogData['dateTo'] = myDateFrom;
+    const changeDateTo = (dateValue: any) => {
+        const newDateFrom = new Date(dateFrom)
+        let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        if (dateValue.getDate() < newDateFrom.getTime()) {
+            newGymDayDialogData['dateTo'] = newDateFrom;
         } else {
-            myGymDayDialogData['dateTo'] = myDate;
+            newGymDayDialogData['dateTo'] = dateValue;
         }
-        setGymDayDialogData(myGymDayDialogData);
+        setGymDayDialogData(newGymDayDialogData);
     };
 
     const changeDescription = (e: any) => {
