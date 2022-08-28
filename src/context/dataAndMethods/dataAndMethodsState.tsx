@@ -148,9 +148,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             dateFrom: '',
             dateTo: '',
             description: '',
-            ExerciseItemIdsJSON: [],
-            entertainmentItemIdsJSON: [],
-            gymMembersJSON: [],
+            exerciseItemIdsJSON: [],
             restaurantId: '',
             dialogType: "Edit",
         },
@@ -158,7 +156,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         photoDialogData: {
             src: '',
             caption: '',
-            restaurantid: '',
             dialogType: 'Add',
         },
         imageEditorData: {

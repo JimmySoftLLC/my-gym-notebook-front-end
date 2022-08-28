@@ -23,6 +23,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import putGymMember from '../../model/gymMember/putGymMember';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,9 +43,7 @@ const GymDayDialog: any = () => {
         dateFrom,
         dateTo,
         description,
-        ExerciseItemIdsJSON,
-        entertainmentItemIdsJSON,
-        gymMembersJSON,
+        exerciseItemIdsJSON,
         dialogType,
     } = dataAndMethodsContext.gymDayDialogData;
 
@@ -58,6 +57,8 @@ const GymDayDialog: any = () => {
         customId,
         setGymDays,
         setGymDayDialogData,
+        setGymMember,
+        gymMember
     } = dataAndMethodsContext;
 
     const handleClose = () => {
@@ -84,9 +85,9 @@ const GymDayDialog: any = () => {
         newGymDay.dateFrom = dateFrom;
         newGymDay.dateTo = dateTo;
         newGymDay.description = description
-        newGymDay.ExerciseItemIdsJSON = ExerciseItemIdsJSON
+        newGymDay.exerciseItemIdsJSON = exerciseItemIdsJSON
         await putGymDay(newGymDay, idToken, customId);
-        let myGymDays = await getGymDays({});
+        let myGymDays = await getGymDays(gymMember.gymDayIdsJSON);
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
         setGymDays(myGymDays)
     };
@@ -98,22 +99,26 @@ const GymDayDialog: any = () => {
         newGymDay.dateFrom = dateFrom;
         newGymDay.dateTo = dateTo;
         newGymDay.description = description
-        newGymDay.ExerciseItemIdsJSON = ExerciseItemIdsJSON;
+        newGymDay.exerciseItemIdsJSON = exerciseItemIdsJSON;
         await putGymDay(newGymDay, idToken, customId);
-        let myGymDays = await getGymDays({});
+        let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
+        myNewGymMember.gymDayIdsJSON.push(id);
+        await putGymMember(myNewGymMember, idToken, customId)
+        setGymMember(myNewGymMember);
+        let myGymDays = await getGymDays(myNewGymMember.gymDayIdsJSON);
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
         setGymDays(myGymDays)
     };
 
     const selectAllExerciseItems = () => {
         let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        newGymDayDialogData.ExerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
+        newGymDayDialogData.exerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
         setGymDayDialogData(newGymDayDialogData)
     }
 
     const unSelectAllExerciseItems = () => {
         let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        newGymDayDialogData.ExerciseItemIdsJSON = []
+        newGymDayDialogData.exerciseItemIdsJSON = []
         setGymDayDialogData(newGymDayDialogData)
     }
 

@@ -14,6 +14,7 @@ import createGymMember from '../../model/gymMember/createGymMember';
 import isEmail from 'validator/lib/isEmail';
 import { username, secret } from '../../envConstants'
 import getMembersExerciseItems from '../../model/exerciseItem/getMembersExerciseItems';
+import getMembersGymDays from '../../model/gymDay/getMembersGymDays';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -44,6 +45,7 @@ const SignInRegDialog: any = () => {
         setLogInType,
         setGymMember,
         setExerciseItems,
+        setGymDayItems
     } = dataAndMethodsContext;
 
     const closeDialog = () => {
@@ -129,6 +131,8 @@ const SignInRegDialog: any = () => {
                     setDialogBackToDefaults();
                     const exerciseItems = await getMembersExerciseItems(gymMember)
                     setExerciseItems(exerciseItems);
+                    const gymDayItems = await getMembersGymDays(gymMember)
+                    setGymDayItems(gymDayItems);
                 }
             }
         } catch (err) {

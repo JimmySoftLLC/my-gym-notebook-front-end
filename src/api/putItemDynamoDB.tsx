@@ -28,10 +28,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 dateFrom: dateString(myItem.dateFrom, new Date(), 'saveToDatabaseFromDate'),
                 dateTo: dateString(myItem.dateTo, new Date(), 'saveToDatabaseToDate'),
                 description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
-                ExerciseItemIdsJSON: JSON.stringify(myItem.ExerciseItemIdsJSON),
-                entertainmentItemIdsJSON: JSON.stringify(myItem.entertainmentItemIdsJSON),
-                gymMembersJSON: JSON.stringify(myItem.gymMembersJSON),
-                restaurantId: myItem.restaurantId = myItem.restaurantId !== '' ? myItem.restaurantId : blankPlaceHolder,
+                exerciseItemIdsJSON: JSON.stringify(myItem.exerciseItemIdsJSON),
             }
             break;
         case gymMembersTableName:

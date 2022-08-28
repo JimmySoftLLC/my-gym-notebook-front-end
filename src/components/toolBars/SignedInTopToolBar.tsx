@@ -39,7 +39,7 @@ const SignedInTopToolBar = () => {
             dateFrom: new Date(),
             dateTo: new Date(),
             description: '',
-            ExerciseItemIdsJSON: [],
+            exerciseItemIdsJSON: [],
             entertainmentItemIdsJSON: [],
             gymMembersJSON: [],
             restaurantId: restaurantId,

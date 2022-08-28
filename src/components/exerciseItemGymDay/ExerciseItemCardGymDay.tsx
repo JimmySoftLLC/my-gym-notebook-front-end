@@ -8,8 +8,8 @@ const ExerciseItemCardGymDay = ({ ExerciseItem }: any) => {
     } = dataAndMethodsContext;
 
     let ExerciseItemSelected = false;
-    for (let j = 0; j < gymDayDialogData.ExerciseItemIdsJSON.length; j++) {
-        if (ExerciseItem.id === gymDayDialogData.ExerciseItemIdsJSON[j]) {
+    for (let j = 0; j < gymDayDialogData.exerciseItemIdsJSON.length; j++) {
+        if (ExerciseItem.id === gymDayDialogData.exerciseItemIdsJSON[j]) {
             ExerciseItemSelected = true;
             break;
         }
@@ -17,11 +17,11 @@ const ExerciseItemCardGymDay = ({ ExerciseItem }: any) => {
 
     const changeExerciseItemSelected = () => {
         let myNewGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        let myIndex = myNewGymDayDialogData.ExerciseItemIdsJSON.indexOf(ExerciseItem.id, 0)
+        let myIndex = myNewGymDayDialogData.exerciseItemIdsJSON.indexOf(ExerciseItem.id, 0)
         if (myIndex !== -1) {
-            myNewGymDayDialogData.ExerciseItemIdsJSON.splice(myIndex, 1)
+            myNewGymDayDialogData.exerciseItemIdsJSON.splice(myIndex, 1)
         } else {
-            myNewGymDayDialogData.ExerciseItemIdsJSON.push(ExerciseItem.id)
+            myNewGymDayDialogData.exerciseItemIdsJSON.push(ExerciseItem.id)
         }
         setGymDayDialogData(myNewGymDayDialogData)
     }
