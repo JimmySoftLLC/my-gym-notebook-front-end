@@ -51,7 +51,7 @@ const getTodaysGymMembers = async (restaurants: string | any[], myGymDays: strin
     // combine gymMembers
     myGymMembers = myGymMembers.concat(myGymMembersNoEmail)
 
-    // mark these gymMembers as in, since they are from the GymDays object
+    // mark these gymMembers as in, since they are from the gymDays object
     for (let i = 0; i < myGymMembers.length; i++) {
         myGymMembers[i].isIn = true
     }

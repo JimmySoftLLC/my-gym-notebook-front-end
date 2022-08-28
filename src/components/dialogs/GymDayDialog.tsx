@@ -46,12 +46,12 @@ const GymDayDialog: any = () => {
         entertainmentItemIdsJSON,
         gymMembersJSON,
         dialogType,
-    } = dataAndMethodsContext.GymDayDialogData;
+    } = dataAndMethodsContext.gymDayDialogData;
 
-    const { GymDayDialogData } = dataAndMethodsContext;
+    const { gymDayDialogData } = dataAndMethodsContext;
 
     const {
-        GymDayDialogOpen,
+        gymDayDialogOpen,
         setGymDayDialogOpen,
         setGymDayDialogDataItem,
         idToken,
@@ -115,13 +115,13 @@ const GymDayDialog: any = () => {
     };
 
     const selectAllExerciseItems = () => {
-        let myNewGymDayDialogData = JSON.parse(JSON.stringify(GymDayDialogData))
+        let myNewGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
         myNewGymDayDialogData.ExerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
         setGymDayDialogData(myNewGymDayDialogData)
     }
 
     const unSelectAllExerciseItems = () => {
-        let myNewGymDayDialogData = JSON.parse(JSON.stringify(GymDayDialogData))
+        let myNewGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
         myNewGymDayDialogData.ExerciseItemIdsJSON = []
         setGymDayDialogData(myNewGymDayDialogData)
     }
@@ -132,7 +132,7 @@ const GymDayDialog: any = () => {
 
     const changeDateFrom = (myDate: any) => {
         // const myDateTo = new Date(dateTo)
-        let myGymDayDialogData = JSON.parse(JSON.stringify(GymDayDialogData))
+        let myGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
         // if (myDate.getTime() > myDateTo.getTime()) {
         //     myGymDayDialogData['dateFrom'] = myDate;
         //     myGymDayDialogData['dateTo'] = myDate;
@@ -144,7 +144,7 @@ const GymDayDialog: any = () => {
 
     const changeDateTo = (myDate: any) => {
         // const myDateFrom = new Date(dateFrom)
-        let myGymDayDialogData = JSON.parse(JSON.stringify(GymDayDialogData))
+        let myGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
         // if (myDate.getDate() < myDateFrom.getTime()) {
         //     myGymDayDialogData['dateTo'] = myDateFrom;
         // } else {
@@ -161,7 +161,7 @@ const GymDayDialog: any = () => {
         <div>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
-                    <Dialog className={classes.root} open={GymDayDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+                    <Dialog className={classes.root} open={gymDayDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">
                             {dialogType + " menu day"}</DialogTitle>
                         <DialogContent>

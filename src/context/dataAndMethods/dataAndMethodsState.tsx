@@ -133,20 +133,20 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         exerciseItems: [],
         entertainmentItems: [],
         gymMembers: [],
-        GymDays: [],
+        gymDays: [],
         restaurantEntertainmentItems: [],
         restaurantPhotos: [],
         restaurantGymDays: [],
         restaurants: [],
         gymMembersRestaurants: [],
         gymMember: {},
-        ExerciseItemDialogOpen: false,
+        exerciseItemDialogOpen: false,
         restaurantGymMembers: [],
         restaurantDetail: {},
         onScreenDebugMessage: '',
         todaysDate: Date(),
         selectedDate: Date(),
-        ExerciseItemDialogData: {
+        exerciseItemDialogData: {
             title: '',
             description: '',
             categoryJSON: [],
@@ -171,8 +171,8 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             dialogType: 'Edit',
             message: '',
         },
-        GymDayDialogOpen: false,
-        GymDayDialogData: {
+        gymDayDialogOpen: false,
+        gymDayDialogData: {
             id: '',
             title: '',
             dateFrom: '',
@@ -268,24 +268,18 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
 
     // menu items and dialog --------------------------------------------
     const setExercisetemDialogDataItem = async (key: string, value: any) => {
-        let ExerciseItemDialogData = JSON.parse(JSON.stringify(state.ExerciseItemDialogData))
-        ExerciseItemDialogData[key] = value;
-        setExercisetemDialogData(ExerciseItemDialogData);
+        let exerciseItemDialogData = JSON.parse(JSON.stringify(state.exerciseItemDialogData))
+        exerciseItemDialogData[key] = value;
+        setExercisetemDialogData(exerciseItemDialogData);
     }
     const setExercisetemDialogDataCategory = async (key: string) => {
-        let myNewCategories = JSON.parse(JSON.stringify(state.ExerciseItemDialogData.categoryJSON))
+        let myNewCategories = JSON.parse(JSON.stringify(state.exerciseItemDialogData.categoryJSON))
         let myIndex = -1
         let keysToClear = ['strength',
             'aerobic',
             'balance',
             'agility',
-            'flexibilityMobility',
-            'pizza',
-            'pasta',
-            'entree',
-            'dessert',
-            'drinks',
-            'kids']
+            'flexibilityMobility']
         if (keysToClear.indexOf(key, 0) !== -1) {
             for (let i = 0; i < keysToClear.length; i++) {
                 myIndex = myNewCategories.indexOf(keysToClear[i], 0)
@@ -303,18 +297,18 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         setExercisetemDialogDataItem('categoryJSON', myNewCategories)
     }
     const setExerciseItems = async (exerciseItems: any[]) => { dispatch({ type: SET_MENU_ITEMS, payload: exerciseItems }) }
-    const setExercisetemDialogData = async (ExerciseItemDialogData: any) => { dispatch({ type: SET_MENU_ITEM_DIALOG_DATA, payload: ExerciseItemDialogData }) }
-    const setExerciseItemDialogOpen = async (ExerciseItemDialogOpen: any) => { dispatch({ type: SET_MENU_ITEM_DIALOG_OPEN, payload: ExerciseItemDialogOpen }) }
+    const setExercisetemDialogData = async (exerciseItemDialogData: any) => { dispatch({ type: SET_MENU_ITEM_DIALOG_DATA, payload: exerciseItemDialogData }) }
+    const setExerciseItemDialogOpen = async (exerciseItemDialogOpen: any) => { dispatch({ type: SET_MENU_ITEM_DIALOG_OPEN, payload: exerciseItemDialogOpen }) }
 
     // menu days and dialog -----------------------------------------------
-    const setGymDays = async (GymDays: any[]) => { dispatch({ type: SET_MENU_DAYS, payload: GymDays }) }
+    const setGymDays = async (gymDays: any[]) => { dispatch({ type: SET_MENU_DAYS, payload: gymDays }) }
     const setGymDayDialogDataItem = async (key: string | number, value: any) => {
-        let GymDayDialogData = JSON.parse(JSON.stringify(state.GymDayDialogData))
-        GymDayDialogData[key] = value;
-        setGymDayDialogData(GymDayDialogData);
+        let gymDayDialogData = JSON.parse(JSON.stringify(state.gymDayDialogData))
+        gymDayDialogData[key] = value;
+        setGymDayDialogData(gymDayDialogData);
     }
-    const setGymDayDialogData = async (GymDayDialogData: any) => { dispatch({ type: SET_MENU_DAY_DIALOG_DATA, payload: GymDayDialogData }) }
-    const setGymDayDialogOpen = async (GymDayDialogOpen: any) => { dispatch({ type: SET_MENU_DAY_DIALOG_OPEN, payload: GymDayDialogOpen }) }
+    const setGymDayDialogData = async (gymDayDialogData: any) => { dispatch({ type: SET_MENU_DAY_DIALOG_DATA, payload: gymDayDialogData }) }
+    const setGymDayDialogOpen = async (gymDayDialogOpen: any) => { dispatch({ type: SET_MENU_DAY_DIALOG_OPEN, payload: gymDayDialogOpen }) }
 
     // entertainment items and dialog ---------------------------------------------
     const setEntertainmentItems = async (entertainmentItems: any[]) => { dispatch({ type: SET_ENTERTAINMENT_ITEMS, payload: entertainmentItems }) }
@@ -366,9 +360,9 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 exerciseItemsTableName: state.exerciseItemsTableName,
                 restaurantsTableName: state.restaurantsTableName,
                 restaurants: state.restaurants,
-                ExerciseItemDialogData: state.ExerciseItemDialogData,
+                exerciseItemDialogData: state.exerciseItemDialogData,
                 restaurantDialogData: state.restaurantDialogData,
-                ExerciseItemDialogOpen: state.ExerciseItemDialogOpen,
+                exerciseItemDialogOpen: state.exerciseItemDialogOpen,
                 restaurantDialogOpen: state.restaurantDialogOpen,
                 signInRegDialogType: state.signInRegDialogType,
                 signInRegDialogTitle: state.signInRegDialogTitle,
@@ -385,14 +379,14 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 restaurantEntertainmentItems: state.restaurantEntertainmentItems,
                 restaurantId: state.restaurantId,
                 restaurantGymDays: state.restaurantGymDays,
-                GymDayDialogData: state.GymDayDialogData,
-                GymDayDialogOpen: state.GymDayDialogOpen,
+                gymDayDialogData: state.gymDayDialogData,
+                gymDayDialogOpen: state.gymDayDialogOpen,
                 restaurantGymMembers: state.restaurantGymMembers,
                 loading: state.loading,
                 loadingDialog: state.loadingDialog,
                 restaurantDetail: state.restaurantDetail,
                 gymMembers: state.gymMembers,
-                GymDays: state.GymDays,
+                gymDays: state.gymDays,
                 entertainmentItems: state.entertainmentItems,
                 entertainmentItemDialogData: state.entertainmentItemDialogData,
                 entertainmentItemDialogDataItem: state.entertainmentItemDialogDataItem,

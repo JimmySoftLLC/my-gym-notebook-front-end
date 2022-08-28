@@ -4,19 +4,19 @@ import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsCo
 
 const ExerciseItemCardGymDay = ({ ExerciseItem }: any) => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
-    const { GymDayDialogData, setGymDayDialogData
+    const { gymDayDialogData, setGymDayDialogData
     } = dataAndMethodsContext;
 
     let ExerciseItemSelected = false;
-    for (let j = 0; j < GymDayDialogData.ExerciseItemIdsJSON.length; j++) {
-        if (ExerciseItem.id === GymDayDialogData.ExerciseItemIdsJSON[j]) {
+    for (let j = 0; j < gymDayDialogData.ExerciseItemIdsJSON.length; j++) {
+        if (ExerciseItem.id === gymDayDialogData.ExerciseItemIdsJSON[j]) {
             ExerciseItemSelected = true;
             break;
         }
     }
 
     const changeExerciseItemSelected = () => {
-        let myNewGymDayDialogData = JSON.parse(JSON.stringify(GymDayDialogData))
+        let myNewGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
         let myIndex = myNewGymDayDialogData.ExerciseItemIdsJSON.indexOf(ExerciseItem.id, 0)
         if (myIndex !== -1) {
             myNewGymDayDialogData.ExerciseItemIdsJSON.splice(myIndex, 1)

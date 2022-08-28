@@ -15,8 +15,6 @@ const SignedInBotToolBar = () => {
         setGymMemberDialogOpen,
         gymMember,
         setExerciseItems,
-        setRestaurantGymDays,
-        setRestaurantGymMembers,
         setImageEditorData,
     } = dataAndMethodsContext;
 
@@ -26,8 +24,6 @@ const SignedInBotToolBar = () => {
         setCustomId('');
         setLogInType('default');
         setExerciseItems([]);
-        setRestaurantGymDays([]);
-        setRestaurantGymMembers([]);
     }
 
     const handleEditGymMember = () => {

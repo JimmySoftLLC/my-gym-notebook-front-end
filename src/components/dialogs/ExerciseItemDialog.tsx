@@ -34,10 +34,10 @@ const ExerciseItemDialog: any = () => {
         description,
         categoryJSON,
         dialogType,
-    } = dataAndMethodsContext.ExerciseItemDialogData;
+    } = dataAndMethodsContext.exerciseItemDialogData;
 
     const {
-        ExerciseItemDialogOpen,
+        exerciseItemDialogOpen,
         setExercisetemDialogDataCategory,
         setExerciseItemDialogOpen,
         setExercisetemDialogDataItem,
@@ -113,7 +113,7 @@ const ExerciseItemDialog: any = () => {
 
     return (
         <div>
-            <Dialog className={classes.root} open={ExerciseItemDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog className={classes.root} open={exerciseItemDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">
                     {dialogType + " exercise item"}</DialogTitle>
                 <DialogContent>

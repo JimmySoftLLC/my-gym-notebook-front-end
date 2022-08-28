@@ -61,12 +61,12 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_MENU_ITEM_DIALOG_DATA:
             return {
                 ...state,
-                ExerciseItemDialogData: action.payload,
+                exerciseItemDialogData: action.payload,
             };
         case SET_MENU_ITEM_DIALOG_OPEN:
             return {
                 ...state,
-                ExerciseItemDialogOpen: action.payload,
+                exerciseItemDialogOpen: action.payload,
             };
         case SET_EDIT_RESTAURANTS:
             return {
@@ -146,12 +146,12 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_MENU_DAY_DIALOG_OPEN:
             return {
                 ...state,
-                GymDayDialogOpen: action.payload,
+                gymDayDialogOpen: action.payload,
             };
         case SET_MENU_DAY_DIALOG_DATA:
             return {
                 ...state,
-                GymDayDialogData: action.payload,
+                gymDayDialogData: action.payload,
             };
         case SET_RESTAURANT_ASSOCIATES:
             return {
@@ -176,7 +176,7 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_MENU_DAYS:
             return {
                 ...state,
-                GymDays: action.payload,
+                gymDays: action.payload,
             };
         case SET_LOADING_DIALOG:
             return {
