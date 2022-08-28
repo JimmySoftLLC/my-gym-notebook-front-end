@@ -97,22 +97,22 @@ const DeleteConfirmDialog: any = () => {
                         {deleteConfirmDialog.dialogType === "deleteExerciseItem" && <DialogContentText id='alert-dialog-description'>
                             {`You about to delete `}
                             <strong>{deleteConfirmDialog.name}</strong>
-                            {`.  This process is irreversable are you sure?`}
+                            {`.  This process is irreversible are you sure?`}
                         </DialogContentText>}
                         {deleteConfirmDialog.dialogType === "deleteGymDay" && <DialogContentText id='alert-dialog-description'>
                             {`You about to delete `}
                             <strong>{deleteConfirmDialog.name}</strong>
-                            {`.  This process is irreversable are you sure?`}
+                            {`.  This process is irreversible are you sure?`}
                         </DialogContentText>}
                         {deleteConfirmDialog.dialogType === "deleteGymMember" && <DialogContentText id='alert-dialog-description'>
                             {`You about to delete `}
                             <strong>{deleteConfirmDialog.name}</strong>
-                            {`.  This process is irreversable are you sure?`}
+                            {`.  This process is irreversible are you sure?`}
                         </DialogContentText>}
                         {deleteConfirmDialog.dialogType === "deletePhoto" && <DialogContentText id='alert-dialog-description'>
                             {`You about to delete `}
                             <strong>{deleteConfirmDialog.name}</strong>
-                            {`.  This process is irreversable are you sure?`}
+                            {`.  This process is irreversible are you sure?`}
                         </DialogContentText>}
                         <p>{confirmMessage}</p>
                     </DialogContent>

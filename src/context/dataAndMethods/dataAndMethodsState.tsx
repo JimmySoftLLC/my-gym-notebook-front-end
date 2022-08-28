@@ -15,14 +15,13 @@ import {
     SET_ID_TOKEN,
     SET_CUSTOM_ID,
     SET_LOGIN_TYPE,
-    SET_ASSOCIATE_RESTAURANTS,
-    SET_ASSOCIATE,
-    SET_ASSOCIATE_DIALOG_DATA,
-    SET_ASSOCIATE_DIALOG_OPEN,
+    SET_GYM_MEMBER,
+    SET_GYM_MEMBER_DIALOG_DATA,
+    SET_GYM_MEMBER_DIALOG_OPEN,
     SET_MENU_DAY_DIALOG_OPEN,
     SET_MENU_DAY_DIALOG_DATA,
     SET_LOADING,
-    SET_ASSOCIATES,
+    SET_GYM_MEMBERS,
     SET_MENU_DAYS,
     SET_LOADING_DIALOG,
     SET_ENTERTAINMENT_ITEMS,
@@ -260,11 +259,10 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         if (key === 'accessLevel') { gymMemberDialogData['message'] = '' }
         setGymMemberDialogData(gymMemberDialogData);
     }
-    const setGymMember = async (gymMember: any) => { dispatch({ type: SET_ASSOCIATE, payload: gymMember }) }
-    const setGymMembers = async (gymMembers: any[]) => { dispatch({ type: SET_ASSOCIATES, payload: gymMembers }) }
-    const setGymMemberDialogData = async (gymMemberDialogData: any) => { dispatch({ type: SET_ASSOCIATE_DIALOG_DATA, payload: gymMemberDialogData }) }
-    const setGymMemberDialogOpen = async (gymMemberDialogOpen: any) => { dispatch({ type: SET_ASSOCIATE_DIALOG_OPEN, payload: gymMemberDialogOpen }) }
-    const setGymMembersRestaurants = async (gymMembersRestaurants: any) => { dispatch({ type: SET_ASSOCIATE_RESTAURANTS, payload: gymMembersRestaurants }) }
+    const setGymMember = async (gymMember: any) => { dispatch({ type: SET_GYM_MEMBER, payload: gymMember }) }
+    const setGymMembers = async (gymMembers: any[]) => { dispatch({ type: SET_GYM_MEMBERS, payload: gymMembers }) }
+    const setGymMemberDialogData = async (gymMemberDialogData: any) => { dispatch({ type: SET_GYM_MEMBER_DIALOG_DATA, payload: gymMemberDialogData }) }
+    const setGymMemberDialogOpen = async (gymMemberDialogOpen: any) => { dispatch({ type: SET_GYM_MEMBER_DIALOG_OPEN, payload: gymMemberDialogOpen }) }
 
     // menu items and dialog --------------------------------------------
     const setExercisetemDialogDataItem = async (key: string, value: any) => {
@@ -412,7 +410,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 setLogInType,
                 setGymMember,
                 setExerciseItems,
-                setGymMembersRestaurants,
                 setGymMemberDialogData,
                 setGymMemberDialogOpen,
                 setGymMemberDialogDataItem,

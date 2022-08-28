@@ -1,39 +1,25 @@
 import {
     SET_MY_STATES,
     SET_MENU_ITEMS,
-    SET_RESTAURANTS,
     SET_MENU_ITEM_DIALOG_DATA,
     SET_MENU_ITEM_DIALOG_OPEN,
-    SET_EDIT_RESTAURANTS,
-    SET_EDIT_RESTAURANTS_OPEN,
     SET_SIGN_IN_REG_DIALOG_TYPE,
     SET_SIGN_IN_REG_DIALOG_TITLE,
     SET_AUTH_TOKEN,
     SET_ID_TOKEN,
     SET_CUSTOM_ID,
     SET_LOGIN_TYPE,
-    SET_ASSOCIATE_RESTAURANTS,
-    SET_ASSOCIATE,
-    SET_ASSOCIATE_DIALOG_DATA,
-    SET_ASSOCIATE_DIALOG_OPEN,
-    SET_RESTAURANT_MENU_ITEMS,
-    SET_RESTAURANT_ID,
-    SET_RESTAURANT_MENU_DAY_ITEMS,
+    SET_GYM_MEMBER,
+    SET_GYM_MEMBER_DIALOG_DATA,
+    SET_GYM_MEMBER_DIALOG_OPEN,
     SET_MENU_DAY_DIALOG_OPEN,
     SET_MENU_DAY_DIALOG_DATA,
-    SET_RESTAURANT_ASSOCIATES,
     SET_LOADING,
-    SET_RESTAURANT,
-    SET_ASSOCIATES,
+    SET_GYM_MEMBERS,
     SET_MENU_DAYS,
     SET_LOADING_DIALOG,
-    SET_ENTERTAINMENT_ITEMS,
-    SET_ENTERTAINMENT_ITEM_DIALOG_DATA,
-    SET_ENTERTAINMENT_ITEM_DIALOG_OPEN,
-    SET_RESTAURANT_ENTERTAINMENT_ITEMS,
     SET_ON_SCREEN_DEBUG_MESSAGE,
     SET_PHOTOS,
-    SET_RESTAURANT_PHOTOS,
     SET_PHOTO_DIALOG_DATA,
     SET_PHOTO_DIALOG_OPEN,
     SET_IMAGE_EDITOR_DATA,
@@ -53,11 +39,6 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 exerciseItems: action.payload,
             };
-        case SET_RESTAURANTS:
-            return {
-                ...state,
-                restaurants: action.payload,
-            };
         case SET_MENU_ITEM_DIALOG_DATA:
             return {
                 ...state,
@@ -67,16 +48,6 @@ export default (state: any, action: { type: any; payload: any; }): any => {
             return {
                 ...state,
                 exerciseItemDialogOpen: action.payload,
-            };
-        case SET_EDIT_RESTAURANTS:
-            return {
-                ...state,
-                restaurantDialogData: action.payload,
-            };
-        case SET_EDIT_RESTAURANTS_OPEN:
-            return {
-                ...state,
-                restaurantDialogOpen: action.payload,
             };
         case SET_SIGN_IN_REG_DIALOG_TYPE:
             return {
@@ -108,40 +79,20 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 logInType: action.payload,
             };
-        case SET_ASSOCIATE_RESTAURANTS:
-            return {
-                ...state,
-                gymMembersRestaurants: action.payload,
-            };
-        case SET_ASSOCIATE:
+        case SET_GYM_MEMBER:
             return {
                 ...state,
                 gymMember: action.payload,
             };
-        case SET_ASSOCIATE_DIALOG_DATA:
+        case SET_GYM_MEMBER_DIALOG_DATA:
             return {
                 ...state,
                 gymMemberDialogData: action.payload,
             };
-        case SET_ASSOCIATE_DIALOG_OPEN:
+        case SET_GYM_MEMBER_DIALOG_OPEN:
             return {
                 ...state,
                 gymMemberDialogOpen: action.payload,
-            };
-        case SET_RESTAURANT_MENU_ITEMS:
-            return {
-                ...state,
-                exerciseItems: action.payload,
-            };
-        case SET_RESTAURANT_ID:
-            return {
-                ...state,
-                restaurantId: action.payload,
-            };
-        case SET_RESTAURANT_MENU_DAY_ITEMS:
-            return {
-                ...state,
-                restaurantGymDays: action.payload,
             };
         case SET_MENU_DAY_DIALOG_OPEN:
             return {
@@ -153,22 +104,12 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 gymDayDialogData: action.payload,
             };
-        case SET_RESTAURANT_ASSOCIATES:
-            return {
-                ...state,
-                restaurantGymMembers: action.payload,
-            };
         case SET_LOADING:
             return {
                 ...state,
                 loading: action.payload,
             };
-        case SET_RESTAURANT:
-            return {
-                ...state,
-                restaurantDetail: action.payload,
-            };
-        case SET_ASSOCIATES:
+        case SET_GYM_MEMBERS:
             return {
                 ...state,
                 gymMembers: action.payload,
@@ -183,26 +124,6 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 loadingDialog: action.payload,
             };
-        case SET_ENTERTAINMENT_ITEMS:
-            return {
-                ...state,
-                entertainmentItems: action.payload,
-            };
-        case SET_ENTERTAINMENT_ITEM_DIALOG_DATA:
-            return {
-                ...state,
-                entertainmentItemDialogData: action.payload,
-            };
-        case SET_ENTERTAINMENT_ITEM_DIALOG_OPEN:
-            return {
-                ...state,
-                entertainmentItemDialogOpen: action.payload,
-            };
-        case SET_RESTAURANT_ENTERTAINMENT_ITEMS:
-            return {
-                ...state,
-                restaurantEntertainmentItems: action.payload,
-            };
         case SET_ON_SCREEN_DEBUG_MESSAGE:
             return {
                 ...state,
@@ -212,11 +133,6 @@ export default (state: any, action: { type: any; payload: any; }): any => {
             return {
                 ...state,
                 photos: action.payload,
-            };
-        case SET_RESTAURANT_PHOTOS:
-            return {
-                ...state,
-                restaurantPhotos: action.payload,
             };
         case SET_PHOTO_DIALOG_DATA:
             return {
