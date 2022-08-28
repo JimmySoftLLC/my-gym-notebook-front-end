@@ -1,13 +1,12 @@
 import getExerciseItems from './getExerciseItems';
 
 const getMembersExerciseItems = async (gymMember: any) => {
-    // create an array of all ids
-    let ExerciseItemIds = [];
+    let exerciseItemIds = [];
 
     for (let k = 0; k < gymMember.exerciseIdsJSON.length; k++) {
-        ExerciseItemIds.push(gymMember.exerciseIdsJSON[k])
+        exerciseItemIds.push(gymMember.exerciseIdsJSON[k])
     }
-    const myExerciseItems = await getExerciseItems(ExerciseItemIds)
+    const myExerciseItems = await getExerciseItems(exerciseItemIds)
 
     return myExerciseItems;
 }

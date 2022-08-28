@@ -6,30 +6,31 @@ import {
     blankPlaceHolder,
 } from '../../api/apiConstants';
 
-const getBatch = async (myIds: any) => {
-    let myExerciseItems = []
-    const data = await batchGetItemDynamoDB(exerciseItemsTableName, myIds, projectionExpressionExerciseItem)
+const getBatch = async (ids: any) => {
+    let exerciseItems = []
+    const data = await batchGetItemDynamoDB(exerciseItemsTableName, ids, projectionExpressionExerciseItem)
     if (data.err) {
         return [];
     }
-    myExerciseItems = data.payload.Responses.exerciseItems;
-    for (let i = 0; i < myExerciseItems.length; i++) {
-        myExerciseItems[i].title = myExerciseItems[i].title === blankPlaceHolder ? '' : myExerciseItems[i].title
-        myExerciseItems[i].description = myExerciseItems[i].description === blankPlaceHolder ? '' : myExerciseItems[i].description
-        myExerciseItems[i].categoryJSON = myExerciseItems[i].categoryJSON === undefined ? JSON.parse('[]') : JSON.parse(myExerciseItems[i].categoryJSON)
+    exerciseItems = data.payload.Responses.exerciseItems;
+    for (let i = 0; i < exerciseItems.length; i++) {
+        exerciseItems[i].title = exerciseItems[i].title === blankPlaceHolder ? '' : exerciseItems[i].title
+        exerciseItems[i].description = exerciseItems[i].description === blankPlaceHolder ? '' : exerciseItems[i].description
+        exerciseItems[i].categoryJSON = exerciseItems[i].categoryJSON === undefined ? JSON.parse('[]') : JSON.parse(exerciseItems[i].categoryJSON)
     }
-    return myExerciseItems;
+    return exerciseItems;
 }
 
-const getExerciseItems = async (ExerciseItemIds: any) => {
-    if (ExerciseItemIds.length === 0) { return [] }
+const getExerciseItems = async (exerciseItemIds: any) => {
+    if (exerciseItemIds.length === 0) { return [] }
+
     // get records in batches of 100
     let myIds = [];
     let currentIndex = 0;
     let nextIndex = 0;
     let myExerciseItems: any = []
-    for (let i = 0; i < ExerciseItemIds.length; i++) {
-        myIds.push(ExerciseItemIds[i]);
+    for (let i = 0; i < exerciseItemIds.length; i++) {
+        myIds.push(exerciseItemIds[i]);
         currentIndex++;
         if (currentIndex > 99) {
             const myBatch = await getBatch(myIds);
@@ -42,13 +43,11 @@ const getExerciseItems = async (ExerciseItemIds: any) => {
 
     // get any leftover records
     myIds = [];
-    for (let i = nextIndex; i < ExerciseItemIds.length; i++) {
-        myIds.push(ExerciseItemIds[i]);
+    for (let i = nextIndex; i < exerciseItemIds.length; i++) {
+        myIds.push(exerciseItemIds[i]);
     }
     const myBatch = await getBatch(myIds);
     myExerciseItems = myExerciseItems.concat(myBatch)
-
-    // console.log(myExerciseItems);
 
     return myExerciseItems;
 }

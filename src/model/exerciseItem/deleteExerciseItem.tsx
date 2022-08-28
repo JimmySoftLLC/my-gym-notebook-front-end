@@ -3,10 +3,8 @@ import {
     exerciseItemsTableName,
 } from '../../api/apiConstants';
 
-const deleteExerciseItem = async (myExerciseItemId: any, myToken: any, myCustomId: any) => {
-    // console.log(myExerciseItemId, myToken, myCustomId);
-    // return null;
-    const data = await deleteItemDynamoDB(exerciseItemsTableName, myExerciseItemId, myToken, myCustomId)
+const deleteExerciseItem = async (exerciseItemId: any, myToken: any, myCustomId: any) => {
+    const data = await deleteItemDynamoDB(exerciseItemsTableName, exerciseItemId, myToken, myCustomId)
     if (data.err) {
         return null;
     }

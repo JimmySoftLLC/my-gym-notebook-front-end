@@ -31,7 +31,7 @@ const DeleteConfirmDialog: any = () => {
     };
 
     const chooseDelete = () => {
-        if (deleteConfirmDialog.dialogType === "deleteRestaurant") {
+        if (deleteConfirmDialog.dialogType === "deleteGymMember") {
             if (deleteName === deleteConfirmDialog.name) {
                 deleteFunction(deleteConfirmDialog.index)
                 setDeleteName('')
@@ -41,11 +41,6 @@ const DeleteConfirmDialog: any = () => {
             }
         }
         if (deleteConfirmDialog.dialogType === "deleteExerciseItem") {
-            deleteFunction(deleteConfirmDialog.index)
-            setDeleteName('')
-            setConfirmMessage('')
-        }
-        if (deleteConfirmDialog.dialogType === "deleteEntertainmentItem") {
             deleteFunction(deleteConfirmDialog.index)
             setDeleteName('')
             setConfirmMessage('')
@@ -85,6 +80,14 @@ const DeleteConfirmDialog: any = () => {
                     {deleteConfirmDialog.dialogType === "deleteExerciseItem" && <DialogTitle id='alert-dialog-title'>
                         <i className='fas fa-exclamation-triangle'></i>
                         {'  Delete exercise item warning'}
+                    </DialogTitle>}
+                    {deleteConfirmDialog.dialogType === "deleteGymDay" && <DialogTitle id='alert-dialog-title'>
+                        <i className='fas fa-exclamation-triangle'></i>
+                        {'  Delete gym day warning'}
+                    </DialogTitle>}
+                    {deleteConfirmDialog.dialogType === "deleteGymMember" && <DialogTitle id='alert-dialog-title'>
+                        <i className='fas fa-exclamation-triangle'></i>
+                        {'  Delete gym member warning'}
                     </DialogTitle>}
                     {deleteConfirmDialog.dialogType === "deletePhoto" && <DialogTitle id='alert-dialog-title'>
                         <i className='fas fa-exclamation-triangle'></i>

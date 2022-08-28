@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import ExerciseItemCardInventory from '../exerciseItemInventory/ExerciseItemCardInventory';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import CircularIndeterminate from '../circularIndeterminate/CircularIndeterminate';
-import ExerciseItemsWithCategories from '../../model/exerciseItem/exerciseItemsWithCategories';
+import exerciseItemsWithCategories from '../../model/exerciseItem/exerciseItemsWithCategories';
 
 const ExerciseItemsInventory = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -13,7 +13,7 @@ const ExerciseItemsInventory = () => {
         loading,
     } = dataAndMethodsContext;
 
-    let myCategories: any = ExerciseItemsWithCategories(exerciseItems, null)
+    let myCategories: any = exerciseItemsWithCategories(exerciseItems, null)
 
     if (loading) {
         return <CircularIndeterminate />;
