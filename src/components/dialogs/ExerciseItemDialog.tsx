@@ -138,7 +138,7 @@ const ExerciseItemDialog: any = () => {
                         value={description}
                         onChange={changeDescription}
                     />
-                    <p>Menu Category</p>
+                    <p>Exercise Category</p>
                     <Toolbar>
                         <div >
                             <Tooltip title="Strength Training">
