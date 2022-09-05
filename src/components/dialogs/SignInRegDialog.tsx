@@ -128,11 +128,11 @@ const SignInRegDialog: any = () => {
                     setGymMember(gymMember);
                     setLogInType('signedIn');
                     setSignInRegDialogType('false');
-                    setDialogBackToDefaults();
                     const exerciseItems = await getMembersExerciseItems(gymMember)
                     setExerciseItems(exerciseItems);
                     const gymDayItems = await getMembersGymDays(gymMember)
                     setGymDayItems(gymDayItems);
+                    setDialogBackToDefaults();
                 }
             }
         } catch (err) {

@@ -24,7 +24,7 @@ const ExerciseItemCardInventory = ({ ExerciseItem }: any) => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         exerciseItems,
-        setExercisetemDialogData,
+        setExerciseItemDialogData,
         setExerciseItemDialogOpen,
         idToken,
         customId,
@@ -47,7 +47,7 @@ const ExerciseItemCardInventory = ({ ExerciseItem }: any) => {
                     id: exerciseItems[i].id,
                     dialogType: 'Edit',
                 }
-                setExercisetemDialogData(myEditItem);
+                setExerciseItemDialogData(myEditItem);
                 setExerciseItemDialogOpen(true);
                 break;
             }
@@ -64,7 +64,7 @@ const ExerciseItemCardInventory = ({ ExerciseItem }: any) => {
                     id: uuidv4(),
                     dialogType: "Add",
                 }
-                setExercisetemDialogData(myEditItem);
+                setExerciseItemDialogData(myEditItem);
                 setExerciseItemDialogOpen(true);
                 break;
             }

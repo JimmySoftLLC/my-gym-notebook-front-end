@@ -6,9 +6,9 @@ import setMyStatesLogic from '../../model/setMyStatesLogic';
 
 import {
     SET_MY_STATES,
-    SET_MENU_ITEMS,
-    SET_MENU_ITEM_DIALOG_DATA,
-    SET_MENU_ITEM_DIALOG_OPEN,
+    SET_EXERCISE_ITEMS,
+    SET_EXERCISE_ITEM_DIALOG_DATA,
+    SET_EXERCISE_ITEM_DIALOG_OPEN,
     SET_SIGN_IN_REG_DIALOG_TYPE,
     SET_SIGN_IN_REG_DIALOG_TITLE,
     SET_AUTH_TOKEN,
@@ -18,15 +18,12 @@ import {
     SET_GYM_MEMBER,
     SET_GYM_MEMBER_DIALOG_DATA,
     SET_GYM_MEMBER_DIALOG_OPEN,
-    SET_MENU_DAY_DIALOG_OPEN,
-    SET_MENU_DAY_DIALOG_DATA,
+    SET_GYM_DAY_DIALOG_OPEN,
+    SET_GYM_DAY_DIALOG_DATA,
     SET_LOADING,
     SET_GYM_MEMBERS,
-    SET_MENU_DAYS,
+    SET_GYM_DAY_ITEMS,
     SET_LOADING_DIALOG,
-    SET_ENTERTAINMENT_ITEMS,
-    SET_ENTERTAINMENT_ITEM_DIALOG_DATA,
-    SET_ENTERTAINMENT_ITEM_DIALOG_OPEN,
     SET_ON_SCREEN_DEBUG_MESSAGE,
     SET_PHOTOS,
     SET_PHOTO_DIALOG_DATA,
@@ -221,13 +218,13 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     const setGymMemberDialogData = async (gymMemberDialogData: any) => { dispatch({ type: SET_GYM_MEMBER_DIALOG_DATA, payload: gymMemberDialogData }) }
     const setGymMemberDialogOpen = async (gymMemberDialogOpen: any) => { dispatch({ type: SET_GYM_MEMBER_DIALOG_OPEN, payload: gymMemberDialogOpen }) }
 
-    // menu items and dialog --------------------------------------------
-    const setExercisetemDialogDataItem = async (key: string, value: any) => {
+    // exercise items and dialog --------------------------------------------
+    const setExerciseItemDialogDataItem = async (key: string, value: any) => {
         let exerciseItemDialogData = JSON.parse(JSON.stringify(state.exerciseItemDialogData))
         exerciseItemDialogData[key] = value;
-        setExercisetemDialogData(exerciseItemDialogData);
+        setExerciseItemDialogData(exerciseItemDialogData);
     }
-    const setExercisetemDialogDataCategory = async (key: string) => {
+    const setExerciseItemDialogDataCategory = async (key: string) => {
         let myNewCategories = JSON.parse(JSON.stringify(state.exerciseItemDialogData.categoryJSON))
         let myIndex = -1
         let keysToClear = ['strength',
@@ -249,41 +246,21 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         } else {
             myNewCategories.push(key)
         }
-        setExercisetemDialogDataItem('categoryJSON', myNewCategories)
+        setExerciseItemDialogDataItem('categoryJSON', myNewCategories)
     }
-    const setExerciseItems = async (exerciseItems: any[]) => { dispatch({ type: SET_MENU_ITEMS, payload: exerciseItems }) }
-    const setExercisetemDialogData = async (exerciseItemDialogData: any) => { dispatch({ type: SET_MENU_ITEM_DIALOG_DATA, payload: exerciseItemDialogData }) }
-    const setExerciseItemDialogOpen = async (exerciseItemDialogOpen: any) => { dispatch({ type: SET_MENU_ITEM_DIALOG_OPEN, payload: exerciseItemDialogOpen }) }
+    const setExerciseItems = async (exerciseItems: any[]) => { dispatch({ type: SET_EXERCISE_ITEMS, payload: exerciseItems }) }
+    const setExerciseItemDialogData = async (exerciseItemDialogData: any) => { dispatch({ type: SET_EXERCISE_ITEM_DIALOG_DATA, payload: exerciseItemDialogData }) }
+    const setExerciseItemDialogOpen = async (exerciseItemDialogOpen: any) => { dispatch({ type: SET_EXERCISE_ITEM_DIALOG_OPEN, payload: exerciseItemDialogOpen }) }
 
-    // menu days and dialog -----------------------------------------------
-    const setGymDays = async (gymDays: any[]) => { dispatch({ type: SET_MENU_DAYS, payload: gymDays }) }
+    // gym days and dialog -----------------------------------------------
+    const setGymDayItems = async (gymDays: any[]) => { dispatch({ type: SET_GYM_DAY_ITEMS, payload: gymDays }) }
     const setGymDayDialogDataItem = async (key: string | number, value: any) => {
         let gymDayDialogData = JSON.parse(JSON.stringify(state.gymDayDialogData))
         gymDayDialogData[key] = value;
         setGymDayDialogData(gymDayDialogData);
     }
-    const setGymDayDialogData = async (gymDayDialogData: any) => { dispatch({ type: SET_MENU_DAY_DIALOG_DATA, payload: gymDayDialogData }) }
-    const setGymDayDialogOpen = async (gymDayDialogOpen: any) => { dispatch({ type: SET_MENU_DAY_DIALOG_OPEN, payload: gymDayDialogOpen }) }
-
-    // entertainment items and dialog ---------------------------------------------
-    const setEntertainmentItems = async (entertainmentItems: any[]) => { dispatch({ type: SET_ENTERTAINMENT_ITEMS, payload: entertainmentItems }) }
-    const setEntertainmentItemDialogDataItem = async (key: string, value: any) => {
-        let entertainmentItemDialogData = JSON.parse(JSON.stringify(state.entertainmentItemDialogData))
-        entertainmentItemDialogData[key] = value;
-        setEntertainmentItemDialogData(entertainmentItemDialogData);
-    }
-    const setEntertainmentItemDialogDataCategory = async (key: any) => {
-        let myNewCategories = JSON.parse(JSON.stringify(state.entertainmentItemDialogData.categoryJSON))
-        let myIndex = myNewCategories.indexOf(key, 0)
-        if (myIndex !== -1) {
-            myNewCategories.splice(myIndex, 1)
-        } else {
-            myNewCategories.push(key)
-        }
-        setEntertainmentItemDialogDataItem('categoryJSON', myNewCategories)
-    }
-    const setEntertainmentItemDialogData = async (entertainmentItemDialogData: any) => { dispatch({ type: SET_ENTERTAINMENT_ITEM_DIALOG_DATA, payload: entertainmentItemDialogData }) }
-    const setEntertainmentItemDialogOpen = async (entertainmentItemDialogOpen: any) => { dispatch({ type: SET_ENTERTAINMENT_ITEM_DIALOG_OPEN, payload: entertainmentItemDialogOpen }) }
+    const setGymDayDialogData = async (gymDayDialogData: any) => { dispatch({ type: SET_GYM_DAY_DIALOG_DATA, payload: gymDayDialogData }) }
+    const setGymDayDialogOpen = async (gymDayDialogOpen: any) => { dispatch({ type: SET_GYM_DAY_DIALOG_OPEN, payload: gymDayDialogOpen }) }
 
     // photos and dialog -----------------------------------------------------
     const setPhotos = async (photos: any[]) => { dispatch({ type: SET_PHOTOS, payload: photos }) }
@@ -346,9 +323,10 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 selectedDate: state.selectedDate,
                 setMyState,
                 setMyStates,
-                setExercisetemDialogDataItem,
-                setExercisetemDialogDataCategory,
+                setExerciseItemDialogDataItem,
+                setExerciseItemDialogDataCategory,
                 setExerciseItemDialogOpen,
+                setExerciseItemDialogData,
                 setSignInRegDialogType,
                 setSignInRegDialogTitle,
                 setAuthToken,
@@ -360,19 +338,13 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 setGymMemberDialogData,
                 setGymMemberDialogOpen,
                 setGymMemberDialogDataItem,
-                setExercisetemDialogData,
                 setGymDayDialogData,
                 setGymDayDialogOpen,
                 setGymDayDialogDataItem,
                 setLoading,
                 setGymMembers,
-                setGymDays,
+                setGymDayItems,
                 setLoadingDialog,
-                setEntertainmentItems,
-                setEntertainmentItemDialogData,
-                setEntertainmentItemDialogDataItem,
-                setEntertainmentItemDialogOpen,
-                setEntertainmentItemDialogDataCategory,
                 setOnScreenDebugMessage,
                 setPhotos,
                 setPhotoDialogDataItem,
