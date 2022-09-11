@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 const SignedInTopToolBar = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
-        setExercisetemDialogData,
+        setExerciseItemDialogData,
         setExerciseItemDialogOpen,
         restaurantId,
         myStates,
@@ -27,7 +27,7 @@ const SignedInTopToolBar = () => {
             restaurantId: restaurantId,
             dialogType: "Add",
         }
-        setExercisetemDialogData(myEditItem);
+        setExerciseItemDialogData(myEditItem);
         setExerciseItemDialogOpen(true);
     };
 

@@ -5,6 +5,10 @@ import { v4 as uuidv4 } from 'uuid';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
 import dateString from '../../model/dateString';
+import getGymDaysFromIds from '../../model/gymDay/getGymDaysFromIds';
+import deleteGymDay from '../../model/gymDay/deleteGymDay';
+import putGymMember from '../../model/gymMember/putGymMember';
+import sortGymDays from '../../model/gymDay/sortGymDays';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,26 +24,30 @@ const GymDayCard: any = ({ GymDay }: any) => {
 
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
-        gymMembersGymDays,
+        gymMember,
+        gymDays,
         setGymDayDialogData,
         setGymDayDialogOpen,
+        idToken,
+        customId,
+        setGymMember,
+        myStates,
+        setGymDayItems,
     } = dataAndMethodsContext;
 
     const deleteConfirmDialogContext: any = useContext(DeleteConfirmDialogContext);
     const { setDeleteConfirmDialog } = deleteConfirmDialogContext;
 
-    const GymDayEditClick = (GymDayId: any) => {
-        for (let i = 0; i < gymMembersGymDays.length; i++) {
-            if (GymDayId === gymMembersGymDays[i].id) {
+    const GymDayEditClick = (gymDayId: any) => {
+        for (let i = 0; i < gymDays.length; i++) {
+            if (gymDayId === gymDays[i].id) {
                 let myEditItem = {
-                    id: gymMembersGymDays[i].id,
-                    title: gymMembersGymDays[i].title,
-                    dateFrom: gymMembersGymDays[i].dateFrom,
-                    dateTo: gymMembersGymDays[i].dateTo,
-                    description: gymMembersGymDays[i].description,
-                    exerciseItemIdsJSON: gymMembersGymDays[i].exerciseItemIdsJSON,
-                    entertainmentItemIdsJSON: gymMembersGymDays[i].entertainmentItemIdsJSON,
-                    gymMembersJSON: gymMembersGymDays[i].gymMembersJSON,
+                    id: gymDays[i].id,
+                    title: gymDays[i].title,
+                    dateFrom: gymDays[i].dateFrom,
+                    dateTo: gymDays[i].dateTo,
+                    description: gymDays[i].description,
+                    exerciseItemIdsJSON: gymDays[i].exerciseItemIdsJSON,
                     dialogType: 'Edit',
                 }
                 setGymDayDialogData(myEditItem);
@@ -49,18 +57,16 @@ const GymDayCard: any = ({ GymDay }: any) => {
         }
     };
 
-    const GymDayCopyClick = (GymDayId: any) => {
-        for (let i = 0; i < gymMembersGymDays.length; i++) {
-            if (GymDayId === gymMembersGymDays[i].id) {
+    const GymDayCopyClick = (gymDayId: any) => {
+        for (let i = 0; i < gymDays.length; i++) {
+            if (gymDayId === gymDays[i].id) {
                 let myEditItem = {
                     id: uuidv4(),
-                    title: gymMembersGymDays[i].title,
-                    dateFrom: gymMembersGymDays[i].dateFrom,
-                    dateTo: gymMembersGymDays[i].dateTo,
-                    description: gymMembersGymDays[i].description,
-                    exerciseItemIdsJSON: gymMembersGymDays[i].exerciseItemIdsJSON,
-                    entertainmentItemIdsJSON: gymMembersGymDays[i].entertainmentItemIdsJSON,
-                    gymMembersJSON: gymMembersGymDays[i].gymMembersJSON,
+                    title: gymDays[i].title,
+                    dateFrom: gymDays[i].dateFrom,
+                    dateTo: gymDays[i].dateTo,
+                    description: gymDays[i].description,
+                    exerciseItemIdsJSON: gymDays[i].exerciseItemIdsJSON,
                     dialogType: "Add",
                 }
                 setGymDayDialogData(myEditItem);
@@ -70,26 +76,32 @@ const GymDayCard: any = ({ GymDay }: any) => {
         }
     };
 
-    const deleteMenuClick = (GymDayId: any) => {
-        for (let i = 0; i < gymMembersGymDays.length; i++) {
-            if (GymDayId === gymMembersGymDays[i].id) {
+    const deleteMenuClick = (gymDayId: any) => {
+        for (let i = 0; i < gymDays.length; i++) {
+            if (gymDayId === gymDays[i].id) {
                 setDeleteConfirmDialog(true,
-                    gymMembersGymDays[i].title,
+                    gymDays[i].title,
                     'deleteGymDay',
-                    GymDayId,
+                    gymDayId,
                     deleteGymDayById);
                 break;
             }
         }
     };
 
-    const deleteGymDayById = async (GymDayId: any) => {
-
+    const deleteGymDayById = async (gymDayId: any) => {
+        let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
+        myNewGymMember.gymDayIdsJSON = myNewGymMember.gymDayIdsJSON.filter((e: any) => e !== gymDayId)
+        await deleteGymDay(gymDayId, idToken, customId);
+        await putGymMember(myNewGymMember, idToken, customId)
+        setGymMember(myNewGymMember);
+        let myGymDayItems = await getGymDaysFromIds(myNewGymMember.gymDayIdsJSON);
+        myGymDayItems = await sortGymDays(myGymDayItems, myStates);
+        setGymDayItems(myGymDayItems)
     }
 
     // format dates for display
     let myDate = dateString(GymDay.dateFrom, GymDay.dateTo, 'displayFromTo')
-
 
     return (
         <div className='card'>

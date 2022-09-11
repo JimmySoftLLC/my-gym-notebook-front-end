@@ -1,12 +1,12 @@
 import getGymDaysFromIds from './getGymDaysFromIds';
 
 const getMembersGymDays = async (gymMember: any) => {
-    let exerciseItemIds = [];
+    let gymDayItemIds = [];
 
-    for (let k = 0; k < gymMember.exerciseIdsJSON.length; k++) {
-        exerciseItemIds.push(gymMember.exerciseIdsJSON[k])
+    for (let k = 0; k < gymMember.gymDayIdsJSON.length; k++) {
+        gymDayItemIds.push(gymMember.gymDayIdsJSON[k])
     }
-    const gymDayItems = await getGymDaysFromIds(exerciseItemIds)
+    const gymDayItems = await getGymDaysFromIds(gymDayItemIds)
 
     return gymDayItems;
 }

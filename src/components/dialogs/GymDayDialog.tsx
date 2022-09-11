@@ -55,7 +55,7 @@ const GymDayDialog: any = () => {
         setGymDayDialogDataItem,
         idToken,
         customId,
-        setGymDays,
+        setGymDayItems,
         setGymDayDialogData,
         setGymMember,
         gymMember
@@ -89,7 +89,7 @@ const GymDayDialog: any = () => {
         await putGymDay(newGymDay, idToken, customId);
         let myGymDays = await getGymDays(gymMember.gymDayIdsJSON);
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
-        setGymDays(myGymDays)
+        setGymDayItems(myGymDays)
     };
 
     const saveGymDayAdd = async () => {
@@ -107,7 +107,7 @@ const GymDayDialog: any = () => {
         setGymMember(myNewGymMember);
         let myGymDays = await getGymDays(myNewGymMember.gymDayIdsJSON);
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
-        setGymDays(myGymDays)
+        setGymDayItems(myGymDays)
     };
 
     const selectAllExerciseItems = () => {

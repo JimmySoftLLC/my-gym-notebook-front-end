@@ -13,7 +13,7 @@ const sortGymMembers = (gymMembers: any[], gymMember: { id: any; } | null) => {
         return 0;
     });
 
-    // put logged in gymMember at the begining of the array
+    // put logged in gymMember at the beginning of the array
     if (gymMember) {
         let myIndex = myGymMembers.findIndex((item: { id: any; }) => item.id === gymMember.id);
         let mySlicedGymMember = myGymMembers.splice(myIndex, 1)
