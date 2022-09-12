@@ -3,7 +3,7 @@ import {
     exerciseItemsTableName,
 } from '../../api/apiConstants';
 
-const putExerciseItem = async (exerciseItem: any, myToken: any, myCustomId: any) => {
+const putExercise = async (exerciseItem: any, myToken: any, myCustomId: any) => {
     const data = await putItemDynamoDB(exerciseItemsTableName, exerciseItem, myToken, myCustomId)
     if (data.err) {
         return null;
@@ -11,4 +11,4 @@ const putExerciseItem = async (exerciseItem: any, myToken: any, myCustomId: any)
     return data;
 }
 
-export default putExerciseItem;
+export default putExercise;

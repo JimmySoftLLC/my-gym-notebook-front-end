@@ -110,13 +110,13 @@ const WorkoutDialog: any = () => {
         setWorkoutItems(myWorkouts)
     };
 
-    const selectAllExerciseItems = () => {
+    const selectAllExercises = () => {
         let newWorkoutDialogData = JSON.parse(JSON.stringify(workoutDialogData))
         newWorkoutDialogData.exerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
         setWorkoutDialogData(newWorkoutDialogData)
     }
 
-    const unSelectAllExerciseItems = () => {
+    const unSelectAllExercises = () => {
         let newWorkoutDialogData = JSON.parse(JSON.stringify(workoutDialogData))
         newWorkoutDialogData.exerciseItemIdsJSON = []
         setWorkoutDialogData(newWorkoutDialogData)
@@ -220,8 +220,8 @@ const WorkoutDialog: any = () => {
                                 </AccordionDetails>
                             </Accordion>
                             <DialogActions>
-                                <Button onClick={() => selectAllExerciseItems()} color="default">Select All</Button>
-                                <Button onClick={() => unSelectAllExerciseItems()} color="default">Unselect All</Button>
+                                <Button onClick={() => selectAllExercises()} color="default">Select All</Button>
+                                <Button onClick={() => unSelectAllExercises()} color="default">Unselect All</Button>
                             </DialogActions>
                         </DialogContent>
                         <DialogActions>

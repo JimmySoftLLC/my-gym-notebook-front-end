@@ -14,7 +14,7 @@ const SignedInBotToolBar = () => {
         setGymMemberDialogData,
         setGymMemberDialogOpen,
         gymMember,
-        setExerciseItems,
+        setExercises,
         setImageEditorData,
     } = dataAndMethodsContext;
 
@@ -23,7 +23,7 @@ const SignedInBotToolBar = () => {
         setIdToken('');
         setCustomId('');
         setLogInType('default');
-        setExerciseItems([]);
+        setExercises([]);
     }
 
     const handleEditGymMember = () => {

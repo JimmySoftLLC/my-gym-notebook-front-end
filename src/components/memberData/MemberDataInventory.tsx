@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ExerciseItemCardGymDay from '../gymDayWorkout/GymDayWorkoutCard';
+import ExerciseCardGymDay from '../gymDayWorkout/GymDayWorkoutCard';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 
 const MemberDataInventory = (GymDayId: any) => {
@@ -9,12 +9,12 @@ const MemberDataInventory = (GymDayId: any) => {
         myStates,
     } = dataAndMethodsContext;
 
-    return exerciseItems.map((ExerciseItem: { id: any; }) => <ExerciseItemCardGymDay ExerciseItem={ExerciseItem}
+    return exerciseItems.map((Exercise: { id: any; }) => <ExerciseCardGymDay Exercise={Exercise}
         myStates={myStates}
         isInList={true}
         GymDayId={GymDayId}
-        ExerciseItemId={ExerciseItem.id}
-        key={ExerciseItem.id} />);
+        ExerciseId={Exercise.id}
+        key={Exercise.id} />);
 };
 
 export default MemberDataInventory;

@@ -1,4 +1,4 @@
-const sortExerciseItems = async (exerciseItems: any, myStates: any) => {
+const sortExercises = async (exerciseItems: any, myStates: any) => {
     if (myStates['sortTitle'] || myStates === 'sortTitle') {
         // sort by title
         exerciseItems.sort(function (a: any, b: any) {
@@ -23,4 +23,4 @@ const sortExerciseItems = async (exerciseItems: any, myStates: any) => {
     return exerciseItems;
 }
 
-export default sortExerciseItems
+export default sortExercises

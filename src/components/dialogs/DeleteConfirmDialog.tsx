@@ -25,7 +25,7 @@ const DeleteConfirmDialog: any = () => {
     const [confirmMessage, setConfirmMessage] = useState('');
 
     const chooseDelete = () => {
-        if (deleteConfirmDialog.dialogType === "deleteExerciseItem") {
+        if (deleteConfirmDialog.dialogType === "deleteExercise") {
             deleteFunction(deleteConfirmDialog.index)
             setConfirmMessage('')
         }
@@ -53,7 +53,7 @@ const DeleteConfirmDialog: any = () => {
                     aria-labelledby='alert-dialog-title'
                     aria-describedby='alert-dialog-description'
                 >
-                    {deleteConfirmDialog.dialogType === "deleteExerciseItem" && <DialogTitle id='alert-dialog-title'>
+                    {deleteConfirmDialog.dialogType === "deleteExercise" && <DialogTitle id='alert-dialog-title'>
                         <i className='fas fa-exclamation-triangle'></i>
                         {'  Delete exercise item warning'}
                     </DialogTitle>}
@@ -66,7 +66,7 @@ const DeleteConfirmDialog: any = () => {
                         {'  Delete photo warning'}
                     </DialogTitle>}
                     <DialogContent>
-                        {deleteConfirmDialog.dialogType === "deleteExerciseItem" && <DialogContentText id='alert-dialog-description'>
+                        {deleteConfirmDialog.dialogType === "deleteExercise" && <DialogContentText id='alert-dialog-description'>
                             {`You about to delete `}
                             <strong>{deleteConfirmDialog.name}</strong>
                             {`.  This process is irreversible are you sure?`}

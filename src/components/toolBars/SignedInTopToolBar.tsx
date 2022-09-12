@@ -8,8 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 const SignedInTopToolBar = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
-        setExerciseItemDialogData,
-        setExerciseItemDialogOpen,
+        setExerciseDialogData,
+        setExerciseDialogOpen,
         restaurantId,
         myStates,
         setWorkoutDialogData,
@@ -18,7 +18,7 @@ const SignedInTopToolBar = () => {
         setGymDayDialogOpen,
     } = dataAndMethodsContext;
 
-    const newExerciseItemClick = () => {
+    const newExerciseClick = () => {
         let myNewId = uuidv4()
         let myEditItem = {
             id: myNewId,
@@ -29,8 +29,8 @@ const SignedInTopToolBar = () => {
             restaurantId: restaurantId,
             dialogType: "Add",
         }
-        setExerciseItemDialogData(myEditItem);
-        setExerciseItemDialogOpen(true);
+        setExerciseDialogData(myEditItem);
+        setExerciseDialogOpen(true);
     };
 
     const newWorkoutClick = () => {
@@ -91,7 +91,7 @@ const SignedInTopToolBar = () => {
                     {(myStates['exerciseSettings']) && <Tooltip title="Add exercise item">
                         <IconButton aria-label=""
                             color="inherit"
-                            onClick={() => newExerciseItemClick()}>
+                            onClick={() => newExerciseClick()}>
                             <i className="icon-book-plus"></i>
                         </IconButton>
                     </Tooltip>}

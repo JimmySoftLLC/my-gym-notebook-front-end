@@ -2,13 +2,13 @@ import batchGetItemDynamoDB from '../../api/batchGetItemDynamoDB';
 
 import {
     exerciseItemsTableName,
-    projectionExpressionExerciseItem,
+    projectionExpressionExercise,
     blankPlaceHolder,
 } from '../../api/apiConstants';
 
 const getBatch = async (ids: any) => {
     let exerciseItems = []
-    const data = await batchGetItemDynamoDB(exerciseItemsTableName, ids, projectionExpressionExerciseItem)
+    const data = await batchGetItemDynamoDB(exerciseItemsTableName, ids, projectionExpressionExercise)
     if (data.err) {
         return [];
     }
@@ -21,14 +21,14 @@ const getBatch = async (ids: any) => {
     return exerciseItems;
 }
 
-const getExerciseItems = async (exerciseItemIds: any) => {
+const getExercises = async (exerciseItemIds: any) => {
     if (exerciseItemIds.length === 0) { return [] }
 
     // get records in batches of 100
     let myIds = [];
     let currentIndex = 0;
     let nextIndex = 0;
-    let myExerciseItems: any = []
+    let myExercises: any = []
     for (let i = 0; i < exerciseItemIds.length; i++) {
         myIds.push(exerciseItemIds[i]);
         currentIndex++;
@@ -36,7 +36,7 @@ const getExerciseItems = async (exerciseItemIds: any) => {
             const myBatch = await getBatch(myIds);
             myIds = [];
             currentIndex = 0
-            myExerciseItems = myExerciseItems.concat(myBatch)
+            myExercises = myExercises.concat(myBatch)
             nextIndex = i + 1;
         }
     }
@@ -47,9 +47,9 @@ const getExerciseItems = async (exerciseItemIds: any) => {
         myIds.push(exerciseItemIds[i]);
     }
     const myBatch = await getBatch(myIds);
-    myExerciseItems = myExerciseItems.concat(myBatch)
+    myExercises = myExercises.concat(myBatch)
 
-    return myExerciseItems;
+    return myExercises;
 }
 
-export default getExerciseItems
+export default getExercises

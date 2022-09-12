@@ -2,35 +2,35 @@ import React, { useContext } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 
-const GymDayWorkoutCard = ({ ExerciseItem }: any) => {
+const GymDayWorkoutCard = ({ Exercise }: any) => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const { gymDayDialogData, setGymDayDialogData
     } = dataAndMethodsContext;
 
-    let ExerciseItemSelected = false;
+    let ExerciseSelected = false;
     for (let j = 0; j < gymDayDialogData.exerciseItemIdsJSON.length; j++) {
-        if (ExerciseItem.id === gymDayDialogData.exerciseItemIdsJSON[j]) {
-            ExerciseItemSelected = true;
+        if (Exercise.id === gymDayDialogData.exerciseItemIdsJSON[j]) {
+            ExerciseSelected = true;
             break;
         }
     }
 
-    const changeExerciseItemSelected = () => {
+    const changeExerciseSelected = () => {
         let myNewGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        let myIndex = myNewGymDayDialogData.exerciseItemIdsJSON.indexOf(ExerciseItem.id, 0)
+        let myIndex = myNewGymDayDialogData.exerciseItemIdsJSON.indexOf(Exercise.id, 0)
         if (myIndex !== -1) {
             myNewGymDayDialogData.exerciseItemIdsJSON.splice(myIndex, 1)
         } else {
-            myNewGymDayDialogData.exerciseItemIdsJSON.push(ExerciseItem.id)
+            myNewGymDayDialogData.exerciseItemIdsJSON.push(Exercise.id)
         }
         setGymDayDialogData(myNewGymDayDialogData)
     }
 
     const items = []
-    for (let i = 0; i < ExerciseItem.categoryJSON.length; i++) {
-        switch (ExerciseItem.categoryJSON[i]) {
+    for (let i = 0; i < Exercise.categoryJSON.length; i++) {
+        switch (Exercise.categoryJSON[i]) {
             case 'meat':
-                items.push(<i className='icon-tbone' key={ExerciseItem.id + "_meat"} style={{ paddingRight: '.25rem' }}></i>)
+                items.push(<i className='icon-tbone' key={Exercise.id + "_meat"} style={{ paddingRight: '.25rem' }}></i>)
                 break;
             default:
         }
@@ -40,12 +40,12 @@ const GymDayWorkoutCard = ({ ExerciseItem }: any) => {
         <div className='card'>
             <h4>
                 <Checkbox
-                    checked={ExerciseItemSelected}
-                    onChange={changeExerciseItemSelected}
+                    checked={ExerciseSelected}
+                    onChange={changeExerciseSelected}
                     name="checked"
                     color="primary"
                 />
-                {' - '}{items}{ExerciseItem.title}
+                {' - '}{items}{Exercise.title}
             </h4>
         </div>
     );

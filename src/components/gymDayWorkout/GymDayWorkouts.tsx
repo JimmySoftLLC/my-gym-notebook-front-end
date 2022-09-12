@@ -9,12 +9,12 @@ const GymDayWorkouts = (GymDayId: any) => {
         myStates,
     } = dataAndMethodsContext;
 
-    return exerciseItems.map((ExerciseItem: { id: any; }) => <WorkoutCardGymDay ExerciseItem={ExerciseItem}
+    return exerciseItems.map((Exercise: { id: any; }) => <WorkoutCardGymDay Exercise={Exercise}
         myStates={myStates}
         isInList={true}
         GymDayId={GymDayId}
-        ExerciseItemId={ExerciseItem.id}
-        key={ExerciseItem.id} />);
+        ExerciseId={Exercise.id}
+        key={Exercise.id} />);
 };
 
 export default GymDayWorkouts;

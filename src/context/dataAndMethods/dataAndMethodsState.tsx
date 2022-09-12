@@ -241,13 +241,13 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     const setGymMemberDialogOpen = async (gymMemberDialogOpen: any) => { dispatch({ type: SET_GYM_MEMBER_DIALOG_OPEN, payload: gymMemberDialogOpen }) }
 
     // exercise items and dialog --------------------------------------------
-    const setExerciseItems = async (exerciseItems: any[]) => { dispatch({ type: SET_EXERCISE_ITEMS, payload: exerciseItems }) }
-    const setExerciseItemDialogDataItem = async (key: string, value: any) => {
+    const setExercises = async (exerciseItems: any[]) => { dispatch({ type: SET_EXERCISE_ITEMS, payload: exerciseItems }) }
+    const setExerciseDialogDataItem = async (key: string, value: any) => {
         let exerciseItemDialogData = JSON.parse(JSON.stringify(state.exerciseItemDialogData))
         exerciseItemDialogData[key] = value;
-        setExerciseItemDialogData(exerciseItemDialogData);
+        setExerciseDialogData(exerciseItemDialogData);
     }
-    const setExerciseItemDialogDataCategory = async (key: string) => {
+    const setExerciseDialogDataCategory = async (key: string) => {
         let myNewCategories = JSON.parse(JSON.stringify(state.exerciseItemDialogData.categoryJSON))
         let myIndex = -1
         let keysToClear = ['strength',
@@ -269,10 +269,10 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         } else {
             myNewCategories.push(key)
         }
-        setExerciseItemDialogDataItem('categoryJSON', myNewCategories)
+        setExerciseDialogDataItem('categoryJSON', myNewCategories)
     }
-    const setExerciseItemDialogData = async (exerciseItemDialogData: any) => { dispatch({ type: SET_EXERCISE_ITEM_DIALOG_DATA, payload: exerciseItemDialogData }) }
-    const setExerciseItemDialogOpen = async (exerciseItemDialogOpen: any) => { dispatch({ type: SET_EXERCISE_ITEM_DIALOG_OPEN, payload: exerciseItemDialogOpen }) }
+    const setExerciseDialogData = async (exerciseItemDialogData: any) => { dispatch({ type: SET_EXERCISE_ITEM_DIALOG_DATA, payload: exerciseItemDialogData }) }
+    const setExerciseDialogOpen = async (exerciseItemDialogOpen: any) => { dispatch({ type: SET_EXERCISE_ITEM_DIALOG_OPEN, payload: exerciseItemDialogOpen }) }
 
     // workouts and dialog -----------------------------------------------
     const setWorkoutItems = async (workouts: any[]) => { dispatch({ type: SET_WORKOUT_ITEMS, payload: workouts }) }
@@ -344,7 +344,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 exerciseItemDialogOpen: state.exerciseItemDialogOpen,
 
                 exerciseItemsTableName: state.exerciseItemsTableName,
-                myExerciseItemStates: state.myExerciseItemStates,
+                myExerciseStates: state.myExerciseStates,
 
                 workouts: state.workouts,
                 workoutDialogData: state.workoutDialogData,
@@ -382,11 +382,11 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 setGymMemberDialogOpen,
                 setGymMemberDialogDataItem,
 
-                setExerciseItems,
-                setExerciseItemDialogDataItem,
-                setExerciseItemDialogOpen,
-                setExerciseItemDialogData,
-                setExerciseItemDialogDataCategory,
+                setExercises,
+                setExerciseDialogDataItem,
+                setExerciseDialogOpen,
+                setExerciseDialogData,
+                setExerciseDialogDataCategory,
 
                 setWorkoutItems,
                 setWorkoutDialogDataItem,

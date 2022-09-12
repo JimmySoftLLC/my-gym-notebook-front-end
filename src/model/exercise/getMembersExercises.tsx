@@ -1,14 +1,14 @@
-import getExerciseItems from './getExercises';
+import getExercises from './getExercises';
 
-const getMembersExerciseItems = async (gymMember: any) => {
+const getMembersExercises = async (gymMember: any) => {
     let exerciseItemIds = [];
 
     for (let k = 0; k < gymMember.exerciseIdsJSON.length; k++) {
         exerciseItemIds.push(gymMember.exerciseIdsJSON[k])
     }
-    const myExerciseItems = await getExerciseItems(exerciseItemIds)
+    const myExercises = await getExercises(exerciseItemIds)
 
-    return myExerciseItems;
+    return myExercises;
 }
 
-export default getMembersExerciseItems;
+export default getMembersExercises;

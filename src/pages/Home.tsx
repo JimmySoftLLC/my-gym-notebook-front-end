@@ -1,10 +1,10 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import TopNavBar from '../components/TopNavBar';
 import DataAndMethodsContext from '../context/dataAndMethods/dataAndMethodsContext';
-import ExerciseItemsInventory from '../components/exercise/Exercises';
+import ExercisesInventory from '../components/exercise/Exercises';
 import GymDaysInventory from '../components/gymDay/GymDays';
 import BotNavBar from '../components/BotNavBar';
-import ExerciseItemDialog from '../components/dialogs/ExerciseItemDialog';
+import ExerciseDialog from '../components/dialogs/ExerciseDialog';
 import GymMemberDialog from '../components/dialogs/GymMemberDialog';
 import GymDayDialog from '../components/dialogs/GymDayDialog';
 import AlertDialog from '../components/dialogs/AlertDialog';
@@ -41,10 +41,10 @@ const Home = () => {
                 <p className='p home-page-bottom-margin'></p>
             </div>}
             {logInType === 'signedIn' && <div className='container gym-member-page-top-margin'>
-                {myStates.exerciseSettings && <ExerciseItemsInventory />}
+                {myStates.exerciseSettings && <ExercisesInventory />}
                 {myStates.workoutSettings && <WorkoutInventory />}
                 {myStates.gymDaySettings && <GymDaysInventory />}
-                <ExerciseItemDialog />
+                <ExerciseDialog />
                 <GymMemberDialog />
                 <GymDayDialog />
                 <WorkoutDialog />

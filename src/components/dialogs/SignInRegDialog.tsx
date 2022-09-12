@@ -13,7 +13,7 @@ import getGymMember from '../../model/gymMember/getGymMember';
 import createGymMember from '../../model/gymMember/createGymMember';
 import isEmail from 'validator/lib/isEmail';
 import { username, secret } from '../../envConstants'
-import getMembersExerciseItems from '../../model/exercise/getMembersExercises';
+import getMembersExercises from '../../model/exercise/getMembersExercises';
 import getMembersWorkouts from '../../model/workout/getMembersWorkouts';
 import getMembersGymDays from '../../model/gymDay/getMembersGymDays';
 
@@ -45,7 +45,7 @@ const SignInRegDialog: any = () => {
         setCustomId,
         setLogInType,
         setGymMember,
-        setExerciseItems,
+        setExercises,
         setWorkoutItems,
         setGymDayItems,
     } = dataAndMethodsContext;
@@ -129,8 +129,8 @@ const SignInRegDialog: any = () => {
                     setGymMember(gymMember);
                     setLogInType('signedIn');
                     setSignInRegDialogType('false');
-                    const exerciseItems = await getMembersExerciseItems(gymMember)
-                    setExerciseItems(exerciseItems);
+                    const exerciseItems = await getMembersExercises(gymMember)
+                    setExercises(exerciseItems);
                     const workoutItems = await getMembersWorkouts(gymMember)
                     setWorkoutItems(workoutItems);
                     const gymDayItems = await getMembersGymDays(gymMember)

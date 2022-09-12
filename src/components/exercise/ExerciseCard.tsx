@@ -4,10 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { v4 as uuidv4 } from 'uuid';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
-import sortExerciseItems from '../../model/exercise/sortExercise'
-import deleteExerciseItem from '../../model/exercise/deleteExercise';
+import sortExercises from '../../model/exercise/sortExercise'
+import deleteExercise from '../../model/exercise/deleteExercise';
 import putGymMember from '../../model/gymMember/putGymMember';
-import getExerciseItems from '../../model/exercise/getExercises';
+import getExercises from '../../model/exercise/getExercises';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -18,17 +18,17 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const ExerciseCard = ({ ExerciseItem }: any) => {
+const ExerciseCard = ({ Exercise }: any) => {
     const classes = useStyles();
 
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         exerciseItems,
-        setExerciseItemDialogData,
-        setExerciseItemDialogOpen,
+        setExerciseDialogData,
+        setExerciseDialogOpen,
         idToken,
         customId,
-        setExerciseItems,
+        setExercises,
         myStates,
         setGymMember,
         gymMember,
@@ -37,7 +37,7 @@ const ExerciseCard = ({ ExerciseItem }: any) => {
     const deleteConfirmDialogContext: any = useContext(DeleteConfirmDialogContext);
     const { setDeleteConfirmDialog } = deleteConfirmDialogContext;
 
-    const handleClickExerciseItemEdit = (exerciseId: any) => {
+    const handleClickExerciseEdit = (exerciseId: any) => {
         for (let i = 0; i < exerciseItems.length; i++) {
             if (exerciseId === exerciseItems[i].id) {
                 let myEditItem = {
@@ -47,14 +47,14 @@ const ExerciseCard = ({ ExerciseItem }: any) => {
                     id: exerciseItems[i].id,
                     dialogType: 'Edit',
                 }
-                setExerciseItemDialogData(myEditItem);
-                setExerciseItemDialogOpen(true);
+                setExerciseDialogData(myEditItem);
+                setExerciseDialogOpen(true);
                 break;
             }
         }
     };
 
-    const handleClickExerciseItemCopy = (exerciseId: any) => {
+    const handleClickExerciseCopy = (exerciseId: any) => {
         for (let i = 0; i < exerciseItems.length; i++) {
             if (exerciseId === exerciseItems[i].id) {
                 let myEditItem = {
@@ -64,50 +64,50 @@ const ExerciseCard = ({ ExerciseItem }: any) => {
                     id: uuidv4(),
                     dialogType: "Add",
                 }
-                setExerciseItemDialogData(myEditItem);
-                setExerciseItemDialogOpen(true);
+                setExerciseDialogData(myEditItem);
+                setExerciseDialogOpen(true);
                 break;
             }
         }
     };
 
-    const loadDeleteExerciseItemDialog = (exerciseId: any) => {
+    const loadDeleteExerciseDialog = (exerciseId: any) => {
         for (let i = 0; i < exerciseItems.length; i++) {
             if (exerciseId === exerciseItems[i].id) {
                 setDeleteConfirmDialog(true,
                     exerciseItems[i].title,
-                    'deleteExerciseItem',
+                    'deleteExercise',
                     exerciseId,
-                    deleteExerciseItemById);
+                    deleteExerciseById);
                 break;
             }
         }
     };
 
-    const deleteExerciseItemById = async (exerciseId: any) => {
+    const deleteExerciseById = async (exerciseId: any) => {
         let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
         myNewGymMember.exerciseIdsJSON = myNewGymMember.exerciseIdsJSON.filter((e: any) => e !== exerciseId)
-        await deleteExerciseItem(exerciseId, idToken, customId);
+        await deleteExercise(exerciseId, idToken, customId);
         await putGymMember(myNewGymMember, idToken, customId)
         setGymMember(myNewGymMember);
-        let myExerciseItems = await getExerciseItems(myNewGymMember.exerciseIdsJSON);
-        myExerciseItems = await sortExerciseItems(myExerciseItems, myStates);
-        setExerciseItems(myExerciseItems)
+        let myExercises = await getExercises(myNewGymMember.exerciseIdsJSON);
+        myExercises = await sortExercises(myExercises, myStates);
+        setExercises(myExercises)
     }
 
     return (
         <div className='card'>
-            <h4><i className="fas fa-book-open"></i>{' - '}{ExerciseItem.title}
+            <h4><i className="fas fa-book-open"></i>{' - '}{Exercise.title}
             </h4>
-            {myStates['showDescription'] && <p>{ExerciseItem.description}</p>}
+            {myStates['showDescription'] && <p>{Exercise.description}</p>}
             <div className={classes.root} >
-                <Button variant="outlined" color="primary" onClick={() => handleClickExerciseItemEdit(ExerciseItem.id)}>
+                <Button variant="outlined" color="primary" onClick={() => handleClickExerciseEdit(Exercise.id)}>
                     <i className="fas fa-edit"></i>
                 </Button>
-                <Button variant="outlined" color="primary" onClick={() => handleClickExerciseItemCopy(ExerciseItem.id)}>
+                <Button variant="outlined" color="primary" onClick={() => handleClickExerciseCopy(Exercise.id)}>
                     <i className="fas fa-copy"></i>
                 </Button>
-                <Button variant="outlined" color="primary" onClick={() => loadDeleteExerciseItemDialog(ExerciseItem.id)}>
+                <Button variant="outlined" color="primary" onClick={() => loadDeleteExerciseDialog(Exercise.id)}>
                     <i className="fas fa-trash"></i>
                 </Button>
             </div>

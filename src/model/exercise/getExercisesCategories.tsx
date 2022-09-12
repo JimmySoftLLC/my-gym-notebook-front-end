@@ -5,7 +5,7 @@ const itemInList = (exerciseCategories: any, exerciseItemCategories: any) => {
     return false
 }
 
-const getExerciseItemsCategories = (exerciseItems: any[], myStates: any) => {
+const getExercisesCategories = (exerciseItems: any[], myStates: any) => {
     let exerciseCategories: any = {}
     if (myStates) {
         if (myStates.strength) { exerciseCategories['strength'] = true }
@@ -88,4 +88,4 @@ const getExerciseItemsCategories = (exerciseItems: any[], myStates: any) => {
     return categories
 }
 
-export default getExerciseItemsCategories;
+export default getExercisesCategories;
