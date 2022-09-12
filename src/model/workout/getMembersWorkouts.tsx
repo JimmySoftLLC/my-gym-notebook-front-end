@@ -6,9 +6,9 @@ const getMembersWorkouts = async (gymMember: any) => {
     for (let k = 0; k < gymMember.workoutIdsJSON.length; k++) {
         workoutItemIds.push(gymMember.workoutIdsJSON[k])
     }
-    const WorkoutItems = await getWorkoutsFromIds(workoutItemIds)
+    const Workouts = await getWorkoutsFromIds(workoutItemIds)
 
-    return WorkoutItems;
+    return Workouts;
 }
 
 export default getMembersWorkouts;

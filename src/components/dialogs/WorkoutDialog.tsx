@@ -55,7 +55,7 @@ const WorkoutDialog: any = () => {
         setWorkoutDialogDataItem,
         idToken,
         customId,
-        setWorkoutItems,
+        setWorkouts,
         setWorkoutDialogData,
         setGymMember,
         gymMember
@@ -89,7 +89,7 @@ const WorkoutDialog: any = () => {
         await putWorkout(newWorkout, idToken, customId);
         let myWorkouts = await getWorkouts(gymMember.workoutIdsJSON);
         myWorkouts = await sortWorkouts(myWorkouts, 'sortDate');
-        setWorkoutItems(myWorkouts)
+        setWorkouts(myWorkouts)
     };
 
     const saveWorkoutAdd = async () => {
@@ -107,7 +107,7 @@ const WorkoutDialog: any = () => {
         setGymMember(myNewGymMember);
         let myWorkouts = await getWorkouts(myNewGymMember.workoutIdsJSON);
         myWorkouts = await sortWorkouts(myWorkouts, 'sortDate');
-        setWorkoutItems(myWorkouts)
+        setWorkouts(myWorkouts)
     };
 
     const selectAllExercises = () => {
