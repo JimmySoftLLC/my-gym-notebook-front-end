@@ -159,7 +159,7 @@ const GymDayDialog: any = () => {
                 <Grid container justify="space-around">
                     <Dialog className={classes.root} open={gymDayDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">
-                            {dialogType + " menu day"}</DialogTitle>
+                            {dialogType + " gym day"}</DialogTitle>
                         <DialogContent>
                             <TextField
                                 id="title"

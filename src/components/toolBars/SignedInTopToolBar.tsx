@@ -67,14 +67,14 @@ const SignedInTopToolBar = () => {
                             <i className="icon-calendar-cog"></i>
                         </IconButton>
                     </Tooltip>
-                    {(myStates['exerciseSettings']) && <Tooltip title="Add menu item">
+                    {(myStates['exerciseSettings']) && <Tooltip title="Add exercise item">
                         <IconButton aria-label=""
                             color="inherit"
                             onClick={() => newExerciseItemClick()}>
                             <i className="icon-book-plus"></i>
                         </IconButton>
                     </Tooltip>}
-                    {(myStates['gymDaySettings']) && <Tooltip title="Add menu day">
+                    {(myStates['gymDaySettings']) && <Tooltip title="Add gym day">
                         <IconButton aria-label=""
                             color="inherit"
                             onClick={() => newGymDayClick()}>
