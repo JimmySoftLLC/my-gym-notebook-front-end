@@ -6,7 +6,6 @@ import {
 
     SET_LOADING,
     SET_LOADING_DIALOG,
-    SET_ON_SCREEN_DEBUG_MESSAGE,
 
     SET_SIGN_IN_REG_DIALOG_TYPE,
     SET_SIGN_IN_REG_DIALOG_TITLE,
@@ -31,6 +30,7 @@ import {
     SET_PHOTOS,
     SET_PHOTO_DIALOG_DATA,
     SET_PHOTO_DIALOG_OPEN,
+
     SET_IMAGE_EDITOR_DATA,
 } from '../types';
 
@@ -60,11 +60,6 @@ export default (state: any, action: { type: any; payload: any; }): any => {
             return {
                 ...state,
                 loadingDialog: action.payload,
-            };
-        case SET_ON_SCREEN_DEBUG_MESSAGE:
-            return {
-                ...state,
-                onScreenDebugMessage: action.payload,
             };
         case SET_SIGN_IN_REG_DIALOG_TYPE:
             return {

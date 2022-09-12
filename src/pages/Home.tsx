@@ -25,12 +25,7 @@ const Home = () => {
     }, []);
 
     const dataAndMethodsContext = useContext(DataAndMethodsContext);
-    const { getDataByDate, myStates, logInType, setSelectedDate, selectedDate, setTodaysDate }: any = dataAndMethodsContext
-
-    let myDate = ""
-    if (selectedDate) {
-        myDate = selectedDate.toString().substring(0, 10)
-    }
+    const { getDataByDate, myStates, logInType, setSelectedDate, setTodaysDate }: any = dataAndMethodsContext
 
     return (
         <Fragment>

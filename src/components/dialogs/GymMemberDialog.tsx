@@ -11,7 +11,7 @@ import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsCo
 import putGymMember from '../../model/gymMember/putGymMember';
 import saveImageToDatabase from '../../model/images/saveImageToDatabase';
 import ImageEditor from '../imageEditor/ImageEditor';
-import { Accordion, AccordionDetails, AccordionSummary, Grid, Typography, FormLabel } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Grid, Typography } from '@material-ui/core';
 import MemberDataInventory from '../memberData/MemberDataInventory';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 

@@ -12,7 +12,6 @@ import {
 
     SET_LOADING,
     SET_LOADING_DIALOG,
-    SET_ON_SCREEN_DEBUG_MESSAGE,
 
     SET_SIGN_IN_REG_DIALOG_TYPE,
     SET_SIGN_IN_REG_DIALOG_TITLE,
@@ -37,6 +36,7 @@ import {
     SET_PHOTOS,
     SET_PHOTO_DIALOG_DATA,
     SET_PHOTO_DIALOG_OPEN,
+
     SET_IMAGE_EDITOR_DATA,
 } from '../types';
 
@@ -186,9 +186,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     const setLoading = (myBool: boolean) => dispatch({ type: SET_LOADING, payload: myBool });
     const setLoadingDialog = (myBool: any) => dispatch({ type: SET_LOADING_DIALOG, payload: myBool });
 
-    // debuging tools used for moblie debugging -------------------------------------
-    const setOnScreenDebugMessage = async (onScreenDebugMessage: any) => dispatch({ type: SET_ON_SCREEN_DEBUG_MESSAGE, payload: onScreenDebugMessage });
-
     // get data by date ------------------------------------------------------------------
     const getDataByDate = async (selectedDate: any) => {
         setLoading(true);
@@ -282,71 +279,87 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     return (
         <DataAndMethodsContext.Provider
             value={{
+                apiPath: state.apiPath,
+                apiName: state.apiName,
+
                 myStates: state.myStates,
-                myExerciseItemStates: state.myExerciseItemStates,
-                exerciseItems: state.exerciseItems,
-                exerciseItemsTableName: state.exerciseItemsTableName,
-                exerciseItemDialogData: state.exerciseItemDialogData,
-                exerciseItemDialogOpen: state.exerciseItemDialogOpen,
+
+                todaysDate: state.todaysDate,
+                selectedDate: state.selectedDate,
+
+                loading: state.loading,
+                loadingDialog: state.loadingDialog,
+                onScreenDebugMessage: state.onScreenDebugMessage,
+
                 signInRegDialogType: state.signInRegDialogType,
                 signInRegDialogTitle: state.signInRegDialogTitle,
                 authToken: state.authToken,
                 idToken: state.idToken,
-                apiPath: state.apiPath,
-                apiName: state.apiName,
-                logInType: state.logInType,
                 customId: state.customId,
-                gymMembersRestaurants: state.gymMembersRestaurants,
+                logInType: state.logInType,
+
                 gymMember: state.gymMember,
+                gymMembers: state.gymMembers,
                 gymMemberDialogData: state.gymMemberDialogData,
                 gymMemberDialogOpen: state.gymMemberDialogOpen,
+
+                exerciseItems: state.exerciseItems,
+                exerciseItemDialogData: state.exerciseItemDialogData,
+                exerciseItemDialogOpen: state.exerciseItemDialogOpen,
+
+                exerciseItemsTableName: state.exerciseItemsTableName,
+                myExerciseItemStates: state.myExerciseItemStates,
+
+                gymDays: state.gymDays,
                 gymDayDialogData: state.gymDayDialogData,
                 gymDayDialogOpen: state.gymDayDialogOpen,
-                loading: state.loading,
-                loadingDialog: state.loadingDialog,
-                gymMembers: state.gymMembers,
-                gymDays: state.gymDays,
-                onScreenDebugMessage: state.onScreenDebugMessage,
+
                 photos: state.photos,
                 photoDialogData: state.photoDialogData,
                 photoDialogOpen: state.photoDialogOpen,
                 imageEditorData: state.imageEditorData,
-                todaysDate: state.todaysDate,
-                selectedDate: state.selectedDate,
+
                 setMyState,
                 setMyStates,
-                setExerciseItemDialogDataItem,
-                setExerciseItemDialogDataCategory,
-                setExerciseItemDialogOpen,
-                setExerciseItemDialogData,
+
+                getDataByDate,
+                setTodaysDate,
+                setSelectedDate,
+
+                setLoading,
+                setLoadingDialog,
+
                 setSignInRegDialogType,
                 setSignInRegDialogTitle,
                 setAuthToken,
                 setIdToken,
                 setCustomId,
                 setLogInType,
+
                 setGymMember,
-                setExerciseItems,
+                setGymMembers,
                 setGymMemberDialogData,
                 setGymMemberDialogOpen,
                 setGymMemberDialogDataItem,
+
+                setExerciseItems,
+                setExerciseItemDialogDataItem,
+                setExerciseItemDialogOpen,
+                setExerciseItemDialogData,
+                setExerciseItemDialogDataCategory,
+
+                setGymDayItems,
+                setGymDayDialogDataItem,
                 setGymDayDialogData,
                 setGymDayDialogOpen,
-                setGymDayDialogDataItem,
-                setLoading,
-                setGymMembers,
-                setGymDayItems,
-                setLoadingDialog,
-                setOnScreenDebugMessage,
+
                 setPhotos,
                 setPhotoDialogDataItem,
                 setPhotoDialogData,
                 setPhotoDialogOpen,
+
                 setImageEditorData,
                 setImageEditorDataItem,
-                getDataByDate,
-                setTodaysDate,
-                setSelectedDate,
             }}
         >
             {props.children}
