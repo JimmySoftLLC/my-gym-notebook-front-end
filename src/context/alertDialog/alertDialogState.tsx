@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import AlertDialogContext from './alertDialogContext';
 import AlertDialogReducer from './alertDialogReducer';
-import { SET_DIALOG, CLOSE_DIALOG } from '../types';
+import { SET_ALERT_DIALOG, CLOSE_ALERT_DIALOG } from '../types';
 
 const AlertDialogState: any = (props: { children: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
   const initialState = {
@@ -14,7 +14,7 @@ const AlertDialogState: any = (props: { children: boolean | React.ReactChild | R
 
   const setDialog = (dialogOpen: any, message: any, title: any) => {
     dispatch({
-      type: SET_DIALOG,
+      type: SET_ALERT_DIALOG,
       payload: {
         dialogOpen,
         message,
@@ -24,7 +24,7 @@ const AlertDialogState: any = (props: { children: boolean | React.ReactChild | R
   };
 
   const closeDialog = () => {
-    dispatch({ type: CLOSE_DIALOG });
+    dispatch({ type: CLOSE_ALERT_DIALOG });
   };
 
   return (

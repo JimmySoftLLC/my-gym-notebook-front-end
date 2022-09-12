@@ -3,8 +3,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import { Tooltip } from '@material-ui/core';
-import CategoriesMenu from '../dropDownMenu/CategoriesMenu';
-import DateMenu from '../dropDownMenu/DateMenu';
 import {
     websiteName,
 } from '../../api/apiConstants';
@@ -40,8 +38,6 @@ const DefaultTopToolBar = () => {
                             <i className="fas fa-angle-left"></i>
                         </IconButton>
                     </Tooltip>}
-                    <CategoriesMenu />
-                    <DateMenu />
                     <Tooltip title="Log in">
                         <IconButton aria-label=""
                             color="inherit"

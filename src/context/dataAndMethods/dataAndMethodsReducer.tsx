@@ -1,30 +1,37 @@
 import {
     SET_MY_STATES,
-    SET_EXERCISE_ITEMS,
-    SET_EXERCISE_ITEM_DIALOG_DATA,
-    SET_EXERCISE_ITEM_DIALOG_OPEN,
+
+    SET_TODAYS_DATE,
+    SET_SELECTED_DATE,
+
+    SET_LOADING,
+    SET_LOADING_DIALOG,
+    SET_ON_SCREEN_DEBUG_MESSAGE,
+
     SET_SIGN_IN_REG_DIALOG_TYPE,
     SET_SIGN_IN_REG_DIALOG_TITLE,
     SET_AUTH_TOKEN,
     SET_ID_TOKEN,
     SET_CUSTOM_ID,
     SET_LOGIN_TYPE,
+
     SET_GYM_MEMBER,
+    SET_GYM_MEMBERS,
     SET_GYM_MEMBER_DIALOG_DATA,
     SET_GYM_MEMBER_DIALOG_OPEN,
+
+    SET_EXERCISE_ITEMS,
+    SET_EXERCISE_ITEM_DIALOG_DATA,
+    SET_EXERCISE_ITEM_DIALOG_OPEN,
+
+    SET_GYM_DAY_ITEMS,
     SET_GYM_DAY_DIALOG_OPEN,
     SET_GYM_DAY_DIALOG_DATA,
-    SET_LOADING,
-    SET_GYM_MEMBERS,
-    SET_GYM_DAY_ITEMS,
-    SET_LOADING_DIALOG,
-    SET_ON_SCREEN_DEBUG_MESSAGE,
+
     SET_PHOTOS,
     SET_PHOTO_DIALOG_DATA,
     SET_PHOTO_DIALOG_OPEN,
     SET_IMAGE_EDITOR_DATA,
-    SET_TODAYS_DATE,
-    SET_SELECTED_DATE,
 } from '../types';
 
 export default (state: any, action: { type: any; payload: any; }): any => {
@@ -34,20 +41,30 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 myStates: action.payload,
             };
-        case SET_EXERCISE_ITEMS:
+        case SET_TODAYS_DATE:
             return {
                 ...state,
-                exerciseItems: action.payload,
+                todaysDate: action.payload,
             };
-        case SET_EXERCISE_ITEM_DIALOG_DATA:
+        case SET_SELECTED_DATE:
             return {
                 ...state,
-                exerciseItemDialogData: action.payload,
+                selectedDate: action.payload,
             };
-        case SET_EXERCISE_ITEM_DIALOG_OPEN:
+        case SET_LOADING:
             return {
                 ...state,
-                exerciseItemDialogOpen: action.payload,
+                loading: action.payload,
+            };
+        case SET_LOADING_DIALOG:
+            return {
+                ...state,
+                loadingDialog: action.payload,
+            };
+        case SET_ON_SCREEN_DEBUG_MESSAGE:
+            return {
+                ...state,
+                onScreenDebugMessage: action.payload,
             };
         case SET_SIGN_IN_REG_DIALOG_TYPE:
             return {
@@ -84,6 +101,11 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 gymMember: action.payload,
             };
+        case SET_GYM_MEMBERS:
+            return {
+                ...state,
+                gymMembers: action.payload,
+            };
         case SET_GYM_MEMBER_DIALOG_DATA:
             return {
                 ...state,
@@ -94,6 +116,26 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 gymMemberDialogOpen: action.payload,
             };
+        case SET_EXERCISE_ITEMS:
+            return {
+                ...state,
+                exerciseItems: action.payload,
+            };
+        case SET_EXERCISE_ITEM_DIALOG_DATA:
+            return {
+                ...state,
+                exerciseItemDialogData: action.payload,
+            };
+        case SET_EXERCISE_ITEM_DIALOG_OPEN:
+            return {
+                ...state,
+                exerciseItemDialogOpen: action.payload,
+            };
+        case SET_GYM_DAY_ITEMS:
+            return {
+                ...state,
+                gymDays: action.payload,
+            };
         case SET_GYM_DAY_DIALOG_OPEN:
             return {
                 ...state,
@@ -103,31 +145,6 @@ export default (state: any, action: { type: any; payload: any; }): any => {
             return {
                 ...state,
                 gymDayDialogData: action.payload,
-            };
-        case SET_LOADING:
-            return {
-                ...state,
-                loading: action.payload,
-            };
-        case SET_GYM_MEMBERS:
-            return {
-                ...state,
-                gymMembers: action.payload,
-            };
-        case SET_GYM_DAY_ITEMS:
-            return {
-                ...state,
-                gymDays: action.payload,
-            };
-        case SET_LOADING_DIALOG:
-            return {
-                ...state,
-                loadingDialog: action.payload,
-            };
-        case SET_ON_SCREEN_DEBUG_MESSAGE:
-            return {
-                ...state,
-                onScreenDebugMessage: action.payload,
             };
         case SET_PHOTOS:
             return {
@@ -148,16 +165,6 @@ export default (state: any, action: { type: any; payload: any; }): any => {
             return {
                 ...state,
                 imageEditorData: action.payload,
-            };
-        case SET_TODAYS_DATE:
-            return {
-                ...state,
-                todaysDate: action.payload,
-            };
-        case SET_SELECTED_DATE:
-            return {
-                ...state,
-                selectedDate: action.payload,
             };
         default:
             return state;

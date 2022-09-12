@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import DeleteConfirmContext from './deleteConfirmDialogContext';
 import DeleteConfirmReducer from './deleteConfirmDialogReducer';
-import { SET_DIALOG, CLOSE_DIALOG } from '../types';
+import { SET_ALERT_DIALOG, CLOSE_ALERT_DIALOG } from '../types';
 
 const DeleteConfirmDialogState = (props: any) => {
     const initialState: any = {
@@ -15,7 +15,7 @@ const DeleteConfirmDialogState = (props: any) => {
 
     const setDeleteConfirmDialog = (dialogOpen: any, name: any, dialogType: any, index: any, deleteFunctionPassed: any): any => {
         dispatch({
-            type: SET_DIALOG,
+            type: SET_ALERT_DIALOG,
             payload: {
                 dialogOpen,
                 name,
@@ -27,12 +27,12 @@ const DeleteConfirmDialogState = (props: any) => {
     };
 
     const closeDialog = () => {
-        dispatch({ type: CLOSE_DIALOG, payload: '' });
+        dispatch({ type: CLOSE_ALERT_DIALOG, payload: '' });
     };
 
     const deleteFunction = (index: any) => {
         state.deleteFunctionPassed(index);
-        dispatch({ type: CLOSE_DIALOG, payload: '' });
+        dispatch({ type: CLOSE_ALERT_DIALOG, payload: '' });
     };
 
     return (

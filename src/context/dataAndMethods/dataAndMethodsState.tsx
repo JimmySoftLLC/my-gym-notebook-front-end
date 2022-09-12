@@ -6,31 +6,38 @@ import setMyStatesLogic from '../../model/setMyStatesLogic';
 
 import {
     SET_MY_STATES,
-    SET_EXERCISE_ITEMS,
-    SET_EXERCISE_ITEM_DIALOG_DATA,
-    SET_EXERCISE_ITEM_DIALOG_OPEN,
+
+    SET_TODAYS_DATE,
+    SET_SELECTED_DATE,
+
+    SET_LOADING,
+    SET_LOADING_DIALOG,
+    SET_ON_SCREEN_DEBUG_MESSAGE,
+
     SET_SIGN_IN_REG_DIALOG_TYPE,
     SET_SIGN_IN_REG_DIALOG_TITLE,
     SET_AUTH_TOKEN,
     SET_ID_TOKEN,
     SET_CUSTOM_ID,
     SET_LOGIN_TYPE,
+
     SET_GYM_MEMBER,
+    SET_GYM_MEMBERS,
     SET_GYM_MEMBER_DIALOG_DATA,
     SET_GYM_MEMBER_DIALOG_OPEN,
+
+    SET_EXERCISE_ITEMS,
+    SET_EXERCISE_ITEM_DIALOG_DATA,
+    SET_EXERCISE_ITEM_DIALOG_OPEN,
+
+    SET_GYM_DAY_ITEMS,
     SET_GYM_DAY_DIALOG_OPEN,
     SET_GYM_DAY_DIALOG_DATA,
-    SET_LOADING,
-    SET_GYM_MEMBERS,
-    SET_GYM_DAY_ITEMS,
-    SET_LOADING_DIALOG,
-    SET_ON_SCREEN_DEBUG_MESSAGE,
+
     SET_PHOTOS,
     SET_PHOTO_DIALOG_DATA,
     SET_PHOTO_DIALOG_OPEN,
     SET_IMAGE_EDITOR_DATA,
-    SET_TODAYS_DATE,
-    SET_SELECTED_DATE,
 } from '../types';
 
 const DataAndMethodsState: any = (props: { children: any; }) => {
@@ -44,11 +51,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 balance: false,
                 agility: true,
                 flexibilityMobility: false,
-
-                // price categories
-                dollar_1: true,
-                dollar_2: true,
-                dollar_3: false,
 
                 // dates
                 date_0: false,
@@ -119,8 +121,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             categoryJSON: [],
             price: 0,
             id: '',
-            restaurant: '',
-            restaurantId: '',
             dialogType: 'Add',
         },
         gymMemberDialogOpen: false,
@@ -129,7 +129,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             firstName: '',
             lastName: '',
             bio: '',
-            jobTitle: '',
             email: '',
             exerciseIdsJSON: [],
             teamMateIdsJSON: [],
@@ -170,20 +169,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
 
     const [state, dispatch] = useReducer(DataAndMethodsReducer, initialState);
 
-    // get data by date ------------------------------------------------------------------
-    const getDataByDate = async (selectedDate: any) => {
-        setLoading(true);
-        setLoading(false);
-    };
-
-    // set date -------------------------------------------------------------------------------
-    const setTodaysDate = (todaysDate: any) => dispatch({ type: SET_TODAYS_DATE, payload: todaysDate });
-    const setSelectedDate = (selectedDate: any) => dispatch({ type: SET_SELECTED_DATE, payload: selectedDate });
-
-    // set loading spinner ---------------------------------------------------------------------
-    const setLoading = (myBool: boolean) => dispatch({ type: SET_LOADING, payload: myBool });
-    const setLoadingDialog = (myBool: any) => dispatch({ type: SET_LOADING_DIALOG, payload: myBool });
-
     //set my states -----------------------------------------------------
     const setMyState = async (key: any) => {
         let myNewStateChoices = JSON.parse(JSON.stringify(state.myStates))
@@ -193,13 +178,30 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     };
     const setMyStates = async (myStates: any) => { dispatch({ type: SET_MY_STATES, payload: myStates }) }
 
+    // set date -------------------------------------------------------------------------------
+    const setTodaysDate = (todaysDate: any) => dispatch({ type: SET_TODAYS_DATE, payload: todaysDate });
+    const setSelectedDate = (selectedDate: any) => dispatch({ type: SET_SELECTED_DATE, payload: selectedDate });
+
+    // set loading spinner ---------------------------------------------------------------------
+    const setLoading = (myBool: boolean) => dispatch({ type: SET_LOADING, payload: myBool });
+    const setLoadingDialog = (myBool: any) => dispatch({ type: SET_LOADING_DIALOG, payload: myBool });
+
+    // debuging tools used for moblie debugging -------------------------------------
+    const setOnScreenDebugMessage = async (onScreenDebugMessage: any) => dispatch({ type: SET_ON_SCREEN_DEBUG_MESSAGE, payload: onScreenDebugMessage });
+
+    // get data by date ------------------------------------------------------------------
+    const getDataByDate = async (selectedDate: any) => {
+        setLoading(true);
+        setLoading(false);
+    };
+
     // login dialog and authorization items ------------------------------
+    const setSignInRegDialogType = async (signInRegDialogType: any) => { dispatch({ type: SET_SIGN_IN_REG_DIALOG_TYPE, payload: signInRegDialogType }) }
+    const setSignInRegDialogTitle = async (signInRegDialogTitle: any) => { dispatch({ type: SET_SIGN_IN_REG_DIALOG_TITLE, payload: signInRegDialogTitle }) }
     const setAuthToken = async (authToken: any) => { dispatch({ type: SET_AUTH_TOKEN, payload: authToken }) }
     const setCustomId = async (customId: any) => { dispatch({ type: SET_CUSTOM_ID, payload: customId }) }
     const setIdToken = async (idToken: any) => { dispatch({ type: SET_ID_TOKEN, payload: idToken }) }
     const setLogInType = async (logInType: any) => { dispatch({ type: SET_LOGIN_TYPE, payload: logInType }) }
-    const setSignInRegDialogType = async (signInRegDialogType: any) => { dispatch({ type: SET_SIGN_IN_REG_DIALOG_TYPE, payload: signInRegDialogType }) }
-    const setSignInRegDialogTitle = async (signInRegDialogTitle: any) => { dispatch({ type: SET_SIGN_IN_REG_DIALOG_TITLE, payload: signInRegDialogTitle }) }
 
     // gymMembers and dialog --------------------------------------------
     const setGymMemberDialogDataItem = async (key: string, value: any) => {
@@ -207,10 +209,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         gymMemberDialogData[key] = value;
         if (key === 'firstName') { gymMemberDialogData['message'] = '' }
         if (key === 'lastName') { gymMemberDialogData['message'] = '' }
-        if (key === 'jobTitle') { gymMemberDialogData['message'] = '' }
         if (key === 'bio') { gymMemberDialogData['message'] = '' }
-        if (key === 'email') { gymMemberDialogData['message'] = '' }
-        if (key === 'accessLevel') { gymMemberDialogData['message'] = '' }
         setGymMemberDialogData(gymMemberDialogData);
     }
     const setGymMember = async (gymMember: any) => { dispatch({ type: SET_GYM_MEMBER, payload: gymMember }) }
@@ -219,6 +218,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     const setGymMemberDialogOpen = async (gymMemberDialogOpen: any) => { dispatch({ type: SET_GYM_MEMBER_DIALOG_OPEN, payload: gymMemberDialogOpen }) }
 
     // exercise items and dialog --------------------------------------------
+    const setExerciseItems = async (exerciseItems: any[]) => { dispatch({ type: SET_EXERCISE_ITEMS, payload: exerciseItems }) }
     const setExerciseItemDialogDataItem = async (key: string, value: any) => {
         let exerciseItemDialogData = JSON.parse(JSON.stringify(state.exerciseItemDialogData))
         exerciseItemDialogData[key] = value;
@@ -248,7 +248,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         }
         setExerciseItemDialogDataItem('categoryJSON', myNewCategories)
     }
-    const setExerciseItems = async (exerciseItems: any[]) => { dispatch({ type: SET_EXERCISE_ITEMS, payload: exerciseItems }) }
     const setExerciseItemDialogData = async (exerciseItemDialogData: any) => { dispatch({ type: SET_EXERCISE_ITEM_DIALOG_DATA, payload: exerciseItemDialogData }) }
     const setExerciseItemDialogOpen = async (exerciseItemDialogOpen: any) => { dispatch({ type: SET_EXERCISE_ITEM_DIALOG_OPEN, payload: exerciseItemDialogOpen }) }
 
@@ -280,9 +279,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     }
     const setImageEditorData = async (imageEditorData: any) => { dispatch({ type: SET_IMAGE_EDITOR_DATA, payload: imageEditorData }) }
 
-    // debuging tools used for moblie debugging -------------------------------------
-    const setOnScreenDebugMessage = async (onScreenDebugMessage: any) => dispatch({ type: SET_ON_SCREEN_DEBUG_MESSAGE, payload: onScreenDebugMessage });
-
     return (
         <DataAndMethodsContext.Provider
             value={{
@@ -310,10 +306,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 loadingDialog: state.loadingDialog,
                 gymMembers: state.gymMembers,
                 gymDays: state.gymDays,
-                entertainmentItems: state.entertainmentItems,
-                entertainmentItemDialogData: state.entertainmentItemDialogData,
-                entertainmentItemDialogDataItem: state.entertainmentItemDialogDataItem,
-                entertainmentItemDialogOpen: state.entertainmentItemDialogOpen,
                 onScreenDebugMessage: state.onScreenDebugMessage,
                 photos: state.photos,
                 photoDialogData: state.photoDialogData,
