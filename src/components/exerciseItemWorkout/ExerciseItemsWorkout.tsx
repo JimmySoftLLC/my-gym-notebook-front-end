@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
-import ExerciseItemCardGymDay from '../workoutGymDay/WorkoutCardGymDay';
+import ExerciseItemCardWorkout from './ExerciseItemCardWorkout';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 
-const MemberDataInventory = (GymDayId: any) => {
+const ExerciseItemsWorkout = (WorkoutId: any) => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         exerciseItems,
         myStates,
     } = dataAndMethodsContext;
 
-    return exerciseItems.map((ExerciseItem: { id: any; }) => <ExerciseItemCardGymDay ExerciseItem={ExerciseItem}
+    return exerciseItems.map((ExerciseItem: { id: any; }) => <ExerciseItemCardWorkout ExerciseItem={ExerciseItem}
         myStates={myStates}
         isInList={true}
-        GymDayId={GymDayId}
+        WorkoutId={WorkoutId}
         ExerciseItemId={ExerciseItem.id}
         key={ExerciseItem.id} />);
 };
 
-export default MemberDataInventory;
+export default ExerciseItemsWorkout;

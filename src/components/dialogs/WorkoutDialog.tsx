@@ -7,13 +7,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
-import putGymDay from '../../model/gymDay/putGymDay';
-import getGymDays from '../../model/gymDay/getGymDays';
+import putWorkout from '../../model/workoutItem/putWorkout';
+import getWorkouts from '../../model/workoutItem/getWorkouts';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-import sortGymDays from '../../model/gymDay/sortGymDays';
+import sortWorkouts from '../../model/workoutItem/sortWorkouts';
 import 'date-fns';
-import ExerciseItemsGymDay from '../workoutGymDay/WorkoutItemsGymDay';
+import ExerciseItemsWorkout from '../exerciseItemWorkout/ExerciseItemsWorkout';
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const GymDayDialog: any = () => {
+const WorkoutDialog: any = () => {
     const classes = useStyles();
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
@@ -51,106 +51,106 @@ const GymDayDialog: any = () => {
 
     const {
         gymDayDialogOpen,
-        setGymDayDialogOpen,
-        setGymDayDialogDataItem,
+        setWorkoutDialogOpen,
+        setWorkoutDialogDataItem,
         idToken,
         customId,
-        setGymDayItems,
-        setGymDayDialogData,
+        setWorkoutItems,
+        setWorkoutDialogData,
         setGymMember,
         gymMember
     } = dataAndMethodsContext;
 
     const handleClose = () => {
-        setGymDayDialogOpen(false);
+        setWorkoutDialogOpen(false);
     };
 
     const handleSave = () => {
         switch (dialogType) {
             case "Edit":
-                saveGymDay()
+                saveWorkout()
                 break;
             case "Add":
-                saveGymDayAdd()
+                saveWorkoutAdd()
                 break;
             default:
         }
-        setGymDayDialogOpen(false);
+        setWorkoutDialogOpen(false);
     };
 
-    const saveGymDay = async () => {
-        let newGymDay: any = {}
-        newGymDay.id = id;
-        newGymDay.title = title
-        newGymDay.dateFrom = dateFrom;
-        newGymDay.dateTo = dateTo;
-        newGymDay.description = description
-        newGymDay.exerciseItemIdsJSON = exerciseItemIdsJSON
-        await putGymDay(newGymDay, idToken, customId);
-        let myGymDays = await getGymDays(gymMember.gymDayIdsJSON);
-        myGymDays = await sortGymDays(myGymDays, 'sortDate');
-        setGymDayItems(myGymDays)
+    const saveWorkout = async () => {
+        let newWorkout: any = {}
+        newWorkout.id = id;
+        newWorkout.title = title
+        newWorkout.dateFrom = dateFrom;
+        newWorkout.dateTo = dateTo;
+        newWorkout.description = description
+        newWorkout.exerciseItemIdsJSON = exerciseItemIdsJSON
+        await putWorkout(newWorkout, idToken, customId);
+        let myWorkouts = await getWorkouts(gymMember.gymDayIdsJSON);
+        myWorkouts = await sortWorkouts(myWorkouts, 'sortDate');
+        setWorkoutItems(myWorkouts)
     };
 
-    const saveGymDayAdd = async () => {
-        let newGymDay: any = {}
-        newGymDay.id = id;
-        newGymDay.title = title
-        newGymDay.dateFrom = dateFrom;
-        newGymDay.dateTo = dateTo;
-        newGymDay.description = description
-        newGymDay.exerciseItemIdsJSON = exerciseItemIdsJSON;
-        await putGymDay(newGymDay, idToken, customId);
+    const saveWorkoutAdd = async () => {
+        let newWorkout: any = {}
+        newWorkout.id = id;
+        newWorkout.title = title
+        newWorkout.dateFrom = dateFrom;
+        newWorkout.dateTo = dateTo;
+        newWorkout.description = description
+        newWorkout.exerciseItemIdsJSON = exerciseItemIdsJSON;
+        await putWorkout(newWorkout, idToken, customId);
         let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
         myNewGymMember.gymDayIdsJSON.push(id);
         await putGymMember(myNewGymMember, idToken, customId)
         setGymMember(myNewGymMember);
-        let myGymDays = await getGymDays(myNewGymMember.gymDayIdsJSON);
-        myGymDays = await sortGymDays(myGymDays, 'sortDate');
-        setGymDayItems(myGymDays)
+        let myWorkouts = await getWorkouts(myNewGymMember.gymDayIdsJSON);
+        myWorkouts = await sortWorkouts(myWorkouts, 'sortDate');
+        setWorkoutItems(myWorkouts)
     };
 
     const selectAllExerciseItems = () => {
-        let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        newGymDayDialogData.exerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
-        setGymDayDialogData(newGymDayDialogData)
+        let newWorkoutDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        newWorkoutDialogData.exerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
+        setWorkoutDialogData(newWorkoutDialogData)
     }
 
     const unSelectAllExerciseItems = () => {
-        let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        newGymDayDialogData.exerciseItemIdsJSON = []
-        setGymDayDialogData(newGymDayDialogData)
+        let newWorkoutDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        newWorkoutDialogData.exerciseItemIdsJSON = []
+        setWorkoutDialogData(newWorkoutDialogData)
     }
 
     const changeTitle = (e: any) => {
-        setGymDayDialogDataItem('title', e.target.value)
+        setWorkoutDialogDataItem('title', e.target.value)
     };
 
     const changeDateFrom = (dateValue: any) => {
         const newDateTo = new Date(dateTo)
-        let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        let newWorkoutDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
         if (dateValue.getTime() > newDateTo.getTime()) {
-            newGymDayDialogData['dateFrom'] = dateValue;
-            newGymDayDialogData['dateTo'] = dateValue;
+            newWorkoutDialogData['dateFrom'] = dateValue;
+            newWorkoutDialogData['dateTo'] = dateValue;
         } else {
-            newGymDayDialogData['dateFrom'] = dateValue;
+            newWorkoutDialogData['dateFrom'] = dateValue;
         }
-        setGymDayDialogData(newGymDayDialogData);
+        setWorkoutDialogData(newWorkoutDialogData);
     };
 
     const changeDateTo = (dateValue: any) => {
         const newDateFrom = new Date(dateFrom)
-        let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        let newWorkoutDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
         if (dateValue.getDate() < newDateFrom.getTime()) {
-            newGymDayDialogData['dateTo'] = newDateFrom;
+            newWorkoutDialogData['dateTo'] = newDateFrom;
         } else {
-            newGymDayDialogData['dateTo'] = dateValue;
+            newWorkoutDialogData['dateTo'] = dateValue;
         }
-        setGymDayDialogData(newGymDayDialogData);
+        setWorkoutDialogData(newWorkoutDialogData);
     };
 
     const changeDescription = (e: any) => {
-        setGymDayDialogDataItem('description', e.target.value)
+        setWorkoutDialogDataItem('description', e.target.value)
     };
 
     return (
@@ -215,7 +215,7 @@ const GymDayDialog: any = () => {
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid item xs={12}>
-                                        <ExerciseItemsGymDay />
+                                        <ExerciseItemsWorkout />
                                     </Grid>
                                 </AccordionDetails>
                             </Accordion>
@@ -235,5 +235,5 @@ const GymDayDialog: any = () => {
     );
 }
 
-export default GymDayDialog;
+export default WorkoutDialog;
 
