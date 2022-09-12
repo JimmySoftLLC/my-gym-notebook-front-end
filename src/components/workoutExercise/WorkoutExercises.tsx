@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ExerciseItemCardWorkout from './ExerciseItemCardWorkout';
+import ExerciseItemCardWorkout from './WorkoutExerciseCard';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 
 const ExerciseItemsWorkout = (WorkoutId: any) => {

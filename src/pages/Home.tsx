@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import TopNavBar from '../components/TopNavBar';
 import DataAndMethodsContext from '../context/dataAndMethods/dataAndMethodsContext';
-import ExerciseItemsInventory from '../components/exerciseItem/ExerciseItemsInventory';
+import ExerciseItemsInventory from '../components/exercise/ExercisesInventory';
 import GymDaysInventory from '../components/gymDay/GymDaysInventory';
 import BotNavBar from '../components/BotNavBar';
 import ExerciseItemDialog from '../components/dialogs/ExerciseItemDialog';

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ExerciseItemCardInventory from './ExerciseItemCardInventory';
+import ExerciseItemCardInventory from './ExerciseCardInventory';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import CircularIndeterminate from '../circularIndeterminate/CircularIndeterminate';
 import getExerciseItemsCategories from '../../model/exercise/getExerciseItemsCategories';

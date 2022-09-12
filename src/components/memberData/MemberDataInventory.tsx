@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ExerciseItemCardGymDay from '../workoutGymDay/WorkoutCardGymDay';
+import ExerciseItemCardGymDay from '../gymDayWorkout/GymDayWorkoutCard';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 
 const MemberDataInventory = (GymDayId: any) => {
