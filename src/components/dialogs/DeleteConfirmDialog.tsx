@@ -29,6 +29,10 @@ const DeleteConfirmDialog: any = () => {
             deleteFunction(deleteConfirmDialog.index)
             setConfirmMessage('')
         }
+        if (deleteConfirmDialog.dialogType === "deleteWorkout") {
+            deleteFunction(deleteConfirmDialog.index)
+            setConfirmMessage('')
+        }
         if (deleteConfirmDialog.dialogType === "deleteGymDay") {
             deleteFunction(deleteConfirmDialog.index)
             setConfirmMessage('')
@@ -57,6 +61,10 @@ const DeleteConfirmDialog: any = () => {
                         <i className='fas fa-exclamation-triangle'></i>
                         {'  Delete exercise item warning'}
                     </DialogTitle>}
+                    {deleteConfirmDialog.dialogType === "deleteWorkout" && <DialogTitle id='alert-dialog-title'>
+                        <i className='fas fa-exclamation-triangle'></i>
+                        {'  Delete workout warning'}
+                    </DialogTitle>}
                     {deleteConfirmDialog.dialogType === "deleteGymDay" && <DialogTitle id='alert-dialog-title'>
                         <i className='fas fa-exclamation-triangle'></i>
                         {'  Delete gym day warning'}
@@ -67,6 +75,11 @@ const DeleteConfirmDialog: any = () => {
                     </DialogTitle>}
                     <DialogContent>
                         {deleteConfirmDialog.dialogType === "deleteExercise" && <DialogContentText id='alert-dialog-description'>
+                            {`You about to delete `}
+                            <strong>{deleteConfirmDialog.name}</strong>
+                            {`.  This process is irreversible are you sure?`}
+                        </DialogContentText>}
+                        {deleteConfirmDialog.dialogType === "deleteWorkout" && <DialogContentText id='alert-dialog-description'>
                             {`You about to delete `}
                             <strong>{deleteConfirmDialog.name}</strong>
                             {`.  This process is irreversible are you sure?`}
