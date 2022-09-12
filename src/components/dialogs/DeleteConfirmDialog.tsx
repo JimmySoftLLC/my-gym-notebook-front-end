@@ -22,44 +22,25 @@ const DeleteConfirmDialog: any = () => {
     const deleteConfirmDialogContext: any = useContext(DeleteConfirmDialogContext);
     const { deleteConfirmDialog, closeDialog, deleteFunction } = deleteConfirmDialogContext;
 
-    const [deleteName, setDeleteName] = useState('');
     const [confirmMessage, setConfirmMessage] = useState('');
 
     const chooseDelete = () => {
-        if (deleteConfirmDialog.dialogType === "deleteGymMember") {
-            if (deleteName === deleteConfirmDialog.name) {
-                deleteFunction(deleteConfirmDialog.index)
-                setDeleteName('')
-                setConfirmMessage('')
-            } else {
-                setConfirmMessage('Typed in name does not match')
-            }
-        }
         if (deleteConfirmDialog.dialogType === "deleteExerciseItem") {
             deleteFunction(deleteConfirmDialog.index)
-            setDeleteName('')
             setConfirmMessage('')
         }
         if (deleteConfirmDialog.dialogType === "deleteGymDay") {
             deleteFunction(deleteConfirmDialog.index)
-            setDeleteName('')
-            setConfirmMessage('')
-        }
-        if (deleteConfirmDialog.dialogType === "deleteGymMember") {
-            deleteFunction(deleteConfirmDialog.index)
-            setDeleteName('')
             setConfirmMessage('')
         }
         if (deleteConfirmDialog.dialogType === "deletePhoto") {
             deleteFunction(deleteConfirmDialog.index)
-            setDeleteName('')
             setConfirmMessage('')
         }
     }
 
     const chooseClose = () => {
         closeDialog()
-        setDeleteName('')
         setConfirmMessage('')
     }
 
@@ -80,10 +61,6 @@ const DeleteConfirmDialog: any = () => {
                         <i className='fas fa-exclamation-triangle'></i>
                         {'  Delete gym day warning'}
                     </DialogTitle>}
-                    {deleteConfirmDialog.dialogType === "deleteGymMember" && <DialogTitle id='alert-dialog-title'>
-                        <i className='fas fa-exclamation-triangle'></i>
-                        {'  Delete gym member warning'}
-                    </DialogTitle>}
                     {deleteConfirmDialog.dialogType === "deletePhoto" && <DialogTitle id='alert-dialog-title'>
                         <i className='fas fa-exclamation-triangle'></i>
                         {'  Delete photo warning'}
@@ -95,11 +72,6 @@ const DeleteConfirmDialog: any = () => {
                             {`.  This process is irreversible are you sure?`}
                         </DialogContentText>}
                         {deleteConfirmDialog.dialogType === "deleteGymDay" && <DialogContentText id='alert-dialog-description'>
-                            {`You about to delete `}
-                            <strong>{deleteConfirmDialog.name}</strong>
-                            {`.  This process is irreversible are you sure?`}
-                        </DialogContentText>}
-                        {deleteConfirmDialog.dialogType === "deleteGymMember" && <DialogContentText id='alert-dialog-description'>
                             {`You about to delete `}
                             <strong>{deleteConfirmDialog.name}</strong>
                             {`.  This process is irreversible are you sure?`}

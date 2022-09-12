@@ -8,7 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import putGymDay from '../../model/gymDay/putGymDay';
-import getGymDays from '../../model/gymDay/getGymDaysFromIds';
+import getGymDays from '../../model/gymDay/getGymDays';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import sortGymDays from '../../model/gymDay/sortGymDays';

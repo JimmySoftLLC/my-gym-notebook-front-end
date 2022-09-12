@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
 import dateString from '../../model/dateString';
-import getGymDaysFromIds from '../../model/gymDay/getGymDaysFromIds';
+import getGymDaysFromIds from '../../model/gymDay/getGymDays';
 import deleteGymDay from '../../model/gymDay/deleteGymDay';
 import putGymMember from '../../model/gymMember/putGymMember';
 import sortGymDays from '../../model/gymDay/sortGymDays';

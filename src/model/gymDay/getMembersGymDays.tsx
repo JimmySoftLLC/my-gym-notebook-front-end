@@ -1,4 +1,4 @@
-import getGymDaysFromIds from './getGymDaysFromIds';
+import getGymDaysFromIds from './getGymDays';
 
 const getMembersGymDays = async (gymMember: any) => {
     let gymDayItemIds = [];
