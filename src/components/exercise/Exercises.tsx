@@ -7,12 +7,12 @@ import getExercisesCategories from '../../model/exercise/getExercisesCategories'
 const Exercises = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
-        exerciseItems,
+        exercises,
         myStates,
         loading,
     } = dataAndMethodsContext;
 
-    let myCategories: any = getExercisesCategories(exerciseItems, null)
+    let myCategories: any = getExercisesCategories(exercises, null)
 
     if (loading) {
         return <CircularIndeterminate />;

@@ -5,11 +5,11 @@ import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsCo
 const GymDayWorkouts = (GymDayId: any) => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
-        exerciseItems,
+        exercises,
         myStates,
     } = dataAndMethodsContext;
 
-    return exerciseItems.map((Exercise: { id: any; }) => <WorkoutCardGymDay Exercise={Exercise}
+    return exercises.map((Exercise: { id: any; }) => <WorkoutCardGymDay Exercise={Exercise}
         myStates={myStates}
         isInList={true}
         GymDayId={GymDayId}

@@ -1,4 +1,4 @@
-export const exerciseItemsTableName = 'exerciseItems';
+export const exercisesTableName = 'exercises';
 export const gymMembersTableName = 'gymMembers';
 export const gymDaysTableName = 'gymDays';
 export const workoutsTableName = 'workouts';

@@ -23,7 +23,7 @@ const ExerciseCard = ({ Exercise }: any) => {
 
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
-        exerciseItems,
+        exercises,
         setExerciseDialogData,
         setExerciseDialogOpen,
         idToken,
@@ -38,13 +38,13 @@ const ExerciseCard = ({ Exercise }: any) => {
     const { setDeleteConfirmDialog } = deleteConfirmDialogContext;
 
     const handleClickExerciseEdit = (exerciseId: any) => {
-        for (let i = 0; i < exerciseItems.length; i++) {
-            if (exerciseId === exerciseItems[i].id) {
+        for (let i = 0; i < exercises.length; i++) {
+            if (exerciseId === exercises[i].id) {
                 let myEditItem = {
-                    title: exerciseItems[i].title,
-                    description: exerciseItems[i].description,
-                    categoryJSON: exerciseItems[i].categoryJSON,
-                    id: exerciseItems[i].id,
+                    title: exercises[i].title,
+                    description: exercises[i].description,
+                    categoryJSON: exercises[i].categoryJSON,
+                    id: exercises[i].id,
                     dialogType: 'Edit',
                 }
                 setExerciseDialogData(myEditItem);
@@ -55,12 +55,12 @@ const ExerciseCard = ({ Exercise }: any) => {
     };
 
     const handleClickExerciseCopy = (exerciseId: any) => {
-        for (let i = 0; i < exerciseItems.length; i++) {
-            if (exerciseId === exerciseItems[i].id) {
+        for (let i = 0; i < exercises.length; i++) {
+            if (exerciseId === exercises[i].id) {
                 let myEditItem = {
-                    title: exerciseItems[i].title,
-                    description: exerciseItems[i].description,
-                    categoryJSON: exerciseItems[i].categoryJSON,
+                    title: exercises[i].title,
+                    description: exercises[i].description,
+                    categoryJSON: exercises[i].categoryJSON,
                     id: uuidv4(),
                     dialogType: "Add",
                 }
@@ -72,10 +72,10 @@ const ExerciseCard = ({ Exercise }: any) => {
     };
 
     const loadDeleteExerciseDialog = (exerciseId: any) => {
-        for (let i = 0; i < exerciseItems.length; i++) {
-            if (exerciseId === exerciseItems[i].id) {
+        for (let i = 0; i < exercises.length; i++) {
+            if (exerciseId === exercises[i].id) {
                 setDeleteConfirmDialog(true,
-                    exerciseItems[i].title,
+                    exercises[i].title,
                     'deleteExercise',
                     exerciseId,
                     deleteExerciseById);

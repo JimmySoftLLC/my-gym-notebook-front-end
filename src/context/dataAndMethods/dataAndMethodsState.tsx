@@ -66,7 +66,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 date_6: false,
 
                 // customer pages
-                exerciseItems: false,
+                exercises: false,
                 gymMembers: false,
                 photoSettings: false,
                 info: true,
@@ -85,7 +85,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 sortTime: true,
                 sortName: false,
 
-                lastState: 'exerciseItems',
+                lastState: 'exercises',
 
                 // help dialog
                 helpDialogStage: 0,
@@ -136,7 +136,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             message: '',
         },
 
-        exerciseItems: [],
+        exercises: [],
         exerciseItemDialogOpen: false,
         exerciseItemDialogData: {
             title: '',
@@ -241,7 +241,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     const setGymMemberDialogOpen = async (gymMemberDialogOpen: any) => { dispatch({ type: SET_GYM_MEMBER_DIALOG_OPEN, payload: gymMemberDialogOpen }) }
 
     // exercise items and dialog --------------------------------------------
-    const setExercises = async (exerciseItems: any[]) => { dispatch({ type: SET_EXERCISE_ITEMS, payload: exerciseItems }) }
+    const setExercises = async (exercises: any[]) => { dispatch({ type: SET_EXERCISE_ITEMS, payload: exercises }) }
     const setExerciseDialogDataItem = async (key: string, value: any) => {
         let exerciseItemDialogData = JSON.parse(JSON.stringify(state.exerciseItemDialogData))
         exerciseItemDialogData[key] = value;
@@ -339,11 +339,11 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 gymMemberDialogData: state.gymMemberDialogData,
                 gymMemberDialogOpen: state.gymMemberDialogOpen,
 
-                exerciseItems: state.exerciseItems,
+                exercises: state.exercises,
                 exerciseItemDialogData: state.exerciseItemDialogData,
                 exerciseItemDialogOpen: state.exerciseItemDialogOpen,
 
-                exerciseItemsTableName: state.exerciseItemsTableName,
+                exercisesTableName: state.exercisesTableName,
                 myExerciseStates: state.myExerciseStates,
 
                 workouts: state.workouts,

@@ -127,7 +127,7 @@ export default (state: any, action: { type: any; payload: any; }): any => {
         case SET_EXERCISE_ITEMS:
             return {
                 ...state,
-                exerciseItems: action.payload,
+                exercises: action.payload,
             };
         case SET_EXERCISE_ITEM_DIALOG_DATA:
             return {

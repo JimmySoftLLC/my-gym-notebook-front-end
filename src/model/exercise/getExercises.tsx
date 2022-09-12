@@ -1,24 +1,24 @@
 import batchGetItemDynamoDB from '../../api/batchGetItemDynamoDB';
 
 import {
-    exerciseItemsTableName,
+    exercisesTableName,
     projectionExpressionExercise,
     blankPlaceHolder,
 } from '../../api/apiConstants';
 
 const getBatch = async (ids: any) => {
-    let exerciseItems = []
-    const data = await batchGetItemDynamoDB(exerciseItemsTableName, ids, projectionExpressionExercise)
+    let exercises = []
+    const data = await batchGetItemDynamoDB(exercisesTableName, ids, projectionExpressionExercise)
     if (data.err) {
         return [];
     }
-    exerciseItems = data.payload.Responses.exerciseItems;
-    for (let i = 0; i < exerciseItems.length; i++) {
-        exerciseItems[i].title = exerciseItems[i].title === blankPlaceHolder ? '' : exerciseItems[i].title
-        exerciseItems[i].description = exerciseItems[i].description === blankPlaceHolder ? '' : exerciseItems[i].description
-        exerciseItems[i].categoryJSON = exerciseItems[i].categoryJSON === undefined ? JSON.parse('[]') : JSON.parse(exerciseItems[i].categoryJSON)
+    exercises = data.payload.Responses.exercises;
+    for (let i = 0; i < exercises.length; i++) {
+        exercises[i].title = exercises[i].title === blankPlaceHolder ? '' : exercises[i].title
+        exercises[i].description = exercises[i].description === blankPlaceHolder ? '' : exercises[i].description
+        exercises[i].categoryJSON = exercises[i].categoryJSON === undefined ? JSON.parse('[]') : JSON.parse(exercises[i].categoryJSON)
     }
-    return exerciseItems;
+    return exercises;
 }
 
 const getExercises = async (exerciseItemIds: any) => {

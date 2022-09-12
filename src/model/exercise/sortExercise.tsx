@@ -1,7 +1,7 @@
-const sortExercises = async (exerciseItems: any, myStates: any) => {
+const sortExercises = async (exercises: any, myStates: any) => {
     if (myStates['sortTitle'] || myStates === 'sortTitle') {
         // sort by title
-        exerciseItems.sort(function (a: any, b: any) {
+        exercises.sort(function (a: any, b: any) {
             var textA = a.title.toUpperCase(); // ignore upper and lowercase
             var textB = b.title.toUpperCase(); // ignore upper and lowercase
             if (textA < textB) {
@@ -16,11 +16,11 @@ const sortExercises = async (exerciseItems: any, myStates: any) => {
     }
     if (myStates['sortOrder'] || myStates === 'sortOrder') {
         // sort by price
-        exerciseItems.sort(function (a: any, b: any) {
+        exercises.sort(function (a: any, b: any) {
             return a.order - b.order;
         });
     }
-    return exerciseItems;
+    return exercises;
 }
 
 export default sortExercises

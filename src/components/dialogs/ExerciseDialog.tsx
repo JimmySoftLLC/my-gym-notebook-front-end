@@ -72,7 +72,7 @@ const ExerciseDialog: any = () => {
         newExercise.title = title;
         newExercise.description = description;
         newExercise.categoryJSON = categoryJSON;
-        //console.log(exerciseItemsTableName, idToken, myNewExercise, customId);
+        //console.log(exercisesTableName, idToken, myNewExercise, customId);
         await putExercise(newExercise, idToken, customId);
         let myExercises = await getExercises(gymMember.exerciseIdsJSON);
         myExercises = await sortExercises(myExercises, myStates);
@@ -85,7 +85,7 @@ const ExerciseDialog: any = () => {
         newExercise.title = title;
         newExercise.description = description;
         newExercise.categoryJSON = categoryJSON;
-        //console.log(exerciseItemsTableName, idToken, myNewExercise, customId);
+        //console.log(exercisesTableName, idToken, myNewExercise, customId);
         await putExercise(newExercise, idToken, customId);
         let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
         myNewGymMember.exerciseIdsJSON.push(id);

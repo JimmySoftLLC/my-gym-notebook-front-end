@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
     lambdaFunctionURL,
-    exerciseItemsTableName,
+    exercisesTableName,
     gymMembersTableName,
 } from './apiConstants';
 
@@ -26,7 +26,7 @@ let scanDynamoDB = async (myTableName: any): Promise<any> => {
         let myResData = res.data;
 
         switch (myTableName) {
-            case exerciseItemsTableName:
+            case exercisesTableName:
                 for (let i = 0; i < myResData.Items.length; i++) {
                     myResData.Items[i].categoryJSON = JSON.parse(myResData.Items[i].categoryJSON)
                 }

@@ -129,8 +129,8 @@ const SignInRegDialog: any = () => {
                     setGymMember(gymMember);
                     setLogInType('signedIn');
                     setSignInRegDialogType('false');
-                    const exerciseItems = await getMembersExercises(gymMember)
-                    setExercises(exerciseItems);
+                    const exercises = await getMembersExercises(gymMember)
+                    setExercises(exercises);
                     const workoutItems = await getMembersWorkouts(gymMember)
                     setWorkouts(workoutItems);
                     const gymDayItems = await getMembersGymDays(gymMember)

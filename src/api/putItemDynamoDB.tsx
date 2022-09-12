@@ -1,6 +1,6 @@
 import { API } from 'aws-amplify';
 import {
-    exerciseItemsTableName,
+    exercisesTableName,
     workoutsTableName,
     gymDaysTableName,
     gymMembersTableName,
@@ -14,7 +14,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
     // console.log(myTableName, myIdToken, myItem, myCustomId);
     let myNewItem = {}
     switch (myTableName) {
-        case exerciseItemsTableName:
+        case exercisesTableName:
             myNewItem = {
                 id: myItem.id,
                 title: myItem.title = myItem.title !== '' ? myItem.title : blankPlaceHolder,
