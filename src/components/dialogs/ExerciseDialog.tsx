@@ -115,7 +115,7 @@ const ExerciseDialog: any = () => {
         <div>
             <Dialog className={classes.root} open={exerciseItemDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">
-                    {dialogType + " exercise item"}</DialogTitle>
+                    {dialogType + " exercise"}</DialogTitle>
                 <DialogContent>
                     <TextField
                         id="title"

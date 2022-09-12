@@ -29,7 +29,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 dateFrom: dateString(myItem.dateFrom, new Date(), 'saveToDatabaseFromDate'),
                 dateTo: dateString(myItem.dateTo, new Date(), 'saveToDatabaseToDate'),
                 description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
-                exerciseItemIdsJSON: JSON.stringify(myItem.exerciseItemIdsJSON),
+                exerciseIdsJSON: JSON.stringify(myItem.exerciseIdsJSON),
             }
             break;
         case gymDaysTableName:
@@ -39,7 +39,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 dateFrom: dateString(myItem.dateFrom, new Date(), 'saveToDatabaseFromDate'),
                 dateTo: dateString(myItem.dateTo, new Date(), 'saveToDatabaseToDate'),
                 description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
-                exerciseItemIdsJSON: JSON.stringify(myItem.exerciseItemIdsJSON),
+                workoutIdsJSON: JSON.stringify(myItem.workoutIdsJSON),
             }
             break;
         case gymMembersTableName:

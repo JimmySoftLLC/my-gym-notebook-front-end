@@ -8,8 +8,8 @@ const MemberDataCard = ({ DataItem }: any) => {
     } = dataAndMethodsContext;
 
     let DataItemSelected = false;
-    for (let j = 0; j < MemberDataDialogData.exerciseItemIdsJSON.length; j++) {
-        if (DataItem.id === MemberDataDialogData.exerciseItemIdsJSON[j]) {
+    for (let j = 0; j < MemberDataDialogData.exerciseIdsJSON.length; j++) {
+        if (DataItem.id === MemberDataDialogData.exerciseIdsJSON[j]) {
             DataItemSelected = true;
             break;
         }
@@ -17,11 +17,11 @@ const MemberDataCard = ({ DataItem }: any) => {
 
     const changeDataItemSelected = () => {
         let myNewGymDayDialogData = JSON.parse(JSON.stringify(MemberDataDialogData))
-        let myIndex = myNewGymDayDialogData.exerciseItemIdsJSON.indexOf(DataItem.id, 0)
+        let myIndex = myNewGymDayDialogData.exerciseIdsJSON.indexOf(DataItem.id, 0)
         if (myIndex !== -1) {
-            myNewGymDayDialogData.exerciseItemIdsJSON.splice(myIndex, 1)
+            myNewGymDayDialogData.exerciseIdsJSON.splice(myIndex, 1)
         } else {
-            myNewGymDayDialogData.exerciseItemIdsJSON.push(DataItem.id)
+            myNewGymDayDialogData.exerciseIdsJSON.push(DataItem.id)
         }
         setMemberData(myNewGymDayDialogData)
     }

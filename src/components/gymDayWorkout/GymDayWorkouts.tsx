@@ -12,7 +12,6 @@ const GymDayWorkouts = (GymDayId: any) => {
     return workouts.map((Workout: { id: any; }) => <WorkoutCardGymDay Workout={Workout}
         myStates={myStates}
         isInList={true}
-        GymDayId={GymDayId}
         WorkoutId={Workout.id}
         key={Workout.id} />);
 };

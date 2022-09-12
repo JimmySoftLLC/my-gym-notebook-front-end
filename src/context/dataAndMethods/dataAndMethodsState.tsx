@@ -155,8 +155,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             dateFrom: '',
             dateTo: '',
             description: '',
-            exerciseItemIdsJSON: [],
-            restaurantId: '',
+            exerciseIdsJSON: [],
             dialogType: "Edit",
         },
 
@@ -168,8 +167,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             dateFrom: '',
             dateTo: '',
             description: '',
-            exerciseItemIdsJSON: [],
-            restaurantId: '',
+            workoutIdsJSON: [],
             dialogType: "Edit",
         },
 

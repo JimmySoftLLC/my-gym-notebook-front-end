@@ -47,7 +47,7 @@ const WorkoutCard: any = ({ Workout }: any) => {
                     dateFrom: workouts[i].dateFrom,
                     dateTo: workouts[i].dateTo,
                     description: workouts[i].description,
-                    exerciseItemIdsJSON: workouts[i].exerciseItemIdsJSON,
+                    exerciseIdsJSON: workouts[i].exerciseIdsJSON,
                     dialogType: 'Edit',
                 }
                 setWorkoutDialogData(myEditItem);
@@ -66,7 +66,7 @@ const WorkoutCard: any = ({ Workout }: any) => {
                     dateFrom: workouts[i].dateFrom,
                     dateTo: workouts[i].dateTo,
                     description: workouts[i].description,
-                    exerciseItemIdsJSON: workouts[i].exerciseItemIdsJSON,
+                    exerciseIdsJSON: workouts[i].exerciseIdsJSON,
                     dialogType: "Add",
                 }
                 setWorkoutDialogData(myEditItem);

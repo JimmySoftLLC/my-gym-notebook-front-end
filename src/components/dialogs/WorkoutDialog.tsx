@@ -43,7 +43,7 @@ const WorkoutDialog: any = () => {
         dateFrom,
         dateTo,
         description,
-        exerciseItemIdsJSON,
+        exerciseIdsJSON,
         dialogType,
     } = dataAndMethodsContext.workoutDialogData;
 
@@ -85,7 +85,7 @@ const WorkoutDialog: any = () => {
         newWorkout.dateFrom = dateFrom;
         newWorkout.dateTo = dateTo;
         newWorkout.description = description
-        newWorkout.exerciseItemIdsJSON = exerciseItemIdsJSON
+        newWorkout.exerciseIdsJSON = exerciseIdsJSON
         await putWorkout(newWorkout, idToken, customId);
         let myWorkouts = await getWorkouts(gymMember.workoutIdsJSON);
         myWorkouts = await sortWorkouts(myWorkouts, 'sortDate');
@@ -99,7 +99,7 @@ const WorkoutDialog: any = () => {
         newWorkout.dateFrom = dateFrom;
         newWorkout.dateTo = dateTo;
         newWorkout.description = description
-        newWorkout.exerciseItemIdsJSON = exerciseItemIdsJSON;
+        newWorkout.exerciseIdsJSON = exerciseIdsJSON;
         await putWorkout(newWorkout, idToken, customId);
         let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
         myNewGymMember.workoutIdsJSON.push(id);
@@ -112,13 +112,13 @@ const WorkoutDialog: any = () => {
 
     const selectAllExercises = () => {
         let newWorkoutDialogData = JSON.parse(JSON.stringify(workoutDialogData))
-        newWorkoutDialogData.exerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
+        newWorkoutDialogData.exerciseIdsJSON = JSON.parse(JSON.stringify({}))
         setWorkoutDialogData(newWorkoutDialogData)
     }
 
     const unSelectAllExercises = () => {
         let newWorkoutDialogData = JSON.parse(JSON.stringify(workoutDialogData))
-        newWorkoutDialogData.exerciseItemIdsJSON = []
+        newWorkoutDialogData.exerciseIdsJSON = []
         setWorkoutDialogData(newWorkoutDialogData)
     }
 
@@ -211,7 +211,7 @@ const WorkoutDialog: any = () => {
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
-                                    <Typography>Menu Items</Typography>
+                                    <Typography>Exercises</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid item xs={12}>

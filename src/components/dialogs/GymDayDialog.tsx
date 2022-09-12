@@ -43,7 +43,7 @@ const GymDayDialog: any = () => {
         dateFrom,
         dateTo,
         description,
-        exerciseItemIdsJSON,
+        workoutIdsJSON,
         dialogType,
     } = dataAndMethodsContext.gymDayDialogData;
 
@@ -85,7 +85,7 @@ const GymDayDialog: any = () => {
         newGymDay.dateFrom = dateFrom;
         newGymDay.dateTo = dateTo;
         newGymDay.description = description
-        newGymDay.exerciseItemIdsJSON = exerciseItemIdsJSON
+        newGymDay.workoutIdsJSON = workoutIdsJSON
         await putGymDay(newGymDay, idToken, customId);
         let myGymDays = await getGymDays(gymMember.gymDayIdsJSON);
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
@@ -99,7 +99,7 @@ const GymDayDialog: any = () => {
         newGymDay.dateFrom = dateFrom;
         newGymDay.dateTo = dateTo;
         newGymDay.description = description
-        newGymDay.exerciseItemIdsJSON = exerciseItemIdsJSON;
+        newGymDay.workoutIdsJSON = workoutIdsJSON;
         await putGymDay(newGymDay, idToken, customId);
         let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
         myNewGymMember.gymDayIdsJSON.push(id);
@@ -112,13 +112,13 @@ const GymDayDialog: any = () => {
 
     const selectAllExercises = () => {
         let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        newGymDayDialogData.exerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
+        newGymDayDialogData.workoutIdsJSON = JSON.parse(JSON.stringify({}))
         setGymDayDialogData(newGymDayDialogData)
     }
 
     const unSelectAllExercises = () => {
         let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        newGymDayDialogData.exerciseItemIdsJSON = []
+        newGymDayDialogData.workoutIdsJSON = []
         setGymDayDialogData(newGymDayDialogData)
     }
 
@@ -211,7 +211,7 @@ const GymDayDialog: any = () => {
                                     aria-controls="panel1a-content"
                                     id="panel1a-header"
                                 >
-                                    <Typography>Menu Items</Typography>
+                                    <Typography>Workouts</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid item xs={12}>

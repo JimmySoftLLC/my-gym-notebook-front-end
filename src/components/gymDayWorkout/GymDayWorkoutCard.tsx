@@ -8,8 +8,8 @@ const GymDayWorkoutCard = ({ Workout }: any) => {
     } = dataAndMethodsContext;
 
     let WorkoutSelected = false;
-    for (let j = 0; j < gymDayDialogData.exerciseItemIdsJSON.length; j++) {
-        if (Workout.id === gymDayDialogData.exerciseItemIdsJSON[j]) {
+    for (let j = 0; j < gymDayDialogData.workoutIdsJSON.length; j++) {
+        if (Workout.id === gymDayDialogData.workoutIdsJSON[j]) {
             WorkoutSelected = true;
             break;
         }
@@ -17,23 +17,13 @@ const GymDayWorkoutCard = ({ Workout }: any) => {
 
     const changeWorkoutSelected = () => {
         let myNewGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        let myIndex = myNewGymDayDialogData.exerciseItemIdsJSON.indexOf(Workout.id, 0)
+        let myIndex = myNewGymDayDialogData.workoutIdsJSON.indexOf(Workout.id, 0)
         if (myIndex !== -1) {
-            myNewGymDayDialogData.exerciseItemIdsJSON.splice(myIndex, 1)
+            myNewGymDayDialogData.workoutIdsJSON.splice(myIndex, 1)
         } else {
-            myNewGymDayDialogData.exerciseItemIdsJSON.push(Workout.id)
+            myNewGymDayDialogData.workoutIdsJSON.push(Workout.id)
         }
         setGymDayDialogData(myNewGymDayDialogData)
-    }
-
-    const items = []
-    for (let i = 0; i < Workout.categoryJSON.length; i++) {
-        switch (Workout.categoryJSON[i]) {
-            case 'meat':
-                items.push(<i className='icon-tbone' key={Workout.id + "_meat"} style={{ paddingRight: '.25rem' }}></i>)
-                break;
-            default:
-        }
     }
 
     return (
@@ -45,7 +35,7 @@ const GymDayWorkoutCard = ({ Workout }: any) => {
                     name="checked"
                     color="primary"
                 />
-                {' - '}{items}{Workout.title}
+                {' - '}{Workout.title}
             </h4>
         </div>
     );

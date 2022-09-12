@@ -8,8 +8,8 @@ const WorkoutExerciseCard = ({ Exercise }: any) => {
     } = dataAndMethodsContext;
 
     let ExerciseSelected = false;
-    for (let j = 0; j < workoutDialogData.exerciseItemIdsJSON.length; j++) {
-        if (Exercise.id === workoutDialogData.exerciseItemIdsJSON[j]) {
+    for (let j = 0; j < workoutDialogData.exerciseIdsJSON.length; j++) {
+        if (Exercise.id === workoutDialogData.exerciseIdsJSON[j]) {
             ExerciseSelected = true;
             break;
         }
@@ -17,11 +17,11 @@ const WorkoutExerciseCard = ({ Exercise }: any) => {
 
     const changeExerciseSelected = () => {
         let myNewWorkoutDialogData = JSON.parse(JSON.stringify(workoutDialogData))
-        let myIndex = myNewWorkoutDialogData.exerciseItemIdsJSON.indexOf(Exercise.id, 0)
+        let myIndex = myNewWorkoutDialogData.exerciseIdsJSON.indexOf(Exercise.id, 0)
         if (myIndex !== -1) {
-            myNewWorkoutDialogData.exerciseItemIdsJSON.splice(myIndex, 1)
+            myNewWorkoutDialogData.exerciseIdsJSON.splice(myIndex, 1)
         } else {
-            myNewWorkoutDialogData.exerciseItemIdsJSON.push(Exercise.id)
+            myNewWorkoutDialogData.exerciseIdsJSON.push(Exercise.id)
         }
         setWorkoutDialogData(myNewWorkoutDialogData)
     }
