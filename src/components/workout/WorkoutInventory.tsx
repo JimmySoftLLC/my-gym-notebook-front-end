@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import GymDayCard from './WorkoutCard';
+import WorkoutCard from './WorkoutCard';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import CircularIndeterminate from '../circularIndeterminate/CircularIndeterminate';
 
-const GymDaysInventory = () => {
+const WorkoutsInventory = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
-        gymDays,
+        workouts,
         myStates,
         loading,
     } = dataAndMethodsContext;
@@ -14,10 +14,10 @@ const GymDaysInventory = () => {
     if (loading) {
         return <CircularIndeterminate />;
     } else {
-        return gymDays.map((GymDay: { id: React.Key | null | undefined; }) => <GymDayCard GymDay={GymDay}
+        return workouts.map((GymDay: { id: React.Key | null | undefined; }) => <WorkoutCard GymDay={GymDay}
             myStates={myStates}
             key={GymDay.id} />);
     }
 };
 
-export default GymDaysInventory;
+export default WorkoutsInventory;

@@ -14,6 +14,7 @@ import createGymMember from '../../model/gymMember/createGymMember';
 import isEmail from 'validator/lib/isEmail';
 import { username, secret } from '../../envConstants'
 import getMembersExerciseItems from '../../model/exerciseItem/getMembersExerciseItems';
+import getMembersWorkouts from '../../model/workoutItem/getMembersWorkouts';
 import getMembersGymDays from '../../model/gymDay/getMembersGymDays';
 
 const useStyles = makeStyles(theme => ({
@@ -45,7 +46,8 @@ const SignInRegDialog: any = () => {
         setLogInType,
         setGymMember,
         setExerciseItems,
-        setGymDayItems
+        setWorkoutItems,
+        setGymDayItems,
     } = dataAndMethodsContext;
 
     const closeDialog = () => {
@@ -129,6 +131,8 @@ const SignInRegDialog: any = () => {
                     setSignInRegDialogType('false');
                     const exerciseItems = await getMembersExerciseItems(gymMember)
                     setExerciseItems(exerciseItems);
+                    const workoutItems = await getMembersWorkouts(gymMember)
+                    setWorkoutItems(workoutItems);
                     const gymDayItems = await getMembersGymDays(gymMember)
                     setGymDayItems(gymDayItems);
                     setDialogBackToDefaults();

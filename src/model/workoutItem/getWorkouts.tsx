@@ -13,7 +13,7 @@ const getBatch = async (myIds: any) => {
         return [];
     }
 
-    myWorkouts = data.payload.Responses.Workouts;
+    myWorkouts = data.payload.Responses.workouts;
     for (let i = 0; i < myWorkouts.length; i++) {
         myWorkouts[i].title = myWorkouts[i].title === blankPlaceHolder ? '' : myWorkouts[i].title
         myWorkouts[i].description = myWorkouts[i].description === blankPlaceHolder ? '' : myWorkouts[i].description

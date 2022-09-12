@@ -1,6 +1,7 @@
 import { API } from 'aws-amplify';
 import {
     exerciseItemsTableName,
+    workoutsTableName,
     gymDaysTableName,
     gymMembersTableName,
     apiName,
@@ -19,6 +20,16 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 title: myItem.title = myItem.title !== '' ? myItem.title : blankPlaceHolder,
                 description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
                 categoryJSON: JSON.stringify(myItem.categoryJSON),
+            }
+            break;
+        case workoutsTableName:
+            myNewItem = {
+                id: myItem.id,
+                title: myItem.title = myItem.title !== '' ? myItem.title : blankPlaceHolder,
+                dateFrom: dateString(myItem.dateFrom, new Date(), 'saveToDatabaseFromDate'),
+                dateTo: dateString(myItem.dateTo, new Date(), 'saveToDatabaseToDate'),
+                description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
+                exerciseItemIdsJSON: JSON.stringify(myItem.exerciseItemIdsJSON),
             }
             break;
         case gymDaysTableName:
@@ -41,6 +52,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 exerciseIdsJSON: JSON.stringify(myItem.exerciseIdsJSON),
                 teamMateIdsJSON: JSON.stringify(myItem.teamMateIdsJSON),
                 gymDayIdsJSON: JSON.stringify(myItem.gymDayIdsJSON),
+                workoutIdsJSON: JSON.stringify(myItem.workoutIdsJSON),
                 dataJSON: JSON.stringify(myItem.dataJSON),
                 imageUrl: myItem.imageUrl !== '' ? myItem.imageUrl : blankPlaceHolder,
             }
