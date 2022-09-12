@@ -13,8 +13,8 @@ import getGymMember from '../../model/gymMember/getGymMember';
 import createGymMember from '../../model/gymMember/createGymMember';
 import isEmail from 'validator/lib/isEmail';
 import { username, secret } from '../../envConstants'
-import getMembersExerciseItems from '../../model/exerciseItem/getMembersExerciseItems';
-import getMembersWorkouts from '../../model/workoutItem/getMembersWorkouts';
+import getMembersExerciseItems from '../../model/exercise/getMembersExercises';
+import getMembersWorkouts from '../../model/workout/getMembersWorkouts';
 import getMembersGymDays from '../../model/gymDay/getMembersGymDays';
 
 const useStyles = makeStyles(theme => ({

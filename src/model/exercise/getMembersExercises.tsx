@@ -1,4 +1,4 @@
-import getExerciseItems from './getExerciseItems';
+import getExerciseItems from './getExercises';
 
 const getMembersExerciseItems = async (gymMember: any) => {
     let exerciseItemIds = [];

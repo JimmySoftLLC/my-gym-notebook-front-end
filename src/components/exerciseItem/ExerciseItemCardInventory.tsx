@@ -4,10 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { v4 as uuidv4 } from 'uuid';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
-import sortExerciseItems from '../../model/exerciseItem/sortExerciseItems'
-import deleteExerciseItem from '../../model/exerciseItem/deleteExerciseItem';
+import sortExerciseItems from '../../model/exercise/sortExercise'
+import deleteExerciseItem from '../../model/exercise/deleteExercise';
 import putGymMember from '../../model/gymMember/putGymMember';
-import getExerciseItems from '../../model/exerciseItem/getExerciseItems';
+import getExerciseItems from '../../model/exercise/getExercises';
 
 const useStyles = makeStyles(theme => ({
     root: {

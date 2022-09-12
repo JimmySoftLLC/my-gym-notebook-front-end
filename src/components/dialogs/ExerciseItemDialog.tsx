@@ -10,9 +10,9 @@ import IconButton from '@material-ui/core/IconButton';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Tooltip } from '@material-ui/core';
-import putExerciseItem from '../../model/exerciseItem/putExerciseItem';
-import sortExerciseItems from '../../model/exerciseItem/sortExerciseItems';
-import getExerciseItems from '../../model/exerciseItem/getExerciseItems';
+import putExerciseItem from '../../model/exercise/putExercise';
+import sortExerciseItems from '../../model/exercise/sortExercise';
+import getExerciseItems from '../../model/exercise/getExercises';
 import putGymMember from '../../model/gymMember/putGymMember';
 
 const useStyles = makeStyles(theme => ({

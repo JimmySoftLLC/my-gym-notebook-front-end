@@ -14,9 +14,9 @@ const WorkoutsInventory = () => {
     if (loading) {
         return <CircularIndeterminate />;
     } else {
-        return workouts.map((GymDay: { id: React.Key | null | undefined; }) => <WorkoutCard GymDay={GymDay}
+        return workouts.map((Workout: { id: React.Key | null | undefined; }) => <WorkoutCard Workout={Workout}
             myStates={myStates}
-            key={GymDay.id} />);
+            key={Workout.id} />);
     }
 };
 

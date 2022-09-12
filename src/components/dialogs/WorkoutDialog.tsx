@@ -7,11 +7,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
-import putWorkout from '../../model/workoutItem/putWorkout';
-import getWorkouts from '../../model/workoutItem/getWorkouts';
+import putWorkout from '../../model/workout/putWorkout';
+import getWorkouts from '../../model/workout/getWorkoutsFromIds';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-import sortWorkouts from '../../model/workoutItem/sortWorkouts';
+import sortWorkouts from '../../model/workout/sortWorkouts';
 import 'date-fns';
 import ExerciseItemsWorkout from '../exerciseItemWorkout/ExerciseItemsWorkout';
 import {

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import ExerciseItemCardInventory from './ExerciseItemCardInventory';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import CircularIndeterminate from '../circularIndeterminate/CircularIndeterminate';
-import getExerciseItemsCategories from '../../model/exerciseItem/getExerciseItemsCategories';
+import getExerciseItemsCategories from '../../model/exercise/getExerciseItemsCategories';
 
 const ExerciseItemsInventory = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
