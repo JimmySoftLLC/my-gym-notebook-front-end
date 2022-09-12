@@ -21,6 +21,7 @@ const getBatch = async (myIds: any[]) => {
         myGymMembers[i].exerciseIdsJSON = myGymMembers[i].exerciseIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMembers[i].exerciseIdsJSON)
         myGymMembers[i].teamMateIdsJSON = myGymMembers[i].teamMateIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMembers[i].teamMateIdsJSON)
         myGymMembers[i].gymDayIdsJSON = myGymMembers[i].gymDayIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMembers[i].gymDayIdsJSON)
+        myGymMembers[i].workoutIdsJSON = myGymMembers[i].workoutIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMembers[i].workoutIdsJSON)
         myGymMembers[i].dataJSON = myGymMembers[i].dataJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMembers[i].dataJSON)
         myGymMembers[i].imageUrl = myGymMembers[i].imageUrl === blankPlaceHolder ? '' : myGymMembers[i].imageUrl
     }

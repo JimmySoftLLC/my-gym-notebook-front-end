@@ -42,9 +42,6 @@ const SignedInTopToolBar = () => {
             dateTo: new Date(),
             description: '',
             exerciseItemIdsJSON: [],
-            entertainmentItemIdsJSON: [],
-            gymMembersJSON: [],
-            restaurantId: restaurantId,
             dialogType: "Add",
         }
         setWorkoutDialogData(myEditItem);
@@ -60,14 +57,12 @@ const SignedInTopToolBar = () => {
             dateTo: new Date(),
             description: '',
             exerciseItemIdsJSON: [],
-            entertainmentItemIdsJSON: [],
-            gymMembersJSON: [],
-            restaurantId: restaurantId,
             dialogType: "Add",
         }
         setGymDayDialogData(myEditItem);
         setGymDayDialogOpen(true);
     };
+
     return (
         <Fragment>
             <Toolbar>

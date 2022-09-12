@@ -45,12 +45,12 @@ const WorkoutDialog: any = () => {
         description,
         exerciseItemIdsJSON,
         dialogType,
-    } = dataAndMethodsContext.gymDayDialogData;
+    } = dataAndMethodsContext.workoutDialogData;
 
-    const { gymDayDialogData } = dataAndMethodsContext;
+    const { workoutDialogData } = dataAndMethodsContext;
 
     const {
-        gymDayDialogOpen,
+        workoutDialogOpen,
         setWorkoutDialogOpen,
         setWorkoutDialogDataItem,
         idToken,
@@ -87,7 +87,7 @@ const WorkoutDialog: any = () => {
         newWorkout.description = description
         newWorkout.exerciseItemIdsJSON = exerciseItemIdsJSON
         await putWorkout(newWorkout, idToken, customId);
-        let myWorkouts = await getWorkouts(gymMember.gymDayIdsJSON);
+        let myWorkouts = await getWorkouts(gymMember.workoutIdsJSON);
         myWorkouts = await sortWorkouts(myWorkouts, 'sortDate');
         setWorkoutItems(myWorkouts)
     };
@@ -102,22 +102,22 @@ const WorkoutDialog: any = () => {
         newWorkout.exerciseItemIdsJSON = exerciseItemIdsJSON;
         await putWorkout(newWorkout, idToken, customId);
         let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
-        myNewGymMember.gymDayIdsJSON.push(id);
+        myNewGymMember.workoutIdsJSON.push(id);
         await putGymMember(myNewGymMember, idToken, customId)
         setGymMember(myNewGymMember);
-        let myWorkouts = await getWorkouts(myNewGymMember.gymDayIdsJSON);
+        let myWorkouts = await getWorkouts(myNewGymMember.workoutIdsJSON);
         myWorkouts = await sortWorkouts(myWorkouts, 'sortDate');
         setWorkoutItems(myWorkouts)
     };
 
     const selectAllExerciseItems = () => {
-        let newWorkoutDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        let newWorkoutDialogData = JSON.parse(JSON.stringify(workoutDialogData))
         newWorkoutDialogData.exerciseItemIdsJSON = JSON.parse(JSON.stringify({}))
         setWorkoutDialogData(newWorkoutDialogData)
     }
 
     const unSelectAllExerciseItems = () => {
-        let newWorkoutDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        let newWorkoutDialogData = JSON.parse(JSON.stringify(workoutDialogData))
         newWorkoutDialogData.exerciseItemIdsJSON = []
         setWorkoutDialogData(newWorkoutDialogData)
     }
@@ -128,7 +128,7 @@ const WorkoutDialog: any = () => {
 
     const changeDateFrom = (dateValue: any) => {
         const newDateTo = new Date(dateTo)
-        let newWorkoutDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        let newWorkoutDialogData = JSON.parse(JSON.stringify(workoutDialogData))
         if (dateValue.getTime() > newDateTo.getTime()) {
             newWorkoutDialogData['dateFrom'] = dateValue;
             newWorkoutDialogData['dateTo'] = dateValue;
@@ -140,7 +140,7 @@ const WorkoutDialog: any = () => {
 
     const changeDateTo = (dateValue: any) => {
         const newDateFrom = new Date(dateFrom)
-        let newWorkoutDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        let newWorkoutDialogData = JSON.parse(JSON.stringify(workoutDialogData))
         if (dateValue.getDate() < newDateFrom.getTime()) {
             newWorkoutDialogData['dateTo'] = newDateFrom;
         } else {
@@ -157,9 +157,9 @@ const WorkoutDialog: any = () => {
         <div>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
-                    <Dialog className={classes.root} open={gymDayDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
+                    <Dialog className={classes.root} open={workoutDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">
-                            {dialogType + " gym day"}</DialogTitle>
+                            {dialogType + " workout"}</DialogTitle>
                         <DialogContent>
                             <TextField
                                 id="title"

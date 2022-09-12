@@ -21,6 +21,7 @@ const getGymMember = async (myEmailId: any, myToken: any, myCustomId: any) => {
     myGymMember.exerciseIdsJSON = myGymMember.exerciseIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMember.exerciseIdsJSON)
     myGymMember.teamMateIdsJSON = myGymMember.teamMateIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMember.teamMateIdsJSON)
     myGymMember.gymDayIdsJSON = myGymMember.gymDayIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMember.gymDayIdsJSON)
+    myGymMember.workoutIdsJSON = myGymMember.workoutIdsJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMember.workoutIdsJSON)
     myGymMember.dataJSON = myGymMember.dataJSON === undefined ? JSON.parse('[]') : JSON.parse(myGymMember.dataJSON)
     myGymMember.imageUrl = myGymMember.imageUrl === blankPlaceHolder ? '' : myGymMember.imageUrl
     return myGymMember;
