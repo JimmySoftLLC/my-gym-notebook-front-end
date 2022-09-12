@@ -23,6 +23,10 @@ import {
     SET_EXERCISE_ITEM_DIALOG_DATA,
     SET_EXERCISE_ITEM_DIALOG_OPEN,
 
+    SET_WORKOUT_ITEMS,
+    SET_WORKOUT_DIALOG_OPEN,
+    SET_WORKOUT_DIALOG_DATA,
+
     SET_GYM_DAY_ITEMS,
     SET_GYM_DAY_DIALOG_OPEN,
     SET_GYM_DAY_DIALOG_DATA,
@@ -41,6 +45,8 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 myStates: action.payload,
             };
+
+
         case SET_TODAYS_DATE:
             return {
                 ...state,
@@ -51,6 +57,8 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 selectedDate: action.payload,
             };
+
+
         case SET_LOADING:
             return {
                 ...state,
@@ -61,6 +69,8 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 loadingDialog: action.payload,
             };
+
+
         case SET_SIGN_IN_REG_DIALOG_TYPE:
             return {
                 ...state,
@@ -91,6 +101,8 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 logInType: action.payload,
             };
+
+
         case SET_GYM_MEMBER:
             return {
                 ...state,
@@ -111,6 +123,7 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 gymMemberDialogOpen: action.payload,
             };
+
         case SET_EXERCISE_ITEMS:
             return {
                 ...state,
@@ -126,6 +139,25 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 exerciseItemDialogOpen: action.payload,
             };
+
+
+        case SET_WORKOUT_ITEMS:
+            return {
+                ...state,
+                workouts: action.payload,
+            };
+        case SET_WORKOUT_DIALOG_OPEN:
+            return {
+                ...state,
+                workoutDialogOpen: action.payload,
+            };
+        case SET_WORKOUT_DIALOG_DATA:
+            return {
+                ...state,
+                workoutDialogData: action.payload,
+            };
+
+
         case SET_GYM_DAY_ITEMS:
             return {
                 ...state,
@@ -141,6 +173,8 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 gymDayDialogData: action.payload,
             };
+
+
         case SET_PHOTOS:
             return {
                 ...state,
@@ -156,6 +190,8 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 photoDialogOpen: action.payload,
             };
+
+
         case SET_IMAGE_EDITOR_DATA:
             return {
                 ...state,

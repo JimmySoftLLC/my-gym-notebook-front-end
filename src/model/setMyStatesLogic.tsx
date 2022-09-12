@@ -24,10 +24,6 @@ const setMyStatesLogic = (myStates: any, key: any) => {
                     myStates.helpDialogOpen = true;
                     myStates.helpDialogStage = 6;
                 }
-                if (key === "entertainmentItems") {
-                    myStates.helpDialogOpen = true;
-                    myStates.helpDialogStage = 7;
-                }
                 if (key === "photoGallery") {
                     myStates.helpDialogOpen = true;
                     myStates.helpDialogStage = 8;
@@ -42,16 +38,7 @@ const setMyStatesLogic = (myStates: any, key: any) => {
                     key === "aerobic" ||
                     key === "balance" ||
                     key === "agility" ||
-                    key === "flexibilityMobility" ||
-                    key === "pizza" ||
-                    key === "pasta" ||
-                    key === "entree" ||
-                    key === "dessert" ||
-                    key === "drinks" ||
-                    key === "wine" ||
-                    key === "beer" ||
-                    key === "coffee" ||
-                    key === "kids"
+                    key === "flexibilityMobility"
                 ) {
                     myStates.helpDialogOpen = true;
                     myStates.helpDialogStage = 3;
@@ -99,21 +86,20 @@ const setMyStatesLogic = (myStates: any, key: any) => {
     }
 
     // if myKey = any of the login items, set login items to false and set key
-    if (key === 'exerciseSettings' || key === 'gymDaySettings') {
+    if (key === 'exerciseSettings' || key === 'workoutSettings' || key === 'gymDaySettings') {
         myStates['exerciseSettings'] = false;
+        myStates['workoutSettings'] = false;
         myStates['gymDaySettings'] = false;
         myStates[key] = true;
         return myStates;
     }
 
     // if myKey = any of the login items, set login items to false and set key
-    if (key === 'restaurants' || key === 'exerciseItems' || key === 'gymMembers' || key === 'info' || key === 'gymDaysDetail' || key === 'entertainmentItems' || key === 'photoGallery') {
-        myStates['restaurants'] = false;
+    if (key === 'exerciseItems' || key === 'gymMembers' || key === 'info' || key === 'gymDaysDetail' || key === 'photoGallery') {
         myStates['exerciseItems'] = false;
         myStates['gymMembers'] = false;
         myStates['info'] = false;
         myStates['gymDaysDetail'] = false;
-        myStates['entertainmentItems'] = false;
         myStates['photoGallery'] = false;
         if (key !== 'gymDaysDetail') {
             myStates['lastState'] = key;

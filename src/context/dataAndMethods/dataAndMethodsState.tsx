@@ -29,6 +29,10 @@ import {
     SET_EXERCISE_ITEM_DIALOG_DATA,
     SET_EXERCISE_ITEM_DIALOG_OPEN,
 
+    SET_WORKOUT_ITEMS,
+    SET_WORKOUT_DIALOG_OPEN,
+    SET_WORKOUT_DIALOG_DATA,
+
     SET_GYM_DAY_ITEMS,
     SET_GYM_DAY_DIALOG_OPEN,
     SET_GYM_DAY_DIALOG_DATA,
@@ -69,6 +73,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
 
                 // backend pages
                 exerciseSettings: false,
+                workoutSettings: false,
                 gymDaySettings: false,
                 gymMemberSettings: false,
                 showDescription: false,
@@ -99,30 +104,23 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     });
 
     const initialState = {
+        myStates: myStatesLocalStorage,
+
+        todaysDate: Date(),
+        selectedDate: Date(),
+
+        loading: false,
+        loadingDialog: false,
+
+        signInRegDialogType: 'false',
+        signInRegDialogTitle: '',
         authToken: {},
         idToken: {},
         customId: '',
         logInType: 'default',
-        loading: false,
-        loadingDialog: false,
-        myStates: myStatesLocalStorage,
-        signInRegDialogType: 'false',
-        exerciseItems: [],
-        gymMembers: [],
-        gymDays: [],
+
         gymMember: {},
-        exerciseItemDialogOpen: false,
-        onScreenDebugMessage: '',
-        todaysDate: Date(),
-        selectedDate: Date(),
-        exerciseItemDialogData: {
-            title: '',
-            description: '',
-            categoryJSON: [],
-            price: 0,
-            id: '',
-            dialogType: 'Add',
-        },
+        gymMembers: [],
         gymMemberDialogOpen: false,
         gymMemberDialogData: {
             id: '',
@@ -137,6 +135,32 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             dialogType: 'Edit',
             message: '',
         },
+
+        exerciseItems: [],
+        exerciseItemDialogOpen: false,
+        exerciseItemDialogData: {
+            title: '',
+            description: '',
+            categoryJSON: [],
+            price: 0,
+            id: '',
+            dialogType: 'Add',
+        },
+
+        workouts: [],
+        workoutDialogOpen: false,
+        workoutDialogData: {
+            id: '',
+            title: '',
+            dateFrom: '',
+            dateTo: '',
+            description: '',
+            exerciseItemIdsJSON: [],
+            restaurantId: '',
+            dialogType: "Edit",
+        },
+
+        gymDays: [],
         gymDayDialogOpen: false,
         gymDayDialogData: {
             id: '',
@@ -148,12 +172,15 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             restaurantId: '',
             dialogType: "Edit",
         },
+
+        photos: [],
         photoDialogOpen: false,
         photoDialogData: {
             src: '',
             caption: '',
             dialogType: 'Add',
         },
+
         imageEditorData: {
             imageUrl: '',
             editMode: 'none',
@@ -164,7 +191,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             blob: '',
             showDelete: true,
         },
-        photos: [],
     };
 
     const [state, dispatch] = useReducer(DataAndMethodsReducer, initialState);
@@ -248,6 +274,16 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     const setExerciseItemDialogData = async (exerciseItemDialogData: any) => { dispatch({ type: SET_EXERCISE_ITEM_DIALOG_DATA, payload: exerciseItemDialogData }) }
     const setExerciseItemDialogOpen = async (exerciseItemDialogOpen: any) => { dispatch({ type: SET_EXERCISE_ITEM_DIALOG_OPEN, payload: exerciseItemDialogOpen }) }
 
+    // workouts and dialog -----------------------------------------------
+    const setWorkoutItems = async (gymDays: any[]) => { dispatch({ type: SET_WORKOUT_ITEMS, payload: gymDays }) }
+    const setWorkoutDialogDataItem = async (key: string | number, value: any) => {
+        let gymDayDialogData = JSON.parse(JSON.stringify(state.gymDayDialogData))
+        gymDayDialogData[key] = value;
+        setWorkoutDialogData(gymDayDialogData);
+    }
+    const setWorkoutDialogData = async (workoutDialogData: any) => { dispatch({ type: SET_WORKOUT_DIALOG_DATA, payload: workoutDialogData }) }
+    const setWorkoutDialogOpen = async (workoutDialogData: any) => { dispatch({ type: SET_WORKOUT_DIALOG_OPEN, payload: workoutDialogData }) }
+
     // gym days and dialog -----------------------------------------------
     const setGymDayItems = async (gymDays: any[]) => { dispatch({ type: SET_GYM_DAY_ITEMS, payload: gymDays }) }
     const setGymDayDialogDataItem = async (key: string | number, value: any) => {
@@ -310,6 +346,10 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 exerciseItemsTableName: state.exerciseItemsTableName,
                 myExerciseItemStates: state.myExerciseItemStates,
 
+                workouts: state.workouts,
+                workoutDialogData: state.workoutDialogData,
+                workoutDialogOpen: state.workoutDialogOpen,
+
                 gymDays: state.gymDays,
                 gymDayDialogData: state.gymDayDialogData,
                 gymDayDialogOpen: state.gymDayDialogOpen,
@@ -347,6 +387,11 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 setExerciseItemDialogOpen,
                 setExerciseItemDialogData,
                 setExerciseItemDialogDataCategory,
+
+                setWorkoutItems,
+                setWorkoutDialogDataItem,
+                setWorkoutDialogData,
+                setWorkoutDialogOpen,
 
                 setGymDayItems,
                 setGymDayDialogDataItem,

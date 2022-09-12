@@ -13,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import sortGymDays from '../../model/gymDay/sortGymDays';
 import 'date-fns';
-import ExerciseItemsGymDay from '../workoutGymDay/WorkoutItemsGymDay';
+import WorkoutItemsGymDay from '../workoutGymDay/WorkoutItemsGymDay';
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
@@ -215,7 +215,7 @@ const GymDayDialog: any = () => {
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid item xs={12}>
-                                        <ExerciseItemsGymDay />
+                                        <WorkoutItemsGymDay />
                                     </Grid>
                                 </AccordionDetails>
                             </Accordion>

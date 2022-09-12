@@ -12,6 +12,8 @@ const SignedInTopToolBar = () => {
         setExerciseItemDialogOpen,
         restaurantId,
         myStates,
+        setWorkoutDialogData,
+        setWorkoutDialogOpen,
         setGymDayDialogData,
         setGymDayDialogOpen,
     } = dataAndMethodsContext;
@@ -31,6 +33,24 @@ const SignedInTopToolBar = () => {
         setExerciseItemDialogOpen(true);
     };
 
+    const newWorkoutClick = () => {
+        let myNewId = uuidv4()
+        let myEditItem = {
+            id: myNewId,
+            title: '',
+            dateFrom: new Date(),
+            dateTo: new Date(),
+            description: '',
+            exerciseItemIdsJSON: [],
+            entertainmentItemIdsJSON: [],
+            gymMembersJSON: [],
+            restaurantId: restaurantId,
+            dialogType: "Add",
+        }
+        setWorkoutDialogData(myEditItem);
+        setWorkoutDialogOpen(true);
+    };
+
     const newGymDayClick = () => {
         let myNewId = uuidv4()
         let myEditItem = {
@@ -48,7 +68,6 @@ const SignedInTopToolBar = () => {
         setGymDayDialogData(myEditItem);
         setGymDayDialogOpen(true);
     };
-
     return (
         <Fragment>
             <Toolbar>
@@ -58,6 +77,13 @@ const SignedInTopToolBar = () => {
                             color={myStates['exerciseSettings'] ? "default" : "inherit"}
                             onClick={() => dataAndMethodsContext.setMyState('exerciseSettings')}>
                             <i className="icon-book-cog"></i>
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Workout settings">
+                        <IconButton aria-label=""
+                            color={myStates['workoutSettings'] ? "default" : "inherit"}
+                            onClick={() => dataAndMethodsContext.setMyState('workoutSettings')}>
+                            <i className="icon-calendar-cog"></i>
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Gym day settings">
@@ -72,6 +98,13 @@ const SignedInTopToolBar = () => {
                             color="inherit"
                             onClick={() => newExerciseItemClick()}>
                             <i className="icon-book-plus"></i>
+                        </IconButton>
+                    </Tooltip>}
+                    {(myStates['workoutSettings']) && <Tooltip title="Add workout item">
+                        <IconButton aria-label=""
+                            color="inherit"
+                            onClick={() => newWorkoutClick()}>
+                            <i className="icon-calendar-solid-plus"></i>
                         </IconButton>
                     </Tooltip>}
                     {(myStates['gymDaySettings']) && <Tooltip title="Add gym day">

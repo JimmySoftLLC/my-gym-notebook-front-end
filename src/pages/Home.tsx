@@ -11,6 +11,8 @@ import AlertDialog from '../components/dialogs/AlertDialog';
 import HelpDialog from '../components/dialogs/HelpDialog';
 import DeleteConfirmDialog from '../components/dialogs/DeleteConfirmDialog';
 import SignInRegDialog from '../components/dialogs/SignInRegDialog';
+import WorkoutDialog from '../components/dialogs/WorkoutDialog';
+import WorkoutInventory from '../components/workout/WorkoutInventory';
 
 const Home = () => {
     useEffect(() => {
@@ -40,10 +42,12 @@ const Home = () => {
             </div>}
             {logInType === 'signedIn' && <div className='container gym-member-page-top-margin'>
                 {myStates.exerciseSettings && <ExerciseItemsInventory />}
+                {myStates.workoutSettings && <WorkoutInventory />}
                 {myStates.gymDaySettings && <GymDaysInventory />}
                 <ExerciseItemDialog />
                 <GymMemberDialog />
                 <GymDayDialog />
+                <WorkoutDialog />
                 <p className='p gym-member-page-bottom-margin'></p>
             </div>}
             <BotNavBar />
