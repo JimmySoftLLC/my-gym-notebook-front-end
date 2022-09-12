@@ -12,7 +12,6 @@ const ExercisesWorkout = (WorkoutId: any) => {
     return exercises.map((Exercise: { id: any; }) => <ExerciseCardWorkout Exercise={Exercise}
         myStates={myStates}
         isInList={true}
-        WorkoutId={WorkoutId}
         ExerciseId={Exercise.id}
         key={Exercise.id} />);
 };
