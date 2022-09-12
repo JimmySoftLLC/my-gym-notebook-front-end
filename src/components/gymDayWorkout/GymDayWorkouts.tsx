@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import WorkoutCardGymDay from './GymDayWorkoutCard';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 
-const WorkoutItemsGymDay = (GymDayId: any) => {
+const GymDayWorkouts = (GymDayId: any) => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         exerciseItems,
@@ -17,4 +17,4 @@ const WorkoutItemsGymDay = (GymDayId: any) => {
         key={ExerciseItem.id} />);
 };
 
-export default WorkoutItemsGymDay;
+export default GymDayWorkouts;

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 
-const ExerciseItemCardWorkout = ({ ExerciseItem }: any) => {
+const WorkoutExerciseCard = ({ ExerciseItem }: any) => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const { workoutDialogData, setWorkoutDialogData
     } = dataAndMethodsContext;
@@ -51,4 +51,4 @@ const ExerciseItemCardWorkout = ({ ExerciseItem }: any) => {
     );
 };
 
-export default ExerciseItemCardWorkout;
+export default WorkoutExerciseCard;

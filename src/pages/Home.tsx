@@ -1,8 +1,8 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import TopNavBar from '../components/TopNavBar';
 import DataAndMethodsContext from '../context/dataAndMethods/dataAndMethodsContext';
-import ExerciseItemsInventory from '../components/exercise/ExercisesInventory';
-import GymDaysInventory from '../components/gymDay/GymDaysInventory';
+import ExerciseItemsInventory from '../components/exercise/Exercises';
+import GymDaysInventory from '../components/gymDay/GymDays';
 import BotNavBar from '../components/BotNavBar';
 import ExerciseItemDialog from '../components/dialogs/ExerciseItemDialog';
 import GymMemberDialog from '../components/dialogs/GymMemberDialog';
@@ -12,7 +12,7 @@ import HelpDialog from '../components/dialogs/HelpDialog';
 import DeleteConfirmDialog from '../components/dialogs/DeleteConfirmDialog';
 import SignInRegDialog from '../components/dialogs/SignInRegDialog';
 import WorkoutDialog from '../components/dialogs/WorkoutDialog';
-import WorkoutInventory from '../components/workout/WorkoutInventory';
+import WorkoutInventory from '../components/workout/Workouts';
 
 const Home = () => {
     useEffect(() => {

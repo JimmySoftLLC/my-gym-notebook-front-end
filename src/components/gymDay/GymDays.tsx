@@ -3,7 +3,7 @@ import GymDayCard from './GymDayCard';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import CircularIndeterminate from '../circularIndeterminate/CircularIndeterminate';
 
-const GymDaysInventory = () => {
+const GymDays = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         gymDays,
@@ -20,4 +20,4 @@ const GymDaysInventory = () => {
     }
 };
 
-export default GymDaysInventory;
+export default GymDays;

@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const ExerciseItemCardInventory = ({ ExerciseItem }: any) => {
+const ExerciseCard = ({ ExerciseItem }: any) => {
     const classes = useStyles();
 
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -115,4 +115,4 @@ const ExerciseItemCardInventory = ({ ExerciseItem }: any) => {
     );
 };
 
-export default ExerciseItemCardInventory;
+export default ExerciseCard;

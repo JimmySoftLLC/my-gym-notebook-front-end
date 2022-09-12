@@ -3,7 +3,7 @@ import WorkoutCard from './WorkoutCard';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import CircularIndeterminate from '../circularIndeterminate/CircularIndeterminate';
 
-const WorkoutsInventory = () => {
+const Workouts = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         workouts,
@@ -20,4 +20,4 @@ const WorkoutsInventory = () => {
     }
 };
 
-export default WorkoutsInventory;
+export default Workouts;

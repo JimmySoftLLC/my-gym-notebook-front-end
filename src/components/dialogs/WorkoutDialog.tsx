@@ -13,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import sortWorkouts from '../../model/workout/sortWorkouts';
 import 'date-fns';
-import ExerciseItemsWorkout from '../workoutExercise/WorkoutExercises';
+import ExercisesWorkout from '../workoutExercise/WorkoutExercises';
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
@@ -215,7 +215,7 @@ const WorkoutDialog: any = () => {
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid item xs={12}>
-                                        <ExerciseItemsWorkout />
+                                        <ExercisesWorkout />
                                     </Grid>
                                 </AccordionDetails>
                             </Accordion>
