@@ -285,7 +285,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     const setWorkoutDialogOpen = async (workoutDialogData: any) => { dispatch({ type: SET_WORKOUT_DIALOG_OPEN, payload: workoutDialogData }) }
 
     // gym days and dialog -----------------------------------------------
-    const setGymDayItems = async (gymDays: any[]) => { dispatch({ type: SET_GYM_DAY_ITEMS, payload: gymDays }) }
+    const setGymDays = async (gymDays: any[]) => { dispatch({ type: SET_GYM_DAY_ITEMS, payload: gymDays }) }
     const setGymDayDialogDataItem = async (key: string | number, value: any) => {
         let gymDayDialogData = JSON.parse(JSON.stringify(state.gymDayDialogData))
         gymDayDialogData[key] = value;
@@ -393,7 +393,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 setWorkoutDialogData,
                 setWorkoutDialogOpen,
 
-                setGymDayItems,
+                setGymDays,
                 setGymDayDialogDataItem,
                 setGymDayDialogData,
                 setGymDayDialogOpen,

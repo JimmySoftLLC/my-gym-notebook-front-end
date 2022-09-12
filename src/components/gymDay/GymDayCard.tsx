@@ -32,7 +32,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
         customId,
         setGymMember,
         myStates,
-        setGymDayItems,
+        setGymDays,
     } = dataAndMethodsContext;
 
     const deleteConfirmDialogContext: any = useContext(DeleteConfirmDialogContext);
@@ -95,9 +95,9 @@ const GymDayCard: any = ({ GymDay }: any) => {
         await deleteGymDay(gymDayId, idToken, customId);
         await putGymMember(myNewGymMember, idToken, customId)
         setGymMember(myNewGymMember);
-        let myGymDayItems = await getGymDaysFromIds(myNewGymMember.gymDayIdsJSON);
-        myGymDayItems = await sortGymDays(myGymDayItems, myStates);
-        setGymDayItems(myGymDayItems)
+        let myGymDays = await getGymDaysFromIds(myNewGymMember.gymDayIdsJSON);
+        myGymDays = await sortGymDays(myGymDays, myStates);
+        setGymDays(myGymDays)
     }
 
     // format dates for display

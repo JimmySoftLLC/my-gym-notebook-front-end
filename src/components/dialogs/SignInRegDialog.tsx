@@ -47,7 +47,7 @@ const SignInRegDialog: any = () => {
         setGymMember,
         setExercises,
         setWorkouts,
-        setGymDayItems,
+        setGymDays,
     } = dataAndMethodsContext;
 
     const closeDialog = () => {
@@ -134,7 +134,7 @@ const SignInRegDialog: any = () => {
                     const workoutItems = await getMembersWorkouts(gymMember)
                     setWorkouts(workoutItems);
                     const gymDayItems = await getMembersGymDays(gymMember)
-                    setGymDayItems(gymDayItems);
+                    setGymDays(gymDayItems);
                     setDialogBackToDefaults();
                 }
             }
