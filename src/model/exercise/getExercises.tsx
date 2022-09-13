@@ -15,8 +15,8 @@ const getBatch = async (ids: any) => {
     exercises = data.payload.Responses.exercises;
     for (let i = 0; i < exercises.length; i++) {
         exercises[i].title = exercises[i].title === blankPlaceHolder ? '' : exercises[i].title
-        exercises[i].description = exercises[i].description === blankPlaceHolder ? '' : exercises[i].description
-        exercises[i].categoryJSON = exercises[i].categoryJSON === undefined ? JSON.parse('[]') : JSON.parse(exercises[i].categoryJSON)
+        exercises[i].dataJSON = exercises[i].dataJSON === undefined ? JSON.parse('[]') : JSON.parse(exercises[i].dataJSON)
+        exercises[i].categoryJSON = exercises[i].categoryJSON === blankPlaceHolder ? '' : exercises[i].categoryJSON
     }
     return exercises;
 }

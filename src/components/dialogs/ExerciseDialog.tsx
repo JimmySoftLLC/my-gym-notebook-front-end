@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -31,7 +31,7 @@ const ExerciseDialog: any = () => {
     const {
         id,
         title,
-        description,
+        dataJSON,
         categoryJSON,
         dialogType,
     } = dataAndMethodsContext.exerciseItemDialogData;
@@ -70,9 +70,8 @@ const ExerciseDialog: any = () => {
         let newExercise: any = {}
         newExercise.id = id;
         newExercise.title = title;
-        newExercise.description = description;
+        newExercise.dataJSON = dataJSON;
         newExercise.categoryJSON = categoryJSON;
-        //console.log(exercisesTableName, idToken, myNewExercise, customId);
         await putExercise(newExercise, idToken, customId);
         let myExercises = await getExercises(gymMember.exerciseIdsJSON);
         myExercises = await sortExercises(myExercises, myStates);
@@ -83,9 +82,8 @@ const ExerciseDialog: any = () => {
         let newExercise: any = {}
         newExercise.id = id;
         newExercise.title = title;
-        newExercise.description = description;
+        newExercise.dataJSON = dataJSON;
         newExercise.categoryJSON = categoryJSON;
-        //console.log(exercisesTableName, idToken, myNewExercise, customId);
         await putExercise(newExercise, idToken, customId);
         let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
         myNewGymMember.exerciseIdsJSON.push(id);
@@ -100,8 +98,9 @@ const ExerciseDialog: any = () => {
         setExerciseDialogDataItem('title', e.target.value)
     };
 
-    const changeDescription = (e: any) => {
-        setExerciseDialogDataItem('description', e.target.value)
+    const changeData = (e: any) => {
+        const changedData = e.target.value.split(/\r?\n/);
+        setExerciseDialogDataItem('dataJSON', changedData)
     };
 
     const checkIfPresent = (value: any) => {
@@ -110,6 +109,12 @@ const ExerciseDialog: any = () => {
         }
         return false
     }
+
+    const dataJSONString = dataJSON.map(function (item: string) {
+        return item;
+    }).join("\n");
+
+    const dude = "";
 
     return (
         <div>
@@ -128,15 +133,15 @@ const ExerciseDialog: any = () => {
                         onChange={changeTitle}
                     />
                     <TextField
-                        id="description"
-                        label="Description"
+                        id="data"
+                        label="Data"
                         type="text"
                         fullWidth
                         variant="filled"
                         multiline={true}
                         rows="3"
-                        value={description}
-                        onChange={changeDescription}
+                        value={dataJSONString}
+                        onChange={changeData}
                     />
                     <p>Exercise Category</p>
                     <Toolbar>

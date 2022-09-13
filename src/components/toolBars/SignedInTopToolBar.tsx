@@ -23,7 +23,7 @@ const SignedInTopToolBar = () => {
         let myEditItem = {
             id: myNewId,
             title: '',
-            description: '',
+            dataJSON: [],
             categoryJSON: [],
             price: 0,
             restaurantId: restaurantId,
@@ -38,8 +38,6 @@ const SignedInTopToolBar = () => {
         let myEditItem = {
             id: myNewId,
             title: '',
-            dateFrom: new Date(),
-            dateTo: new Date(),
             description: '',
             exerciseIdsJSON: [],
             dialogType: "Add",

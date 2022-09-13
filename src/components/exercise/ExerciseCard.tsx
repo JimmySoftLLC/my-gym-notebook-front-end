@@ -42,7 +42,7 @@ const ExerciseCard = ({ Exercise }: any) => {
             if (exerciseId === exercises[i].id) {
                 let myEditItem = {
                     title: exercises[i].title,
-                    description: exercises[i].description,
+                    dataJSON: exercises[i].dataJSON,
                     categoryJSON: exercises[i].categoryJSON,
                     id: exercises[i].id,
                     dialogType: 'Edit',
@@ -59,7 +59,7 @@ const ExerciseCard = ({ Exercise }: any) => {
             if (exerciseId === exercises[i].id) {
                 let myEditItem = {
                     title: exercises[i].title,
-                    description: exercises[i].description,
+                    dataJSON: exercises[i].dataJSON,
                     categoryJSON: exercises[i].categoryJSON,
                     id: uuidv4(),
                     dialogType: "Add",

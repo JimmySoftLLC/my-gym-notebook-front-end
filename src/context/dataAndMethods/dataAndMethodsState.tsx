@@ -140,11 +140,10 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         exerciseItemDialogOpen: false,
         exerciseItemDialogData: {
             title: '',
-            description: '',
+            dataJSON: [],
             categoryJSON: [],
-            price: 0,
             id: '',
-            dialogType: 'Add',
+            dialogType: 'Edit',
         },
 
         workouts: [],
@@ -152,9 +151,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         workoutDialogData: {
             id: '',
             title: '',
-            dateFrom: '',
-            dateTo: '',
-            description: '',
             exerciseIdsJSON: [],
             dialogType: "Edit",
         },
@@ -166,7 +162,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             title: '',
             dateFrom: '',
             dateTo: '',
-            description: '',
             workoutIdsJSON: [],
             dialogType: "Edit",
         },

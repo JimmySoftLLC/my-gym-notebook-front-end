@@ -18,7 +18,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
             myNewItem = {
                 id: myItem.id,
                 title: myItem.title = myItem.title !== '' ? myItem.title : blankPlaceHolder,
-                description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
+                dataJSON: JSON.stringify(myItem.dataJSON),
                 categoryJSON: JSON.stringify(myItem.categoryJSON),
             }
             break;
@@ -26,9 +26,6 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
             myNewItem = {
                 id: myItem.id,
                 title: myItem.title = myItem.title !== '' ? myItem.title : blankPlaceHolder,
-                dateFrom: dateString(myItem.dateFrom, new Date(), 'saveToDatabaseFromDate'),
-                dateTo: dateString(myItem.dateTo, new Date(), 'saveToDatabaseToDate'),
-                description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
                 exerciseIdsJSON: JSON.stringify(myItem.exerciseIdsJSON),
             }
             break;
@@ -38,7 +35,6 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 title: myItem.title = myItem.title !== '' ? myItem.title : blankPlaceHolder,
                 dateFrom: dateString(myItem.dateFrom, new Date(), 'saveToDatabaseFromDate'),
                 dateTo: dateString(myItem.dateTo, new Date(), 'saveToDatabaseToDate'),
-                description: myItem.description = myItem.description !== '' ? myItem.description : blankPlaceHolder,
                 workoutIdsJSON: JSON.stringify(myItem.workoutIdsJSON),
             }
             break;

@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { v4 as uuidv4 } from 'uuid';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
-import dateString from '../../model/dateString';
 import getWorkoutsFromIds from '../../model/workout/getWorkoutsFromIds';
 import deleteWorkout from '../../model/workout/deleteWorkout';
 import putGymMember from '../../model/gymMember/putGymMember';
@@ -44,9 +43,6 @@ const WorkoutCard: any = ({ Workout }: any) => {
                 let myEditItem = {
                     id: workouts[i].id,
                     title: workouts[i].title,
-                    dateFrom: workouts[i].dateFrom,
-                    dateTo: workouts[i].dateTo,
-                    description: workouts[i].description,
                     exerciseIdsJSON: workouts[i].exerciseIdsJSON,
                     dialogType: 'Edit',
                 }
@@ -63,9 +59,6 @@ const WorkoutCard: any = ({ Workout }: any) => {
                 let myEditItem = {
                     id: uuidv4(),
                     title: workouts[i].title,
-                    dateFrom: workouts[i].dateFrom,
-                    dateTo: workouts[i].dateTo,
-                    description: workouts[i].description,
                     exerciseIdsJSON: workouts[i].exerciseIdsJSON,
                     dialogType: "Add",
                 }
@@ -100,12 +93,9 @@ const WorkoutCard: any = ({ Workout }: any) => {
         setWorkouts(myWorkouts)
     }
 
-    // format dates for display
-    let myDate = dateString(Workout.dateFrom, Workout.dateTo, 'displayFromTo')
-
     return (
         <div className='card'>
-            <h4><i className="fas fa-calendar-day"></i>{' - '}{Workout.title}{' - '}{myDate}
+            <h4>{Workout.title}
             </h4>
             <div className={classes.root} >
                 <Button variant="outlined" color="primary" onClick={() => WorkoutEditClick(Workout.id)}>
