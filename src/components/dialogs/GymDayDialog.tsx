@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,30 +29,37 @@ import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 
 const DAYS = [
     {
+        disabled: false,
         key: "Sunday",
         label: "SU"
     },
     {
+        disabled: false,
         key: "Monday",
         label: "MO"
     },
     {
+        disabled: false,
         key: "Tuesday",
         label: "TU"
     },
     {
+        disabled: false,
         key: "Wednesday",
         label: "WE"
     },
     {
+        disabled: false,
         key: "Thursday",
         label: "TH"
     },
     {
+        disabled: false,
         key: "Fr",
         label: "FR"
     },
     {
+        disabled: false,
         key: "Saturday",
         label: "SA"
     }
@@ -69,7 +76,7 @@ const useStyles = makeStyles(theme => ({
 
 const GymDayDialog: any = () => {
     const classes = useStyles();
-
+    const [Days, setDays] = useState(DAYS);
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         id,
@@ -160,25 +167,36 @@ const GymDayDialog: any = () => {
         setGymDayDialogDataItem('title', e.target.value)
     };
 
-    const changeDateFrom = (dateValue: any) => {
+    const changeDateFrom = async (dateValue: any) => {
+        const newDateFrom = new Date(dateValue)
         const newDateTo = new Date(dateTo)
         let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        if (dateValue.getTime() > newDateTo.getTime()) {
-            newGymDayDialogData['dateFrom'] = dateValue;
-            newGymDayDialogData['dateTo'] = dateValue;
+        if (newDateFrom.getTime() > newDateTo.getTime()) {
+            newGymDayDialogData['dateFrom'] = newDateFrom;
+            newGymDayDialogData['dateTo'] = newDateFrom;
+            const newDays = await getDays(newDateFrom, newDateFrom);
+            newGymDayDialogData['dayJSON'] = newDays;
         } else {
-            newGymDayDialogData['dateFrom'] = dateValue;
+            newGymDayDialogData['dateFrom'] = newDateFrom;
+            const newDays = await getDays(newDateFrom, newDateTo);
+            newGymDayDialogData['dayJSON'] = newDays;
         }
         setGymDayDialogData(newGymDayDialogData);
     };
 
-    const changeDateTo = (dateValue: any) => {
+    const changeDateTo = async (dateValue: any) => {
         const newDateFrom = new Date(dateFrom)
+        const newDateTo = new Date(dateValue)
         let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        if (dateValue.getTime() < newDateFrom.getTime()) {
-            newGymDayDialogData['dateTo'] = newDateFrom;
+        if (newDateTo.getTime() < newDateFrom.getTime()) {
+            newGymDayDialogData['dateFrom'] = newDateTo;
+            newGymDayDialogData['dateTo'] = newDateTo;
+            const newDays = await getDays(newDateTo, newDateTo);
+            newGymDayDialogData['dayJSON'] = newDays;
         } else {
-            newGymDayDialogData['dateTo'] = dateValue;
+            newGymDayDialogData['dateTo'] = newDateTo;
+            const newDays = await getDays(newDateFrom, newDateTo);
+            newGymDayDialogData['dayJSON'] = newDays;
         }
         setGymDayDialogData(newGymDayDialogData);
     };
@@ -187,6 +205,17 @@ const GymDayDialog: any = () => {
         let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
         newGymDayDialogData['dayJSON'] = days;
         setGymDayDialogData(newGymDayDialogData);
+    }
+
+    const getDays = async (newDateFrom: Date, newDateTo: Date) => {
+        var daysOfYear = [];
+        for (var d = newDateFrom; d < newDateTo; d.setDate(d.getDate() + 1)) {
+            const dayOfWeek = d.getDay()
+            if (daysOfYear.indexOf(dayOfWeek) === -1) {
+                daysOfYear.push(dayOfWeek);
+            }
+        }
+        return daysOfYear;
     }
 
     return (
@@ -206,6 +235,7 @@ const GymDayDialog: any = () => {
                                 size="small"
                                 value={title}
                                 onChange={changeTitle}
+                                helperText={true ? "Name needs to be 'a'" : "Perfect!"}
                             />
                             <KeyboardDatePicker
                                 margin="normal"
@@ -238,8 +268,8 @@ const GymDayDialog: any = () => {
                                 value={dayJSON}
                                 onChange={(event: any, value: React.SetStateAction<never[]>) => handleDaysChange(value)}
                             >
-                                {DAYS.map((day, index) => (
-                                    <ToggleButton key={day.key} value={index} aria-label={day.key} color="secondary">
+                                {Days.map((day, index) => (
+                                    <ToggleButton key={day.key} value={index} aria-label={day.key} color="secondary" disabled={day.disabled}>
                                         {day.label}
                                     </ToggleButton>
                                 ))}
@@ -275,4 +305,5 @@ const GymDayDialog: any = () => {
 }
 
 export default GymDayDialog;
+
 
