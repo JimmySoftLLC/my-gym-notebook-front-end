@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -114,8 +114,6 @@ const ExerciseDialog: any = () => {
         return item;
     }).join("\n");
 
-    const dude = "";
-
     return (
         <div>
             <Dialog className={classes.root} open={exerciseItemDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -139,7 +137,7 @@ const ExerciseDialog: any = () => {
                         fullWidth
                         variant="filled"
                         multiline={true}
-                        rows="3"
+                        minRows="3"
                         value={dataJSONString}
                         onChange={changeData}
                     />

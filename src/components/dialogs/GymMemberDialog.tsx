@@ -154,7 +154,7 @@ const GymMemberDialog: any = () => {
                         fullWidth
                         variant="filled"
                         multiline={true}
-                        rows="4"
+                        minRows="4"
                         value={bio}
                         onChange={changeBio}
                     />

@@ -114,7 +114,7 @@ const WorkoutDialog: any = () => {
 
     return (
         <div>
-            <Grid container justify="space-around">
+            <Grid container justifyContent="space-around">
                 <Dialog className={classes.root} open={workoutDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">
                         {dialogType + " workout"}</DialogTitle>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,32 +29,32 @@ import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 
 const DAYS = [
     {
-        key: "sunday",
-        label: "SUN"
+        key: "Sunday",
+        label: "SU"
     },
     {
-        key: "monday",
-        label: "MON"
+        key: "Monday",
+        label: "MO"
     },
     {
-        key: "tuesday",
-        label: "TUE"
+        key: "Tuesday",
+        label: "TU"
     },
     {
-        key: "wednesday",
-        label: "WED"
+        key: "Wednesday",
+        label: "WE"
     },
     {
-        key: "thursday",
-        label: "THU"
+        key: "Thursday",
+        label: "TH"
     },
     {
-        key: "friday",
-        label: "FRI"
+        key: "Fr",
+        label: "FR"
     },
     {
-        key: "saturday",
-        label: "SAT"
+        key: "Saturday",
+        label: "SA"
     }
 ];
 
@@ -95,12 +95,6 @@ const GymDayDialog: any = () => {
         gymMember
     } = dataAndMethodsContext;
 
-    const [days, setDays] = useState(dayJSON);
-
-    React.useEffect(() => {
-        setDays(dayJSON);
-    }, [dayJSON])
-
     const handleClose = () => {
         setGymDayDialogOpen(false);
     };
@@ -125,7 +119,7 @@ const GymDayDialog: any = () => {
         newGymDay.dateFrom = dateFrom;
         newGymDay.dateTo = dateTo;
         newGymDay.workoutIdsJSON = workoutIdsJSON;
-        newGymDay.dayJSON = days;
+        newGymDay.dayJSON = dayJSON;
         await putGymDay(newGymDay, idToken, customId);
         let myGymDays = await getGymDays(gymMember.gymDayIdsJSON);
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
@@ -139,7 +133,7 @@ const GymDayDialog: any = () => {
         newGymDay.dateFrom = dateFrom;
         newGymDay.dateTo = dateTo;
         newGymDay.workoutIdsJSON = workoutIdsJSON;
-        newGymDay.dayJSON = days;
+        newGymDay.dayJSON = dayJSON;
         await putGymDay(newGymDay, idToken, customId);
         let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
         myNewGymMember.gymDayIdsJSON.push(id);
@@ -189,10 +183,16 @@ const GymDayDialog: any = () => {
         setGymDayDialogData(newGymDayDialogData);
     };
 
+    const handleDaysChange = (days: any) => {
+        let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
+        newGymDayDialogData['dayJSON'] = days;
+        setGymDayDialogData(newGymDayDialogData);
+    }
+
     return (
         <div>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Grid container justify="space-around">
+                <Grid container justifyContent="space-around">
                     <Dialog className={classes.root} open={gymDayDialogOpen} onClose={handleClose} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">
                             {dialogType + " gym day"}</DialogTitle>
@@ -235,11 +235,11 @@ const GymDayDialog: any = () => {
                                 className="my-1"
                                 size="small"
                                 arial-label="Days of the week"
-                                value={days}
-                                onChange={(event: any, value: React.SetStateAction<never[]>) => setDays(value)}
+                                value={dayJSON}
+                                onChange={(event: any, value: React.SetStateAction<never[]>) => handleDaysChange(value)}
                             >
                                 {DAYS.map((day, index) => (
-                                    <ToggleButton key={day.key} value={index} aria-label={day.key}>
+                                    <ToggleButton key={day.key} value={index} aria-label={day.key} color="secondary">
                                         {day.label}
                                     </ToggleButton>
                                 ))}
