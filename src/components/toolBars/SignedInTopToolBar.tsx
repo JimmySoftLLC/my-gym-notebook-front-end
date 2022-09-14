@@ -53,6 +53,7 @@ const SignedInTopToolBar = () => {
             dateFrom: new Date(),
             dateTo: new Date(),
             workoutIdsJSON: [],
+            dayJSON: [],
             dialogType: "Add",
         }
         setGymDayDialogData(myEditItem);

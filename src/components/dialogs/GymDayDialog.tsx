@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,8 +24,39 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import putGymMember from '../../model/gymMember/putGymMember';
-import ToggleDays from '../ToggleDays';
+import ToggleButton from "@material-ui/lab/ToggleButton";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 
+const DAYS = [
+    {
+        key: "sunday",
+        label: "SUN"
+    },
+    {
+        key: "monday",
+        label: "MON"
+    },
+    {
+        key: "tuesday",
+        label: "TUE"
+    },
+    {
+        key: "wednesday",
+        label: "WED"
+    },
+    {
+        key: "thursday",
+        label: "THU"
+    },
+    {
+        key: "friday",
+        label: "FRI"
+    },
+    {
+        key: "saturday",
+        label: "SAT"
+    }
+];
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -38,6 +69,7 @@ const useStyles = makeStyles(theme => ({
 
 const GymDayDialog: any = () => {
     const classes = useStyles();
+
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         id,
@@ -45,6 +77,7 @@ const GymDayDialog: any = () => {
         dateFrom,
         dateTo,
         workoutIdsJSON,
+        dayJSON,
         dialogType,
     } = dataAndMethodsContext.gymDayDialogData;
 
@@ -61,6 +94,8 @@ const GymDayDialog: any = () => {
         setGymMember,
         gymMember
     } = dataAndMethodsContext;
+
+    const [days, setDays] = useState(dayJSON);
 
     const handleClose = () => {
         setGymDayDialogOpen(false);
@@ -85,7 +120,8 @@ const GymDayDialog: any = () => {
         newGymDay.title = title
         newGymDay.dateFrom = dateFrom;
         newGymDay.dateTo = dateTo;
-        newGymDay.workoutIdsJSON = workoutIdsJSON
+        newGymDay.workoutIdsJSON = workoutIdsJSON;
+        newGymDay.dayJSON = days;
         await putGymDay(newGymDay, idToken, customId);
         let myGymDays = await getGymDays(gymMember.gymDayIdsJSON);
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
@@ -99,6 +135,7 @@ const GymDayDialog: any = () => {
         newGymDay.dateFrom = dateFrom;
         newGymDay.dateTo = dateTo;
         newGymDay.workoutIdsJSON = workoutIdsJSON;
+        newGymDay.dayJSON = days;
         await putGymDay(newGymDay, idToken, customId);
         let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
         myNewGymMember.gymDayIdsJSON.push(id);
@@ -190,7 +227,19 @@ const GymDayDialog: any = () => {
                                     'aria-label': 'change date',
                                 }}
                             />
-                            <ToggleDays />
+                            <ToggleButtonGroup
+                                className="my-1"
+                                size="small"
+                                arial-label="Days of the week"
+                                value={days}
+                                onChange={(event: any, value: React.SetStateAction<never[]>) => setDays(value)}
+                            >
+                                {DAYS.map((day, index) => (
+                                    <ToggleButton key={day.key} value={index} aria-label={day.key}>
+                                        {day.label}
+                                    </ToggleButton>
+                                ))}
+                            </ToggleButtonGroup>
                             <Accordion className="my-1">
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}

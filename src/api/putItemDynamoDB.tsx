@@ -36,6 +36,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 dateFrom: dateString(myItem.dateFrom, new Date(), 'saveToDatabaseFromDate'),
                 dateTo: dateString(myItem.dateTo, new Date(), 'saveToDatabaseToDate'),
                 workoutIdsJSON: JSON.stringify(myItem.workoutIdsJSON),
+                dayJSON: JSON.stringify(myItem.dayJSON),
             }
             break;
         case gymMembersTableName:

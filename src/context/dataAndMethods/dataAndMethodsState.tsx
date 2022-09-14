@@ -162,6 +162,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             title: '',
             dateFrom: '',
             dateTo: '',
+            dayJSON: [],
             workoutIdsJSON: [],
             dialogType: "Edit",
         },

@@ -48,6 +48,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
                     dateTo: gymDays[i].dateTo,
                     description: gymDays[i].description,
                     workoutIdsJSON: gymDays[i].workoutIdsJSON,
+                    dayJSON: gymDays[i].dayJSON,
                     dialogType: 'Edit',
                 }
                 setGymDayDialogData(myEditItem);
@@ -67,6 +68,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
                     dateTo: gymDays[i].dateTo,
                     description: gymDays[i].description,
                     workoutIdsJSON: gymDays[i].workoutIdsJSON,
+                    dayJSON: gymDays[i].dayJSON,
                     dialogType: "Add",
                 }
                 setGymDayDialogData(myEditItem);
