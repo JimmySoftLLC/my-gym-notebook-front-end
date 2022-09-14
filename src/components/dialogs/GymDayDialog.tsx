@@ -97,6 +97,10 @@ const GymDayDialog: any = () => {
 
     const [days, setDays] = useState(dayJSON);
 
+    React.useEffect(() => {
+        setDays(dayJSON);
+    }, [dayJSON])
+
     const handleClose = () => {
         setGymDayDialogOpen(false);
     };
