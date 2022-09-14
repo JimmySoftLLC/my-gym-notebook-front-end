@@ -12,7 +12,6 @@ import putGymMember from '../../model/gymMember/putGymMember';
 import saveImageToDatabase from '../../model/images/saveImageToDatabase';
 import ImageEditor from '../imageEditor/ImageEditor';
 import { Accordion, AccordionDetails, AccordionSummary, Grid, Typography } from '@material-ui/core';
-import MemberDataInventory from '../memberData/MemberDataInventory';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
@@ -169,7 +168,7 @@ const GymMemberDialog: any = () => {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Grid item xs={12}>
-                                <MemberDataInventory />
+                                {/* <MemberDataInventory /> */}
                             </Grid>
                         </AccordionDetails>
                     </Accordion>

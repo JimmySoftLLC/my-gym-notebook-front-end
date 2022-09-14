@@ -38,7 +38,6 @@ const SignedInTopToolBar = () => {
         let myEditItem = {
             id: myNewId,
             title: '',
-            description: '',
             exerciseIdsJSON: [],
             dialogType: "Add",
         }
@@ -53,7 +52,6 @@ const SignedInTopToolBar = () => {
             title: '',
             dateFrom: new Date(),
             dateTo: new Date(),
-            description: '',
             workoutIdsJSON: [],
             dialogType: "Add",
         }

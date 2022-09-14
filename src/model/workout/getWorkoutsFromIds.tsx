@@ -16,7 +16,6 @@ const getBatch = async (myIds: any) => {
     myWorkouts = data.payload.Responses.workouts;
     for (let i = 0; i < myWorkouts.length; i++) {
         myWorkouts[i].title = myWorkouts[i].title === blankPlaceHolder ? '' : myWorkouts[i].title
-        myWorkouts[i].description = myWorkouts[i].description === blankPlaceHolder ? '' : myWorkouts[i].description
         myWorkouts[i].exerciseIdsJSON = JSON.parse(myWorkouts[i].exerciseIdsJSON)
         myWorkouts[i].dateFrom = new Date(myWorkouts[i].dateFrom)
         myWorkouts[i].dateTo = new Date(myWorkouts[i].dateTo)

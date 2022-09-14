@@ -24,6 +24,8 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import putGymMember from '../../model/gymMember/putGymMember';
+import ToggleDays from '../ToggleDays';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,7 +44,6 @@ const GymDayDialog: any = () => {
         title,
         dateFrom,
         dateTo,
-        description,
         workoutIdsJSON,
         dialogType,
     } = dataAndMethodsContext.gymDayDialogData;
@@ -84,7 +85,6 @@ const GymDayDialog: any = () => {
         newGymDay.title = title
         newGymDay.dateFrom = dateFrom;
         newGymDay.dateTo = dateTo;
-        newGymDay.description = description
         newGymDay.workoutIdsJSON = workoutIdsJSON
         await putGymDay(newGymDay, idToken, customId);
         let myGymDays = await getGymDays(gymMember.gymDayIdsJSON);
@@ -98,7 +98,6 @@ const GymDayDialog: any = () => {
         newGymDay.title = title
         newGymDay.dateFrom = dateFrom;
         newGymDay.dateTo = dateTo;
-        newGymDay.description = description
         newGymDay.workoutIdsJSON = workoutIdsJSON;
         await putGymDay(newGymDay, idToken, customId);
         let myNewGymMember = JSON.parse(JSON.stringify(gymMember))
@@ -141,16 +140,12 @@ const GymDayDialog: any = () => {
     const changeDateTo = (dateValue: any) => {
         const newDateFrom = new Date(dateFrom)
         let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
-        if (dateValue.getDate() < newDateFrom.getTime()) {
+        if (dateValue.getTime() < newDateFrom.getTime()) {
             newGymDayDialogData['dateTo'] = newDateFrom;
         } else {
             newGymDayDialogData['dateTo'] = dateValue;
         }
         setGymDayDialogData(newGymDayDialogData);
-    };
-
-    const changeDescription = (e: any) => {
-        setGymDayDialogDataItem('description', e.target.value)
     };
 
     return (
@@ -195,17 +190,8 @@ const GymDayDialog: any = () => {
                                     'aria-label': 'change date',
                                 }}
                             />
-                            <TextField
-                                id="description"
-                                label="Description"
-                                type="text"
-                                fullWidth
-                                variant="filled"
-                                size="small"
-                                value={description}
-                                onChange={changeDescription}
-                            />
-                            <Accordion>
+                            <ToggleDays />
+                            <Accordion className="my-1">
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
                                     aria-controls="panel1a-content"
