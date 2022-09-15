@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { v4 as uuidv4 } from 'uuid';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
-import dateString from '../../model/dateString';
+import dateString from '../../utilities/dateString';
 import getGymDaysFromIds from '../../model/gymDay/getGymDays';
 import deleteGymDay from '../../model/gymDay/deleteGymDay';
 import putGymMember from '../../model/gymMember/putGymMember';

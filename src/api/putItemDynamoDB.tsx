@@ -8,7 +8,7 @@ import {
     apiPath,
     blankPlaceHolder,
 } from './apiConstants';
-import dateString from '../model/dateString';
+import dateString from '../utilities/dateString';
 
 const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, myCustomId: any): Promise<any> => {
     // console.log(myTableName, myIdToken, myItem, myCustomId);

@@ -1,5 +1,5 @@
 import Storage from '@aws-amplify/storage';
-import consoleLogTimeElasped from '../consoleLogTimeElasped'
+import consoleLogTimeElasped from '../../utilities/consoleLogTimeElasped'
 
 const uploadImageStorage = async (blob: { type: any; }, myId: string) => {
     try {

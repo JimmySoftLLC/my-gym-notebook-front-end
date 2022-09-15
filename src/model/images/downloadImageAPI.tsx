@@ -1,6 +1,6 @@
 import fileNameFromUrl from '../files/fileNameFromUrl';
 import s3GetObject from '../../api/s3GetObject';
-import consoleLogTimeElasped from '../consoleLogTimeElasped';
+import consoleLogTimeElasped from '../../utilities/consoleLogTimeElasped';
 
 const getDataFromBlob = (myBlob: Blob) => {
     return new Promise((resolve, reject) => {

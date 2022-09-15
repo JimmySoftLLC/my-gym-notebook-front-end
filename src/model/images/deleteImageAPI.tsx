@@ -1,5 +1,5 @@
 import s3DeleteObject from '../../api/s3DeleteObject';
-import consoleLogTimeElasped from '../consoleLogTimeElasped';
+import consoleLogTimeElasped from '../../utilities/consoleLogTimeElasped';
 import fileNameFromUrl from '../files/fileNameFromUrl';
 
 const deleteImageAPI = async (myImageUrl: string, myIdToken: any, myCustomId: any) => {

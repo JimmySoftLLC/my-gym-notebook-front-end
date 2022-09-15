@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import DataAndMethodsContext from './dataAndMethodsContext';
 import DataAndMethodsReducer from './dataAndMethodsReducer';
-import setMyStatesLogic from '../../model/setMyStatesLogic';
+import setMyStatesLogic from '../../utilities/setMyStatesLogic';
 // import getLocation from '../../model/getLocation';
 
 import {
@@ -163,6 +163,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             dateFrom: '',
             dateTo: '',
             dayJSON: [],
+            days: [],
             workoutIdsJSON: [],
             dialogType: "Edit",
         },
