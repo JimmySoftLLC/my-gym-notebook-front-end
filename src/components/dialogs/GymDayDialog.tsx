@@ -250,7 +250,6 @@ const GymDayDialog: any = () => {
                                 size="small"
                                 value={title}
                                 onChange={changeTitle}
-                                helperText={true ? "Name needs to be 'a'" : "Perfect!"}
                             />
                             <KeyboardDatePicker
                                 margin="normal"
