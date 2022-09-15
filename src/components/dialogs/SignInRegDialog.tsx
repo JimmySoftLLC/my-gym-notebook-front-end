@@ -12,7 +12,6 @@ import { v4 as uuidv4 } from 'uuid';
 import getGymMember from '../../model/gymMember/getGymMember';
 import createGymMember from '../../model/gymMember/createGymMember';
 import isEmail from 'validator/lib/isEmail';
-import { username, secret } from '../../envConstants'
 import getMembersExercises from '../../model/exercise/getMembersExercises';
 import getMembersWorkouts from '../../model/workout/getMembersWorkouts';
 import getMembersGymDays from '../../model/gymDay/getMembersGymDays';
@@ -28,8 +27,8 @@ const useStyles = makeStyles(theme => ({
 
 const SignInRegDialog: any = () => {
     const classes = useStyles();
-    const [email, setEmail] = useState(username);
-    const [password, setPassword] = useState(secret);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [verificationCode, setResetCode] = useState('');
     const [message, setMessage] = useState('');
@@ -231,6 +230,7 @@ const SignInRegDialog: any = () => {
                         size="small"
                         value={email}
                         onChange={changeEmail}
+                        autoComplete="email"
                     />}
                     {showResetCode && <TextField
                         id="verificationCode"
@@ -249,6 +249,7 @@ const SignInRegDialog: any = () => {
                         fullWidth
                         variant="filled"
                         value={password}
+                        autoComplete="password"
                         onChange={changePassword}
                     />}
                     {showPassword2 && <TextField
