@@ -79,7 +79,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
         myReturnObject.payload = data;
         // console.log(myReturnObject);
         return myReturnObject;
-    } catch (err) {
+    } catch (err: any) {
         myReturnObject.err = true;
         myReturnObject.payload = err.message;
         //console.log(myReturnObject);
