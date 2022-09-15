@@ -1,51 +1,48 @@
 const DAYS = [
     {
-        disabled: false,
+        disabled: true,
         key: "Sunday",
         ariaLabel: "SU"
     },
     {
-        disabled: false,
+        disabled: true,
         key: "Monday",
         ariaLabel: "MO"
     },
     {
-        disabled: false,
+        disabled: true,
         key: "Tuesday",
         ariaLabel: "TU"
     },
     {
-        disabled: false,
+        disabled: true,
         key: "Wednesday",
         ariaLabel: "WE"
     },
     {
-        disabled: false,
+        disabled: true,
         key: "Thursday",
         ariaLabel: "TH"
     },
     {
-        disabled: false,
+        disabled: true,
         key: "Fr",
         ariaLabel: "FR"
     },
     {
-        disabled: false,
+        disabled: true,
         key: "Saturday",
         ariaLabel: "SA"
     }
 ];
 
-const activateDays = (daysOfWeek: any[]) => {
+const enableValidDays = (daysOfWeek: any[]) => {
     let newDays = JSON.parse(JSON.stringify(DAYS))
-    for (let i = 0; i <= 6; i++) {
-        newDays[i].disabled = true;
-    }
     for (let i = 0; i < daysOfWeek.length; i++) {
         newDays[daysOfWeek[i]].disabled = false;
     }
     return newDays;
 }
 
-export default activateDays;
+export default enableValidDays;
 

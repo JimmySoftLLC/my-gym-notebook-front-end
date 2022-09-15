@@ -9,6 +9,8 @@ import getGymDaysFromIds from '../../model/gymDay/getGymDays';
 import deleteGymDay from '../../model/gymDay/deleteGymDay';
 import putGymMember from '../../model/gymMember/putGymMember';
 import sortGymDays from '../../model/gymDay/sortGymDays';
+import getDays from '../../utilities/getDays';
+import enableValidDays from '../../utilities/enableValidDays';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -41,6 +43,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
     const GymDayEditClick = (gymDayId: any) => {
         for (let i = 0; i < gymDays.length; i++) {
             if (gymDayId === gymDays[i].id) {
+                const days = enableValidDays(getDays(gymDays[i].dateFrom, gymDays[i].dateTo));
                 let myEditItem = {
                     id: gymDays[i].id,
                     title: gymDays[i].title,
@@ -49,7 +52,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
                     description: gymDays[i].description,
                     workoutIdsJSON: gymDays[i].workoutIdsJSON,
                     dayJSON: gymDays[i].dayJSON,
-                    days: [],
+                    days: days,
                     dialogType: 'Edit',
                 }
                 setGymDayDialogData(myEditItem);
@@ -62,6 +65,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
     const GymDayCopyClick = (gymDayId: any) => {
         for (let i = 0; i < gymDays.length; i++) {
             if (gymDayId === gymDays[i].id) {
+                const days = enableValidDays(getDays(gymDays[i].dateFrom, gymDays[i].dateTo));
                 let myEditItem = {
                     id: uuidv4(),
                     title: gymDays[i].title,
@@ -70,7 +74,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
                     description: gymDays[i].description,
                     workoutIdsJSON: gymDays[i].workoutIdsJSON,
                     dayJSON: gymDays[i].dayJSON,
-                    days: [],
+                    days: days,
                     dialogType: "Add",
                 }
                 setGymDayDialogData(myEditItem);

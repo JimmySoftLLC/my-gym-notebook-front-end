@@ -1,4 +1,4 @@
-import React, { Key, useContext, useState } from 'react';
+import React, { Key, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -26,7 +26,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import putGymMember from '../../model/gymMember/putGymMember';
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import activateDays from '../../utilities/activateDays'
+import enableValidDays from '../../utilities/enableValidDays'
 import getDays from '../../utilities/getDays';
 
 const useStyles = makeStyles(theme => ({
@@ -140,13 +140,13 @@ const GymDayDialog: any = () => {
             newGymDayDialogData['dateTo'] = newDateFrom;
             const newDays = getDays(newDateFrom, newDateFrom);
             newGymDayDialogData['dayJSON'] = newDays;
-            const activeDays = activateDays(newDays);
+            const activeDays = enableValidDays(newDays);
             newGymDayDialogData['days'] = activeDays;
         } else {
             newGymDayDialogData['dateFrom'] = newDateFrom;
             const newDays = getDays(newDateFrom, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
-            const activeDays = activateDays(newDays);
+            const activeDays = enableValidDays(newDays);
             newGymDayDialogData['days'] = activeDays;
         }
         setGymDayDialogData(newGymDayDialogData);
@@ -161,13 +161,13 @@ const GymDayDialog: any = () => {
             newGymDayDialogData['dateTo'] = newDateTo;
             const newDays = getDays(newDateTo, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
-            const activeDays = activateDays(newDays);
+            const activeDays = enableValidDays(newDays);
             newGymDayDialogData['days'] = activeDays;
         } else {
             newGymDayDialogData['dateTo'] = newDateTo;
             const newDays = getDays(newDateFrom, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
-            const activeDays = activateDays(newDays);
+            const activeDays = enableValidDays(newDays);
             newGymDayDialogData['days'] = activeDays;
         }
         setGymDayDialogData(newGymDayDialogData);
