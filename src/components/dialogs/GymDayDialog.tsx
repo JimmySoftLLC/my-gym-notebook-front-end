@@ -27,6 +27,7 @@ import putGymMember from '../../model/gymMember/putGymMember';
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import activateDays from '../../utilities/activateDays'
+import getDays from '../../utilities/getDays';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -39,7 +40,6 @@ const useStyles = makeStyles(theme => ({
 
 const GymDayDialog: any = () => {
     const classes = useStyles();
-    // const [Days, setDays] = useState(activateDays([0, 1, 2, 3, 4, 5, 6]));
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         id,
@@ -138,15 +138,15 @@ const GymDayDialog: any = () => {
         if (newDateFrom.getTime() > newDateTo.getTime()) {
             newGymDayDialogData['dateFrom'] = newDateFrom;
             newGymDayDialogData['dateTo'] = newDateFrom;
-            const newDays = await getDays(newDateFrom, newDateFrom);
+            const newDays = getDays(newDateFrom, newDateFrom);
             newGymDayDialogData['dayJSON'] = newDays;
-            const activeDays = await activateDays(newDays);
+            const activeDays = activateDays(newDays);
             newGymDayDialogData['days'] = activeDays;
         } else {
             newGymDayDialogData['dateFrom'] = newDateFrom;
-            const newDays = await getDays(newDateFrom, newDateTo);
+            const newDays = getDays(newDateFrom, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
-            const activeDays = await activateDays(newDays);
+            const activeDays = activateDays(newDays);
             newGymDayDialogData['days'] = activeDays;
         }
         setGymDayDialogData(newGymDayDialogData);
@@ -159,15 +159,15 @@ const GymDayDialog: any = () => {
         if (newDateTo.getTime() < newDateFrom.getTime()) {
             newGymDayDialogData['dateFrom'] = newDateTo;
             newGymDayDialogData['dateTo'] = newDateTo;
-            const newDays = await getDays(newDateTo, newDateTo);
+            const newDays = getDays(newDateTo, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
-            const activeDays = await activateDays(newDays);
+            const activeDays = activateDays(newDays);
             newGymDayDialogData['days'] = activeDays;
         } else {
             newGymDayDialogData['dateTo'] = newDateTo;
-            const newDays = await getDays(newDateFrom, newDateTo);
+            const newDays = getDays(newDateFrom, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
-            const activeDays = await activateDays(newDays);
+            const activeDays = activateDays(newDays);
             newGymDayDialogData['days'] = activeDays;
         }
         setGymDayDialogData(newGymDayDialogData);
@@ -177,17 +177,6 @@ const GymDayDialog: any = () => {
         let newGymDayDialogData = JSON.parse(JSON.stringify(gymDayDialogData))
         newGymDayDialogData['dayJSON'] = days;
         setGymDayDialogData(newGymDayDialogData);
-    }
-
-    const getDays = async (localDateFrom: Date, localDateTo: Date) => {
-        var daysOfWeek = [];
-        for (var d = new Date(localDateFrom); d <= new Date(localDateTo); d.setDate(d.getDate() + 1)) {
-            const dayOfWeek = d.getDay()
-            if (daysOfWeek.indexOf(dayOfWeek) === -1) {
-                daysOfWeek.push(dayOfWeek);
-            }
-        }
-        return daysOfWeek;
     }
 
     return (
