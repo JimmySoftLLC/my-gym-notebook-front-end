@@ -2,41 +2,41 @@ const DAYS = [
     {
         disabled: false,
         key: "Sunday",
-        label: "SU"
+        ariaLabel: "SU"
     },
     {
         disabled: false,
         key: "Monday",
-        label: "MO"
+        ariaLabel: "MO"
     },
     {
         disabled: false,
         key: "Tuesday",
-        label: "TU"
+        ariaLabel: "TU"
     },
     {
         disabled: false,
         key: "Wednesday",
-        label: "WE"
+        ariaLabel: "WE"
     },
     {
         disabled: false,
         key: "Thursday",
-        label: "TH"
+        ariaLabel: "TH"
     },
     {
         disabled: false,
         key: "Fr",
-        label: "FR"
+        ariaLabel: "FR"
     },
     {
         disabled: false,
         key: "Saturday",
-        label: "SA"
+        ariaLabel: "SA"
     }
 ];
 
-const activateDays = async (daysOfWeek: any[]) => {
+const activateDays = (daysOfWeek: any[]) => {
     let newDays = JSON.parse(JSON.stringify(DAYS))
     for (let i = 0; i <= 6; i++) {
         newDays[i].disabled = true;

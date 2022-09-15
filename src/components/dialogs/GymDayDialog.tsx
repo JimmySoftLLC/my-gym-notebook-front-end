@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { Key, ReactNode, useContext, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -26,44 +26,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import putGymMember from '../../model/gymMember/putGymMember';
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-
-const DAYS = [
-    {
-        disabled: false,
-        key: "Sunday",
-        label: "SU"
-    },
-    {
-        disabled: false,
-        key: "Monday",
-        label: "MO"
-    },
-    {
-        disabled: false,
-        key: "Tuesday",
-        label: "TU"
-    },
-    {
-        disabled: false,
-        key: "Wednesday",
-        label: "WE"
-    },
-    {
-        disabled: false,
-        key: "Thursday",
-        label: "TH"
-    },
-    {
-        disabled: false,
-        key: "Fr",
-        label: "FR"
-    },
-    {
-        disabled: false,
-        key: "Saturday",
-        label: "SA"
-    }
-];
+import activateDays from '../../utilities/activateDays';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -76,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 
 const GymDayDialog: any = () => {
     const classes = useStyles();
-    const [Days, setDays] = useState(DAYS);
+    const [Days, setDays] = useState(activateDays([0, 1, 2, 3, 4, 5, 6]));
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         id,
@@ -176,12 +139,14 @@ const GymDayDialog: any = () => {
             newGymDayDialogData['dateTo'] = newDateFrom;
             const newDays = await getDays(newDateFrom, newDateFrom);
             newGymDayDialogData['dayJSON'] = newDays;
-            activateDays(newDays);
+            const activeDays = await activateDays(newDays);
+            setDays(activeDays);
         } else {
             newGymDayDialogData['dateFrom'] = newDateFrom;
             const newDays = await getDays(newDateFrom, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
-            activateDays(newDays);
+            const activeDays = await activateDays(newDays);
+            setDays(activeDays);
         }
         setGymDayDialogData(newGymDayDialogData);
     };
@@ -195,12 +160,14 @@ const GymDayDialog: any = () => {
             newGymDayDialogData['dateTo'] = newDateTo;
             const newDays = await getDays(newDateTo, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
-            activateDays(newDays);
+            const activeDays = await activateDays(newDays);
+            setDays(activeDays);
         } else {
             newGymDayDialogData['dateTo'] = newDateTo;
             const newDays = await getDays(newDateFrom, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
-            activateDays(newDays);
+            const activeDays = await activateDays(newDays);
+            setDays(activeDays);
         }
         setGymDayDialogData(newGymDayDialogData);
     };
@@ -220,17 +187,6 @@ const GymDayDialog: any = () => {
             }
         }
         return daysOfWeek;
-    }
-
-    const activateDays = async (daysOfWeek: any[]) => {
-        let newDays = JSON.parse(JSON.stringify(DAYS))
-        for (let i = 0; i <= 6; i++) {
-            newDays[i].disabled = true;
-        }
-        for (let i = 0; i < daysOfWeek.length; i++) {
-            newDays[daysOfWeek[i]].disabled = false;
-        }
-        setDays(newDays);
     }
 
     return (
@@ -282,9 +238,13 @@ const GymDayDialog: any = () => {
                                 value={dayJSON}
                                 onChange={(event: any, value: React.SetStateAction<never[]>) => handleDaysChange(value)}
                             >
-                                {Days.map((day, index) => (
-                                    <ToggleButton key={day.key} value={index} aria-label={day.key} color="secondary" disabled={day.disabled}>
-                                        {day.label}
+                                {Days.map((day: {
+                                    ariaLabel: string;
+                                    key: Key | null | undefined;
+                                    disabled: boolean,
+                                }, index: number) => (
+                                    <ToggleButton key={day.key} value={index} aria-label={day.ariaLabel} color="secondary" disabled={day.disabled}>
+                                        {day.ariaLabel}
                                     </ToggleButton>
                                 ))}
                             </ToggleButtonGroup>
