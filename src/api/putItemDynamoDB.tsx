@@ -11,7 +11,6 @@ import {
 import dateString from '../utilities/dateString';
 
 const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, myCustomId: any): Promise<any> => {
-    // console.log(myTableName, myIdToken, myItem, myCustomId);
     let myNewItem = {}
     switch (myTableName) {
         case exercisesTableName:
@@ -56,7 +55,7 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
             break;
         default:
     }
-    let myReturnObject = { err: false, payload: null };
+    let myReturnObject = { err: false, payload: "" };
     try {
         const apiRequest = {
             body: {
@@ -74,15 +73,12 @@ const putItemDynamoDB = async (myTableName: any, myItem: any, myIdToken: any, my
                 'Accept': '*/*',
             }
         };
-        // console.log('API Request:', apiRequest, myIdToken);
         const data = await API.post(apiName, apiPath, apiRequest);
         myReturnObject.payload = data;
-        // console.log(myReturnObject);
         return myReturnObject;
-    } catch (err: any) {
+    } catch (err) {
         myReturnObject.err = true;
-        myReturnObject.payload = err.message;
-        //console.log(myReturnObject);
+        myReturnObject.payload = (err as Error).message;
         return myReturnObject;
     }
 };
