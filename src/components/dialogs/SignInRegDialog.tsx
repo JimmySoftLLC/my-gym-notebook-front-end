@@ -80,7 +80,7 @@ const SignInRegDialog: any = () => {
                 setMessage('Your username is ' + email + ". You need to verify your account before using it.  An email has been sent to " + params.username + " which contains a verification link.")
             } catch (err) {
                 console.log(err)
-                setMessage(err.message)
+                setMessage((err as Error).message)
             }
         } else {
             setMessage(`Passwords don't match, try again`)
@@ -139,7 +139,7 @@ const SignInRegDialog: any = () => {
             }
         } catch (err) {
             console.error(err)
-            setMessage(err.message)
+            setMessage((err as Error).message)
         }
     }
 
@@ -161,7 +161,7 @@ const SignInRegDialog: any = () => {
                 setMessage('A verification code was sent to ' + email + ". Enter the code above with your new password.")
             } catch (err) {
                 console.log(err)
-                setMessage(err.message)
+                setMessage((err as Error).message)
             }
         } else {
             setMessage('Invalid email entered, try again.')
@@ -177,7 +177,7 @@ const SignInRegDialog: any = () => {
                     setDialogBackToDefaults();
                 } catch (err) {
                     console.log(err)
-                    setMessage(err.message)
+                    setMessage((err as Error).message)
                 }
             } else {
                 setMessage('Invalid email entered, try again.')

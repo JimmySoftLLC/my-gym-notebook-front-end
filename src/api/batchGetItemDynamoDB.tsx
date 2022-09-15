@@ -9,7 +9,7 @@ const batchGetItemDynamoDB = async (myTableName: string, myIds: any, projectionE
     for (let i = 0; i < myIds.length; i++) {
         myKeys.push({ 'id': myIds[i] })
     }
-    let myReturnObject = { err: false, payload: null };
+    let myReturnObject = { err: false, payload: "" };
     try {
         const res = await axios.post(
             lambdaFunctionURL,
@@ -36,7 +36,7 @@ const batchGetItemDynamoDB = async (myTableName: string, myIds: any, projectionE
         return myReturnObject;
     } catch (err) {
         myReturnObject.err = true;
-        myReturnObject.payload = err.message;
+        myReturnObject.payload = (err as Error).message;
         return myReturnObject;
     }
 };

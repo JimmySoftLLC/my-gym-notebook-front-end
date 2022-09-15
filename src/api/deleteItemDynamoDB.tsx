@@ -5,7 +5,7 @@ import {
 } from './apiConstants';
 
 const deleteItemDynamoDB = async (myTableName: any, myId: any, myIdToken: any, myCustomId: any): Promise<any> => {
-    let myReturnObject = { err: false, payload: null };
+    let myReturnObject = { err: false, payload: "" };
     try {
         const apiRequest = {
             body: {
@@ -30,7 +30,7 @@ const deleteItemDynamoDB = async (myTableName: any, myId: any, myIdToken: any, m
         return myReturnObject;
     } catch (err) {
         myReturnObject.err = true;
-        myReturnObject.payload = err.message;
+        myReturnObject.payload = (err as Error).message;
         return myReturnObject;
     }
 };

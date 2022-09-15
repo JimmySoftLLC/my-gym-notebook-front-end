@@ -5,7 +5,7 @@ import {
 } from './apiConstants';
 
 let s3DeleteObject = async (key: any, myIdToken: any, myCustomId: any): Promise<any> => {
-    let myReturnObject = { err: false, payload: null };
+    let myReturnObject = { err: false, payload: "" };
     try {
         const apiRequest = {
             body: {
@@ -28,7 +28,7 @@ let s3DeleteObject = async (key: any, myIdToken: any, myCustomId: any): Promise<
         return myReturnObject;
     } catch (err) {
         myReturnObject.err = true;
-        myReturnObject.payload = err.message;
+        myReturnObject.payload = (err as Error).message;
         return myReturnObject;
     }
 };
