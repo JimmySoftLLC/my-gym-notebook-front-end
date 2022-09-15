@@ -1,4 +1,4 @@
-import React, { Key, ReactNode, useContext, useState } from 'react';
+import React, { Key, useContext, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -26,7 +26,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import putGymMember from '../../model/gymMember/putGymMember';
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import activateDays from '../../utilities/activateDays';
+import activateDays from '../../utilities/activateDays'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 
 const GymDayDialog: any = () => {
     const classes = useStyles();
-    const [Days, setDays] = useState(activateDays([0, 1, 2, 3, 4, 5, 6]));
+    // const [Days, setDays] = useState(activateDays([0, 1, 2, 3, 4, 5, 6]));
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         id,
@@ -48,6 +48,7 @@ const GymDayDialog: any = () => {
         dateTo,
         workoutIdsJSON,
         dayJSON,
+        days,
         dialogType,
     } = dataAndMethodsContext.gymDayDialogData;
 
@@ -140,13 +141,13 @@ const GymDayDialog: any = () => {
             const newDays = await getDays(newDateFrom, newDateFrom);
             newGymDayDialogData['dayJSON'] = newDays;
             const activeDays = await activateDays(newDays);
-            setDays(activeDays);
+            newGymDayDialogData['days'] = activeDays;
         } else {
             newGymDayDialogData['dateFrom'] = newDateFrom;
             const newDays = await getDays(newDateFrom, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
             const activeDays = await activateDays(newDays);
-            setDays(activeDays);
+            newGymDayDialogData['days'] = activeDays;
         }
         setGymDayDialogData(newGymDayDialogData);
     };
@@ -161,13 +162,13 @@ const GymDayDialog: any = () => {
             const newDays = await getDays(newDateTo, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
             const activeDays = await activateDays(newDays);
-            setDays(activeDays);
+            newGymDayDialogData['days'] = activeDays;
         } else {
             newGymDayDialogData['dateTo'] = newDateTo;
             const newDays = await getDays(newDateFrom, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
             const activeDays = await activateDays(newDays);
-            setDays(activeDays);
+            newGymDayDialogData['days'] = activeDays;
         }
         setGymDayDialogData(newGymDayDialogData);
     };
@@ -238,7 +239,7 @@ const GymDayDialog: any = () => {
                                 value={dayJSON}
                                 onChange={(event: any, value: React.SetStateAction<never[]>) => handleDaysChange(value)}
                             >
-                                {Days.map((day: {
+                                {days.map((day: {
                                     ariaLabel: string;
                                     key: Key | null | undefined;
                                     disabled: boolean,
