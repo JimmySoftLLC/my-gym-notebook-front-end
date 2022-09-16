@@ -4,6 +4,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
 import { Tooltip } from '@material-ui/core';
 import { v4 as uuidv4 } from 'uuid';
+import getDays from '../../utilities/getDays';
+import enableValidDays from '../../utilities/enableValidDays';
 
 const SignedInTopToolBar = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -45,15 +47,19 @@ const SignedInTopToolBar = () => {
         setWorkoutDialogOpen(true);
     };
 
-    const newGymDayClick = () => {
+    const newGymDayClick = async () => {
         let myNewId = uuidv4()
+        const newDate = new Date();
+        const newDays = await getDays(newDate, newDate);
+        const activeDays = enableValidDays(newDays);
         let myEditItem = {
             id: myNewId,
             title: '',
-            dateFrom: new Date(),
-            dateTo: new Date(),
+            dateFrom: newDate,
+            dateTo: newDate,
             workoutIdsJSON: [],
-            dayJSON: [],
+            dayJSON: newDays,
+            days: activeDays,
             dialogType: "Add",
         }
         setGymDayDialogData(myEditItem);

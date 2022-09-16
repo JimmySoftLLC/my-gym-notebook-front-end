@@ -35,8 +35,6 @@ let scanDynamoDB = async (myTableName: any): Promise<any> => {
                 });
                 myReturnObject.payload = myResData.Items
                 return myReturnObject;
-            // console.log(myReturnObject)
-
             case gymMembersTableName:
                 return null;
             default:

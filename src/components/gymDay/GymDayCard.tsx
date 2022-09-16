@@ -40,10 +40,10 @@ const GymDayCard: any = ({ GymDay }: any) => {
     const deleteConfirmDialogContext: any = useContext(DeleteConfirmDialogContext);
     const { setDeleteConfirmDialog } = deleteConfirmDialogContext;
 
-    const GymDayEditClick = (gymDayId: any) => {
+    const GymDayEditClick = async (gymDayId: any) => {
         for (let i = 0; i < gymDays.length; i++) {
             if (gymDayId === gymDays[i].id) {
-                const days = enableValidDays(getDays(gymDays[i].dateFrom, gymDays[i].dateTo));
+                const activeDays = enableValidDays(await getDays(gymDays[i].dateFrom, gymDays[i].dateTo));
                 let myEditItem = {
                     id: gymDays[i].id,
                     title: gymDays[i].title,
@@ -52,7 +52,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
                     description: gymDays[i].description,
                     workoutIdsJSON: gymDays[i].workoutIdsJSON,
                     dayJSON: gymDays[i].dayJSON,
-                    days: days,
+                    days: activeDays,
                     dialogType: 'Edit',
                 }
                 setGymDayDialogData(myEditItem);
@@ -62,10 +62,10 @@ const GymDayCard: any = ({ GymDay }: any) => {
         }
     };
 
-    const GymDayCopyClick = (gymDayId: any) => {
+    const GymDayCopyClick = async (gymDayId: any) => {
         for (let i = 0; i < gymDays.length; i++) {
             if (gymDayId === gymDays[i].id) {
-                const days = enableValidDays(getDays(gymDays[i].dateFrom, gymDays[i].dateTo));
+                const activeDays = enableValidDays(await getDays(gymDays[i].dateFrom, gymDays[i].dateTo));
                 let myEditItem = {
                     id: uuidv4(),
                     title: gymDays[i].title,
@@ -74,7 +74,7 @@ const GymDayCard: any = ({ GymDay }: any) => {
                     description: gymDays[i].description,
                     workoutIdsJSON: gymDays[i].workoutIdsJSON,
                     dayJSON: gymDays[i].dayJSON,
-                    days: days,
+                    days: activeDays,
                     dialogType: "Add",
                 }
                 setGymDayDialogData(myEditItem);

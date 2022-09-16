@@ -138,13 +138,13 @@ const GymDayDialog: any = () => {
         if (newDateFrom.getTime() > newDateTo.getTime()) {
             newGymDayDialogData['dateFrom'] = newDateFrom;
             newGymDayDialogData['dateTo'] = newDateFrom;
-            const newDays = getDays(newDateFrom, newDateFrom);
+            const newDays = await getDays(newDateFrom, newDateFrom);
             newGymDayDialogData['dayJSON'] = newDays;
             const activeDays = enableValidDays(newDays);
             newGymDayDialogData['days'] = activeDays;
         } else {
             newGymDayDialogData['dateFrom'] = newDateFrom;
-            const newDays = getDays(newDateFrom, newDateTo);
+            const newDays = await getDays(newDateFrom, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
             const activeDays = enableValidDays(newDays);
             newGymDayDialogData['days'] = activeDays;
@@ -159,13 +159,13 @@ const GymDayDialog: any = () => {
         if (newDateTo.getTime() < newDateFrom.getTime()) {
             newGymDayDialogData['dateFrom'] = newDateTo;
             newGymDayDialogData['dateTo'] = newDateTo;
-            const newDays = getDays(newDateTo, newDateTo);
+            const newDays = await getDays(newDateTo, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
             const activeDays = enableValidDays(newDays);
             newGymDayDialogData['days'] = activeDays;
         } else {
             newGymDayDialogData['dateTo'] = newDateTo;
-            const newDays = getDays(newDateFrom, newDateTo);
+            const newDays = await getDays(newDateFrom, newDateTo);
             newGymDayDialogData['dayJSON'] = newDays;
             const activeDays = enableValidDays(newDays);
             newGymDayDialogData['days'] = activeDays;
