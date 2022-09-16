@@ -16,10 +16,6 @@ const setMyStatesLogic = (myStates: any, key: any) => {
                     myStates.helpDialogOpen = true;
                     myStates.helpDialogStage = 2;
                 }
-                if (key === "restaurants") {
-                    myStates.helpDialogOpen = true;
-                    myStates.helpDialogStage = 5;
-                }
                 if (key === "gymMembers") {
                     myStates.helpDialogOpen = true;
                     myStates.helpDialogStage = 6;
@@ -86,10 +82,11 @@ const setMyStatesLogic = (myStates: any, key: any) => {
     }
 
     // if myKey = any of the login items, set login items to false and set key
-    if (key === 'exerciseSettings' || key === 'workoutSettings' || key === 'gymDaySettings') {
+    if (key === 'exerciseSettings' || key === 'workoutSettings' || key === 'gymDaySettings' || key === 'exercise') {
         myStates['exerciseSettings'] = false;
         myStates['workoutSettings'] = false;
         myStates['gymDaySettings'] = false;
+        myStates['exercise'] = false;
         myStates[key] = true;
         return myStates;
     }
