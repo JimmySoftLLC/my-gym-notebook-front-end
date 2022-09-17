@@ -24,7 +24,10 @@ const SignedInTopToolBar = () => {
         setGymDayDialogData,
         setGymDayDialogOpen,
         selectedDate,
-        setSelectedDate
+        setSelectedDate,
+        getTodaysWorkouts,
+        gymDays,
+        workouts
     } = dataAndMethodsContext;
 
     const newExerciseClick = () => {
@@ -73,6 +76,11 @@ const SignedInTopToolBar = () => {
         setGymDayDialogOpen(true);
     };
 
+    const handleSelectedDateChange = (e: any, passProp: any) => {
+        setSelectedDate(e)
+        getTodaysWorkouts(gymDays, e, workouts)
+    }
+
     return (
         <Fragment>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -82,7 +90,7 @@ const SignedInTopToolBar = () => {
                             id="date-from"
                             format="MM/dd/yy"
                             value={selectedDate}
-                            onChange={setSelectedDate}
+                            onChange={(e) => handleSelectedDateChange(e, "dude")}
                             style={{ width: 75, paddingTop: 8 }}
                         />
                         <Tooltip title="Exercise">
@@ -137,7 +145,6 @@ const SignedInTopToolBar = () => {
                     </div>
                 </Toolbar>
             </MuiPickersUtilsProvider>
-
         </Fragment >
     );
 }
