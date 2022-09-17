@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { v4 as uuidv4 } from 'uuid';
-import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
-import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
-import sortExercises from '../../model/exercise/sortExercise'
-import deleteExercise from '../../model/exercise/deleteExercise';
-import putGymMember from '../../model/gymMember/putGymMember';
-import getExercises from '../../model/exercise/getExercises';
+import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethodsContext';
+import DeleteConfirmDialogContext from '../../../context/deleteConfirmDialog/deleteConfirmDialogContext';
+import sortExercises from '../../../model/exercise/sortExercise'
+import deleteExercise from '../../../model/exercise/deleteExercise';
+import putGymMember from '../../../model/gymMember/putGymMember';
+import getExercises from '../../../model/exercise/getExercises';
 
 const useStyles = makeStyles(theme => ({
     root: {

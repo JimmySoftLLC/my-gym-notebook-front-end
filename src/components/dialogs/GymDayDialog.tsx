@@ -13,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import sortGymDays from '../../model/gymDay/sortGymDays';
 import 'date-fns';
-import WorkoutsGymDay from '../gymDayWorkout/GymDayWorkouts';
+import WorkoutsGymDay from '../componentLists/gymDayWorkout/GymDayWorkouts';
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
@@ -63,7 +63,10 @@ const GymDayDialog: any = () => {
         setGymDays,
         setGymDayDialogData,
         setGymMember,
-        gymMember
+        gymMember,
+        selectedDate,
+        workouts,
+        getTodaysWorkouts
     } = dataAndMethodsContext;
 
     const handleClose = () => {
@@ -95,6 +98,7 @@ const GymDayDialog: any = () => {
         let myGymDays = await getGymDays(gymMember.gymDayIdsJSON);
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
         setGymDays(myGymDays)
+        await getTodaysWorkouts(myGymDays, selectedDate, workouts);
     };
 
     const saveGymDayAdd = async () => {
@@ -113,6 +117,7 @@ const GymDayDialog: any = () => {
         let myGymDays = await getGymDays(myNewGymMember.gymDayIdsJSON);
         myGymDays = await sortGymDays(myGymDays, 'sortDate');
         setGymDays(myGymDays)
+        await getTodaysWorkouts(myGymDays, selectedDate, workouts);
     };
 
     const selectAllExercises = () => {

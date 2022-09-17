@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { v4 as uuidv4 } from 'uuid';
-import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
-import DeleteConfirmDialogContext from '../../context/deleteConfirmDialog/deleteConfirmDialogContext';
-import dateString from '../../utilities/dateString';
-import getGymDaysFromIds from '../../model/gymDay/getGymDays';
-import deleteGymDay from '../../model/gymDay/deleteGymDay';
-import putGymMember from '../../model/gymMember/putGymMember';
-import sortGymDays from '../../model/gymDay/sortGymDays';
-import getDays from '../../utilities/getDays';
-import enableValidDays from '../../utilities/enableValidDays';
+import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethodsContext';
+import DeleteConfirmDialogContext from '../../../context/deleteConfirmDialog/deleteConfirmDialogContext';
+import dateString from '../../../utilities/dateString';
+import getGymDaysFromIds from '../../../model/gymDay/getGymDays';
+import deleteGymDay from '../../../model/gymDay/deleteGymDay';
+import putGymMember from '../../../model/gymMember/putGymMember';
+import sortGymDays from '../../../model/gymDay/sortGymDays';
+import getDays from '../../../utilities/getDays';
+import enableValidDays from '../../../utilities/enableValidDays';
 
 const useStyles = makeStyles(theme => ({
     root: {

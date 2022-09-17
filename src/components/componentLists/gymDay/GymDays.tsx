@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import GymDayCard from './GymDayCard';
-import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
-import CircularIndeterminate from '../circularIndeterminate/CircularIndeterminate';
+import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethodsContext';
+import CircularIndeterminate from '../../circularIndeterminate/CircularIndeterminate';
 
 const GymDays = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);

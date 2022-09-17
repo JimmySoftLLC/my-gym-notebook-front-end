@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import WorkoutCard from './WorkoutCard';
-import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
-import CircularIndeterminate from '../circularIndeterminate/CircularIndeterminate';
+import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethodsContext';
+import CircularIndeterminate from '../../circularIndeterminate/CircularIndeterminate';
 
 const Workouts = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);

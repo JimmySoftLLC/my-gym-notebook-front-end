@@ -47,6 +47,8 @@ const SignInRegDialog: any = () => {
         setExercises,
         setWorkouts,
         setGymDays,
+        getTodaysWorkouts,
+        selectedDate
     } = dataAndMethodsContext;
 
     const closeDialog = () => {
@@ -134,6 +136,7 @@ const SignInRegDialog: any = () => {
                     setWorkouts(workoutItems);
                     const gymDayItems = await getMembersGymDays(gymMember)
                     setGymDays(gymDayItems);
+                    await getTodaysWorkouts(gymDayItems, selectedDate, workoutItems);
                     setDialogBackToDefaults();
                 }
             }
@@ -218,51 +221,56 @@ const SignInRegDialog: any = () => {
     return (
         <div>
             {signInRegDialogType !== 'false' && <Dialog className={classes.root} open={true} onClose={closeDialog} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">
-                    {signInRegDialogTitle}</DialogTitle>
-                <DialogContent>
-                    {showEmail && <TextField
-                        id="email"
-                        label="Email"
-                        type="email"
-                        fullWidth
-                        variant="filled"
-                        size="small"
-                        value={email}
-                        onChange={changeEmail}
-                        autoComplete="email"
-                    />}
-                    {showResetCode && <TextField
-                        id="verificationCode"
-                        label="Verification Code"
-                        type="number"
-                        fullWidth
-                        variant="filled"
-                        size="small"
-                        value={verificationCode}
-                        onChange={changeResetCode}
-                    />}
-                    {showPassword && <TextField
-                        id="password"
-                        label="Password"
-                        type="password"
-                        fullWidth
-                        variant="filled"
-                        value={password}
-                        autoComplete="password"
-                        onChange={changePassword}
-                    />}
-                    {showPassword2 && <TextField
-                        id="password2"
-                        label="Retype Password"
-                        type="password"
-                        fullWidth
-                        variant="filled"
-                        value={password2}
-                        onChange={changePassword2}
-                    />}
-                    <p>{message}</p>
-                </DialogContent>
+                <form>
+                    <DialogTitle id="form-dialog-title">
+                        {signInRegDialogTitle}</DialogTitle>
+                    <DialogContent>
+
+
+
+                        {showEmail && <TextField
+                            id="email"
+                            label="Email"
+                            type="email"
+                            fullWidth
+                            variant="filled"
+                            size="small"
+                            value={email}
+                            onChange={changeEmail}
+                            autoComplete="email"
+                        />}
+                        {showResetCode && <TextField
+                            id="verificationCode"
+                            label="Verification Code"
+                            type="number"
+                            fullWidth
+                            variant="filled"
+                            size="small"
+                            value={verificationCode}
+                            onChange={changeResetCode}
+                        />}
+                        {showPassword && <TextField
+                            id="password"
+                            label="Password"
+                            type="password"
+                            fullWidth
+                            variant="filled"
+                            value={password}
+                            autoComplete="password"
+                            onChange={changePassword}
+                        />}
+                        {showPassword2 && <TextField
+                            id="password2"
+                            label="Retype Password"
+                            type="password"
+                            fullWidth
+                            variant="filled"
+                            value={password2}
+                            onChange={changePassword2}
+                        />}
+                        <p>{message}</p>
+                    </DialogContent>
+                </form>
                 {signInRegDialogType === 'signIn' && <DialogActions>
                     <Button onClick={() => setUpForgotPasswordDialog()} color="default">
                         Forgot Password

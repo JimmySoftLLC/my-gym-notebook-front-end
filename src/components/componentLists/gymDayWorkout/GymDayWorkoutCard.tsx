@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
-import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
+import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethodsContext';
 
 const GymDayWorkoutCard = ({ Workout }: any) => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);

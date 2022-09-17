@@ -36,6 +36,8 @@ import {
     SET_PHOTO_DIALOG_OPEN,
 
     SET_IMAGE_EDITOR_DATA,
+
+    SET_TODAYS_WORKOUTS
 } from '../types';
 
 export default (state: any, action: { type: any; payload: any; }): any => {
@@ -197,6 +199,13 @@ export default (state: any, action: { type: any; payload: any; }): any => {
                 ...state,
                 imageEditorData: action.payload,
             };
+
+        case SET_TODAYS_WORKOUTS:
+            return {
+                ...state,
+                todaysWorkouts: action.payload,
+            };
+
         default:
             return state;
     }

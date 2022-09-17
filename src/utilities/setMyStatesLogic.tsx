@@ -1,12 +1,3 @@
-// const turnOffAllMyStates = (myStates, key) => {
-//     for (key in myStates) {
-//         if (key !== 'dollar_1' && key !== 'dollar_2' && key !== 'dollar_3') {
-//             myStates[key] = false;
-//         }
-//     }
-//     return myStates;
-// }
-
 const setMyStatesLogic = (myStates: any, key: any) => {
 
     if (myStates.helpDialogActive) {
@@ -18,52 +9,14 @@ const setMyStatesLogic = (myStates: any, key: any) => {
                 }
                 if (key === "gymMembers") {
                     myStates.helpDialogOpen = true;
-                    myStates.helpDialogStage = 6;
-                }
-                if (key === "photoGallery") {
-                    myStates.helpDialogOpen = true;
-                    myStates.helpDialogStage = 8;
+                    myStates.helpDialogStage = 2;
                 }
                 if (key === "info") {
                     myStates.helpDialogOpen = true;
-                    myStates.helpDialogStage = 9;
+                    myStates.helpDialogStage = 2;
                 }
                 break;
             case 2:
-                if (key === "strength" ||
-                    key === "aerobic" ||
-                    key === "balance" ||
-                    key === "agility" ||
-                    key === "flexibilityMobility"
-                ) {
-                    myStates.helpDialogOpen = true;
-                    myStates.helpDialogStage = 3;
-                }
-                break;
-            case 3:
-                if (key === "meat" ||
-                    key === "pork" ||
-                    key === "poultry" ||
-                    key === "fish" ||
-                    key === "shellfish" ||
-                    key === "vegetarian" ||
-                    key === "cheese" ||
-                    key === "carryout"
-                ) {
-                    myStates.helpDialogOpen = true;
-                    myStates.helpDialogStage = 4;
-                }
-                break;
-            case 4:
-                if (key === "dollar_1" ||
-                    key === "dollar_2" ||
-                    key === "dollar_3"
-                ) {
-                    myStates.helpDialogOpen = true;
-                    myStates.helpDialogStage = 5;
-                }
-                break;
-            case 5:
                 if (key === "date_0" ||
                     key === "date_1" ||
                     key === "date_2" ||
@@ -73,7 +26,7 @@ const setMyStatesLogic = (myStates: any, key: any) => {
                     key === "date_6"
                 ) {
                     myStates.helpDialogOpen = true;
-                    myStates.helpDialogStage = 6;
+                    myStates.helpDialogStage = 2;
                 }
                 break;
             default:
@@ -82,11 +35,11 @@ const setMyStatesLogic = (myStates: any, key: any) => {
     }
 
     // if myKey = any of the login items, set login items to false and set key
-    if (key === 'exerciseSettings' || key === 'workoutSettings' || key === 'gymDaySettings' || key === 'exercise') {
+    if (key === 'exerciseSettings' || key === 'workoutSettings' || key === 'gymDaySettings' || key === 'showWorkoutByDate') {
         myStates['exerciseSettings'] = false;
         myStates['workoutSettings'] = false;
         myStates['gymDaySettings'] = false;
-        myStates['exercise'] = false;
+        myStates['showWorkoutByDate'] = false;
         myStates[key] = true;
         return myStates;
     }

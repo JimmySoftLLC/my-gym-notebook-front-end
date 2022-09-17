@@ -42,7 +42,10 @@ import {
     SET_PHOTO_DIALOG_OPEN,
 
     SET_IMAGE_EDITOR_DATA,
+
+    SET_TODAYS_WORKOUTS
 } from '../types';
+import validDate from '../../utilities/validDate';
 
 const DataAndMethodsState: any = (props: { children: any; }) => {
     const [myStatesLocalStorage] = React.useState(() => {
@@ -50,10 +53,10 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
         myStates = myStates !== null ? JSON.parse(myStates)
             : {
                 // menu categories
-                strength: true,
+                strength: false,
                 aerobic: false,
                 balance: false,
-                agility: true,
+                agility: false,
                 flexibilityMobility: false,
 
                 // dates
@@ -65,12 +68,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 date_5: false,
                 date_6: false,
 
-                // customer pages
-                exercises: false,
-                gymMembers: false,
-                photoSettings: false,
-                info: true,
-
                 // backend pages
                 exerciseSettings: false,
                 workoutSettings: false,
@@ -79,10 +76,10 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 showDescription: false,
 
                 // sorting types
-                sortTitle: true,
+                sortTitle: false,
                 sortPrice: false,
                 sortDate: false,
-                sortTime: true,
+                sortTime: false,
                 sortName: false,
 
                 lastState: 'exercises',
@@ -90,7 +87,7 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 // help dialog
                 helpDialogStage: 0,
                 helpDialogActive: false,
-                helpDialogOpen: true,
+                helpDialogOpen: false,
             };
         // dates
         myStates.date_0 = true;
@@ -186,6 +183,8 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             blob: '',
             showDelete: true,
         },
+
+        todaysWorkouts: [],
     };
 
     const [state, dispatch] = useReducer(DataAndMethodsReducer, initialState);
@@ -206,12 +205,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     // set loading spinner ---------------------------------------------------------------------
     const setLoading = (myBool: boolean) => dispatch({ type: SET_LOADING, payload: myBool });
     const setLoadingDialog = (myBool: any) => dispatch({ type: SET_LOADING_DIALOG, payload: myBool });
-
-    // get data by date ------------------------------------------------------------------
-    const getDataByDate = async (selectedDate: any) => {
-        setLoading(true);
-        setLoading(false);
-    };
 
     // login dialog and authorization items ------------------------------
     const setSignInRegDialogType = async (signInRegDialogType: any) => { dispatch({ type: SET_SIGN_IN_REG_DIALOG_TYPE, payload: signInRegDialogType }) }
@@ -307,6 +300,42 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
     }
     const setImageEditorData = async (imageEditorData: any) => { dispatch({ type: SET_IMAGE_EDITOR_DATA, payload: imageEditorData }) }
 
+    // todays workouts ----------------------------------------------------
+
+    // get data by date ------------------------------------------------------------------
+    const getTodaysWorkouts = async (gymDays: any, selectedDate: Date, workouts: any) => {
+        setLoading(true);
+        let todaysGymDays = [];
+        for (let j = 0; j < gymDays.length; j++) {
+            if (validDate(gymDays[j].dateFrom, gymDays[j].dateTo, selectedDate)) {
+                todaysGymDays.push(gymDays[j])
+            }
+        }
+
+        let workoutIdsJSON: any[] = []
+        for (let j = 0; j < todaysGymDays.length; j++) {
+            for (let k = 0; k < todaysGymDays[j].workoutIdsJSON.length; k++) {
+                workoutIdsJSON.push(todaysGymDays[j].workoutIdsJSON[k])
+            }
+        }
+
+        let todaysWorkOuts: any[] = []
+
+        for (let j = 0; j < workouts.length; j++) {
+            for (let k = 0; k < workoutIdsJSON.length; k++) {
+                if (workouts[j].id === workoutIdsJSON[k].toString()) {
+                    let workout = JSON.parse(JSON.stringify(workouts[j]))
+                    workout.key = workout.id + k;
+                    todaysWorkOuts.push(workout)
+                }
+            }
+        }
+
+        setTodaysWorkouts(todaysWorkOuts);
+        setLoading(false);
+    };
+    const setTodaysWorkouts = async (todaysWorkouts: any[]) => { dispatch({ type: SET_TODAYS_WORKOUTS, payload: todaysWorkouts }) }
+
     return (
         <DataAndMethodsContext.Provider
             value={{
@@ -352,12 +381,15 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
                 photos: state.photos,
                 photoDialogData: state.photoDialogData,
                 photoDialogOpen: state.photoDialogOpen,
+
                 imageEditorData: state.imageEditorData,
+
+                todaysWorkouts: state.todaysWorkouts,
 
                 setMyState,
                 setMyStates,
 
-                getDataByDate,
+                getTodaysWorkouts,
                 setTodaysDate,
                 setSelectedDate,
 

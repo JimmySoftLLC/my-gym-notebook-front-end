@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import GymDayWorkoutCard from './GymDayWorkoutCard';
-import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
+import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethodsContext';
 
 const GymDayWorkouts = () => {
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);

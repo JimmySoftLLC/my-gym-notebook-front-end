@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
@@ -13,7 +13,6 @@ import {
 import DateFnsUtils from '@date-io/date-fns';
 
 const SignedInTopToolBar = () => {
-    const [exerciseDate, setExerciseDate]: any = useState();
     const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
     const {
         setExerciseDialogData,
@@ -24,6 +23,8 @@ const SignedInTopToolBar = () => {
         setWorkoutDialogOpen,
         setGymDayDialogData,
         setGymDayDialogOpen,
+        selectedDate,
+        setSelectedDate
     } = dataAndMethodsContext;
 
     const newExerciseClick = () => {
@@ -80,14 +81,14 @@ const SignedInTopToolBar = () => {
                         <DatePicker
                             id="date-from"
                             format="MM/dd/yy"
-                            value={exerciseDate}
-                            onChange={setExerciseDate}
+                            value={selectedDate}
+                            onChange={setSelectedDate}
                             style={{ width: 75, paddingTop: 8 }}
                         />
                         <Tooltip title="Exercise">
                             <IconButton aria-label=""
-                                color={myStates['exercise'] ? "default" : "inherit"}
-                                onClick={() => dataAndMethodsContext.setMyState('exercise')}>
+                                color={myStates['showWorkoutByDate'] ? "default" : "inherit"}
+                                onClick={() => dataAndMethodsContext.setMyState('showWorkoutByDate')}>
                                 <i className="icon-user-read"></i>
                             </IconButton>
                         </Tooltip>

@@ -12,7 +12,7 @@ import getWorkouts from '../../model/workout/getWorkoutsFromIds';
 import Grid from '@material-ui/core/Grid';
 import sortWorkouts from '../../model/workout/sortWorkouts';
 import 'date-fns';
-import ExercisesWorkout from '../workoutExercise/WorkoutExercises';
+import ExercisesWorkout from '../componentLists/workoutExercise/WorkoutExercises';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
