@@ -331,10 +331,6 @@ const DataAndMethodsState: any = (props: { children: any; }) => {
             }
         }
 
-        // console.log(workouts);
-        // console.log(workoutIdsJSON);
-        // console.log(todaysWorkOuts);
-
         setTodaysWorkouts(todaysWorkOuts);
         setLoading(false);
     };
