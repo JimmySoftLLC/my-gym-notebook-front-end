@@ -1,18 +1,20 @@
-import React, { useContext } from 'react';
-import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethodsContext';
+import React from 'react';
 import ExerciseCardWorkout from './todaysExerciseCard';
 
-const TodaysExercises = () => {
-    const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
-
-    const {
-        exercises
-    } = dataAndMethodsContext;
-
-    return exercises.map((Exercise: { id: React.Key | null | undefined; key: React.Key | null | undefined; }) => <ExerciseCardWorkout Exercise={Exercise}
+const TodaysExercises = ({ exercises }: any) => {
+  return exercises.map(
+    (Exercise: {
+      id: React.Key | null | undefined;
+      key: React.Key | null | undefined;
+    }) => (
+      <ExerciseCardWorkout
+        Exercise={Exercise}
         isInList={true}
         ExerciseId={Exercise.id}
-        key={Exercise.id} />);
+        key={Exercise.id}
+      />
+    )
+  );
 };
 
 export default TodaysExercises;
