@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 
 const TodaysExercisesCard = ({ Exercise }: any) => {
   const changeToMultiline = (items: string[]) => {
@@ -22,9 +22,29 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     //const changedData = e.target.value.split(/\r?\n/);
   };
 
+  const handleClickExerciseEdit = (id: any) => {};
+
   return (
     <>
-      <h5>{Exercise.title}</h5>
+      <h5>
+        {Exercise.title}
+        <span className='mx-1'></span>
+        <Button
+          variant='outlined'
+          color='primary'
+          onClick={() => handleClickExerciseEdit(Exercise.id)}
+        >
+          <i className='fas fa-play'></i>
+        </Button>
+        <Button
+          disabled={true}
+          variant='outlined'
+          color='primary'
+          onClick={() => handleClickExerciseEdit(Exercise.id)}
+        >
+          <i className='fas fa-stop'></i>
+        </Button>
+      </h5>
       <div>
         <TextField
           label='Goal'
