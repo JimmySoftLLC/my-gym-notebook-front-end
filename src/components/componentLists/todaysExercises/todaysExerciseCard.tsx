@@ -22,12 +22,10 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
 
   const changeActual = (e: any) => {
     setActual(e.target.value);
-    //const changedData = e.target.value.split(/\r?\n/);
   };
 
   const changeNewGoal = (e: any) => {
     setNewGoal(e.target.value);
-    //const changedData = e.target.value.split(/\r?\n/);
   };
 
   const handleStartClick = () => {
@@ -42,6 +40,16 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
   const handleDoneClick = () => {
     setModeStartEdit(true);
     setInDatabase(true);
+    const actualData = actual.split(/\r?\n/);
+    const newGoalData = newGoal.split(/\r?\n/);
+    const myDate = new Date();
+    const myObject = {
+      exerciseId: Exercise.id,
+      actualData: actualData,
+      newGoalData: newGoalData,
+      date: myDate,
+    };
+    console.log(myObject);
   };
 
   return (
