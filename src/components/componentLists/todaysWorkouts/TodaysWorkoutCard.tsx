@@ -20,15 +20,15 @@ const TodaysWorkoutCard: any = ({ Workout }: any) => {
   const { exercises } = dataAndMethodsContext;
 
   const exercisesFromWorkout = () => {
-    const dude = [];
+    const workoutExercises = [];
     for (let i = 0; i < Workout.exerciseIdsJSON.length; i++) {
       for (let j = 0; j < exercises.length; j++) {
         if (Workout.exerciseIdsJSON[i] === exercises[j].id) {
-          dude.push(exercises[j]);
+          workoutExercises.push(exercises[j]);
         }
       }
     }
-    return dude;
+    return workoutExercises;
   };
 
   const myExercises = exercisesFromWorkout();

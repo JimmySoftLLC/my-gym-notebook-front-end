@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, TextField } from '@material-ui/core';
+import putExerciseDay from '../../../model/exerciseDay/putExerciseDay';
+import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethodsContext';
 
 const TodaysExercisesCard = ({ Exercise }: any) => {
   const changeToMultiline = (items: string[]) => {
@@ -10,6 +12,10 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
       .join('\n');
     return dataJSONString;
   };
+
+  const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
+
+  const { idToken, customId } = dataAndMethodsContext;
 
   const dataJSONString = changeToMultiline(Exercise.dataJSON);
 
@@ -43,13 +49,13 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     const actualData = actual.split(/\r?\n/);
     const newGoalData = newGoal.split(/\r?\n/);
     const myDate = new Date();
+    const dataJSON = { actualData: actualData, newGoalData: newGoalData };
     const myObject = {
-      exerciseId: Exercise.id,
-      actualData: actualData,
-      newGoalData: newGoalData,
-      date: myDate,
+      id: Exercise.id,
+      dateStarted: myDate,
+      dataJSON: dataJSON,
     };
-    console.log(myObject);
+    putExerciseDay(myObject, idToken, customId);
   };
 
   return (
