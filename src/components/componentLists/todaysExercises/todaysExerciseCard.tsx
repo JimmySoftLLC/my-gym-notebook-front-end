@@ -2,6 +2,9 @@ import React, { useState, useContext } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import putExerciseDay from '../../../model/exerciseDay/putExerciseDay';
 import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethodsContext';
+import putGymMember from '../../../model/gymMember/putGymMember';
+import getExerciseDaysFromIds from '../../../model/exerciseDay/getExerciseDaysFromIds';
+import sortExerciseDays from '../../../model/exerciseDay/sortExerciseDays';
 
 const TodaysExercisesCard = ({ Exercise }: any) => {
   const changeToMultiline = (items: string[]) => {
@@ -15,7 +18,16 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
 
   const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
 
-  const { idToken, customId } = dataAndMethodsContext;
+  const {
+    idToken,
+    customId,
+    gymMember,
+    setGymMember,
+    setTodaysExercises,
+    getTodaysExercises,
+    selectedDate,
+    todaysExercises,
+  } = dataAndMethodsContext;
 
   const dataJSONString = changeToMultiline(Exercise.dataJSON);
 
@@ -43,7 +55,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     setNewGoal(actual);
   };
 
-  const handleDoneClick = () => {
+  const handleDoneClick = async () => {
     setModeStartEdit(true);
     setInDatabase(true);
     const actualData = actual.split(/\r?\n/);
@@ -56,6 +68,17 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
       dataJSON: dataJSON,
     };
     putExerciseDay(myObject, idToken, customId);
+
+    let myNewGymMember = JSON.parse(JSON.stringify(gymMember));
+    myNewGymMember.exerciseDayIdsJSON.push(Exercise.id);
+    await putGymMember(myNewGymMember, idToken, customId);
+    setGymMember(myNewGymMember);
+    let myExerciseDays = await getExerciseDaysFromIds(
+      myNewGymMember.exerciseDayIdsJSON
+    );
+    myExerciseDays = await sortExerciseDays(myExerciseDays, 'sortDate');
+    setTodaysExercises(myExerciseDays);
+    await getTodaysExercises(myExerciseDays, selectedDate, todaysExercises);
   };
 
   return (

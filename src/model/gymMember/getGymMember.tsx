@@ -42,6 +42,10 @@ const getGymMember = async (myEmailId: any, myToken: any, myCustomId: any) => {
     myGymMember.dataJSON === undefined
       ? JSON.parse('[]')
       : JSON.parse(myGymMember.dataJSON);
+  myGymMember.exerciseDayIdsJSON =
+    myGymMember.exerciseDayIdsJSON === undefined
+      ? JSON.parse('[]')
+      : JSON.parse(myGymMember.exerciseDayIdsJSON);
   myGymMember.imageUrl =
     myGymMember.imageUrl === blankPlaceHolder ? '' : myGymMember.imageUrl;
   return myGymMember;
