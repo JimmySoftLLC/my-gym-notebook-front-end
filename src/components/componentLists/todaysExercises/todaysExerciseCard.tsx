@@ -26,42 +26,46 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     selectedDate,
     setExerciseDay,
     exerciseDay,
+    setExerciseDayItem,
   } = dataAndMethodsContext;
 
   const dataJSONString = changeToMultiline(Exercise.dataJSON);
 
   const [startEdit, setModeStartEdit] = useState(true);
   const [inDatabase, setInDatabase] = useState(false);
-  const [actual, setActual] = useState('');
-  const [newGoal, setNewGoal] = useState('');
 
   const minRows = Exercise.dataJSON.length;
 
   const changeActual = (e: any) => {
-    setActual(e.target.value);
+    const actualData = e.target.value.split(/\r?\n/);
+    setExerciseDayItem(Exercise.id, 'actualData', actualData);
   };
 
   const changeNewGoal = (e: any) => {
-    setNewGoal(e.target.value);
+    const newGoalData = e.target.value.split(/\r?\n/);
+    setExerciseDayItem(Exercise.id, 'newGoalData', newGoalData);
   };
 
   const handleStartClick = () => {
     setModeStartEdit(false);
-    if (actual === '') setActual(dataJSONString);
+    if (actual === '') {
+      const actualData = dataJSONString.split(/\r?\n/);
+      setExerciseDayItem(Exercise.id, 'actualData', actualData);
+    }
   };
 
   const handleCopyClick = () => {
-    setNewGoal(actual);
+    const newGoalData = actual.split(/\r?\n/);
+    setExerciseDayItem(Exercise.id, 'newGoalData', newGoalData);
   };
 
   const handleDoneClick = async () => {
     setModeStartEdit(true);
     setInDatabase(true);
     let newExerciseDay = JSON.parse(JSON.stringify(exerciseDay));
-    let myNewGymMember = JSON.parse(JSON.stringify(gymMember));
     if (newExerciseDay.id === undefined) {
       newExerciseDay.id =
-        myNewGymMember.id + dateString(selectedDate, selectedDate, 'dateAsId');
+        gymMember.id + dateString(selectedDate, selectedDate, 'dateAsId');
     }
     if (newExerciseDay.dataJSON === undefined) {
       newExerciseDay.dataJSON = {};
@@ -73,10 +77,38 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
       newGoalData: newGoalData,
     };
     newExerciseDay.dataJSON[Exercise.id] = exerciseResult;
-    console.log(newExerciseDay);
     putExerciseDay(newExerciseDay, idToken, customId);
-    setExerciseDay(newExerciseDay);
   };
+
+  const getActualValue = () => {
+    if (exerciseDay.dataJSON !== undefined) {
+      if (exerciseDay.dataJSON[Exercise.id] !== undefined) {
+        if (exerciseDay.dataJSON[Exercise.id].actualData !== undefined) {
+          return changeToMultiline(
+            exerciseDay.dataJSON[Exercise.id].actualData
+          );
+        }
+      }
+    }
+    return '';
+  };
+
+  const actual = getActualValue();
+
+  const getGoalValue = () => {
+    if (exerciseDay.dataJSON !== undefined) {
+      if (exerciseDay.dataJSON[Exercise.id] !== undefined) {
+        if (exerciseDay.dataJSON[Exercise.id].newGoalData !== undefined) {
+          return changeToMultiline(
+            exerciseDay.dataJSON[Exercise.id].newGoalData
+          );
+        }
+      }
+    }
+    return '';
+  };
+
+  const newGoal = getGoalValue();
 
   return (
     <>

@@ -38,6 +38,7 @@ import {
   SET_EXERCISE_DAY,
 } from '../types';
 import validDate from '../../utilities/validDate';
+import dateString from '../../utilities/dateString';
 
 const DataAndMethodsState: any = (props: { children: any }) => {
   const [myStatesLocalStorage] = React.useState(() => {
@@ -470,9 +471,25 @@ const DataAndMethodsState: any = (props: { children: any }) => {
     dispatch({ type: SET_EXERCISE_DAY, payload: exerciseDay });
   };
 
-  const setExerciseDayItem = async (key: string | number, value: any) => {
+  const setExerciseDayItem = async (
+    exerciseId: string,
+    key: string | number,
+    value: any
+  ) => {
     let exerciseDayData = JSON.parse(JSON.stringify(state.exerciseDay));
-    exerciseDayData[key] = value;
+    if (exerciseDayData.id === undefined) {
+      exerciseDayData.id =
+        state.gymMember.id +
+        dateString(state.selectedDate, state.selectedDate, 'dateAsId');
+    }
+    if (exerciseDayData.dataJSON === undefined) {
+      exerciseDayData.dataJSON = {};
+    }
+    if (exerciseDayData.dataJSON[exerciseId] === undefined) {
+      exerciseDayData.dataJSON[exerciseId] = {};
+    }
+    exerciseDayData.dataJSON[exerciseId][key] = value;
+    console.log(exerciseDayData);
     setExerciseDay(exerciseDayData);
   };
 
