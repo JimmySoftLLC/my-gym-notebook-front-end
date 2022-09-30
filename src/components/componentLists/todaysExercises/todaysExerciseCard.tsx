@@ -31,7 +31,6 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
   const dataJSONString = changeToMultiline(Exercise.dataJSON);
 
   const [startEdit, setModeStartEdit] = useState(true);
-  const [inDatabase, setInDatabase] = useState(false);
 
   const minRows = Exercise.dataJSON.length;
 
@@ -43,6 +42,11 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
   const changeNewGoal = (e: any) => {
     const newGoalData = e.target.value.split(/\r?\n/);
     setExerciseDayItem(Exercise.id, 'newGoalData', newGoalData);
+  };
+
+  const changeInDatabase = (inDB: any) => {
+    const newGoalData = inDB;
+    setExerciseDayItem(Exercise.id, 'inDatabase', newGoalData);
   };
 
   const handleStartClick = () => {
@@ -60,7 +64,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
 
   const handleDoneClick = async () => {
     setModeStartEdit(true);
-    setInDatabase(true);
+    changeInDatabase(true);
     let newExerciseDay = JSON.parse(JSON.stringify(exerciseDay));
     if (newExerciseDay.id === undefined) {
       newExerciseDay.id =
@@ -74,6 +78,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     const exerciseResult = {
       actualData: actualData,
       newGoalData: newGoalData,
+      inDatabase: inDatabase,
     };
     newExerciseDay.dataJSON[Exercise.id] = exerciseResult;
     putExerciseDay(newExerciseDay, idToken, customId);
@@ -108,6 +113,19 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
   };
 
   const newGoal = getGoalValue();
+
+  const getInDatabase = () => {
+    if (exerciseDay.dataJSON !== undefined) {
+      if (exerciseDay.dataJSON[Exercise.id] !== undefined) {
+        if (exerciseDay.dataJSON[Exercise.id].inDatabase !== undefined) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  const inDatabase = getInDatabase();
 
   return (
     <>
