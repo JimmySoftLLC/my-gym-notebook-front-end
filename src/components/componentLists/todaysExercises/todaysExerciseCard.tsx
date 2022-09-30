@@ -24,7 +24,6 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     customId,
     gymMember,
     selectedDate,
-    setExerciseDay,
     exerciseDay,
     setExerciseDayItem,
   } = dataAndMethodsContext;
