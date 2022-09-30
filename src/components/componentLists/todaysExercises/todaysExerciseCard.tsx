@@ -52,10 +52,14 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
   const handleDoneClick = async () => {
     setModeStartEdit(true);
     changeInDatabase(true);
+    const exerciseDateString = dateString(
+      selectedDate,
+      selectedDate,
+      'dateAsId'
+    );
     let newExerciseDay = JSON.parse(JSON.stringify(exerciseDay));
     if (newExerciseDay.id === undefined) {
-      newExerciseDay.id =
-        gymMember.id + dateString(selectedDate, selectedDate, 'dateAsId');
+      newExerciseDay.id = gymMember.id + exerciseDateString;
     }
     if (newExerciseDay.dataJSON === undefined) {
       newExerciseDay.dataJSON = {};
@@ -68,6 +72,10 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     newExerciseDay.dataJSON[Exercise.id] = exerciseResult;
     putExerciseDay(newExerciseDay, idToken, customId);
     let newGymMember = JSON.parse(JSON.stringify(gymMember));
+    if (newGymMember.exerciseDaysJSON.exerciseDateString === undefined) {
+      newExerciseDay.exerciseDaysJSON.exerciseDateString = {};
+    }
+    console.log(newGymMember);
   };
 
   const getActualValue = () => {

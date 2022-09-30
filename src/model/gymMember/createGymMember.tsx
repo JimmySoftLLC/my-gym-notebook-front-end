@@ -15,6 +15,7 @@ const createGymMember = async (
     imageUrl: '',
     exerciseIdsJSON: [],
     gymDayIdsJSON: [],
+    workoutIdsJSON: [],
     teamMateIdsJSON: [],
     dataJSON: [],
     exerciseDaysJSON: [],

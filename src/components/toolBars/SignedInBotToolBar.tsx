@@ -37,6 +37,7 @@ const SignedInBotToolBar = () => {
       exerciseIdsJSON: gymMember.exerciseIdsJSON,
       teamMateIdsJSON: gymMember.teamMateIdsJSON,
       gymDayIdsJSON: gymMember.gymDayIdsJSON,
+      workoutIdsJSON: gymMember.workoutIdsJSON,
       dataJSON: gymMember.dataJSON,
       exerciseDaysJSON: gymMember.exerciseDaysJSON,
       imageUrl: gymMember.imageUrl,

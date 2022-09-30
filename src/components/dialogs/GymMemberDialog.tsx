@@ -51,6 +51,7 @@ const GymMemberDialog: any = () => {
     exerciseIdsJSON,
     teamMateIdsJSON,
     gymDayIdsJSON,
+    workoutIdsJSON,
     dataJSON,
     exerciseDaysJSON,
     dialogType,
@@ -74,6 +75,7 @@ const GymMemberDialog: any = () => {
     newGymMember.exerciseIdsJSON = exerciseIdsJSON;
     newGymMember.teamMateIdsJSON = teamMateIdsJSON;
     newGymMember.gymDayIdsJSON = gymDayIdsJSON;
+    newGymMember.workoutIdsJSON = workoutIdsJSON;
     newGymMember.imageUrl = imageUrl;
     newGymMember.dataJSON = dataJSON;
     newGymMember.exerciseDaysJSON = exerciseDaysJSON;

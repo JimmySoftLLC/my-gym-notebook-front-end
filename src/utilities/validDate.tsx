@@ -11,7 +11,6 @@ const validDate = (
   myDateTo.setHours(0, 0, 0, 0);
   myDateToCheck.setHours(0, 0, 0, 0);
   if (myDateFrom <= myDateToCheck && myDateToCheck <= myDateTo) {
-    console.log(dayJSON);
     const day = myDateToCheck.getDay();
     const dayValid = dayJSON.findIndex((e: number) => e === day);
     if (dayValid !== -1) return true;
