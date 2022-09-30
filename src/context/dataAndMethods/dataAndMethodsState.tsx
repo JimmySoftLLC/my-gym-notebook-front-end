@@ -489,7 +489,7 @@ const DataAndMethodsState: any = (props: { children: any }) => {
       exerciseDayData.dataJSON[exerciseId] = {};
     }
     exerciseDayData.dataJSON[exerciseId][key] = value;
-    console.log(exerciseDayData);
+
     setExerciseDay(exerciseDayData);
   };
 

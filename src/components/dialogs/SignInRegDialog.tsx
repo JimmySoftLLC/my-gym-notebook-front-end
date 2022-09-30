@@ -15,6 +15,8 @@ import isEmail from 'validator/lib/isEmail';
 import getMembersExercises from '../../model/exercise/getMembersExercises';
 import getMembersWorkouts from '../../model/workout/getMembersWorkouts';
 import getMembersGymDays from '../../model/gymDay/getMembersGymDays';
+import getExerciseDaysFromIds from '../../model/exerciseDay/getExerciseDaysFromIds';
+import dateString from '../../utilities/dateString';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +52,7 @@ const SignInRegDialog: any = () => {
     setGymDays,
     getTodaysWorkouts,
     selectedDate,
+    setExerciseDay,
   } = dataAndMethodsContext;
 
   const closeDialog = () => {
@@ -146,6 +149,18 @@ const SignInRegDialog: any = () => {
           const gymDayItems = await getMembersGymDays(gymMember);
           setGymDays(gymDayItems);
           await getTodaysWorkouts(gymDayItems, selectedDate, workoutItems);
+          const myExerciseDaysIds = [];
+          myExerciseDaysIds.push(
+            gymMember.id + dateString(selectedDate, selectedDate, 'dateAsId')
+          );
+          const myExerciseDays = await getExerciseDaysFromIds(
+            myExerciseDaysIds
+          );
+          if (myExerciseDays.length) {
+            setExerciseDay(myExerciseDays[0]);
+          } else {
+            setExerciseDay({});
+          }
           setDialogBackToDefaults();
         }
       }
