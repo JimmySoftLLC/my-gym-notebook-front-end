@@ -14,7 +14,7 @@ export const projectionExpressionExercise = 'id,categoryJSON,dataJSON,title';
 export const projectionExpressionGymDay =
   'id,title,dateFrom,dateTo,dayJSON,workoutIdsJSON';
 export const projectionExpressionWorkout = 'id,title,exerciseIdsJSON';
-export const projectionExpressionExerciseDays = 'id,dateStarted,dataJSON';
+export const projectionExpressionExerciseDays = 'id,dataJSON';
 export const blankPlaceHolder = String.fromCharCode(30);
 export const imagePath = 'https://iwanttodine.s3.amazonaws.com/public/';
 export const blankImage =

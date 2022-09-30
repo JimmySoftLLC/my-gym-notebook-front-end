@@ -32,7 +32,6 @@ const putItemDynamoDB = async (
       myNewItem = {
         id: myItem.id,
         dataJSON: JSON.stringify(myItem.dataJSON),
-        dateStarted: myItem.dateStarted,
       };
       break;
     case workoutsTableName:

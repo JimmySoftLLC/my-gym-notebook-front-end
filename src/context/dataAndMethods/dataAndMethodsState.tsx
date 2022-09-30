@@ -35,6 +35,7 @@ import {
   SET_IMAGE_EDITOR_DATA,
   SET_TODAYS_WORKOUTS,
   SET_TODAYS_EXERCISES,
+  SET_EXERCISE_DAY,
 } from '../types';
 import validDate from '../../utilities/validDate';
 
@@ -178,6 +179,8 @@ const DataAndMethodsState: any = (props: { children: any }) => {
     },
 
     todaysWorkouts: [],
+
+    exerciseDay: {},
   };
 
   const [state, dispatch] = useReducer(DataAndMethodsReducer, initialState);
@@ -462,6 +465,17 @@ const DataAndMethodsState: any = (props: { children: any }) => {
     dispatch({ type: SET_TODAYS_EXERCISES, payload: todaysExercises });
   };
 
+  // set exercise day -------------------------------------------
+  const setExerciseDay = async (exerciseDay: any[]) => {
+    dispatch({ type: SET_EXERCISE_DAY, payload: exerciseDay });
+  };
+
+  const setExerciseDayItem = async (key: string | number, value: any) => {
+    let exerciseDayData = JSON.parse(JSON.stringify(state.exerciseDay));
+    exerciseDayData[key] = value;
+    setExerciseDay(exerciseDayData);
+  };
+
   return (
     <DataAndMethodsContext.Provider
       value={{
@@ -514,6 +528,8 @@ const DataAndMethodsState: any = (props: { children: any }) => {
 
         todaysExercises: state.todaysExercises,
 
+        exerciseDay: state.exerciseDay,
+
         setMyState,
         setMyStates,
 
@@ -563,6 +579,9 @@ const DataAndMethodsState: any = (props: { children: any }) => {
 
         getTodaysExercises,
         setTodaysExercises,
+
+        setExerciseDay,
+        setExerciseDayItem,
       }}
     >
       {props.children}

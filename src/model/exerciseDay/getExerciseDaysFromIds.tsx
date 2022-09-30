@@ -1,15 +1,14 @@
 import batchGetItemDynamoDB from '../../api/batchGetItemDynamoDB';
 
 import {
-  workoutsTableName,
+  exerciseDaysTableName,
   projectionExpressionExerciseDays,
-  blankPlaceHolder,
 } from '../../api/apiConstants';
 
 const getBatch = async (myIds: any) => {
   let myExerciseDays = [];
   const data = await batchGetItemDynamoDB(
-    workoutsTableName,
+    exerciseDaysTableName,
     myIds,
     projectionExpressionExerciseDays
   );
@@ -17,15 +16,9 @@ const getBatch = async (myIds: any) => {
     return [];
   }
 
-  myExerciseDays = data.payload.Responses.workouts;
+  myExerciseDays = data.payload.Responses.exerciseDays;
   for (let i = 0; i < myExerciseDays.length; i++) {
-    myExerciseDays[i].title =
-      myExerciseDays[i].title === blankPlaceHolder
-        ? ''
-        : myExerciseDays[i].title;
-    myExerciseDays[i].exerciseIdsJSON = JSON.parse(
-      myExerciseDays[i].exerciseIdsJSON
-    );
+    myExerciseDays[i].dataJSON = JSON.parse(myExerciseDays[i].dataJSON);
   }
 
   return myExerciseDays;

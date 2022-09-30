@@ -5,6 +5,7 @@ import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethod
 import putGymMember from '../../../model/gymMember/putGymMember';
 import getExerciseDaysFromIds from '../../../model/exerciseDay/getExerciseDaysFromIds';
 import sortExerciseDays from '../../../model/exerciseDay/sortExerciseDays';
+import dateString from '../../../utilities/dateString';
 
 const TodaysExercisesCard = ({ Exercise }: any) => {
   const changeToMultiline = (items: string[]) => {
@@ -22,11 +23,9 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     idToken,
     customId,
     gymMember,
-    setGymMember,
-    setTodaysExercises,
-    getTodaysExercises,
     selectedDate,
-    todaysExercises,
+    setExerciseDay,
+    exerciseDay,
   } = dataAndMethodsContext;
 
   const dataJSONString = changeToMultiline(Exercise.dataJSON);
@@ -58,27 +57,25 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
   const handleDoneClick = async () => {
     setModeStartEdit(true);
     setInDatabase(true);
+    let newExerciseDay = JSON.parse(JSON.stringify(exerciseDay));
+    let myNewGymMember = JSON.parse(JSON.stringify(gymMember));
+    if (newExerciseDay.id === undefined) {
+      newExerciseDay.id =
+        myNewGymMember.id + dateString(selectedDate, selectedDate, 'dateAsId');
+    }
+    if (newExerciseDay.dataJSON === undefined) {
+      newExerciseDay.dataJSON = {};
+    }
     const actualData = actual.split(/\r?\n/);
     const newGoalData = newGoal.split(/\r?\n/);
-    const myDate = new Date();
-    const dataJSON = { actualData: actualData, newGoalData: newGoalData };
-    const myObject = {
-      id: Exercise.id,
-      dateStarted: myDate,
-      dataJSON: dataJSON,
+    const exerciseResult = {
+      actualData: actualData,
+      newGoalData: newGoalData,
     };
-    putExerciseDay(myObject, idToken, customId);
-
-    let myNewGymMember = JSON.parse(JSON.stringify(gymMember));
-    myNewGymMember.exerciseDayIdsJSON.push(Exercise.id);
-    await putGymMember(myNewGymMember, idToken, customId);
-    setGymMember(myNewGymMember);
-    let myExerciseDays = await getExerciseDaysFromIds(
-      myNewGymMember.exerciseDayIdsJSON
-    );
-    myExerciseDays = await sortExerciseDays(myExerciseDays, 'sortDate');
-    setTodaysExercises(myExerciseDays);
-    await getTodaysExercises(myExerciseDays, selectedDate, todaysExercises);
+    newExerciseDay.dataJSON[Exercise.id] = exerciseResult;
+    console.log(newExerciseDay);
+    putExerciseDay(newExerciseDay, idToken, customId);
+    setExerciseDay(newExerciseDay);
   };
 
   return (

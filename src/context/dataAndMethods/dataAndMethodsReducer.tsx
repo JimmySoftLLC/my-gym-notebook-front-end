@@ -29,6 +29,7 @@ import {
   SET_IMAGE_EDITOR_DATA,
   SET_TODAYS_WORKOUTS,
   SET_TODAYS_EXERCISES,
+  SET_EXERCISE_DAY,
 } from '../types';
 
 export default (state: any, action: { type: any; payload: any }): any => {
@@ -193,6 +194,12 @@ export default (state: any, action: { type: any; payload: any }): any => {
       return {
         ...state,
         todaysWorkouts: action.payload,
+      };
+
+    case SET_EXERCISE_DAY:
+      return {
+        ...state,
+        exerciseDay: action.payload,
       };
 
     default:
