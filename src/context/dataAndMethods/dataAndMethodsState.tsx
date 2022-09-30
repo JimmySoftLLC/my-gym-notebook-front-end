@@ -125,7 +125,7 @@ const DataAndMethodsState: any = (props: { children: any }) => {
       gymDayIdsJSON: [],
       workoutIdsJSON: [],
       dataJSON: [],
-      exerciseDaysJSON: [],
+      exerciseDaysJSON: {},
       dialogType: 'Edit',
       message: '',
     },

@@ -3,6 +3,7 @@ import { Button, TextField } from '@material-ui/core';
 import putExerciseDay from '../../../model/exerciseDay/putExerciseDay';
 import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethodsContext';
 import dateString from '../../../utilities/dateString';
+import putGymMember from '../../../model/gymMember/putGymMember';
 
 const TodaysExercisesCard = ({ Exercise }: any) => {
   const changeToMultiline = (items: string[]) => {
@@ -23,6 +24,8 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     selectedDate,
     exerciseDay,
     setExerciseDayItem,
+    exercises,
+    setGymMember,
   } = dataAndMethodsContext;
 
   const dataJSONString = changeToMultiline(Exercise.dataJSON);
@@ -71,11 +74,17 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     };
     newExerciseDay.dataJSON[Exercise.id] = exerciseResult;
     putExerciseDay(newExerciseDay, idToken, customId);
-    let newGymMember = JSON.parse(JSON.stringify(gymMember));
-    if (newGymMember.exerciseDaysJSON.exerciseDateString === undefined) {
-      newExerciseDay.exerciseDaysJSON.exerciseDateString = {};
+    if (gymMember.exerciseDaysJSON[exerciseDateString] === undefined) {
+      let newGymMember = JSON.parse(JSON.stringify(gymMember));
+      const myIds = [];
+      for (let i = 0; i < exercises.length; i++) {
+        myIds.push(exercises[i].id);
+      }
+      newGymMember.exerciseDaysJSON[exerciseDateString] = myIds;
+      await putGymMember(newGymMember, idToken, customId);
+      setGymMember(newGymMember);
+      console.log(newGymMember);
     }
-    console.log(newGymMember);
   };
 
   const getActualValue = () => {
