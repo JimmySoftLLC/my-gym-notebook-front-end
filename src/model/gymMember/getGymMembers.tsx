@@ -50,6 +50,10 @@ const getBatch = async (myIds: any[]) => {
       myGymMembers[i].dataJSON === undefined
         ? JSON.parse('[]')
         : JSON.parse(myGymMembers[i].dataJSON);
+    myGymMembers[i].exerciseDaysJSON =
+      myGymMembers[i].exerciseDaysJSON === undefined
+        ? JSON.parse('[]')
+        : JSON.parse(myGymMembers[i].exerciseDaysJSON);
     myGymMembers[i].imageUrl =
       myGymMembers[i].imageUrl === blankPlaceHolder
         ? ''

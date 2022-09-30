@@ -124,6 +124,7 @@ const DataAndMethodsState: any = (props: { children: any }) => {
       teamMateIdsJSON: [],
       gymDayIdsJSON: [],
       dataJSON: [],
+      exerciseDaysJSON: [],
       dialogType: 'Edit',
       message: '',
     },
@@ -393,7 +394,14 @@ const DataAndMethodsState: any = (props: { children: any }) => {
     setLoading(true);
     let todaysGymDays = [];
     for (let j = 0; j < gymDays.length; j++) {
-      if (validDate(gymDays[j].dateFrom, gymDays[j].dateTo, selectedDate)) {
+      if (
+        validDate(
+          gymDays[j].dateFrom,
+          gymDays[j].dateTo,
+          selectedDate,
+          gymDays[j].dayJSON
+        )
+      ) {
         todaysGymDays.push(gymDays[j]);
       }
     }
@@ -434,7 +442,14 @@ const DataAndMethodsState: any = (props: { children: any }) => {
     setLoading(true);
     let todaysExercises = [];
     for (let j = 0; j < gymDays.length; j++) {
-      if (validDate(gymDays[j].dateFrom, gymDays[j].dateTo, selectedDate)) {
+      if (
+        validDate(
+          gymDays[j].dateFrom,
+          gymDays[j].dateTo,
+          selectedDate,
+          gymDays[j].dayJSON
+        )
+      ) {
         todaysExercises.push(gymDays[j]);
       }
     }
