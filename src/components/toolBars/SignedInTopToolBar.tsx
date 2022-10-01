@@ -9,7 +9,7 @@ import enableValidDays from '../../utilities/enableValidDays';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import getExerciseDaysFromIds from '../../model/exerciseDay/getExerciseDaysFromIds';
-import dateString from '../../utilities/dateString';
+import getExerciseDays from '../../utilities/getExerciseDays';
 
 const SignedInTopToolBar = () => {
   const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -80,14 +80,12 @@ const SignedInTopToolBar = () => {
   const handleSelectedDateChange = async (e: any) => {
     setSelectedDate(e);
     getTodaysWorkouts(gymDays, e, workouts);
-    const myExerciseDaysIds = [];
-    myExerciseDaysIds.push(gymMember.id + dateString(e, e, 'dateAsId'));
-    const myExerciseDays = await getExerciseDaysFromIds(myExerciseDaysIds);
-    if (myExerciseDays.length) {
-      setExerciseDay(myExerciseDays[0]);
-    } else {
-      setExerciseDay({});
-    }
+    await getExerciseDays(
+      gymMember,
+      getExerciseDaysFromIds,
+      setExerciseDay,
+      selectedDate
+    );
   };
 
   return (

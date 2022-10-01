@@ -16,7 +16,7 @@ import getMembersExercises from '../../model/exercise/getMembersExercises';
 import getMembersWorkouts from '../../model/workout/getMembersWorkouts';
 import getMembersGymDays from '../../model/gymDay/getMembersGymDays';
 import getExerciseDaysFromIds from '../../model/exerciseDay/getExerciseDaysFromIds';
-import dateString from '../../utilities/dateString';
+import getExerciseDays from '../../utilities/getExerciseDays';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -149,18 +149,12 @@ const SignInRegDialog: any = () => {
           const gymDayItems = await getMembersGymDays(gymMember);
           setGymDays(gymDayItems);
           await getTodaysWorkouts(gymDayItems, selectedDate, workoutItems);
-          const myExerciseDaysIds = [];
-          myExerciseDaysIds.push(
-            gymMember.id + dateString(selectedDate, selectedDate, 'dateAsId')
+          await getExerciseDays(
+            gymMember,
+            getExerciseDaysFromIds,
+            setExerciseDay,
+            selectedDate
           );
-          const myExerciseDays = await getExerciseDaysFromIds(
-            myExerciseDaysIds
-          );
-          if (myExerciseDays.length) {
-            setExerciseDay(myExerciseDays[0]);
-          } else {
-            setExerciseDay({});
-          }
           setDialogBackToDefaults();
         }
       }
