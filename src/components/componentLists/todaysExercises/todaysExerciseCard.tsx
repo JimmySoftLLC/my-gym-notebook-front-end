@@ -73,8 +73,8 @@ const TodaysExercisesCard = ({ Exercise, todaysExercises }: any) => {
     };
     newExerciseDay.dataJSON[Exercise.id] = exerciseResult;
     putExerciseDay(newExerciseDay, idToken, customId);
-    if (gymMember.exerciseDaysJSON[exerciseDateString] === undefined) {
-      let newGymMember = JSON.parse(JSON.stringify(gymMember));
+    let newGymMember = JSON.parse(JSON.stringify(gymMember));
+    if (newGymMember.exerciseDaysJSON[exerciseDateString] === undefined) {
       const myIds = [];
       for (let i = 0; i < todaysExercises.length; i++) {
         myIds.push(todaysExercises[i].id);
@@ -82,6 +82,24 @@ const TodaysExercisesCard = ({ Exercise, todaysExercises }: any) => {
       newGymMember.exerciseDaysJSON[exerciseDateString] = myIds;
       await putGymMember(newGymMember, idToken, customId);
       setGymMember(newGymMember);
+    } else {
+      const currentExerciseIds =
+        newGymMember.exerciseDaysJSON[exerciseDateString];
+      let overWriteGymMember = false;
+      for (let i = 0; i < todaysExercises.length; i++) {
+        if (
+          currentExerciseIds.findIndex(
+            (x: string) => x === todaysExercises[i].id
+          ) === -1
+        ) {
+          overWriteGymMember = true;
+          currentExerciseIds.push(todaysExercises[i].id);
+        }
+      }
+      if (overWriteGymMember) {
+        await putGymMember(newGymMember, idToken, customId);
+        setGymMember(newGymMember);
+      }
     }
   };
 
