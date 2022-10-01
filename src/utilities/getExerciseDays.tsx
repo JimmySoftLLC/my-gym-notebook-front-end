@@ -16,7 +16,6 @@ const getExerciseDays = async (
   } else {
     setExerciseDay({});
   }
-  //previousDate
 };
 
 export default getExerciseDays;

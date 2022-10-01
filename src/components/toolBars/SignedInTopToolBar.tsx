@@ -80,12 +80,7 @@ const SignedInTopToolBar = () => {
   const handleSelectedDateChange = async (e: any) => {
     setSelectedDate(e);
     getTodaysWorkouts(gymDays, e, workouts);
-    await getExerciseDays(
-      gymMember,
-      getExerciseDaysFromIds,
-      setExerciseDay,
-      selectedDate
-    );
+    await getExerciseDays(gymMember, getExerciseDaysFromIds, setExerciseDay, e);
   };
 
   return (
