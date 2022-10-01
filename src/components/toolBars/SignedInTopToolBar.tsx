@@ -9,7 +9,7 @@ import enableValidDays from '../../utilities/enableValidDays';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import getExerciseDaysFromIds from '../../model/exerciseDay/getExerciseDaysFromIds';
-import getExerciseDays from '../../utilities/getExerciseDays';
+import getExerciseDays from '../../model/exerciseDay/getExerciseDays';
 
 const SignedInTopToolBar = () => {
   const dataAndMethodsContext: any = useContext(DataAndMethodsContext);

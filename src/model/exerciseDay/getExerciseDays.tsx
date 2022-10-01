@@ -1,4 +1,5 @@
-import dateString from './dateString';
+import dateString from '../../utilities/dateString';
+import getPreviousExercisesDayData from './getPreviousExercisesDayData';
 
 const getExerciseDays = async (
   gymMember: { id: any },
@@ -13,6 +14,11 @@ const getExerciseDays = async (
   const myExerciseDays = await getExerciseDaysFromIds(myExerciseDaysIds);
   if (myExerciseDays.length) {
     setExerciseDay(myExerciseDays[0]);
+    const myResult = await getPreviousExercisesDayData(
+      gymMember,
+      myExerciseDays[0],
+      selectedDate
+    );
   } else {
     setExerciseDay({});
   }

@@ -5,7 +5,7 @@ import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethod
 import dateString from '../../../utilities/dateString';
 import putGymMember from '../../../model/gymMember/putGymMember';
 
-const TodaysExercisesCard = ({ Exercise }: any) => {
+const TodaysExercisesCard = ({ Exercise, todaysExercises }: any) => {
   const changeToMultiline = (items: string[]) => {
     const dataJSONString = items
       .map(function (item: string) {
@@ -77,8 +77,8 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     if (gymMember.exerciseDaysJSON[exerciseDateString] === undefined) {
       let newGymMember = JSON.parse(JSON.stringify(gymMember));
       const myIds = [];
-      for (let i = 0; i < exercises.length; i++) {
-        myIds.push(exercises[i].id);
+      for (let i = 0; i < todaysExercises.length; i++) {
+        myIds.push(todaysExercises[i].id);
       }
       newGymMember.exerciseDaysJSON[exerciseDateString] = myIds;
       await putGymMember(newGymMember, idToken, customId);

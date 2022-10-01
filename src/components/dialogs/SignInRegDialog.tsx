@@ -16,7 +16,7 @@ import getMembersExercises from '../../model/exercise/getMembersExercises';
 import getMembersWorkouts from '../../model/workout/getMembersWorkouts';
 import getMembersGymDays from '../../model/gymDay/getMembersGymDays';
 import getExerciseDaysFromIds from '../../model/exerciseDay/getExerciseDaysFromIds';
-import getExerciseDays from '../../utilities/getExerciseDays';
+import getExerciseDays from '../../model/exerciseDay/getExerciseDays';
 
 const useStyles = makeStyles((theme) => ({
   root: {
