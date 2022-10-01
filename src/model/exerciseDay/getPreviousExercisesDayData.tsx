@@ -40,8 +40,6 @@ const getPreviousExercisesDayData = async (
       const matchingExerciseIds = todaysExerciseIds.filter((ai: any) =>
         previousExerciseIds.includes(ai)
       );
-      console.log(previousExerciseIds);
-      console.log(matchingExerciseIds);
       // now reduce the list to whats not found
       todaysExerciseIds = todaysExerciseIds.filter(
         (ai: any) => !matchingExerciseIds.includes(ai)
@@ -49,7 +47,7 @@ const getPreviousExercisesDayData = async (
     }
   }
 
-  console.log(gymMember.exerciseDaysJSON[selectedDateId]);
+  console.log(todaysExerciseIds);
 
   return gymMemberDateIds;
 };

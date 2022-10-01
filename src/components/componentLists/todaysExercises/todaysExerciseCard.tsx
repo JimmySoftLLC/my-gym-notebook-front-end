@@ -75,11 +75,11 @@ const TodaysExercisesCard = ({ Exercise, todaysExercises }: any) => {
     putExerciseDay(newExerciseDay, idToken, customId);
     let newGymMember = JSON.parse(JSON.stringify(gymMember));
     if (newGymMember.exerciseDaysJSON[exerciseDateString] === undefined) {
-      const myIds = [];
+      const currentExerciseIds = [];
       for (let i = 0; i < todaysExercises.length; i++) {
-        myIds.push(todaysExercises[i].id);
+        currentExerciseIds.push(todaysExercises[i].id);
       }
-      newGymMember.exerciseDaysJSON[exerciseDateString] = myIds;
+      newGymMember.exerciseDaysJSON[exerciseDateString] = currentExerciseIds;
       await putGymMember(newGymMember, idToken, customId);
       setGymMember(newGymMember);
     } else {
