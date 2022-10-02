@@ -31,7 +31,6 @@ const SignedInTopToolBar = () => {
     setExerciseDay,
     exercises,
     setExercisesPrevious,
-    exercisesPrevious,
   } = dataAndMethodsContext;
 
   const newExerciseClick = () => {

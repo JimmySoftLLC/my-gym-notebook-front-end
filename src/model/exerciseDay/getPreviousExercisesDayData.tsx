@@ -1,10 +1,12 @@
 import dateString from '../../utilities/dateString';
+import stringRight from '../../utilities/stringRight';
 import getExerciseDaysFromIds from './getExerciseDaysFromIds';
 
 const getPreviousExercisesDayData = async (
   gymMember: any,
   selectedDate: any,
-  exercises: any
+  exercises: any,
+  startedWorkOutData: any
 ) => {
   const getExerciseIds = (dateId: string) => {
     if (gymMember.exerciseDaysJSON !== undefined) {
@@ -17,7 +19,13 @@ const getPreviousExercisesDayData = async (
 
   const getGymMemberDateIds = () => {
     if (gymMember.exerciseDaysJSON !== undefined) {
-      return Object.keys(gymMember.exerciseDaysJSON);
+      if (startedWorkOutData === undefined) {
+        return Object.keys(gymMember.exerciseDaysJSON);
+      } else {
+        let objectKeys = Object.keys(gymMember.exerciseDaysJSON);
+        objectKeys.push(stringRight(startedWorkOutData.id, 10));
+        return objectKeys;
+      }
     }
     return [];
   };
@@ -54,7 +62,12 @@ const getPreviousExercisesDayData = async (
 
   // populate exercisesPrevious using foundExerciseDaysIds
   let exercisesPrevious = {};
-  const myExerciseDays = await getExerciseDaysFromIds(foundExerciseDaysIds);
+  let myExerciseDays = await getExerciseDaysFromIds(foundExerciseDaysIds);
+
+  if (startedWorkOutData !== undefined) {
+    myExerciseDays.push(startedWorkOutData);
+  }
+
   for (let i = 0; i < myExerciseDays.length; i++) {
     exercisesPrevious = Object.assign(
       exercisesPrevious,

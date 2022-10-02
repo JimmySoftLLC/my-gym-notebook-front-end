@@ -32,6 +32,8 @@ const TodaysExercisesCard = ({ Exercise, todaysExercises }: any) => {
 
   const minRows = Exercise.dataJSON.length;
 
+  const exerciseDateString = dateString(selectedDate, selectedDate, 'dateAsId');
+
   const changeActual = (e: any) => {
     const actualData = e.target.value.split(/\r?\n/);
     setExerciseDayItem(Exercise.id, 'actualData', actualData);
@@ -42,7 +44,7 @@ const TodaysExercisesCard = ({ Exercise, todaysExercises }: any) => {
     setExerciseDayItem(Exercise.id, 'inDatabase', newGoalData);
   };
 
-  const handleStartClick = () => {
+  const handleStartClick = async () => {
     setModeStartEdit(false);
     if (actual === '') {
       const actualData = dataJSONString.split(/\r?\n/);
@@ -58,11 +60,7 @@ const TodaysExercisesCard = ({ Exercise, todaysExercises }: any) => {
   const handleDoneClick = async () => {
     setModeStartEdit(true);
     changeInDatabase(true);
-    const exerciseDateString = dateString(
-      selectedDate,
-      selectedDate,
-      'dateAsId'
-    );
+
     let newExerciseDay = JSON.parse(JSON.stringify(exerciseDay));
     if (newExerciseDay.id === undefined) {
       newExerciseDay.id = gymMember.id + exerciseDateString;
