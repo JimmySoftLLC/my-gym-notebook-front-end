@@ -25,7 +25,7 @@ const getPreviousExercisesDayData = async (
   const selectedDateId = dateString(selectedDate, selectedDate, 'dateAsId');
 
   // array of exercise ids used to search previous results
-  let unfoundExerciseIds = getExerciseIds(selectedDateId);
+  let notFoundExerciseIds = getExerciseIds(selectedDateId);
 
   // get gymMember list of all exercise days
   const gymMemberDateIds = getGymMemberDateIds();
@@ -37,16 +37,16 @@ const getPreviousExercisesDayData = async (
   // gather previous results by going back in time
   const foundExerciseDaysIds: string[] = [];
   for (let i = start; i < gymMemberDateIds.length; i++) {
-    if (unfoundExerciseIds.length) {
+    if (notFoundExerciseIds.length) {
       const previousExerciseIds = getExerciseIds(gymMemberDateIds[i]);
-      const matchingExerciseIds = unfoundExerciseIds.filter((item: any) =>
+      const matchingExerciseIds = notFoundExerciseIds.filter((item: any) =>
         previousExerciseIds.includes(item)
       );
 
       if (matchingExerciseIds.length)
         foundExerciseDaysIds.push(gymMember.id + gymMemberDateIds[i]);
 
-      unfoundExerciseIds = unfoundExerciseIds.filter(
+      notFoundExerciseIds = notFoundExerciseIds.filter(
         (item: any) => !matchingExerciseIds.includes(item)
       );
     }
@@ -68,11 +68,11 @@ const getPreviousExercisesDayData = async (
     mapOfExercises[exercises[i].id] = exercises[i].dataJSON;
   }
 
-  // continue to populate exercisesPrevious using unfoundExerciseIds
-  for (let i = 0; i < unfoundExerciseIds.length; i++) {
-    const actualData = mapOfExercises[unfoundExerciseIds[i]];
+  // continue to populate exercisesPrevious using notFoundExerciseIds
+  for (let i = 0; i < notFoundExerciseIds.length; i++) {
+    const actualData = mapOfExercises[notFoundExerciseIds[i]];
     const exerciseToAdd = {
-      [unfoundExerciseIds[i]]: { actualData: actualData, inDatabase: true },
+      [notFoundExerciseIds[i]]: { actualData: actualData, inDatabase: true },
     };
     exercisesPrevious = Object.assign(exercisesPrevious, exerciseToAdd);
   }

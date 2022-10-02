@@ -50,6 +50,11 @@ const TodaysExercisesCard = ({ Exercise, todaysExercises }: any) => {
     }
   };
 
+  const handleCopyClick = () => {
+    const actualData = dataJSONString.split(/\r?\n/);
+    setExerciseDayItem(Exercise.id, 'actualData', actualData);
+  };
+
   const handleDoneClick = async () => {
     setModeStartEdit(true);
     changeInDatabase(true);
@@ -143,6 +148,14 @@ const TodaysExercisesCard = ({ Exercise, todaysExercises }: any) => {
         >
           {!inDatabase && <i className='fas fa-play'></i>}
           {inDatabase && <i className='fas fa-edit'></i>}
+        </Button>
+        <Button
+          disabled={startEdit}
+          variant='outlined'
+          color='primary'
+          onClick={() => handleCopyClick()}
+        >
+          <i className='fas fa-copy'></i>
         </Button>
         <Button
           disabled={startEdit}
