@@ -153,7 +153,8 @@ const SignInRegDialog: any = () => {
             gymMember,
             getExerciseDaysFromIds,
             setExerciseDay,
-            selectedDate
+            selectedDate,
+            exercises
           );
           setDialogBackToDefaults();
         }

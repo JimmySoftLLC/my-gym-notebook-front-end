@@ -2,10 +2,11 @@ import dateString from '../../utilities/dateString';
 import getPreviousExercisesDayData from './getPreviousExercisesDayData';
 
 const getExerciseDays = async (
-  gymMember: { id: any },
-  getExerciseDaysFromIds: (arg0: any[]) => any,
-  setExerciseDay: (arg0: {}) => void,
-  selectedDate: Date
+  gymMember: any,
+  getExerciseDaysFromIds: any,
+  setExerciseDay: any,
+  selectedDate: Date,
+  exercises: any
 ) => {
   const myExerciseDaysIds = [];
   myExerciseDaysIds.push(
@@ -16,8 +17,8 @@ const getExerciseDays = async (
     setExerciseDay(myExerciseDays[0]);
     const myResult = await getPreviousExercisesDayData(
       gymMember,
-      myExerciseDays[0],
-      selectedDate
+      selectedDate,
+      exercises
     );
   } else {
     setExerciseDay({});

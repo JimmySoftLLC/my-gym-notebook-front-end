@@ -29,6 +29,7 @@ const SignedInTopToolBar = () => {
     workouts,
     gymMember,
     setExerciseDay,
+    exercises,
   } = dataAndMethodsContext;
 
   const newExerciseClick = () => {
@@ -80,7 +81,13 @@ const SignedInTopToolBar = () => {
   const handleSelectedDateChange = async (e: any) => {
     setSelectedDate(e);
     getTodaysWorkouts(gymDays, e, workouts);
-    await getExerciseDays(gymMember, getExerciseDaysFromIds, setExerciseDay, e);
+    await getExerciseDays(
+      gymMember,
+      getExerciseDaysFromIds,
+      setExerciseDay,
+      e,
+      exercises
+    );
   };
 
   return (
