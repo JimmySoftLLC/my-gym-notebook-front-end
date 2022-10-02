@@ -6,7 +6,8 @@ const getExerciseDays = async (
   getExerciseDaysFromIds: any,
   setExerciseDay: any,
   selectedDate: Date,
-  exercises: any
+  exercises: any,
+  setExercisesPrevious: any
 ) => {
   const myExerciseDaysIds = [];
   myExerciseDaysIds.push(
@@ -20,9 +21,10 @@ const getExerciseDays = async (
       selectedDate,
       exercises
     );
-    console.log(exercisesPrevious);
+    setExercisesPrevious(exercisesPrevious);
   } else {
     setExerciseDay({});
+    setExercisesPrevious({});
   }
 };
 

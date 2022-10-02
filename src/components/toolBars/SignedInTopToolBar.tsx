@@ -30,6 +30,8 @@ const SignedInTopToolBar = () => {
     gymMember,
     setExerciseDay,
     exercises,
+    setExercisesPrevious,
+    exercisesPrevious,
   } = dataAndMethodsContext;
 
   const newExerciseClick = () => {
@@ -86,9 +88,12 @@ const SignedInTopToolBar = () => {
       getExerciseDaysFromIds,
       setExerciseDay,
       e,
-      exercises
+      exercises,
+      setExercisesPrevious
     );
   };
+
+  console.log(exercisesPrevious);
 
   return (
     <Fragment>
