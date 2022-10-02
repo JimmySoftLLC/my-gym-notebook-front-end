@@ -25,9 +25,9 @@ const getPreviousExercisesDayData = async (
   const selectedDateId = dateString(selectedDate, selectedDate, 'dateAsId');
 
   // array of exercise ids used to search previous results
-  let todaysExerciseIds = getExerciseIds(selectedDateId);
+  let unfoundExerciseIds = getExerciseIds(selectedDateId);
 
-  // get gymMember list of previous exercise days
+  // get gymMember list of all exercise days
   const gymMemberDateIds = getGymMemberDateIds();
   gymMemberDateIds.sort();
   gymMemberDateIds.reverse();
@@ -35,47 +35,49 @@ const getPreviousExercisesDayData = async (
     gymMemberDateIds.findIndex((item) => item === selectedDateId) + 1;
 
   // gather previous results by going back in time
-  const exerciseDaysIds: string[] = [];
+  const foundExerciseDaysIds: string[] = [];
   for (let i = start; i < gymMemberDateIds.length; i++) {
-    if (todaysExerciseIds.length) {
+    if (unfoundExerciseIds.length) {
       const previousExerciseIds = getExerciseIds(gymMemberDateIds[i]);
-      const matchingExerciseIds = todaysExerciseIds.filter((ai: any) =>
-        previousExerciseIds.includes(ai)
+      const matchingExerciseIds = unfoundExerciseIds.filter((item: any) =>
+        previousExerciseIds.includes(item)
       );
 
-      // using the matches get the exercise day ids that will be used later
       if (matchingExerciseIds.length)
-        exerciseDaysIds.push(gymMember.id + gymMemberDateIds[i]);
+        foundExerciseDaysIds.push(gymMember.id + gymMemberDateIds[i]);
 
-      // now filter the list to whats not found for this loop,
-      // after all looping whatever is left will be used later.
-      todaysExerciseIds = todaysExerciseIds.filter(
-        (ai: any) => !matchingExerciseIds.includes(ai)
+      unfoundExerciseIds = unfoundExerciseIds.filter(
+        (item: any) => !matchingExerciseIds.includes(item)
       );
     }
   }
 
-  // first populate exercisePrevious using exerciseDaysIds
-  let exercisePrevious = {};
-  const myExerciseDays = await getExerciseDaysFromIds(exerciseDaysIds);
+  // populate exercisesPrevious using foundExerciseDaysIds
+  let exercisesPrevious = {};
+  const myExerciseDays = await getExerciseDaysFromIds(foundExerciseDaysIds);
   for (let i = 0; i < myExerciseDays.length; i++) {
-    exercisePrevious = Object.assign(
-      exercisePrevious,
+    exercisesPrevious = Object.assign(
+      exercisesPrevious,
       myExerciseDays[i].dataJSON
     );
   }
 
-  // second populate exercisePrevious using remaining todaysExerciseIds
-  for (let i = 0; i < todaysExerciseIds.length; i++) {
-    const course = {
-      [todaysExerciseIds[i]]: { test: 'results' },
-    };
-    exercisePrevious = Object.assign(exercisePrevious, course);
+  // map exercises for easy searching later
+  const mapOfExercises: any = {};
+  for (let i = 0; i < exercises.length; i++) {
+    mapOfExercises[exercises[i].id] = exercises[i].dataJSON;
   }
 
-  console.log(exercisePrevious);
+  // continue to populate exercisesPrevious using unfoundExerciseIds
+  for (let i = 0; i < unfoundExerciseIds.length; i++) {
+    const actualData = mapOfExercises[unfoundExerciseIds[i]];
+    const exerciseToAdd = {
+      [unfoundExerciseIds[i]]: { actualData: actualData, inDatabase: true },
+    };
+    exercisesPrevious = Object.assign(exercisesPrevious, exerciseToAdd);
+  }
 
-  return gymMemberDateIds;
+  return exercisesPrevious;
 };
 
 export default getPreviousExercisesDayData;

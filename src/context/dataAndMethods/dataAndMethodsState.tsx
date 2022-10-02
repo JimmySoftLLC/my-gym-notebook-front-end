@@ -36,6 +36,7 @@ import {
   SET_TODAYS_WORKOUTS,
   SET_TODAYS_EXERCISES,
   SET_EXERCISE_DAY,
+  SET_EXERCISES_PREVIOUS,
 } from '../types';
 import validDate from '../../utilities/validDate';
 import dateString from '../../utilities/dateString';
@@ -184,6 +185,8 @@ const DataAndMethodsState: any = (props: { children: any }) => {
     todaysWorkouts: [],
 
     exerciseDay: {},
+
+    exercisesPrevious: {},
   };
 
   const [state, dispatch] = useReducer(DataAndMethodsReducer, initialState);
@@ -509,6 +512,11 @@ const DataAndMethodsState: any = (props: { children: any }) => {
     setExerciseDay(exerciseDayData);
   };
 
+  // set exercises previous -------------------------------------------
+  const setExercisesPrevious = async (exercisesPrevious: any[]) => {
+    dispatch({ type: SET_EXERCISES_PREVIOUS, payload: exercisesPrevious });
+  };
+
   return (
     <DataAndMethodsContext.Provider
       value={{
@@ -563,6 +571,8 @@ const DataAndMethodsState: any = (props: { children: any }) => {
 
         exerciseDay: state.exerciseDay,
 
+        exercisesPrevious: state.exercisesPrevious,
+
         setMyState,
         setMyStates,
 
@@ -615,6 +625,8 @@ const DataAndMethodsState: any = (props: { children: any }) => {
 
         setExerciseDay,
         setExerciseDayItem,
+
+        setExercisesPrevious,
       }}
     >
       {props.children}

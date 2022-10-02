@@ -30,6 +30,7 @@ import {
   SET_TODAYS_WORKOUTS,
   SET_TODAYS_EXERCISES,
   SET_EXERCISE_DAY,
+  SET_EXERCISES_PREVIOUS,
 } from '../types';
 
 export default (state: any, action: { type: any; payload: any }): any => {
@@ -200,6 +201,12 @@ export default (state: any, action: { type: any; payload: any }): any => {
       return {
         ...state,
         exerciseDay: action.payload,
+      };
+
+    case SET_EXERCISES_PREVIOUS:
+      return {
+        ...state,
+        exercisesPrevious: action.payload,
       };
 
     default:

@@ -15,11 +15,12 @@ const getExerciseDays = async (
   const myExerciseDays = await getExerciseDaysFromIds(myExerciseDaysIds);
   if (myExerciseDays.length) {
     setExerciseDay(myExerciseDays[0]);
-    const myResult = await getPreviousExercisesDayData(
+    const exercisesPrevious = await getPreviousExercisesDayData(
       gymMember,
       selectedDate,
       exercises
     );
+    console.log(exercisesPrevious);
   } else {
     setExerciseDay({});
   }
