@@ -4,19 +4,10 @@ import putExerciseDay from '../../../model/exerciseDay/putExerciseDay';
 import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethodsContext';
 import dateString from '../../../utilities/dateString';
 import putGymMember from '../../../model/gymMember/putGymMember';
+import changeToMultiline from '../../../utilities/changeToMultiline';
 
 const TodaysExercisesCard = ({ Exercise, todaysExercises }: any) => {
-  const changeToMultiline = (items: string[]) => {
-    const dataJSONString = items
-      .map(function (item: string) {
-        return item;
-      })
-      .join('\n');
-    return dataJSONString;
-  };
-
   const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
-
   const {
     idToken,
     customId,
@@ -25,9 +16,17 @@ const TodaysExercisesCard = ({ Exercise, todaysExercises }: any) => {
     exerciseDay,
     setExerciseDayItem,
     setGymMember,
+    exercisesPrevious,
   } = dataAndMethodsContext;
 
-  const dataJSONString = changeToMultiline(Exercise.dataJSON);
+  const getPreviousActualValue = () => {
+    if (exercisesPrevious[Exercise.id] !== undefined) {
+      return changeToMultiline(exercisesPrevious[Exercise.id].actualData);
+    }
+    return '';
+  };
+
+  const dataJSONString = getPreviousActualValue();
 
   const [startEdit, setModeStartEdit] = useState(true);
 

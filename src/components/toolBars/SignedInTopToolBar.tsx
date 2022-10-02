@@ -93,8 +93,6 @@ const SignedInTopToolBar = () => {
     );
   };
 
-  console.log(exercisesPrevious);
-
   return (
     <Fragment>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
