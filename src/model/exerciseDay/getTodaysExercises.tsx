@@ -3,9 +3,10 @@ import validDate from '../../utilities/validDate';
 const getTodaysExercises = async (
   gymDays: any,
   selectedDate: Date,
-  exercises: any
+  workouts: any
 ) => {
-  let todaysWorkouts = [];
+  // get gym day
+  let todaysGymDay: any = [];
   for (let j = 0; j < gymDays.length; j++) {
     if (
       validDate(
@@ -15,25 +16,27 @@ const getTodaysExercises = async (
         gymDays[j].dayJSON
       )
     ) {
-      todaysWorkouts.push(gymDays[j]);
+      todaysGymDay.push(gymDays[j]);
     }
   }
 
-  let exerciseIdsJSON: any[] = [];
-  for (let j = 0; j < todaysWorkouts.length; j++) {
-    for (let k = 0; k < todaysWorkouts[j].exerciseIdsJSON.length; k++) {
-      exerciseIdsJSON.push(todaysWorkouts[j].exerciseIdsJSON[k]);
+  // get workouts
+  let todaysWorkouts = [];
+  for (let j = 0; j < todaysGymDay.length; j++) {
+    for (let k = 0; k < todaysGymDay[j].workoutIdsJSON.length; k++) {
+      todaysWorkouts.push(
+        workouts.filter((e: any) => e.id === todaysGymDay[j].workoutIdsJSON[k])
+      );
     }
   }
 
+  //get exercise ids
   let todaysExercises: any[] = [];
-
-  for (let j = 0; j < exercises.length; j++) {
-    for (let k = 0; k < exerciseIdsJSON.length; k++) {
-      if (exercises[j].id === exerciseIdsJSON[k].toString()) {
-        let exercise = JSON.parse(JSON.stringify(exercises[j]));
-        exercise.key = exercise.id + k;
-        todaysExercises.push(exercise);
+  for (let j = 0; j < todaysWorkouts.length; j++) {
+    const myObject = todaysWorkouts[j];
+    for (let k = 0; k < myObject.length; k++) {
+      for (let l = 0; l < myObject[k].exerciseIdsJSON.length; l++) {
+        todaysExercises.push(myObject[k].exerciseIdsJSON[l]);
       }
     }
   }

@@ -5,6 +5,7 @@ import DataAndMethodsContext from '../../../context/dataAndMethods/dataAndMethod
 import dateString from '../../../utilities/dateString';
 import putGymMember from '../../../model/gymMember/putGymMember';
 import changeToMultiline from '../../../utilities/changeToMultiline';
+import getTodaysExercises from '../../../model/exerciseDay/getTodaysExercises';
 
 const TodaysExercisesCard = ({ Exercise, workoutsExercises }: any) => {
   const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -17,6 +18,8 @@ const TodaysExercisesCard = ({ Exercise, workoutsExercises }: any) => {
     setExerciseDayItem,
     setGymMember,
     exercisesPrevious,
+    gymDays,
+    workouts,
   } = dataAndMethodsContext;
 
   const getPreviousActualValue = () => {
@@ -60,7 +63,6 @@ const TodaysExercisesCard = ({ Exercise, workoutsExercises }: any) => {
   const handleDoneClick = async () => {
     setModeStartEdit(true);
     changeInDatabase(true);
-
     let newExerciseDay = JSON.parse(JSON.stringify(exerciseDay));
     if (newExerciseDay.id === undefined) {
       newExerciseDay.id = gymMember.id + exerciseDateString;
@@ -77,31 +79,15 @@ const TodaysExercisesCard = ({ Exercise, workoutsExercises }: any) => {
     putExerciseDay(newExerciseDay, idToken, customId);
     let newGymMember = JSON.parse(JSON.stringify(gymMember));
     if (newGymMember.exerciseDaysJSON[exerciseDateString] === undefined) {
-      const currentExerciseIds = [];
-      for (let i = 0; i < workoutsExercises.length; i++) {
-        currentExerciseIds.push(workoutsExercises[i].id);
-      }
+      const currentExerciseIds = await getTodaysExercises(
+        gymDays,
+        selectedDate,
+        workouts
+      );
+      console.log(currentExerciseIds);
       newGymMember.exerciseDaysJSON[exerciseDateString] = currentExerciseIds;
       await putGymMember(newGymMember, idToken, customId);
       setGymMember(newGymMember);
-    } else {
-      const currentExerciseIds =
-        newGymMember.exerciseDaysJSON[exerciseDateString];
-      let overWriteGymMember = false;
-      for (let i = 0; i < workoutsExercises.length; i++) {
-        if (
-          currentExerciseIds.findIndex(
-            (x: string) => x === workoutsExercises[i].id
-          ) === -1
-        ) {
-          overWriteGymMember = true;
-          currentExerciseIds.push(workoutsExercises[i].id);
-        }
-      }
-      if (overWriteGymMember) {
-        await putGymMember(newGymMember, idToken, customId);
-        setGymMember(newGymMember);
-      }
     }
   };
 
