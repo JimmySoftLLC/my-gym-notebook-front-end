@@ -46,7 +46,7 @@
     "react-native": "^0.64.2",
     "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.3.1",
+    "react-scripts": "5.0.1",
     "react-sortable-hoc": "^1.11.0",
     "request": "^2.88.2",
     "styled-components": "^5.3.6",
