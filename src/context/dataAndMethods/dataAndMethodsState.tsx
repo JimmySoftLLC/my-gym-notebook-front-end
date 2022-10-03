@@ -34,7 +34,6 @@ import {
   SET_PHOTO_DIALOG_OPEN,
   SET_IMAGE_EDITOR_DATA,
   SET_TODAYS_WORKOUTS,
-  SET_TODAYS_EXERCISES,
   SET_EXERCISE_DAY,
   SET_EXERCISES_PREVIOUS,
 } from '../types';
@@ -437,54 +436,6 @@ const DataAndMethodsState: any = (props: { children: any }) => {
     dispatch({ type: SET_TODAYS_WORKOUTS, payload: todaysWorkouts });
   };
 
-  // todays exercises ----------------------------------------------------
-  const getTodaysExercises = async (
-    gymDays: any,
-    selectedDate: Date,
-    exercises: any
-  ) => {
-    setLoading(true);
-    let todaysExercises = [];
-    for (let j = 0; j < gymDays.length; j++) {
-      if (
-        validDate(
-          gymDays[j].dateFrom,
-          gymDays[j].dateTo,
-          selectedDate,
-          gymDays[j].dayJSON
-        )
-      ) {
-        todaysExercises.push(gymDays[j]);
-      }
-    }
-
-    let exerciseIdsJSON: any[] = [];
-    for (let j = 0; j < todaysExercises.length; j++) {
-      for (let k = 0; k < todaysExercises[j].exerciseIdsJSON.length; k++) {
-        exerciseIdsJSON.push(todaysExercises[j].exerciseIdsJSON[k]);
-      }
-    }
-
-    let todaysWorkOuts: any[] = [];
-
-    for (let j = 0; j < exercises.length; j++) {
-      for (let k = 0; k < exerciseIdsJSON.length; k++) {
-        if (exercises[j].id === exerciseIdsJSON[k].toString()) {
-          let exercise = JSON.parse(JSON.stringify(exercises[j]));
-          exercise.key = exercise.id + k;
-          todaysWorkOuts.push(exercise);
-        }
-      }
-    }
-
-    setTodaysExercises(todaysWorkOuts);
-    setLoading(false);
-  };
-
-  const setTodaysExercises = async (todaysExercises: any[]) => {
-    dispatch({ type: SET_TODAYS_EXERCISES, payload: todaysExercises });
-  };
-
   // set exercise day -------------------------------------------
   const setExerciseDay = async (exerciseDay: any[]) => {
     dispatch({ type: SET_EXERCISE_DAY, payload: exerciseDay });
@@ -567,8 +518,6 @@ const DataAndMethodsState: any = (props: { children: any }) => {
 
         todaysWorkouts: state.todaysWorkouts,
 
-        todaysExercises: state.todaysExercises,
-
         exerciseDay: state.exerciseDay,
 
         exercisesPrevious: state.exercisesPrevious,
@@ -619,9 +568,6 @@ const DataAndMethodsState: any = (props: { children: any }) => {
 
         setImageEditorData,
         setImageEditorDataItem,
-
-        getTodaysExercises,
-        setTodaysExercises,
 
         setExerciseDay,
         setExerciseDayItem,

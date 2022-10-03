@@ -1,14 +1,14 @@
 import React from 'react';
 import ExerciseCardWorkout from './todaysExerciseCard';
 
-const TodaysExercises = ({ todaysExercises }: any) => {
-  return todaysExercises.map(
+const TodaysExercises = ({ workoutsExercises }: any) => {
+  return workoutsExercises.map(
     (Exercise: {
       id: React.Key | null | undefined;
       key: React.Key | null | undefined;
     }) => (
       <ExerciseCardWorkout
-        todaysExercises={todaysExercises}
+        workoutsExercises={workoutsExercises}
         Exercise={Exercise}
         isInList={true}
         ExerciseId={Exercise.id}

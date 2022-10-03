@@ -31,13 +31,13 @@ const TodaysWorkoutCard: any = ({ Workout }: any) => {
     return exercisesToReturn;
   };
 
-  const todaysExercises = exercisesFromWorkout();
+  const workoutsExercises = exercisesFromWorkout();
 
   return (
     <div className='card'>
       <h4>{Workout.title}</h4>
       <div className={classes.root}>
-        <TodaysExercises todaysExercises={todaysExercises} />
+        <TodaysExercises workoutsExercises={workoutsExercises} />
       </div>
     </div>
   );
