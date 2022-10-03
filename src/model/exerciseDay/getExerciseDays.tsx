@@ -15,38 +15,35 @@ const getExerciseDays = async (
   );
   const myExerciseDays = await getExerciseDaysFromIds(myExerciseDaysIds);
 
-  let newWorkoutData = undefined;
-  // if (
-  //   gymMember.exerciseDaysJSON[
-  //     dateString(selectedDate, selectedDate, 'dateAsId')
-  //   ] === undefined
-  // ) {
-  //   const example = {
-  //     '5c554f33-7503-43af-a857-b67902e25080': {
-  //       actualData: ['1/1'],
-  //       inDatabase: true,
-  //     },
-  //     '175d9882-7684-4bea-8f73-e69c15f7a25b': {
-  //       actualData: ['1/1'],
-  //       inDatabase: true,
-  //     },
-  //   };
-  //   newWorkoutData = {
-  //     id:
-  //       'jbailey@jimmysoftllc.com' +
-  //       dateString(selectedDate, selectedDate, 'dateAsId'),
-  //     dataJSON: example,
-  //   };
-  // }
-  // console.log(newWorkoutData);
+  if (!myExerciseDays.length) {
+    myExerciseDays.push({
+      id: 'jbailey@jimmysoftllc.com2022-10-06',
+      dataJSON: {
+        '5c554f33-7503-43af-a857-b67902e25080': {
+          actualData: ['W70/R12/REST20', 'W60/R12/REST20', 'W50/R12/REST20'],
+          inDatabase: true,
+        },
+        '175d9882-7684-4bea-8f73-e69c15f7a25b': {
+          actualData: ['W120/R12/REST20', 'W120/R12/REST20', 'W120/R12/REST20'],
+          inDatabase: true,
+        },
+      },
+    });
+  }
+
+  const myGymMember = JSON.parse(JSON.stringify(gymMember));
+
+  myGymMember.exerciseDaysJSON['2022-10-06'] = [
+    '5c554f33-7503-43af-a857-b67902e25080',
+    '175d9882-7684-4bea-8f73-e69c15f7a25b',
+  ];
 
   if (myExerciseDays.length) {
     setExerciseDay(myExerciseDays[0]);
     const exercisesPrevious = await getPreviousExercisesDayData(
-      gymMember,
+      myGymMember,
       selectedDate,
-      exercises,
-      newWorkoutData
+      exercises
     );
     setExercisesPrevious(exercisesPrevious);
   } else {
