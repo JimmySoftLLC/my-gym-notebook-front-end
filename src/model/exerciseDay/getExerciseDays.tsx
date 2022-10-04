@@ -1,5 +1,6 @@
 import dateString from '../../utilities/dateString';
 import getPreviousExercisesDayData from './getPreviousExercisesDayData';
+import getTodaysExercises from './getTodaysExercises';
 
 const getExerciseDays = async (
   gymMember: any,
@@ -7,7 +8,9 @@ const getExerciseDays = async (
   setExerciseDay: any,
   selectedDate: Date,
   exercises: any,
-  setExercisesPrevious: any
+  setExercisesPrevious: any,
+  gymDays: any,
+  workouts: any
 ) => {
   const myExerciseDaysIds = [];
   myExerciseDaysIds.push(
@@ -16,19 +19,21 @@ const getExerciseDays = async (
   const myExerciseDays = await getExerciseDaysFromIds(myExerciseDaysIds);
 
   if (!myExerciseDays.length) {
-    // myExerciseDays.push({
-    //   id: 'jbailey@jimmysoftllc.com2022-10-06',
-    //   dataJSON: {
-    //     '5c554f33-7503-43af-a857-b67902e25080': {
-    //       actualData: ['W70/R12/REST20', 'W60/R12/REST20', 'W50/R12/REST20'],
-    //       inDatabase: true,
-    //     },
-    //     '175d9882-7684-4bea-8f73-e69c15f7a25b': {
-    //       actualData: ['W120/R12/REST20', 'W120/R12/REST20', 'W120/R12/REST20'],
-    //       inDatabase: true,
-    //     },
-    //   },
-    // });
+    const currentExerciseIds = await getTodaysExercises(
+      gymDays,
+      selectedDate,
+      workouts
+    );
+    const items: any = {};
+    for (let i = 0; i < currentExerciseIds.length; i++) {
+      items[currentExerciseIds[i]] = { actualData: [], inDatabase: true };
+    }
+    myExerciseDays.push([
+      {
+        id: 'jbailey@jimmysoftllc.com2022-10-03',
+        dataJSON: items,
+      },
+    ]);
   }
 
   const myGymMember = JSON.parse(JSON.stringify(gymMember));

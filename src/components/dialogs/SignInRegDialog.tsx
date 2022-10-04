@@ -54,6 +54,8 @@ const SignInRegDialog: any = () => {
     selectedDate,
     setExerciseDay,
     setExercisesPrevious,
+    gymDays,
+    workouts,
   } = dataAndMethodsContext;
 
   const closeDialog = () => {
@@ -156,7 +158,9 @@ const SignInRegDialog: any = () => {
             setExerciseDay,
             selectedDate,
             exercises,
-            setExercisesPrevious
+            setExercisesPrevious,
+            gymDays,
+            workouts
           );
           setDialogBackToDefaults();
         }

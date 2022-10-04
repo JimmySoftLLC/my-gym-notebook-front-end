@@ -88,7 +88,9 @@ const SignedInTopToolBar = () => {
       setExerciseDay,
       e,
       exercises,
-      setExercisesPrevious
+      setExercisesPrevious,
+      gymDays,
+      workouts
     );
   };
 

@@ -84,7 +84,6 @@ const TodaysExercisesCard = ({ Exercise, workoutsExercises }: any) => {
         selectedDate,
         workouts
       );
-      console.log(currentExerciseIds);
       newGymMember.exerciseDaysJSON[exerciseDateString] = currentExerciseIds;
       await putGymMember(newGymMember, idToken, customId);
       setGymMember(newGymMember);
