@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
@@ -19,7 +19,7 @@ const DefaultTopToolBar = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <Toolbar>
         <div>
           {!myStates.gymDaysDetail && (
@@ -56,7 +56,7 @@ const DefaultTopToolBar = () => {
           </Tooltip>
         </div>
       </Toolbar>
-    </Fragment>
+    </>
   );
 };
 

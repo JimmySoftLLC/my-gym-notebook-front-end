@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
@@ -60,7 +60,7 @@ const SignedInBotToolBar = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <Toolbar color='primary' component='div'>
         <Tooltip title='Edit gymMember details'>
           <IconButton
@@ -77,7 +77,7 @@ const SignedInBotToolBar = () => {
           </IconButton>
         </Tooltip>
       </Toolbar>
-    </Fragment>
+    </>
   );
 };
 

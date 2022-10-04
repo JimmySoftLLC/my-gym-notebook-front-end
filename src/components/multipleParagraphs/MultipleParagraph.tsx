@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const MultipleParagraph = ({ mulitplePargraph }: any) => {
-    let myStyle = {
-        paddingBottom: "0.5rem"
-    }
-    return (
-        <Fragment>
-            <p style={myStyle}>{mulitplePargraph}</p>
-        </Fragment>
-    );
+  let myStyle = {
+    paddingBottom: '0.5rem',
+  };
+  return (
+    <>
+      <p style={myStyle}>{mulitplePargraph}</p>
+    </>
+  );
 };
 
 export default MultipleParagraph;

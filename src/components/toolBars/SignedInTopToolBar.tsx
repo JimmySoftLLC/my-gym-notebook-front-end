@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import DataAndMethodsContext from '../../context/dataAndMethods/dataAndMethodsContext';
@@ -95,7 +95,7 @@ const SignedInTopToolBar = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Toolbar>
           <div>
@@ -186,7 +186,7 @@ const SignedInTopToolBar = () => {
           </div>
         </Toolbar>
       </MuiPickersUtilsProvider>
-    </Fragment>
+    </>
   );
 };
 

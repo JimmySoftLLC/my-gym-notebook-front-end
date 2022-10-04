@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import TopNavBar from '../components/TopNavBar';
 import DataAndMethodsContext from '../context/dataAndMethods/dataAndMethodsContext';
 import ExercisesInventory from '../components/componentLists/exercise/Exercises';
@@ -63,7 +63,7 @@ const Home = () => {
   const loadExerciseDayDeleteDialog = () => {
     setDeleteConfirmDialog(
       true,
-      'exerciseDay' + selectedDate,
+      'exercise day ' + selectedDateDisplayed,
       'deleteExerciseDay',
       exerciseDaysId,
       deleteExerciseDayById
@@ -84,7 +84,7 @@ const Home = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <AlertDialog />
       <DeleteConfirmDialog />
       <SignInRegDialog />
@@ -121,7 +121,7 @@ const Home = () => {
         </div>
       )}
       <BotNavBar />
-    </Fragment>
+    </>
   );
 };
 
