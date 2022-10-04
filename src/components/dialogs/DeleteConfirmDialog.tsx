@@ -44,6 +44,10 @@ const DeleteConfirmDialog: any = () => {
       deleteFunction(deleteConfirmDialog.index);
       setConfirmMessage('');
     }
+    if (deleteConfirmDialog.dialogType === 'deleteExerciseDay') {
+      deleteFunction(deleteConfirmDialog.index);
+      setConfirmMessage('');
+    }
   };
 
   const chooseClose = () => {

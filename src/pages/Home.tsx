@@ -16,8 +16,6 @@ import WorkoutInventory from '../components/componentLists/workout/Workouts';
 import TodaysWorkouts from '../components/componentLists/todaysWorkouts/TodaysWorkouts';
 import Button from '@material-ui/core/Button';
 import putGymMember from '../model/gymMember/putGymMember';
-import getExercises from '../model/exercise/getExercises';
-import sortExercises from '../model/exercise/sortExercise';
 import dateString from '../utilities/dateString';
 import deleteExerciseDay from '../model/exerciseDay/deleteExerciseDay';
 import DeleteConfirmDialogContext from '../context/deleteConfirmDialog/deleteConfirmDialogContext';
@@ -43,7 +41,6 @@ const Home = () => {
     setGymMember,
     idToken,
     customId,
-    setExercises,
     selectedDate,
   }: any = dataAndMethodsContext;
 
@@ -58,29 +55,24 @@ const Home = () => {
     'dateAsId'
   );
 
-  const exerciseDaysId = gymMember.id + selectedDateDisplayed;
+  const exerciseDayId = gymMember.id + selectedDateDisplayed;
 
   const loadExerciseDayDeleteDialog = () => {
     setDeleteConfirmDialog(
       true,
       'exercise day ' + selectedDateDisplayed,
       'deleteExerciseDay',
-      exerciseDaysId,
+      exerciseDayId,
       deleteExerciseDayById
     );
   };
 
-  const deleteExerciseDayById = async (id: any) => {
+  const deleteExerciseDayById = async (exerciseDayId: any) => {
     let myNewGymMember = JSON.parse(JSON.stringify(gymMember));
-    myNewGymMember.exerciseIdsJSON = myNewGymMember.exerciseDayIdsJSON.filter(
-      (e: any) => e !== id
-    );
-    await deleteExerciseDay(id, idToken, customId);
+    delete myNewGymMember.exerciseDaysJSON[selectedDateDisplayed];
+    await deleteExerciseDay(exerciseDayId, idToken, customId);
     await putGymMember(myNewGymMember, idToken, customId);
     setGymMember(myNewGymMember);
-    let myExercises = await getExercises(myNewGymMember.exerciseIdsJSON);
-    myExercises = await sortExercises(myExercises, myStates);
-    setExercises(myExercises);
   };
 
   return (
