@@ -19,6 +19,8 @@ import putGymMember from '../model/gymMember/putGymMember';
 import dateString from '../utilities/dateString';
 import deleteExerciseDay from '../model/exerciseDay/deleteExerciseDay';
 import DeleteConfirmDialogContext from '../context/deleteConfirmDialog/deleteConfirmDialogContext';
+import getExerciseDaysFromIds from '../model/exerciseDay/getExerciseDaysFromIds';
+import getExerciseDays from '../model/exerciseDay/getExerciseDays';
 
 const Home = () => {
   useEffect(() => {
@@ -42,6 +44,12 @@ const Home = () => {
     idToken,
     customId,
     selectedDate,
+    gymDays,
+    workouts,
+    setExerciseDay,
+    getTodaysWorkouts,
+    exercises,
+    setExercisesPrevious,
   }: any = dataAndMethodsContext;
 
   const deleteConfirmDialogContext: any = useContext(
@@ -73,6 +81,17 @@ const Home = () => {
     await deleteExerciseDay(exerciseDayId, idToken, customId);
     await putGymMember(myNewGymMember, idToken, customId);
     setGymMember(myNewGymMember);
+    getTodaysWorkouts(gymDays, selectedDate, workouts);
+    await getExerciseDays(
+      myNewGymMember,
+      getExerciseDaysFromIds,
+      setExerciseDay,
+      selectedDate,
+      exercises,
+      setExercisesPrevious,
+      gymDays,
+      workouts
+    );
   };
 
   return (
