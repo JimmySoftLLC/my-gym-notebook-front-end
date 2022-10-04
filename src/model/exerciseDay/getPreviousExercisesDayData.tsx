@@ -17,13 +17,7 @@ const getPreviousExercisesDayData = async (
 
   const getGymMemberDateIds = () => {
     if (gymMember.exerciseDaysJSON !== undefined) {
-      // if (newWorkoutDay === undefined) {
       return Object.keys(gymMember.exerciseDaysJSON);
-      // } else {
-      //   let objectKeys = Object.keys(gymMember.exerciseDaysJSON);
-      //   Object.assign(objectKeys, newWorkoutDay);
-      //   return objectKeys;
-      // }
     }
     return [];
   };
@@ -61,10 +55,6 @@ const getPreviousExercisesDayData = async (
   // populate exercisesPrevious using foundExerciseDaysIds
   let exercisesPrevious = {};
   let myExerciseDays = await getExerciseDaysFromIds(foundExerciseDaysIds);
-
-  // if (newWorkoutDay !== undefined) {
-  //   myExerciseDays.push(newWorkoutDay);
-  // }
 
   for (let i = 0; i < myExerciseDays.length; i++) {
     exercisesPrevious = Object.assign(
