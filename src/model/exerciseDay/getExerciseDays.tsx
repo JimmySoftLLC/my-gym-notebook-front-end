@@ -12,13 +12,17 @@ const getExerciseDays = async (
   gymDays: any,
   workouts: any
 ) => {
-  const myExerciseDaysIds = [];
-  myExerciseDaysIds.push(
-    gymMember.id + dateString(selectedDate, selectedDate, 'dateAsId')
-  );
-  const myExerciseDays = await getExerciseDaysFromIds(myExerciseDaysIds);
+  const exerciseDaysId =
+    gymMember.id + dateString(selectedDate, selectedDate, 'dateAsId');
 
-  if (!myExerciseDays.length) {
+  // get selected dates exerciseDays, array count will be 0 or 1
+  const exerciseDaysIds = [];
+  exerciseDaysIds.push(exerciseDaysId);
+  const exerciseDays = await getExerciseDaysFromIds(exerciseDaysIds);
+
+  // if exerciseDays.length is 0 then a new exercise day and populate with exerciseDays and newGymMember with temp exercise ids
+  let newGymMember = JSON.parse(JSON.stringify(gymMember));
+  if (!exerciseDays.length) {
     const currentExerciseIds = await getTodaysExercises(
       gymDays,
       selectedDate,
@@ -26,22 +30,22 @@ const getExerciseDays = async (
     );
     const items: any = {};
     for (let i = 0; i < currentExerciseIds.length; i++) {
-      items[currentExerciseIds[i]] = { actualData: [], inDatabase: true };
+      items[currentExerciseIds[i]] = { actualData: [], inDatabase: false };
     }
-    myExerciseDays.push([
-      {
-        id: 'jbailey@jimmysoftllc.com2022-10-03',
-        dataJSON: items,
-      },
-    ]);
+    exerciseDays.push({
+      id: gymMember.id + dateString(selectedDate, selectedDate, 'dateAsId'),
+      dataJSON: items,
+    });
+    newGymMember.exerciseDaysJSON[
+      dateString(selectedDate, selectedDate, 'dateAsId')
+    ] = currentExerciseIds;
   }
 
-  const myGymMember = JSON.parse(JSON.stringify(gymMember));
-
-  if (myExerciseDays.length) {
-    setExerciseDay(myExerciseDays[0]);
+  // get previous exercise days data
+  if (exerciseDays.length) {
+    setExerciseDay(exerciseDays[0]);
     const exercisesPrevious = await getPreviousExercisesDayData(
-      myGymMember,
+      newGymMember,
       selectedDate,
       exercises
     );
