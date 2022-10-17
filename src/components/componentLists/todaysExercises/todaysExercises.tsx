@@ -1,5 +1,5 @@
 import React from 'react';
-import ExerciseCardWorkout from './todaysExerciseCard';
+import TodaysExercisesCard from './todaysExerciseCard';
 
 const TodaysExercises = ({ workoutsExercises }: any) => {
   return workoutsExercises.map(
@@ -7,7 +7,7 @@ const TodaysExercises = ({ workoutsExercises }: any) => {
       id: React.Key | null | undefined;
       key: React.Key | null | undefined;
     }) => (
-      <ExerciseCardWorkout
+      <TodaysExercisesCard
         workoutsExercises={workoutsExercises}
         Exercise={Exercise}
         isInList={true}

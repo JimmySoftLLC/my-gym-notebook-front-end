@@ -118,6 +118,8 @@ const TodaysExercisesCard = ({ Exercise, workoutsExercises }: any) => {
 
   const inDatabase = getInDatabase();
 
+  const mappedExercises = actual.split('/');
+
   return (
     <>
       <h5>
@@ -159,16 +161,19 @@ const TodaysExercisesCard = ({ Exercise, workoutsExercises }: any) => {
           value={dataJSONString}
           disabled={true}
         />
-        <TextField
-          label='Current'
-          id='current'
-          type='text'
-          multiline={true}
-          minRows={minRows}
-          value={actual}
-          onChange={changeActual}
-          disabled={startEdit}
-        />
+        {mappedExercises.map((number) => (
+          <TextField
+            label='Current'
+            id='current'
+            type='text'
+            multiline={true}
+            minRows={minRows}
+            value={number}
+            onChange={changeActual}
+            disabled={startEdit}
+            style={{ width: 100 }}
+          />
+        ))}
       </div>
     </>
   );
