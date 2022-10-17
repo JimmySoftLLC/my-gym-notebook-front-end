@@ -7,7 +7,7 @@ import putGymMember from '../../../model/gymMember/putGymMember';
 import changeToMultiline from '../../../utilities/changeToMultiline';
 import getTodaysExercises from '../../../model/exerciseDay/getTodaysExercises';
 
-const TodaysExercisesCard = ({ Exercise, workoutsExercises }: any) => {
+const TodaysExercisesCard = ({ Exercise }: any) => {
   const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
   const {
     idToken,
@@ -163,15 +163,16 @@ const TodaysExercisesCard = ({ Exercise, workoutsExercises }: any) => {
         />
         {mappedExercises.map((number) => (
           <TextField
+            key={number}
             label='Current'
-            id='current'
+            id={'current'}
             type='text'
             multiline={true}
             minRows={minRows}
             value={number}
             onChange={changeActual}
             disabled={startEdit}
-            style={{ width: 100 }}
+            style={{ width: 50 }}
           />
         ))}
       </div>
