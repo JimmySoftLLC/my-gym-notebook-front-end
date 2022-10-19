@@ -38,11 +38,10 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
 
   const exerciseDateString = dateString(selectedDate, selectedDate, 'dateAsId');
 
-  const changeActual = (e: any, index: any) => {
+  const changeActual = (e: any, i: any) => {
     const actualValueLocal = JSON.parse(JSON.stringify(actualValue));
-    const values = e.target.value.split(/\r?\n/);
-    actualValueLocal[index].values = values;
-    setExerciseDayItem(Exercise.id, 'actualData', actualValueLocal);
+    actualValueLocal.values[i] = e.target.value;
+    // setExerciseDayItem(Exercise.id, 'actualData', actualValueLocal);
   };
 
   const changeInDatabase = (inDB: any) => {
@@ -52,7 +51,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
 
   const handleStartClick = async () => {
     setModeStartEdit(false);
-    if (values === '') {
+    if (values.length === 0) {
       const actualData = dataJSONString.split(/\r?\n/);
       setExerciseDayItem(Exercise.id, 'actualData', actualData);
     }
@@ -73,7 +72,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     if (newExerciseDay.dataJSON === undefined) {
       newExerciseDay.dataJSON = {};
     }
-    const actualData = values; //.split(/\r?\n/);
+    const actualData = values;
     const exerciseResult = {
       actualData: actualData,
       inDatabase: inDatabase,
@@ -104,12 +103,6 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     return { labels: [], values: [] };
   };
 
-  const actualValue = getActualValue();
-
-  const labels: any = actualValue.labels;
-
-  const values: any = actualValue.values;
-
   const getInDatabase = () => {
     if (exerciseDay.dataJSON !== undefined) {
       if (exerciseDay.dataJSON[Exercise.id] !== undefined) {
@@ -120,6 +113,12 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     }
     return false;
   };
+
+  const actualValue = getActualValue();
+
+  const labels: any = actualValue.labels;
+
+  const values: any = actualValue.values;
 
   const inDatabase = getInDatabase();
 

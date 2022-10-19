@@ -9,7 +9,7 @@ const changeToObject = (sets: string[]): { labels: any[]; values: any[] } => {
       var commandStr = details[j].replace(/[0-9]/g, '');
       var numStr = details[j].replace(/[^0-9]/g, '');
       if (!valuesObj[j]) {
-        keysObj[j] = [commandStr];
+        keysObj[j] = commandStr;
         valuesObj[j] = [numStr];
       } else {
         const myArray: any[] = valuesObj[j];
