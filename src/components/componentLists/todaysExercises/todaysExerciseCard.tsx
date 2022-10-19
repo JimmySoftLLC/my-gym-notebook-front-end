@@ -161,9 +161,9 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
           value={dataJSONString}
           disabled={true}
         />
-        {mappedExercises.map((number) => (
+        {mappedExercises.map((number, i) => (
           <TextField
-            key={number}
+            key={i}
             label='Current'
             id={'current'}
             type='text'
