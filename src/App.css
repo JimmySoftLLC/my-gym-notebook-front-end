@@ -2,20 +2,20 @@
 
 @font-face {
   font-family: 'icomoon';
-  src: url('fonts/icomoon.eot?akqzub');
-  src: url('fonts/icomoon.eot?akqzub#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?akqzub') format('truetype'),
-    url('fonts/icomoon.woff?akqzub') format('woff'),
-    url('fonts/icomoon.svg?akqzub#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?n9qceb');
+  src:  url('fonts/icomoon.eot?n9qceb#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?n9qceb') format('truetype'),
+    url('fonts/icomoon.woff?n9qceb') format('woff'),
+    url('fonts/icomoon.svg?n9qceb#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
+[class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -27,146 +27,36 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-aerobic:before {
-  content: "\e920";
-}
-
-.icon-balance:before {
-  content: "\e921";
-}
-
-.icon-appetizer:before {
-  content: "\e922";
-}
-
-.icon-image-cog:before {
-  content: "\e91e";
-}
-
-.icon-image-plus:before {
-  content: "\e91f";
-}
-
-.icon-book-plus:before {
-  content: "\e919";
-}
-
-.icon-book-cog:before {
-  content: "\e91a";
-}
-
-.icon-music-cog:before {
-  content: "\e91b";
-}
-
-.icon-music-plus:before {
-  content: "\e91c";
-}
-
-.icon-dancing:before {
-  content: "\e91d";
-}
-
-.icon-user-read:before {
-  content: "\e918";
-}
-
-.icon-sort-dollar:before {
-  content: "\e917";
-}
-
-.icon-calendar-cog:before {
+.icon-exercise:before {
   content: "\e900";
 }
-
-.icon-calendar-solid-edit:before {
+.icon-exercise-add:before {
   content: "\e901";
 }
-
-.icon-calendar-solid-minus:before {
+.icon-exercise-cog:before {
   content: "\e902";
 }
-
-.icon-calendar-solid-plus:before {
+.icon-gym-day:before {
   content: "\e903";
 }
-
-.icon-dollar_1:before {
+.icon-gym-day-add:before {
   content: "\e904";
 }
-
-.icon-dollar_2:before {
+.icon-gym-day-cog:before {
   content: "\e905";
 }
-
-.icon-dollar_3:before {
+.icon-gym-day-person:before {
   content: "\e906";
 }
-
-.icon-ham:before {
+.icon-workout:before {
   content: "\e907";
 }
-
-.icon-lamb:before {
+.icon-workout-add:before {
   content: "\e908";
 }
-
-.icon-list-solid-cog:before {
+.icon-workout-cog:before {
   content: "\e909";
 }
-
-.icon-list-solid-edit:before {
-  content: "\e90a";
-}
-
-.icon-list-solid-minus:before {
-  content: "\e90b";
-}
-
-.icon-list-solid-plus:before {
-  content: "\e90c";
-}
-
-.icon-map-marker-restaurant:before {
-  content: "\e90d";
-}
-
-.icon-restaurant-cog:before {
-  content: "\e90e";
-}
-
-.icon-restaurant-edit:before {
-  content: "\e90f";
-}
-
-.icon-restaurant-fav:before {
-  content: "\e910";
-}
-
-.icon-restaurant-minus:before {
-  content: "\e911";
-}
-
-.icon-restaurant-plus:before {
-  content: "\e912";
-}
-
-.icon-resturant:before {
-  content: "\e913";
-}
-
-.icon-shell:before {
-  content: "\e914";
-}
-
-.icon-spaghetti:before {
-  content: "\e915";
-}
-
-.icon-tbone:before {
-  content: "\e916";
-}
-
 
 /* Global Styles */
 :root {
@@ -770,28 +660,6 @@ table th {
   }
 
 }
-
-
-
-/*
-  
-  Atom One Light by Daniel Gamage
-  Original One Light Syntax theme from https://github.com/atom/one-light-syntax
-  
-  base:    #fafafa
-  mono-1:  #383a42
-  mono-2:  #686b77
-  mono-3:  #a0a1a7
-  hue-1:   #0184bb
-  hue-2:   #4078f2
-  hue-3:   #a626a4
-  hue-4:   #50a14f
-  hue-5:   #e45649
-  hue-5-2: #c91243
-  hue-6:   #986801
-  hue-6-2: #c18401
-  
-  */
 
 .display-linebreak {
   white-space: pre-line;

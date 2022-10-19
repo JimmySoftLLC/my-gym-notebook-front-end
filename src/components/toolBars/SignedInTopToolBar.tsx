@@ -114,7 +114,7 @@ const SignedInTopToolBar = () => {
                   dataAndMethodsContext.setMyState('showWorkoutByDate')
                 }
               >
-                <i className='icon-user-read'></i>
+                <i className='icon-gym-day-person'></i>
               </IconButton>
             </Tooltip>
             <Tooltip title='Exercise settings'>
@@ -125,7 +125,7 @@ const SignedInTopToolBar = () => {
                   dataAndMethodsContext.setMyState('exerciseSettings')
                 }
               >
-                <i className='icon-book-cog'></i>
+                <i className='icon-exercise-cog'></i>
               </IconButton>
             </Tooltip>
             <Tooltip title='Workout settings'>
@@ -136,7 +136,7 @@ const SignedInTopToolBar = () => {
                   dataAndMethodsContext.setMyState('workoutSettings')
                 }
               >
-                <i className='icon-calendar-cog'></i>
+                <i className='icon-workout-cog'></i>
               </IconButton>
             </Tooltip>
             <Tooltip title='Gym day settings'>
@@ -147,7 +147,7 @@ const SignedInTopToolBar = () => {
                   dataAndMethodsContext.setMyState('gymDaySettings')
                 }
               >
-                <i className='icon-calendar-cog'></i>
+                <i className='icon-gym-day-cog'></i>
               </IconButton>
             </Tooltip>
             {myStates['exerciseSettings'] && (
@@ -157,7 +157,7 @@ const SignedInTopToolBar = () => {
                   color='inherit'
                   onClick={() => newExerciseClick()}
                 >
-                  <i className='icon-book-plus'></i>
+                  <i className='icon-exercise-add'></i>
                 </IconButton>
               </Tooltip>
             )}
@@ -168,7 +168,7 @@ const SignedInTopToolBar = () => {
                   color='inherit'
                   onClick={() => newWorkoutClick()}
                 >
-                  <i className='icon-calendar-solid-plus'></i>
+                  <i className='workout-add'></i>
                 </IconButton>
               </Tooltip>
             )}
@@ -179,7 +179,7 @@ const SignedInTopToolBar = () => {
                   color='inherit'
                   onClick={() => newGymDayClick()}
                 >
-                  <i className='icon-calendar-solid-plus'></i>
+                  <i className='icon-gym-day-add'></i>
                 </IconButton>
               </Tooltip>
             )}
@@ -191,3 +191,34 @@ const SignedInTopToolBar = () => {
 };
 
 export default SignedInTopToolBar;
+
+// .icon-exercise:before {
+//   content: "\e900";
+// }
+// .icon-exercise-add:before {
+//   content: "\e901";
+// }
+// .icon-exercise-cog:before {
+//   content: "\e902";
+// }
+// .icon-gym-day:before {
+//   content: "\e903";
+// }
+// .icon-gym-day-add:before {
+//   content: "\e904";
+// }
+// .icon-gym-day-cog:before {
+//   content: "\e905";
+// }
+// .icon-gym-day-person:before {
+//   content: "\e906";
+// }
+// .icon-workout:before {
+//   content: "\e907";
+// }
+// .icon-workout-add:before {
+//   content: "\e908";
+// }
+// .icon-workout-cog:before {
+//   content: "\e909";
+// }
