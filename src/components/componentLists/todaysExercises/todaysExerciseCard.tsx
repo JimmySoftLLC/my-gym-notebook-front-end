@@ -6,6 +6,7 @@ import dateString from '../../../utilities/dateString';
 import putGymMember from '../../../model/gymMember/putGymMember';
 import changeToMultiline from '../../../utilities/changeToMultiline';
 import getTodaysExercises from '../../../model/exerciseDay/getTodaysExercises';
+import changeToObject from '../../../utilities/changeToObject';
 
 const TodaysExercisesCard = ({ Exercise }: any) => {
   const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -37,9 +38,11 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
 
   const exerciseDateString = dateString(selectedDate, selectedDate, 'dateAsId');
 
-  const changeActual = (e: any) => {
-    const actualData = e.target.value.split(/\r?\n/);
-    setExerciseDayItem(Exercise.id, 'actualData', actualData);
+  const changeActual = (e: any, index: any) => {
+    const actualValueLocal = JSON.parse(JSON.stringify(actualValue));
+    const values = e.target.value.split(/\r?\n/);
+    actualValueLocal[index].values = values;
+    setExerciseDayItem(Exercise.id, 'actualData', actualValueLocal);
   };
 
   const changeInDatabase = (inDB: any) => {
@@ -49,7 +52,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
 
   const handleStartClick = async () => {
     setModeStartEdit(false);
-    if (actual === '') {
+    if (values === '') {
       const actualData = dataJSONString.split(/\r?\n/);
       setExerciseDayItem(Exercise.id, 'actualData', actualData);
     }
@@ -70,7 +73,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     if (newExerciseDay.dataJSON === undefined) {
       newExerciseDay.dataJSON = {};
     }
-    const actualData = actual.split(/\r?\n/);
+    const actualData = values; //.split(/\r?\n/);
     const exerciseResult = {
       actualData: actualData,
       inDatabase: inDatabase,
@@ -90,20 +93,22 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     }
   };
 
-  const getActualValue = () => {
+  const getActualValue = (): { labels: any[]; values: any[] } => {
     if (exerciseDay.dataJSON !== undefined) {
       if (exerciseDay.dataJSON[Exercise.id] !== undefined) {
         if (exerciseDay.dataJSON[Exercise.id].actualData !== undefined) {
-          return changeToMultiline(
-            exerciseDay.dataJSON[Exercise.id].actualData
-          );
+          return changeToObject(exerciseDay.dataJSON[Exercise.id].actualData);
         }
       }
     }
-    return '';
+    return { labels: [], values: [] };
   };
 
-  const actual = getActualValue();
+  const actualValue = getActualValue();
+
+  const labels: any = actualValue.labels;
+
+  const values: any = actualValue.values;
 
   const getInDatabase = () => {
     if (exerciseDay.dataJSON !== undefined) {
@@ -117,8 +122,6 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
   };
 
   const inDatabase = getInDatabase();
-
-  const mappedExercises = actual.split('/');
 
   return (
     <>
@@ -139,6 +142,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
           variant='outlined'
           color='primary'
           onClick={() => handleCopyClick()}
+          style={{ width: 50 }}
         >
           <i className='fas fa-copy'></i>
         </Button>
@@ -147,6 +151,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
           variant='outlined'
           color='primary'
           onClick={() => handleDoneClick()}
+          style={{ width: 50 }}
         >
           <i className='fas fa-check'></i>
         </Button>
@@ -161,16 +166,16 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
           value={dataJSONString}
           disabled={true}
         />
-        {mappedExercises.map((number, i) => (
+        {values.map((number: number, i: number) => (
           <TextField
             key={i}
-            label='Current'
+            label={labels[i]}
             id={'current'}
             type='text'
             multiline={true}
             minRows={minRows}
             value={number}
-            onChange={changeActual}
+            onChange={(e) => changeActual(e, i)}
             disabled={startEdit}
             style={{ width: 50 }}
           />
