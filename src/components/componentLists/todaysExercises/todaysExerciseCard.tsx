@@ -7,6 +7,7 @@ import putGymMember from '../../../model/gymMember/putGymMember';
 import changeToMultiline from '../../../utilities/changeToMultiline';
 import getTodaysExercises from '../../../model/exerciseDay/getTodaysExercises';
 import changeToObject from '../../../utilities/changeToObject';
+import changeToActual from '../../../utilities/changeToActual';
 
 const TodaysExercisesCard = ({ Exercise }: any) => {
   const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -41,6 +42,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
   const changeActual = (e: any, i: any) => {
     const actualValueLocal = JSON.parse(JSON.stringify(actualValue));
     actualValueLocal.values[i] = e.target.value;
+    const changeToActual2 = changeToActual(actualValue);
     // setExerciseDayItem(Exercise.id, 'actualData', actualValueLocal);
   };
 

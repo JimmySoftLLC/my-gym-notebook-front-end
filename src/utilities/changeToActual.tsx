@@ -1,22 +1,27 @@
 import changeToMultiline from './changeToMultiline';
 
 const changeToActual = (actual2: any): any => {
-  const actual = {
-    labels: [['W'], ['REST']],
-    values: ['301\n20\n10', '20\n20\n20'],
+  const receivedVal = {
+    labels: ['W', 'REST'],
+    values: ['320\n20\n10', '20\n20\n20'],
   };
 
-  const myArray: any = [];
-  for (let i = 0; i < actual.values.length; i++) {
-    const value = actual.values[i].split(/\r?\n/);
-    for (let j = 0; j < value.length; i++) {
-      if (myArray.length < j + 1) {
-        myArray.push(actual);
+  const returnedActual: any = [];
+  for (let i = 0; i < receivedVal.values.length; i++) {
+    const values = receivedVal.values[i].split(/\r?\n/);
+    for (let j = 0; j < values.length; j++) {
+      if (returnedActual.length < j + 1) {
+        returnedActual.push(receivedVal.labels[i] + values[j]);
+      } else {
+        returnedActual[j] =
+          returnedActual[j] + receivedVal.labels[i] + values[j];
       }
     }
   }
 
-  const returnedArray = ['W301/REST20', 'W20/REST20', 'W10/REST20'];
+  const returnVal = ['W320/REST20', 'W20/REST20', 'W10/REST20'];
+
+  return returnedActual;
 };
 
 export default changeToActual;
