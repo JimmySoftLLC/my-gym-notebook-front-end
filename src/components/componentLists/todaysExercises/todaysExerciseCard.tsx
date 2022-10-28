@@ -6,8 +6,8 @@ import dateString from '../../../utilities/dateString';
 import putGymMember from '../../../model/gymMember/putGymMember';
 import changeToMultiline from '../../../utilities/changeToMultiline';
 import getTodaysExercises from '../../../model/exerciseDay/getTodaysExercises';
-import changeToObject from '../../../utilities/changeToObject';
-import changeToActual from '../../../utilities/changeToActual';
+import convertToActualObject from '../../../utilities/convertToActualObject';
+import convertToActualData from '../../../utilities/convertToActualData';
 
 const TodaysExercisesCard = ({ Exercise }: any) => {
   const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -40,10 +40,10 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
   const exerciseDateString = dateString(selectedDate, selectedDate, 'dateAsId');
 
   const changeActual = (e: any, i: any) => {
-    const actualValueLocal = JSON.parse(JSON.stringify(actualValue));
-    actualValueLocal.values[i] = e.target.value;
-    const changeToActual2 = changeToActual(actualValue);
-    // setExerciseDayItem(Exercise.id, 'actualData', actualValueLocal);
+    let changedActualData = JSON.parse(JSON.stringify(actualObject));
+    changedActualData.values[i] = e.target.value;
+    changedActualData = convertToActualData(changedActualData);
+    setExerciseDayItem(Exercise.id, 'actualData', changedActualData);
   };
 
   const changeInDatabase = (inDB: any) => {
@@ -74,9 +74,8 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     if (newExerciseDay.dataJSON === undefined) {
       newExerciseDay.dataJSON = {};
     }
-    const actualData = values;
     const exerciseResult = {
-      actualData: actualData,
+      actualData: exerciseDay.dataJSON[Exercise.id].actualData,
       inDatabase: inDatabase,
     };
     newExerciseDay.dataJSON[Exercise.id] = exerciseResult;
@@ -94,11 +93,13 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     }
   };
 
-  const getActualValue = (): { labels: any[]; values: any[] } => {
+  const getActualObject = (): { labels: any[]; values: any[] } => {
     if (exerciseDay.dataJSON !== undefined) {
       if (exerciseDay.dataJSON[Exercise.id] !== undefined) {
         if (exerciseDay.dataJSON[Exercise.id].actualData !== undefined) {
-          return changeToObject(exerciseDay.dataJSON[Exercise.id].actualData);
+          return convertToActualObject(
+            exerciseDay.dataJSON[Exercise.id].actualData
+          );
         }
       }
     }
@@ -116,11 +117,11 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
     return false;
   };
 
-  const actualValue = getActualValue();
+  const actualObject = getActualObject();
 
-  const labels: any = actualValue.labels;
+  const labels: any = actualObject.labels;
 
-  const values: any = actualValue.values;
+  const values: any = actualObject.values;
 
   const inDatabase = getInDatabase();
 

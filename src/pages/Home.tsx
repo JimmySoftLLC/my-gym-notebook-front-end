@@ -14,13 +14,6 @@ import SignInRegDialog from '../components/dialogs/SignInRegDialog';
 import WorkoutDialog from '../components/dialogs/WorkoutDialog';
 import WorkoutInventory from '../components/componentLists/workout/Workouts';
 import TodaysWorkouts from '../components/componentLists/todaysWorkouts/TodaysWorkouts';
-import Button from '@material-ui/core/Button';
-import putGymMember from '../model/gymMember/putGymMember';
-import dateString from '../utilities/dateString';
-import deleteExerciseDay from '../model/exerciseDay/deleteExerciseDay';
-import DeleteConfirmDialogContext from '../context/deleteConfirmDialog/deleteConfirmDialogContext';
-import getExerciseDaysFromIds from '../model/exerciseDay/getExerciseDaysFromIds';
-import getExerciseDays from '../model/exerciseDay/getExerciseDays';
 
 const Home = () => {
   useEffect(() => {
@@ -34,65 +27,8 @@ const Home = () => {
   }, []);
 
   const dataAndMethodsContext = useContext(DataAndMethodsContext);
-  const {
-    myStates,
-    logInType,
-    setSelectedDate,
-    setTodaysDate,
-    gymMember,
-    setGymMember,
-    idToken,
-    customId,
-    selectedDate,
-    gymDays,
-    workouts,
-    setExerciseDay,
-    getTodaysWorkouts,
-    exercises,
-    setExercisesPrevious,
-  }: any = dataAndMethodsContext;
-
-  const deleteConfirmDialogContext: any = useContext(
-    DeleteConfirmDialogContext
-  );
-  const { setDeleteConfirmDialog } = deleteConfirmDialogContext;
-
-  const selectedDateDisplayed = dateString(
-    selectedDate,
-    selectedDate,
-    'dateAsId'
-  );
-
-  const exerciseDayId = gymMember.id + selectedDateDisplayed;
-
-  const loadExerciseDayDeleteDialog = () => {
-    setDeleteConfirmDialog(
-      true,
-      'exercise day ' + selectedDateDisplayed,
-      'deleteExerciseDay',
-      exerciseDayId,
-      deleteExerciseDayById
-    );
-  };
-
-  const deleteExerciseDayById = async (exerciseDayId: any) => {
-    let myNewGymMember = JSON.parse(JSON.stringify(gymMember));
-    delete myNewGymMember.exerciseDaysJSON[selectedDateDisplayed];
-    await deleteExerciseDay(exerciseDayId, idToken, customId);
-    await putGymMember(myNewGymMember, idToken, customId);
-    setGymMember(myNewGymMember);
-    getTodaysWorkouts(gymDays, selectedDate, workouts);
-    await getExerciseDays(
-      myNewGymMember,
-      getExerciseDaysFromIds,
-      setExerciseDay,
-      selectedDate,
-      exercises,
-      setExercisesPrevious,
-      gymDays,
-      workouts
-    );
-  };
+  const { myStates, logInType, setSelectedDate, setTodaysDate }: any =
+    dataAndMethodsContext;
 
   return (
     <>
@@ -109,18 +45,7 @@ const Home = () => {
       )}
       {logInType === 'signedIn' && (
         <div className='container gym-member-page-top-margin'>
-          {myStates.showWorkoutByDate && (
-            <>
-              <TodaysWorkouts />
-              <Button
-                variant='outlined'
-                color='primary'
-                onClick={() => loadExerciseDayDeleteDialog()}
-              >
-                <i className='fas fa-trash'></i>
-              </Button>
-            </>
-          )}
+          {myStates.showWorkoutByDate && <TodaysWorkouts />}
           {myStates.exerciseSettings && <ExercisesInventory />}
           {myStates.workoutSettings && <WorkoutInventory />}
           {myStates.gymDaySettings && <GymDaysInventory />}

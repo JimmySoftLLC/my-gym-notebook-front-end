@@ -1,6 +1,8 @@
 import changeToMultiline from './changeToMultiline';
 
-const changeToObject = (sets: string[]): { labels: any[]; values: any[] } => {
+const convertToActualObject = (
+  sets: string[]
+): { labels: any[]; values: any[] } => {
   const keysObj: any = {};
   const valuesObj: any = {};
   for (let i = 0; i < sets.length; i++) {
@@ -25,4 +27,4 @@ const changeToObject = (sets: string[]): { labels: any[]; values: any[] } => {
   return { labels: labels, values: values };
 };
 
-export default changeToObject;
+export default convertToActualObject;
