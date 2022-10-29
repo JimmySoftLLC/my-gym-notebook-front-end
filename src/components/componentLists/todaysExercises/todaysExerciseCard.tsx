@@ -183,11 +183,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
             style={{ width: 50 }}
           />
         ))}
-        <VidoeEmbed
-          embedId={
-            'https://thumbs.gfycat.com/SharpGrimyAfricanharrierhawk-mobile.mp4'
-          }
-        />
+        <VidoeEmbed embedId={Exercise.videoUrl} />
       </div>
     </>
   );

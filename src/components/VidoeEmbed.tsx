@@ -4,7 +4,13 @@ import ReactPlayer from 'react-player';
 
 const VidoeEmbed = ({ embedId }: any) => {
   return (
-    <ReactPlayer width='100%' height='100%' controls={true} url={embedId} />
+    <ReactPlayer
+      class='py-1'
+      width='100%'
+      height='100%'
+      controls={true}
+      url={embedId}
+    />
   );
 };
 

@@ -14,6 +14,7 @@ import putExercise from '../../model/exercise/putExercise';
 import sortExercises from '../../model/exercise/sortExercise';
 import getExercises from '../../model/exercise/getExercises';
 import putGymMember from '../../model/gymMember/putGymMember';
+import VidoeEmbed from '../VidoeEmbed';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -152,17 +153,6 @@ const ExerciseDialog: any = () => {
             value={dataJSONString}
             onChange={changeData}
           />
-          <TextField
-            id='videoUrl'
-            label='Video Url'
-            type='text'
-            fullWidth
-            variant='filled'
-            multiline={false}
-            size='small'
-            value={videoUrl}
-            onChange={changeVideoUrl}
-          />
           <p>Exercise Category</p>
           <Toolbar>
             <div>
@@ -219,6 +209,18 @@ const ExerciseDialog: any = () => {
               </Tooltip>
             </div>
           </Toolbar>
+          <TextField
+            id='videoUrl'
+            label='Video Url'
+            type='text'
+            fullWidth
+            variant='filled'
+            multiline={false}
+            size='small'
+            value={videoUrl}
+            onChange={changeVideoUrl}
+          />
+          <VidoeEmbed embedId={videoUrl} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color='default'>
