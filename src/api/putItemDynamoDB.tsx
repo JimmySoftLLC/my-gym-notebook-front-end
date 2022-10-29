@@ -26,6 +26,8 @@ const putItemDynamoDB = async (
           myItem.title !== '' ? myItem.title : blankPlaceHolder),
         dataJSON: JSON.stringify(myItem.dataJSON),
         categoryJSON: JSON.stringify(myItem.categoryJSON),
+        videoUrl: (myItem.videoUrl =
+          myItem.videoUrl !== '' ? myItem.videoUrl : blankPlaceHolder),
       };
       break;
     case exerciseDaysTableName:

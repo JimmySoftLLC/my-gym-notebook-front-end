@@ -10,7 +10,8 @@ export const apiNameNoToken = 'i_want_to_dine_api';
 export const apiPath = '/';
 export const projectionExpressionGymMember =
   'id,bio,dataJSON,email,exerciseIdsJSON,firstName,gymDayIdsJSON,imageUrl,lastName,teamMateIdsJSON,workoutIdsJSON';
-export const projectionExpressionExercise = 'id,categoryJSON,dataJSON,title';
+export const projectionExpressionExercise =
+  'id,categoryJSON,dataJSON,title, videoUrl';
 export const projectionExpressionGymDay =
   'id,title,dateFrom,dateTo,dayJSON,workoutIdsJSON';
 export const projectionExpressionWorkout = 'id,title,exerciseIdsJSON';

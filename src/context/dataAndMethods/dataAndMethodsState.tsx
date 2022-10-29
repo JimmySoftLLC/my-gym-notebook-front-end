@@ -136,6 +136,7 @@ const DataAndMethodsState: any = (props: { children: any }) => {
       title: '',
       dataJSON: [],
       categoryJSON: [],
+      videoUrl: '',
       id: '',
       dialogType: 'Edit',
     },

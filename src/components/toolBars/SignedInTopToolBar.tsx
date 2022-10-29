@@ -16,7 +16,6 @@ const SignedInTopToolBar = () => {
   const {
     setExerciseDialogData,
     setExerciseDialogOpen,
-    restaurantId,
     myStates,
     setWorkoutDialogData,
     setWorkoutDialogOpen,
@@ -40,8 +39,7 @@ const SignedInTopToolBar = () => {
       title: '',
       dataJSON: [],
       categoryJSON: [],
-      price: 0,
-      restaurantId: restaurantId,
+      videoUrl: '',
       dialogType: 'Add',
     };
     setExerciseDialogData(myEditItem);

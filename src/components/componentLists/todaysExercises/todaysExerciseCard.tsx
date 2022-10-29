@@ -8,6 +8,7 @@ import changeToMultiline from '../../../utilities/changeToMultiline';
 import getTodaysExercises from '../../../model/exerciseDay/getTodaysExercises';
 import convertToActualObject from '../../../utilities/convertToActualObject';
 import convertToActualData from '../../../utilities/convertToActualData';
+import VidoeEmbed from '../../VidoeEmbed';
 
 const TodaysExercisesCard = ({ Exercise }: any) => {
   const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -182,6 +183,11 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
             style={{ width: 50 }}
           />
         ))}
+        <VidoeEmbed
+          embedId={
+            'https://thumbs.gfycat.com/SharpGrimyAfricanharrierhawk-mobile.mp4'
+          }
+        />
       </div>
     </>
   );

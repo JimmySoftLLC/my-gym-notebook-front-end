@@ -28,6 +28,8 @@ const getBatch = async (ids: any) => {
       exercises[i].categoryJSON === undefined
         ? JSON.parse('[]')
         : JSON.parse(exercises[i].categoryJSON);
+    exercises[i].videoUrl =
+      exercises[i].videoUrl === blankPlaceHolder ? '' : exercises[i].videoUrl;
   }
   return exercises;
 };
