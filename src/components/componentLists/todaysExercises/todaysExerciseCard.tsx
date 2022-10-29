@@ -42,7 +42,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
   const changeActual = (e: any, i: any) => {
     let changedActualData = JSON.parse(JSON.stringify(actualObject));
     changedActualData.values[i] = e.target.value;
-    changedActualData = convertToActualData(changedActualData, 3);
+    changedActualData = convertToActualData(changedActualData);
     setExerciseDayItem(Exercise.id, 'actualData', changedActualData);
   };
 

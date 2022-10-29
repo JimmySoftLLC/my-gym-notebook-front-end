@@ -8,14 +8,15 @@ const howManyReturnsInString = (myString: string) => {
   return myString.split('\n').length - 1;
 };
 
-const convertToActualData = (receivedVal: any, howManyLines: number): any => {
+const convertToActualData = (receivedVal: any): any => {
   const valuesArray: any = [];
+
+  const howManyLines = receivedVal.values.length;
 
   for (let i = 0; i < receivedVal.values.length; i++) {
     const homManyReturns = howManyReturnsInString(receivedVal.values[i]);
     if (homManyReturns < howManyLines - 1) {
       receivedVal.values[i] = receivedVal.values[i] + '\n';
-      receivedVal.values[i].replace('\n\n', '\n');
     }
   }
 
@@ -34,6 +35,7 @@ const convertToActualData = (receivedVal: any, howManyLines: number): any => {
       returnedActual[i][j] = receivedVal.labels[j] + returnedActual[i][j];
     }
     returnedActual[i] = returnedActual[i].join('/');
+    returnedActual[i] = returnedActual[i].replaceAll('undefined', '');
   }
 
   return returnedActual;
