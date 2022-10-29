@@ -168,7 +168,7 @@ const SignedInTopToolBar = () => {
                   color='inherit'
                   onClick={() => newWorkoutClick()}
                 >
-                  <i className='workout-add'></i>
+                  <i className='icon-workout-add'></i>
                 </IconButton>
               </Tooltip>
             )}
@@ -191,34 +191,3 @@ const SignedInTopToolBar = () => {
 };
 
 export default SignedInTopToolBar;
-
-// .icon-exercise:before {
-//   content: "\e900";
-// }
-// .icon-exercise-add:before {
-//   content: "\e901";
-// }
-// .icon-exercise-cog:before {
-//   content: "\e902";
-// }
-// .icon-gym-day:before {
-//   content: "\e903";
-// }
-// .icon-gym-day-add:before {
-//   content: "\e904";
-// }
-// .icon-gym-day-cog:before {
-//   content: "\e905";
-// }
-// .icon-gym-day-person:before {
-//   content: "\e906";
-// }
-// .icon-workout:before {
-//   content: "\e907";
-// }
-// .icon-workout-add:before {
-//   content: "\e908";
-// }
-// .icon-workout-cog:before {
-//   content: "\e909";
-// }
