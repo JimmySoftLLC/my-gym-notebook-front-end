@@ -15,6 +15,7 @@ const convertToActualData = (receivedVal: any, howManyLines: number): any => {
     const homManyReturns = howManyReturnsInString(receivedVal.values[i]);
     if (homManyReturns < howManyLines - 1) {
       receivedVal.values[i] = receivedVal.values[i] + '\n';
+      receivedVal.values[i].replace('\n\n', '\n');
     }
   }
 
