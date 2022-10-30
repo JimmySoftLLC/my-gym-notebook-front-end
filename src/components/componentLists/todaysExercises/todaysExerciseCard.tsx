@@ -8,7 +8,7 @@ import changeToMultiline from '../../../utilities/changeToMultiline';
 import getTodaysExercises from '../../../model/exerciseDay/getTodaysExercises';
 import convertToActualObject from '../../../utilities/convertToActualObject';
 import convertToActualData from '../../../utilities/convertToActualData';
-import VidoeEmbed from '../../VidoeEmbed';
+import VideoEmbed from '../../VideoEmbed';
 
 const TodaysExercisesCard = ({ Exercise }: any) => {
   const dataAndMethodsContext: any = useContext(DataAndMethodsContext);
@@ -128,9 +128,8 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
 
   return (
     <>
+      <h5>{Exercise.title}</h5>
       <h5>
-        {Exercise.title}
-        <span className='mx-1'></span>
         <Button
           disabled={!startEdit}
           variant='outlined'
@@ -183,7 +182,7 @@ const TodaysExercisesCard = ({ Exercise }: any) => {
             style={{ width: 50 }}
           />
         ))}
-        <VidoeEmbed embedId={Exercise.videoUrl} />
+        <VideoEmbed embedId={Exercise.videoUrl} />
       </div>
     </>
   );

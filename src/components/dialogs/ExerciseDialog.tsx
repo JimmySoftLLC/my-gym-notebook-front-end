@@ -14,7 +14,7 @@ import putExercise from '../../model/exercise/putExercise';
 import sortExercises from '../../model/exercise/sortExercise';
 import getExercises from '../../model/exercise/getExercises';
 import putGymMember from '../../model/gymMember/putGymMember';
-import VidoeEmbed from '../VidoeEmbed';
+import VideoEmbed from '../VideoEmbed';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -220,7 +220,7 @@ const ExerciseDialog: any = () => {
             value={videoUrl}
             onChange={changeVideoUrl}
           />
-          <VidoeEmbed embedId={videoUrl} />
+          <VideoEmbed embedId={videoUrl} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color='default'>

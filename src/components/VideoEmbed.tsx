@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 
-const VidoeEmbed = ({ embedId }: any) => {
+const VideoEmbed = ({ embedId }: any) => {
   return (
     <ReactPlayer
+      loop={true}
       class='py-1'
       width='100%'
       height='100%'
@@ -14,8 +15,8 @@ const VidoeEmbed = ({ embedId }: any) => {
   );
 };
 
-VidoeEmbed.propTypes = {
+VideoEmbed.propTypes = {
   embedId: PropTypes.string.isRequired,
 };
 
-export default VidoeEmbed;
+export default VideoEmbed;
