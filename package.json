@@ -34,7 +34,7 @@
     "eslint-plugin-flowtype": "^3.13.0",
     "file-saver": "^2.0.5",
     "jquery": "^3.6.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwk-to-pem": "^2.0.5",
     "kind-of": "^6.0.3",
     "minimist": "^1.2.5",
